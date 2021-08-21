@@ -1,191 +1,96 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_qiblah/flutter_qiblah.dart';
-
-import 'loading_indicator.dart';
-import 'qiblah_compass.dart';
-import 'qiblah_maps.dart';
-
-import 'package:adhan/adhan.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/screens/prayer_time_screen.dart';
+import 'package:masalah/screens/qibla_screen.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+/// This is the main application widget.
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-class _MyAppState extends State<MyApp> {
-  final _deviceSupport = FlutterQiblah.androidDeviceSensorSupport();
+  static const String _title = 'Flutter Code Sample';
 
   @override
   Widget build(BuildContext context) {
-    print('Kushtia Prayer Times');
-    final myCoordinates = Coordinates(
-        23.9088, 89.1220); // Replace with your own location lat, lng.
-    final params = CalculationMethod.karachi.getParameters();
-    params.madhab = Madhab.hanafi;
-    final prayerTimes = PrayerTimes.today(myCoordinates, params);
-
-    print(
-        "---Today's Prayer Times in Your Local Timezone(${prayerTimes.fajr.timeZoneName})---");
-    print(prayerTimes.fajr);
-    print(prayerTimes.sunrise);
-    print(prayerTimes.dhuhr);
-    print(prayerTimes.asr);
-    print(prayerTimes.maghrib);
-    print(prayerTimes.isha);
-
-    print('---');
-
-    // Custom Timezone Usage. (Most of you won't need this).
-    print('NewYork Prayer Times');
-    final newYork = Coordinates(35.7750, -78.6336);
-    final nyUtcOffset = Duration(hours: -4);
-    final nyDate = DateComponents(2015, 7, 12);
-    final nyParams = CalculationMethod.north_america.getParameters();
-    nyParams.madhab = Madhab.hanafi;
-    final nyPrayerTimes =
-        PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
-
-    print(nyPrayerTimes.fajr.timeZoneName);
-    print(nyPrayerTimes.fajr);
-    print(nyPrayerTimes.sunrise);
-    print(nyPrayerTimes.dhuhr);
-    print(nyPrayerTimes.asr);
-    print(nyPrayerTimes.maghrib);
-    print(nyPrayerTimes.isha);
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Color(0xff0c7b93),
-        primaryColorLight: Color(0xff00a8cc),
-        primaryColorDark: Color(0xff27496d),
-        accentColor: Color(0xffecce6d),
-      ),
-      darkTheme: ThemeData.dark().copyWith(accentColor: Color(0xffecce6d)),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: FutureBuilder(
-          future: _deviceSupport,
-          builder: (_, AsyncSnapshot<bool?> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting)
-              return LoadingIndicator();
-            if (snapshot.hasError)
-              return Center(
-                child: Text("Error: ${snapshot.error.toString()}"),
-              );
-
-            if (snapshot.data!)
-              return QiblahCompass();
-            else
-              return QiblahMaps();
-          },
-        ),
-      ),
+    return const MaterialApp(
+      title: _title,
+      home: MyStatefulWidget(),
     );
   }
 }
 
-/*class CenterEx extends StatelessWidget {
+/// This is the stateful widget that the main application instantiates.
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+/// This is the private State class that goes with MyStatefulWidget.
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  final _qiblaSvg = SvgPicture.asset(
+    'assets/qibla.svg',
+    fit: BoxFit.contain,
+    height: 300,
+    alignment: Alignment.center,
+  );
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    PrayerTimeScreen(),
+    QiblaScreen(),
+    Text(
+      'Index 3: Settings',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: FlatButton(
-            color: Colors.green,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Example();
-                  },
-                ),
-              );
-            },
-            child: Text('Open Qiplah'),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: ImageIcon(AssetImage('assets/images/masalah.png')),
+            label: 'Masalah',
           ),
-        ));
+          BottomNavigationBarItem(
+            icon: ImageIcon(AssetImage('assets/images/adhan.png')),
+            label: 'Prayer Time',
+          ),
+          BottomNavigationBarItem(
+            icon: ImageIcon(AssetImage('assets/images/qibla.png')),
+            label: 'Qibla',
+          ),
+          BottomNavigationBarItem(
+            icon: ImageIcon(AssetImage('assets/images/converter.png')),
+            label: 'Calculator',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: AppColors.selectedIconColor,
+        backgroundColor: AppColors.primaryText,
+        unselectedItemColor: AppColors.unSelectedIconColor,
+        onTap: _onItemTapped,
+      ),
+    );
   }
-}*/
-
-
-// class CenterEx extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(
-//           title: const Text('Plugin example app'),
-//         ),
-//         body: Center(
-//           child: RaisedButton(
-//             color: Theme.of(context).accentColor,
-//             onPressed: () {
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(
-//                   builder: (context) {
-//                     return Scaffold(
-//                       appBar: AppBar(
-//                         title: Text("Compass"),
-//                       ),
-//                       body: TestingCompassWidget(),
-//                     );
-//                   },
-//                 ),
-//               );
-//             },
-//             child: Text('Open Compass'),
-//           ),
-//         ));
-//   }
-// }
-//
-// class TestingCompassWidget extends StatefulWidget {
-//   @override
-//   _TestingCompassWidgetState createState() => _TestingCompassWidgetState();
-// }
-//
-// class _TestingCompassWidgetState extends State<TestingCompassWidget> {
-//   @override
-//   void dispose() {
-//     FlutterCompass().dispose();
-//     super.dispose();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: _buildManualReader(),
-//     );
-//   }
-//
-//   Widget _buildManualReader() {
-//     return Padding(
-//       padding: const EdgeInsets.all(16.0),
-//       child: StreamBuilder<double>(
-//           stream: FlutterCompass.events,
-//           builder: (context, snapshot) {
-//             if (snapshot.hasError) {
-//               return Text('Error reading heading: ${snapshot.error}');
-//             }
-//
-//             if (snapshot.connectionState == ConnectionState.waiting) {
-//               return Center(
-//                 child: CircularProgressIndicator(),
-//               );
-//             }
-//
-//             double direction = snapshot.data;
-//             return Text(
-//               '$direction',
-//               style: Theme.of(context).textTheme.button,
-//             );
-//           }),
-//     );
-//   }
-// }
+}

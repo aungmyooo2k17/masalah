@@ -33,6 +33,7 @@ dependencies:
   google_maps_flutter: ^2.0.1
   geolocator: ^7.0.1
   flutter_compass: ^0.6.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +52,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-  #   - images/a_dot_burr.jpeg
+    - assets/images/Asir.png
+    - assets/images/magrib.png
+    - assets/images/Isha.png
+    - assets/images/Fajr.png
+    - assets/images/Duhr.png
+    - assets/images/adhan.png
+    - assets/images/qibla.png
+    - assets/images/converter.png
+    - assets/images/masalah.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -65,11 +74,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: Unicode
+      fonts:
+        - asset: assets/fonts/Pyidaungsu-Bold.ttf
+        - asset: assets/fonts/Pyidaungsu-Regular.ttf
+          weight: 700
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
