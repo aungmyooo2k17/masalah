@@ -23,9 +23,10 @@ class QiblaScreen extends StatelessWidget {
       ),
       darkTheme: ThemeData.light().copyWith(accentColor: Color(0xffecce6d)),
       home: Scaffold(
+        backgroundColor: AppColors.bgColor,
         appBar: AppTopBar(
           title: "QIBLA DIRECTION",
-          bgColor: AppColors.white,
+          bgColor: AppColors.bgColor,
           textColor: AppColors.primaryText,
         ),
         body: FutureBuilder(

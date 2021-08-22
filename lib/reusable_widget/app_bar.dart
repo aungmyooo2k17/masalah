@@ -10,16 +10,22 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
       {Key? key,
       this.title = "",
       this.bgColor = Colors.white,
-      this.textColor = Colors.black})
+      this.textColor = Colors.black,
+      this.enableBackBtn = false})
       : super(key: key);
 
   final String title;
   final Color bgColor;
   final Color textColor;
+  final bool enableBackBtn;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: IconThemeData(
+        color: AppColors.primaryText, //change your color here
+      ),
+      automaticallyImplyLeading: enableBackBtn,
       elevation: 0,
       backgroundColor: bgColor,
       titleTextStyle: TextStyle(fontSize: 26),

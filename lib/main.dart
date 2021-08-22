@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/screens/masalah_category_screen.dart';
 import 'package:masalah/screens/prayer_time_screen.dart';
 import 'package:masalah/screens/qibla_screen.dart';
 
@@ -31,20 +31,11 @@ class MyStatefulWidget extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  final _qiblaSvg = SvgPicture.asset(
-    'assets/qibla.svg',
-    fit: BoxFit.contain,
-    height: 300,
-    alignment: Alignment.center,
-  );
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
+  static List<Widget> _widgetOptions = <Widget>[
+    MasalahCategoryScreen(),
     PrayerTimeScreen(),
     QiblaScreen(),
     Text(
