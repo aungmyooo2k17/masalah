@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:masalah/model/category.dart';
 import 'package:masalah/model/result.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -56,8 +57,8 @@ class DatabaseHelper {
           CREATE TABLE $masalahDataTable (
             $masalahId INTEGER PRIMARY KEY,
             $masalahTitle TEXT NOT NULL,
-            $masalahDescription TEXT NOT NULL
-            $masalahRefrence TEXT NOT NULL
+            $masalahDescription TEXT NOT NULL,
+            $masalahRefrence TEXT NOT NULL,
             $masalahCategoryId INTEGER NOT NULL
           )
           ''');
@@ -70,7 +71,8 @@ class DatabaseHelper {
   // inserted row.
   Future<int> insertCategory(Map<String, dynamic> row) async {
     Database db = await instance.database;
-    return await db.insert(masalahCategoryTable, row);
+    return await db.insert(masalahCategoryTable, row,
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<int> insertMasalah(Map<String, dynamic> row) async {
@@ -82,8 +84,10 @@ class DatabaseHelper {
   // a key-value list of columns.
   Future<Result> queryAllCategoryRows() async {
     Database db = await instance.database;
-    // return await db.query(masalahCategoryTable);
-    return Result<dynamic>.success(await db.query(masalahCategoryTable));
+    final d = await db.query(masalahCategoryTable);
+
+    List<Category> data = d.map((i) => Category.fromJson(i)).toList();
+    return Result<List<Category>>.success(data);
   }
 
   Future<List<Map<String, dynamic>>> queryAllMasalahRows() async {

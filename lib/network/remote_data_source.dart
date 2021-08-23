@@ -24,9 +24,9 @@ class RemoteDataSource {
       print(response.statusCode);
       if (response.statusCode == 200) {
         print("networkingggg");
-        print(response.body);
-        return Result<CategoryApi>.success(
-            CategoryApi.fromRawJson(response.body));
+        CategoryApi data = CategoryApi.fromRawJson(response.body);
+
+        return Result<List<Category>>.success(data.categories!);
       } else {
         return Result.error("Category list not available");
       }

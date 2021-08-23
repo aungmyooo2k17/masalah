@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATIO" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
    <application
+        android:allowBackup="false"
         android:label="masalah"
         android:icon="@mipmap/ic_launcher">
         <activity
