@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/model/category.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/network/remote_data_source.dart';
@@ -12,6 +13,7 @@ class MasalahCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final RemoteDataSource _apiResponse = RemoteDataSource();
+    final dbHelper = DatabaseHelper.instance;
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppTopBar(
@@ -25,9 +27,9 @@ class MasalahCategoryScreen extends StatelessWidget {
             print(snapshot.data);
             if (snapshot.data is SuccessState) {
               CategoryApi category = (snapshot.data as SuccessState).value;
-              print("_______");
-              print(category.categories!.length.toString());
-              print(category.categories![0].categoryName);
+              category.categories!.forEach((element) {
+                print(element);
+              });
               return SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(

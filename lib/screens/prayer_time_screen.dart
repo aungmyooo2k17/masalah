@@ -418,7 +418,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                     decoration: BoxDecoration(
                       color: prayerTimes!.isha.millisecond <
                                   DateTime.now().millisecond &&
-                              prayerTimes!.fajr.millisecond + 86400000 >
+                              prayerTimes!.fajr.millisecond >
                                   DateTime.now().millisecond
                           ? AppColors.bgBtn
                           : Colors.white,

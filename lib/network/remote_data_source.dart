@@ -23,6 +23,8 @@ class RemoteDataSource {
       print("***************");
       print(response.statusCode);
       if (response.statusCode == 200) {
+        print("networkingggg");
+        print(response.body);
         return Result<CategoryApi>.success(
             CategoryApi.fromRawJson(response.body));
       } else {

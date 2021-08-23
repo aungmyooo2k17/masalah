@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/screens/converter_screen.dart';
 import 'package:masalah/screens/masalah_category_screen.dart';
 import 'package:masalah/screens/prayer_time_screen.dart';
 import 'package:masalah/screens/qibla_screen.dart';
+import 'package:connectivity/connectivity.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,11 +43,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     MasalahCategoryScreen(),
     PrayerTimeScreen(),
     QiblaScreen(),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
+    MyCalculator()
   ];
+
+  String _connectionStatus = 'Unknown';
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -51,7 +57,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    initConnectivity();
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+  }
+
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print("Connection..........$_connectionStatus");
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -83,5 +104,37 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         onTap: _onItemTapped,
       ),
     );
+  }
+
+  Future<void> initConnectivity() async {
+    ConnectivityResult result = ConnectivityResult.none;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = await _connectivity.checkConnectivity();
+    } on PlatformException catch (e) {
+      print(e.toString());
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) {
+      return Future.value(null);
+    }
+
+    return _updateConnectionStatus(result);
+  }
+
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    switch (result) {
+      case ConnectivityResult.wifi:
+      case ConnectivityResult.mobile:
+      case ConnectivityResult.none:
+        setState(() => _connectionStatus = result.toString());
+        break;
+      default:
+        setState(() => _connectionStatus = 'Failed to get connectivity.');
+        break;
+    }
   }
 }
