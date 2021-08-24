@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:masalah/model/category.dart';
+import 'package:masalah/model/masalah.dart';
 import 'package:masalah/model/result.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -77,7 +78,8 @@ class DatabaseHelper {
 
   Future<int> insertMasalah(Map<String, dynamic> row) async {
     Database db = await instance.database;
-    return await db.insert(masalahDataTable, row);
+    return await db.insert(masalahDataTable, row,
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   // All of the rows are returned as a list of maps, where each map is
@@ -90,9 +92,12 @@ class DatabaseHelper {
     return Result<List<Category>>.success(data);
   }
 
-  Future<List<Map<String, dynamic>>> queryAllMasalahRows() async {
+  Future<Result> queryAllMasalahRows() async {
     Database db = await instance.database;
-    return await db.query(masalahDataTable);
+    final d = await db.query(masalahDataTable);
+
+    List<Masalah> data = d.map((i) => Masalah.fromJson(i)).toList();
+    return Result<List<Masalah>>.success(data);
   }
 
   // All of the methods (insert, query, update, delete) can also be done using

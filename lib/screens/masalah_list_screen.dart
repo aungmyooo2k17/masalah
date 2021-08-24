@@ -1,56 +1,97 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:masalah/common/constants/color_constant.dart';
-import 'package:masalah/model/masalah.dart';
+import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/model/masalah.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/network/remote_data_source.dart';
 import 'package:masalah/reusable_widget/app_bar.dart';
-import 'package:masalah/screens/item/category_item.dart';
+import 'package:masalah/reusable_widget/no_internet.dart';
 import 'package:masalah/screens/item/masalah_item.dart';
 
-class MasalahListScreen extends StatelessWidget {
+class MasalahListScreen extends StatefulWidget {
   const MasalahListScreen(
       {Key? key, required this.categoryName, required this.categoryId})
       : super(key: key);
-
   final String? categoryName;
   final int? categoryId;
+  @override
+  _MasalahListScreenState createState() => _MasalahListScreenState();
+}
+
+class _MasalahListScreenState extends State<MasalahListScreen> {
+  ConnectivityResult? _connectionStatus;
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+
+  final RemoteDataSource _apiResponse = RemoteDataSource();
+  final dbHelper = DatabaseHelper.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    initConnectivity();
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+  }
+
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final RemoteDataSource _apiResponse = RemoteDataSource();
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppTopBar(
         enableBackBtn: true,
-        title: categoryName!,
+        title: widget.categoryName!,
         bgColor: AppColors.bgColor,
         textColor: AppColors.primaryText,
       ),
       body: FutureBuilder(
-          future: _apiResponse.getMasalahs(),
+          future: _connectionStatus == ConnectivityResult.none
+              ? dbHelper.queryAllMasalahRows()
+              : _apiResponse.getMasalahs(),
           builder: (BuildContext context, AsyncSnapshot<Result> snapshot) {
             print(snapshot.data);
             if (snapshot.data is SuccessState) {
-              MasalahApi masalah = (snapshot.data as SuccessState).value;
-              print("_______");
-              print(masalah.masalahs!.length.toString());
-              print(masalah.masalahs![0].masalahTitle);
-              return SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    ...List.generate(
-                      masalah.masalahs!.length,
-                      (index) {
-                        return MasalahItem(
-                          masalah: masalah.masalahs![index],
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              );
+              List<Masalah> masalahs = (snapshot.data as SuccessState).value;
+              if (_connectionStatus != ConnectivityResult.none) {
+                masalahs.forEach((element) async {
+                  Map<String, dynamic> row = {
+                    DatabaseHelper.masalahId: element.masalahId,
+                    DatabaseHelper.masalahTitle: element.masalahTitle,
+                    DatabaseHelper.masalahDescription:
+                        element.masalahDescription,
+                    DatabaseHelper.masalahRefrence: element.masalahRefrence,
+                    DatabaseHelper.masalahCategoryId: element.masalahCategoryId,
+                  };
+                  await dbHelper.insertMasalah(row);
+                });
+              }
+              return masalahs.length != 0
+                  ? SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        children: [
+                          ...List.generate(
+                            masalahs.length,
+                            (index) {
+                              return MasalahItem(
+                                masalah: masalahs[index],
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    )
+                  : NoInternet();
             } else if (snapshot.data is ErrorState) {
               String errorMessage = (snapshot.data as ErrorState).msg;
               return Text(errorMessage);
@@ -59,5 +100,37 @@ class MasalahListScreen extends StatelessWidget {
             }
           }),
     );
+  }
+
+  Future<void> initConnectivity() async {
+    ConnectivityResult result = ConnectivityResult.none;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = await _connectivity.checkConnectivity();
+    } on PlatformException catch (e) {
+      print(e.toString());
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) {
+      return Future.value(null);
+    }
+
+    return _updateConnectionStatus(result);
+  }
+
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    switch (result) {
+      case ConnectivityResult.wifi:
+      case ConnectivityResult.mobile:
+      case ConnectivityResult.none:
+        setState(() => _connectionStatus = result);
+        break;
+      default:
+        setState(() => _connectionStatus = ConnectivityResult.none);
+        break;
+    }
   }
 }

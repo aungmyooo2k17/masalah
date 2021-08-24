@@ -8,25 +8,28 @@ class Masalah {
   final String? masalahTitle;
   final String? masalahDescription;
   final String? masalahRefrence;
+  final int? masalahCategoryId;
 
   Masalah(
       {this.masalahId,
       this.masalahTitle,
       this.masalahDescription,
-      this.masalahRefrence});
+      this.masalahRefrence,
+      this.masalahCategoryId});
 
   factory Masalah.fromJson(Map<String, dynamic> json) => Masalah(
-        masalahId: json["masalahId"],
-        masalahTitle: json["masalahTitle"],
-        masalahDescription: json["masalahDescription"],
-        masalahRefrence: json["masalahRefrence"],
-      );
+      masalahId: json["masalahId"],
+      masalahTitle: json["masalahTitle"],
+      masalahDescription: json["masalahDescription"],
+      masalahRefrence: json["masalahRefrence"],
+      masalahCategoryId: json["categoryId"]);
 
   Map<String, dynamic> toJson() => {
         "masalahId": masalahId,
         "masalahTitle": masalahTitle,
         "masalahDescription": masalahDescription,
         "masalahRefrence": masalahRefrence,
+        "categoryId": masalahCategoryId
       };
 }
 

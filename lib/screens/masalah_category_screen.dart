@@ -9,6 +9,7 @@ import 'package:masalah/model/category.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/network/remote_data_source.dart';
 import 'package:masalah/reusable_widget/app_bar.dart';
+import 'package:masalah/reusable_widget/no_internet.dart';
 import 'package:masalah/screens/item/category_item.dart';
 
 class MasalahCategoryScreen extends StatefulWidget {
@@ -55,14 +56,16 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
             print(snapshot.data);
             if (snapshot.data is SuccessState) {
               List<Category> categories = (snapshot.data as SuccessState).value;
-              categories.forEach((element) async {
-                Map<String, dynamic> row = {
-                  DatabaseHelper.categoryName: element.categoryName,
-                  DatabaseHelper.categoryId: element.categoryId,
-                  DatabaseHelper.masalahCount: element.masalahCount,
-                };
-                await dbHelper.insertCategory(row);
-              });
+              if (_connectionStatus != ConnectivityResult.none) {
+                categories.forEach((element) async {
+                  Map<String, dynamic> row = {
+                    DatabaseHelper.categoryName: element.categoryName,
+                    DatabaseHelper.categoryId: element.categoryId,
+                    DatabaseHelper.masalahCount: element.masalahCount,
+                  };
+                  await dbHelper.insertCategory(row);
+                });
+              }
               return categories.length != 0
                   ? SingleChildScrollView(
                       scrollDirection: Axis.vertical,
@@ -82,9 +85,7 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
                         ],
                       ),
                     )
-                  : Center(
-                      child: Text("no internet connection"),
-                    );
+                  : NoInternet();
             } else if (snapshot.data is ErrorState) {
               String errorMessage = (snapshot.data as ErrorState).msg;
               return Text(errorMessage);

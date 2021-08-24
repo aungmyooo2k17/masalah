@@ -43,8 +43,8 @@ class RemoteDataSource {
       print("***************");
       print(response.statusCode);
       if (response.statusCode == 200) {
-        return Result<MasalahApi>.success(
-            MasalahApi.fromRawJson(response.body));
+        MasalahApi data = MasalahApi.fromRawJson(response.body);
+        return Result<List<Masalah>>.success(data.masalahs!);
       } else {
         return Result.error("Masalahs list not available");
       }
