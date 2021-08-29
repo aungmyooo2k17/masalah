@@ -43,7 +43,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     MasalahCategoryScreen(),
     PrayerTimeScreen(),
     QiblaScreen(),
-    MainApp()
+    MyCalculator()
   ];
 
   String _connectionStatus = 'Unknown';

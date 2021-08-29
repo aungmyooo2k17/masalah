@@ -25,8 +25,21 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
   final RemoteDataSource _apiResponse = RemoteDataSource();
   final dbHelper = DatabaseHelper.instance;
 
+  final _searchController = TextEditingController();
+  int catCount = 0;
+
   @override
   void initState() {
+    dbHelper.queryCategoryRowCount().then((value) => () {
+          catCount = value!;
+        });
+    _searchController.addListener(() {
+      //here you have the changes of your textfield
+      print("value: ${_searchController.text}");
+      //use setState to rebuild the widget
+      setState(() {});
+    });
+
     super.initState();
     initConnectivity();
     _connectivitySubscription =
@@ -35,12 +48,15 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
 
   @override
   void dispose() {
+    _searchController.dispose();
     _connectivitySubscription.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    print("_searchController.text");
+    print(_searchController.text);
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppTopBar(
@@ -48,51 +64,75 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
         bgColor: AppColors.bgColor,
         textColor: AppColors.primaryText,
       ),
-      body: FutureBuilder(
-          future: _connectionStatus == ConnectivityResult.none
-              ? dbHelper.queryAllCategoryRows()
-              : _apiResponse.getCategories(),
-          builder: (BuildContext context, AsyncSnapshot<Result> snapshot) {
-            print(snapshot.data);
-            if (snapshot.data is SuccessState) {
-              List<Category> categories = (snapshot.data as SuccessState).value;
-              if (_connectionStatus != ConnectivityResult.none) {
-                categories.forEach((element) async {
-                  Map<String, dynamic> row = {
-                    DatabaseHelper.categoryName: element.categoryName,
-                    DatabaseHelper.categoryId: element.categoryId,
-                    DatabaseHelper.masalahCount: element.masalahCount,
-                  };
-                  await dbHelper.insertCategory(row);
-                });
-              }
-              return categories.length != 0
-                  ? SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(
-                        children: [
-                          ...List.generate(
-                            categories.length,
-                            (index) {
-                              if (categories[index].masalahCount != 0)
-                                return CategoryItem(
-                                    category: categories[index]);
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(16),
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.search),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.grey, width: 0.0),
+                        borderRadius: BorderRadius.circular(120.0)),
+                    filled: true,
+                    hintStyle: TextStyle(color: Colors.grey[800]),
+                    hintText: "Search category here",
+                    fillColor: Colors.white70),
+              ),
+            ),
+            FutureBuilder(
+                future: _searchController.text != "" ||
+                        _connectionStatus == ConnectivityResult.none
+                    ? dbHelper.queryAllCategoryRows(_searchController.text)
+                    : _apiResponse.getCategories(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<Result> snapshot) {
+                  print(snapshot.data);
+                  if (snapshot.data is SuccessState) {
+                    List<Category> categories =
+                        (snapshot.data as SuccessState).value;
+                    if (_connectionStatus != ConnectivityResult.none &&
+                        catCount == 0) {
+                      categories.forEach((element) async {
+                        Map<String, dynamic> row = {
+                          DatabaseHelper.categoryName: element.categoryName,
+                          DatabaseHelper.categoryId: element.categoryId,
+                          DatabaseHelper.masalahCount: element.masalahCount,
+                        };
+                        await dbHelper.insertCategory(row);
+                      });
+                    }
+                    return categories.length != 0
+                        ? Column(
+                            children: [
+                              ...List.generate(
+                                categories.length,
+                                (index) {
+                                  if (categories[index].masalahCount != 0)
+                                    return CategoryItem(
+                                        category: categories[index]);
 
-                              return SizedBox
-                                  .shrink(); // here by default width and height is 0
-                            },
-                          ),
-                        ],
-                      ),
-                    )
-                  : NoInternet();
-            } else if (snapshot.data is ErrorState) {
-              String errorMessage = (snapshot.data as ErrorState).msg;
-              return Text(errorMessage);
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          }),
+                                  return SizedBox
+                                      .shrink(); // here by default width and height is 0
+                                },
+                              ),
+                            ],
+                          )
+                        : NoInternet();
+                  } else if (snapshot.data is ErrorState) {
+                    String errorMessage = (snapshot.data as ErrorState).msg;
+                    return Text(errorMessage);
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                }),
+          ],
+        ),
+      ),
     );
   }
 

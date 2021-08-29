@@ -30,8 +30,20 @@ class _MasalahListScreenState extends State<MasalahListScreen> {
   final RemoteDataSource _apiResponse = RemoteDataSource();
   final dbHelper = DatabaseHelper.instance;
 
+  final _searchController = TextEditingController();
+  int masCount = 0;
+
   @override
   void initState() {
+    dbHelper.queryMasalahRowCount().then((value) => () {
+          masCount = value!;
+        });
+    _searchController.addListener(() {
+      //here you have the changes of your textfield
+      print("value: ${_searchController.text}");
+      //use setState to rebuild the widget
+      setState(() {});
+    });
     super.initState();
     initConnectivity();
     _connectivitySubscription =
@@ -54,51 +66,77 @@ class _MasalahListScreenState extends State<MasalahListScreen> {
         bgColor: AppColors.bgColor,
         textColor: AppColors.primaryText,
       ),
-      body: FutureBuilder(
-          future: _connectionStatus == ConnectivityResult.none
-              ? dbHelper.queryAllMasalahRows()
-              : _apiResponse.getMasalahs(),
-          builder: (BuildContext context, AsyncSnapshot<Result> snapshot) {
-            print(snapshot.data);
-            if (snapshot.data is SuccessState) {
-              List<Masalah> masalahs = (snapshot.data as SuccessState).value;
-              if (_connectionStatus != ConnectivityResult.none) {
-                masalahs.forEach((element) async {
-                  Map<String, dynamic> row = {
-                    DatabaseHelper.masalahId: element.masalahId,
-                    DatabaseHelper.masalahTitle: element.masalahTitle,
-                    DatabaseHelper.masalahDescription:
-                        element.masalahDescription,
-                    DatabaseHelper.masalahRefrence: element.masalahRefrence,
-                    DatabaseHelper.masalahCategoryId: element.masalahCategoryId,
-                  };
-                  await dbHelper.insertMasalah(row);
-                });
-              }
-              return masalahs.length != 0
-                  ? SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(
-                        children: [
-                          ...List.generate(
-                            masalahs.length,
-                            (index) {
-                              return MasalahItem(
-                                masalah: masalahs[index],
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    )
-                  : NoInternet();
-            } else if (snapshot.data is ErrorState) {
-              String errorMessage = (snapshot.data as ErrorState).msg;
-              return Text(errorMessage);
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          }),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(16),
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.search),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.grey, width: 0.0),
+                        borderRadius: BorderRadius.circular(120.0)),
+                    filled: true,
+                    hintStyle: TextStyle(color: Colors.grey[800]),
+                    hintText: "Search masalah here",
+                    fillColor: Colors.white70),
+              ),
+            ),
+            FutureBuilder(
+                future: _searchController.text != "" ||
+                        _connectionStatus == ConnectivityResult.none
+                    ? dbHelper.queryAllMasalahRows(_searchController.text)
+                    : _apiResponse.getMasalahs(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<Result> snapshot) {
+                  print(snapshot.data);
+                  if (snapshot.data is SuccessState) {
+                    List<Masalah> masalahs =
+                        (snapshot.data as SuccessState).value;
+                    if (_connectionStatus != ConnectivityResult.none &&
+                        masCount == 0) {
+                      masalahs.forEach((element) async {
+                        Map<String, dynamic> row = {
+                          DatabaseHelper.masalahId: element.masalahId,
+                          DatabaseHelper.masalahTitle: element.masalahTitle,
+                          DatabaseHelper.masalahDescription:
+                              element.masalahDescription,
+                          DatabaseHelper.masalahRefrence:
+                              element.masalahRefrence,
+                          DatabaseHelper.masalahCategoryId:
+                              element.masalahCategoryId,
+                        };
+                        await dbHelper.insertMasalah(row);
+                      });
+                    }
+                    return masalahs.length != 0
+                        ? Column(
+                            children: [
+                              ...List.generate(
+                                masalahs.length,
+                                (index) {
+                                  return MasalahItem(
+                                    masalah: masalahs[index],
+                                  );
+                                },
+                              ),
+                            ],
+                          )
+                        : NoInternet();
+                  } else if (snapshot.data is ErrorState) {
+                    String errorMessage = (snapshot.data as ErrorState).msg;
+                    return Text(errorMessage);
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                }),
+          ],
+        ),
+      ),
     );
   }
 

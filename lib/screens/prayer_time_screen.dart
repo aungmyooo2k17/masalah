@@ -449,6 +449,12 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
 
   AssetImage prayerTimeImage() {
     AssetImage? assetImage;
+
+    if (prayerTimes!.fajr.millisecond <= DateTime.now().millisecond &&
+        prayerTimes!.sunrise.millisecond >= DateTime.now().millisecond) {
+      return assetImage = AssetImage("assets/images/Fajr.png");
+    }
+
     if (prayerTimes!.isha.millisecond < DateTime.now().millisecond &&
         prayerTimes!.fajr.millisecond + 86400000 > DateTime.now().millisecond) {
       return assetImage = AssetImage("assets/images/Isha.png");
@@ -460,12 +466,8 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
       return assetImage = AssetImage("assets/images/Duhr.png");
     } else if (prayerTimes!.sunrise.millisecond > DateTime.now().millisecond) {
       return assetImage = AssetImage("assets/images/Duhr.png");
-    } else if (prayerTimes!.fajr.millisecond <= DateTime.now().millisecond &&
-        prayerTimes!.sunrise.millisecond >= DateTime.now().millisecond) {
-      return assetImage = AssetImage("assets/images/Fajr.png");
-    }
-
-    return assetImage!;
+    } else
+      return assetImage!;
   }
 
   Map<String, dynamic> calculatingCurrentPrayerTime() {
