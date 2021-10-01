@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 class DateTimeUtil {
   prayerTimeFormat(datetime) {
     return DateFormat.jm().format(datetime);
+    // return datetime;
   }
 
   prayerTimeHumanReadable(datetime) {

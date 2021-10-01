@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:core';
 
 import 'package:adhan/adhan.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,7 @@ class PrayerTimeScreen extends StatefulWidget {
 class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   DateTime? selectedDate = DateTime.now();
   PrayerTimes? prayerTimes;
+  PrayerTimes? prayerTimeNow;
   Coordinates? myCoordinates;
   CalculationParameters? params;
 
@@ -48,6 +48,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
     params = CalculationMethod.karachi.getParameters();
     params!.madhab = Madhab.hanafi;
     prayerTimes = PrayerTimes.today(myCoordinates, params);
+    prayerTimeNow = PrayerTimes.today(myCoordinates, params);
   }
 
   @override
@@ -449,43 +450,59 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
 
   AssetImage prayerTimeImage() {
     AssetImage? assetImage;
+    if (prayerTimeNow!.fajr.isAfter(DateTime.now())) {
+      return assetImage = AssetImage("assets/images/Isha.png");
+    }
 
-    if (prayerTimes!.fajr.millisecond <= DateTime.now().millisecond &&
-        prayerTimes!.sunrise.millisecond >= DateTime.now().millisecond) {
+    if (prayerTimeNow!.sunrise.isAfter(DateTime.now())) {
       return assetImage = AssetImage("assets/images/Fajr.png");
     }
 
-    if (prayerTimes!.isha.millisecond < DateTime.now().millisecond &&
-        prayerTimes!.fajr.millisecond + 86400000 > DateTime.now().millisecond) {
-      return assetImage = AssetImage("assets/images/Isha.png");
-    } else if (prayerTimes!.maghrib.millisecond > DateTime.now().millisecond) {
-      return assetImage = AssetImage("assets/images/magrib.png");
-    } else if (prayerTimes!.asr.millisecond > DateTime.now().millisecond) {
+    if (prayerTimeNow!.dhuhr.isAfter(DateTime.now())) {
+      return assetImage = AssetImage("assets/images/sunrise.png");
+    }
+
+    if (prayerTimeNow!.asr.isAfter(DateTime.now())) {
+      return assetImage = AssetImage("assets/images/Duhr.png");
+    }
+
+    if (prayerTimeNow!.maghrib.isAfter(DateTime.now())) {
       return assetImage = AssetImage("assets/images/Asir.png");
-    } else if (prayerTimes!.dhuhr.millisecond > DateTime.now().millisecond) {
-      return assetImage = AssetImage("assets/images/Duhr.png");
-    } else if (prayerTimes!.sunrise.millisecond > DateTime.now().millisecond) {
-      return assetImage = AssetImage("assets/images/Duhr.png");
-    } else
-      return assetImage!;
+    }
+
+    if (prayerTimeNow!.isha.isAfter(DateTime.now())) {
+      return assetImage = AssetImage("assets/images/magrib.png");
+    }
+
+    assetImage = AssetImage("assets/images/magrib.png");
+
+    return assetImage;
   }
 
   Map<String, dynamic> calculatingCurrentPrayerTime() {
     Map<String, dynamic> myObject = {'name': null, 'time': null};
-    if (prayerTimes!.isha.millisecond < DateTime.now().millisecond &&
-        prayerTimes!.fajr.millisecond + 86400000 > DateTime.now().millisecond) {
-      myObject = {'name': "Isha", 'time': prayerTimes!.isha};
-    } else if (prayerTimes!.maghrib.millisecond > DateTime.now().millisecond) {
-      myObject = {'name': "Magrib", 'time': prayerTimes!.maghrib};
-    } else if (prayerTimes!.asr.millisecond > DateTime.now().millisecond) {
-      myObject = {'name': "Asr", 'time': prayerTimes!.asr};
-    } else if (prayerTimes!.dhuhr.millisecond > DateTime.now().millisecond) {
-      myObject = {'name': "Dhuhr", 'time': prayerTimes!.dhuhr};
-    } else if (prayerTimes!.sunrise.millisecond > DateTime.now().millisecond) {
-      myObject = {'name': "Sunrise", 'time': prayerTimes!.sunrise};
-    } else if (prayerTimes!.fajr.millisecond <= DateTime.now().millisecond &&
-        prayerTimes!.sunrise.millisecond >= DateTime.now().millisecond) {
-      myObject = {'name': "Fajr", 'time': prayerTimes!.fajr};
+    if (prayerTimeNow!.fajr.isAfter(DateTime.now())) {
+      myObject = {'name': "Isha", 'time': prayerTimeNow!.isha};
+    }
+
+    if (prayerTimeNow!.sunrise.isAfter(DateTime.now())) {
+      myObject = {'name': "Fajr", 'time': prayerTimeNow!.fajr};
+    }
+
+    if (prayerTimeNow!.dhuhr.isAfter(DateTime.now())) {
+      myObject = {'name': "Sunrise", 'time': prayerTimeNow!.sunrise};
+    }
+
+    if (prayerTimeNow!.asr.isAfter(DateTime.now())) {
+      myObject = {'name': "Dhuhr", 'time': prayerTimeNow!.dhuhr};
+    }
+
+    if (prayerTimeNow!.maghrib.isAfter(DateTime.now())) {
+      myObject = {'name': "Asr", 'time': prayerTimeNow!.asr};
+    }
+
+    if (prayerTimeNow!.isha.isAfter(DateTime.now())) {
+      myObject = {'name': "Maghrib", 'time': prayerTimeNow!.maghrib};
     }
 
     return myObject;
@@ -493,22 +510,33 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
 
   Map<String, dynamic> calculatingNextPrayerTime() {
     Map<String, dynamic> myObject = {'name': null, 'time': null};
-    if (prayerTimes!.isha.millisecond < DateTime.now().millisecond &&
-        prayerTimes!.fajr.millisecond + 86400000 > DateTime.now().millisecond) {
-      myObject = {'name': "Fajr", 'time': prayerTimes!.fajr};
-    } else if (prayerTimes!.maghrib.millisecond > DateTime.now().millisecond) {
-      myObject = {'name': "Isha", 'time': prayerTimes!.isha};
-    } else if (prayerTimes!.asr.millisecond > DateTime.now().millisecond) {
-      myObject = {'name': "Magrib", 'time': prayerTimes!.maghrib};
-    } else if (prayerTimes!.dhuhr.millisecond > DateTime.now().millisecond) {
-      myObject = {'name': "Asr", 'time': prayerTimes!.asr};
-    } else if (prayerTimes!.sunrise.millisecond > DateTime.now().millisecond) {
-      myObject = {'name': "Dhuhr", 'time': prayerTimes!.dhuhr};
-    } else if (prayerTimes!.fajr.millisecond <= DateTime.now().millisecond &&
-        prayerTimes!.sunrise.millisecond >= DateTime.now().millisecond) {
-      myObject = {'name': "Sunrise", 'time': prayerTimes!.sunrise};
+
+    print("ASIR${prayerTimes!.asr.millisecond}");
+    print("NOW${DateTime.now().millisecond}");
+
+    if (prayerTimeNow!.fajr.isAfter(DateTime.now())) {
+      myObject = {'name': "Fajr", 'time': prayerTimeNow!.fajr};
     }
 
+    if (prayerTimeNow!.sunrise.isAfter(DateTime.now())) {
+      myObject = {'name': "Sunrise", 'time': prayerTimeNow!.sunrise};
+    }
+
+    if (prayerTimeNow!.dhuhr.isAfter(DateTime.now())) {
+      myObject = {'name': "Dhuhr", 'time': prayerTimeNow!.dhuhr};
+    }
+
+    if (prayerTimeNow!.asr.isAfter(DateTime.now())) {
+      myObject = {'name': "Asr", 'time': prayerTimeNow!.asr};
+    }
+
+    if (prayerTimeNow!.maghrib.isAfter(DateTime.now())) {
+      myObject = {'name': "Maghrib", 'time': prayerTimeNow!.maghrib};
+    }
+
+    if (prayerTimeNow!.isha.isAfter(DateTime.now())) {
+      myObject = {'name': "Isha", 'time': prayerTimeNow!.isha};
+    }
     return myObject;
   }
 }

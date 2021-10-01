@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/screens/converter_screen.dart';
 import 'package:masalah/screens/masalah_category_screen.dart';
@@ -9,7 +10,25 @@ import 'package:masalah/screens/prayer_time_screen.dart';
 import 'package:masalah/screens/qibla_screen.dart';
 import 'package:connectivity/connectivity.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  HomeWidget.registerBackgroundCallback(backgroundCallback);
+  runApp(MyApp());
+}
+
+dynamic backgroundCallback(Uri? uri) async {
+  if (uri!.host == 'updatecounter') {
+    int _counter = 0;
+    await HomeWidget.getWidgetData<int>('_counter', defaultValue: 0)
+        .then((value) {
+      _counter = value!;
+      _counter++;
+    });
+    await HomeWidget.saveWidgetData<int>('_counter', _counter);
+    await HomeWidget.updateWidget(
+        name: 'AppWidgetProvider', iOSName: 'AppWidgetProvider');
+  }
+}
 
 /// This is the main application widget.
 class MyApp extends StatelessWidget {
