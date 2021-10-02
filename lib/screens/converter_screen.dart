@@ -1,102 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:masalah/db/db_helper.dart';
+import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/reusable_widget/app_bar.dart';
+import 'package:masalah/screens/item/converter_item/zakat.dart';
 
-class MyCalculator extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SQFlite Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
+class ConverterScreen extends StatelessWidget {
+  const ConverterScreen({Key? key}) : super(key: key);
 
-class MyHomePage extends StatelessWidget {
-  // reference to our single class that manages the database
-  final dbHelper = DatabaseHelper.instance;
-
-  // homepage layout
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('sqflite'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              child: Text(
-                'insert',
-                style: TextStyle(fontSize: 20),
-              ),
-              onPressed: _insert,
-            ),
-            ElevatedButton(
-              child: Text(
-                'query',
-                style: TextStyle(fontSize: 20),
-              ),
-              onPressed: _query,
-            ),
-            ElevatedButton(
-              child: Text(
-                'update',
-                style: TextStyle(fontSize: 20),
-              ),
-              onPressed: _update,
-            ),
-            ElevatedButton(
-              child: Text(
-                'delete',
-                style: TextStyle(fontSize: 20),
-              ),
-              onPressed: _delete,
-            ),
-          ],
+        backgroundColor: AppColors.bgColor,
+        appBar: AppTopBar(
+          enableBackBtn: true,
+          title: "Converters",
+          bgColor: AppColors.bgColor,
+          textColor: AppColors.primaryText,
         ),
-      ),
-    );
-  }
-
-  // Button onPressed methods
-
-  void _insert() async {
-    // row to insert
-    // Map<String, dynamic> row = {
-    //   DatabaseHelper.columnName: 'Bob',
-    //   DatabaseHelper.columnAge: 23
-    // };
-    // final id = await dbHelper.insert(row);
-    // print('inserted row id: $id');
-  }
-
-  void _query() async {
-    // await dbHelper.queryAllCategoryRows();
-    // final allRows = await dbHelper.queryAllRows();
-    // print('query all rows:');
-    // allRows.forEach(print);
-  }
-
-  void _update() async {
-    // row to update
-    // Map<String, dynamic> row = {
-    //   DatabaseHelper.columnId: 1,
-    //   DatabaseHelper.columnName: 'Mary',
-    //   DatabaseHelper.columnAge: 32
-    // };
-    // final rowsAffected = await dbHelper.update(row);
-    // print('updated $rowsAffected row(s)');
-  }
-
-  void _delete() async {
-    // Assuming that the number of rows is the id for the last row.
-    // final id = await dbHelper.queryRowCount();
-    // final rowsDeleted = await dbHelper.delete(id!);
-    // print('deleted $rowsDeleted row(s): row $id');
+        body: SingleChildScrollView(
+          child: Column(
+            children: [ZakatItem()],
+          ),
+        ));
   }
 }
