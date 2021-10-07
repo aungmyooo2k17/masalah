@@ -9,6 +9,8 @@ import 'package:masalah/screens/masalah_category_screen.dart';
 import 'package:masalah/screens/prayer_time_screen.dart';
 import 'package:masalah/screens/qibla_screen.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:get/get.dart';
+import 'package:masalah/util/locale_string.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -92,35 +94,39 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     print("Connection..........$_connectionStatus");
-    return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/images/masalah.png')),
-            label: 'Masalah',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/images/adhan.png')),
-            label: 'Prayer Time',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/images/qibla.png')),
-            label: 'Qibla',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/images/converter.png')),
-            label: 'Calculator',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.selectedIconColor,
-        backgroundColor: AppColors.primaryText,
-        unselectedItemColor: AppColors.unSelectedIconColor,
-        onTap: _onItemTapped,
+    return GetMaterialApp(
+      translations: LocaleString(),
+      locale: Locale('hi', 'IN'),
+      home: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/images/masalah.png')),
+              label: 'Masalah',
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/images/adhan.png')),
+              label: 'Prayer Time',
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/images/qibla.png')),
+              label: 'Qibla',
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/images/converter.png')),
+              label: 'Calculator',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: AppColors.selectedIconColor,
+          backgroundColor: AppColors.primaryText,
+          unselectedItemColor: AppColors.unSelectedIconColor,
+          onTap: _onItemTapped,
+        ),
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
       ),
     );
   }

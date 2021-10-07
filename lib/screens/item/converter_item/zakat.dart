@@ -10,9 +10,8 @@ class ZakatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => ZakatCalculator()),
-            (Route<dynamic> route) => false);
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => ZakatCalculator()));
       },
       child: Container(
         margin: EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
