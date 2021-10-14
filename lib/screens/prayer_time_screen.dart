@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:math';
 
 import 'package:adhan/adhan.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +102,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(18.0)),
                 image: DecorationImage(
-                  image: prayerTimeImage(),
+                  image: calculatingCurrentPrayerTime()["image"],
                   fit: BoxFit.cover,
                 ),
               ),
@@ -130,7 +131,8 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                     ),
                     RegularText(
                       fontSize: 16,
-                      data: "Next Pray: " + calculatingNextPrayerTime()["name"],
+                      data: "Next Pray: " +
+                          calculatingCurrentPrayerTime()["nName"],
                       color: AppColors.white,
                     ),
                     SizedBox(
@@ -139,7 +141,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                     BoldText(
                       fontSize: 16,
                       data: DateTimeUtil().prayerTimeFormat(
-                          calculatingNextPrayerTime()["time"]),
+                          calculatingCurrentPrayerTime()["nTime"]),
                       color: AppColors.white,
                     ),
                   ],
@@ -260,7 +262,8 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           color: AppColors.primaryText,
                           fontSize: 14.0,
                           data: "Adhan",
-                        )
+                        ),
+                        Container()
                       ],
                     ),
                   ),
@@ -290,6 +293,33 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           fontSize: 18.0,
                           data: DateTimeUtil()
                               .prayerTimeFormat(prayerTimes!.fajr),
+                        ),
+                        Container(
+                          width: 74,
+                          height: 24,
+                          child: ElevatedButton.icon(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.unSelectedIconColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ))),
+                            onPressed: () async {
+                              print("hello");
+                            },
+                            icon: Icon(
+                              Icons.ac_unit_outlined,
+                              size: 12,
+                              color: AppColors.white,
+                            ),
+                            label: BoldText(
+                              data: "MUTE",
+                              fontSize: 12,
+                              color: AppColors.white,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -319,6 +349,31 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           fontSize: 18.0,
                           data: DateTimeUtil()
                               .prayerTimeFormat(prayerTimes!.sunrise),
+                        ),
+                        Container(
+                          width: 74,
+                          height: 24,
+                          child: ElevatedButton.icon(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.unSelectedIconColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ))),
+                            onPressed: null,
+                            icon: Icon(
+                              Icons.ac_unit_outlined,
+                              size: 12,
+                              color: AppColors.white,
+                            ),
+                            label: BoldText(
+                              data: "MUTE",
+                              fontSize: 12,
+                              color: AppColors.white,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -348,6 +403,31 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           fontSize: 18.0,
                           data: DateTimeUtil()
                               .prayerTimeFormat(prayerTimes!.dhuhr),
+                        ),
+                        Container(
+                          width: 74,
+                          height: 24,
+                          child: ElevatedButton.icon(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.unSelectedIconColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ))),
+                            onPressed: null,
+                            icon: Icon(
+                              Icons.ac_unit_outlined,
+                              size: 12,
+                              color: AppColors.white,
+                            ),
+                            label: BoldText(
+                              data: "MUTE",
+                              fontSize: 12,
+                              color: AppColors.white,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -377,6 +457,31 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           fontSize: 18.0,
                           data:
                               DateTimeUtil().prayerTimeFormat(prayerTimes!.asr),
+                        ),
+                        Container(
+                          width: 74,
+                          height: 24,
+                          child: ElevatedButton.icon(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.unSelectedIconColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ))),
+                            onPressed: null,
+                            icon: Icon(
+                              Icons.ac_unit_outlined,
+                              size: 12,
+                              color: AppColors.white,
+                            ),
+                            label: BoldText(
+                              data: "MUTE",
+                              fontSize: 12,
+                              color: AppColors.white,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -406,6 +511,31 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           fontSize: 18.0,
                           data: DateTimeUtil()
                               .prayerTimeFormat(prayerTimes!.maghrib),
+                        ),
+                        Container(
+                          width: 74,
+                          height: 24,
+                          child: ElevatedButton.icon(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.unSelectedIconColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ))),
+                            onPressed: null,
+                            icon: Icon(
+                              Icons.ac_unit_outlined,
+                              size: 12,
+                              color: AppColors.white,
+                            ),
+                            label: BoldText(
+                              data: "MUTE",
+                              fontSize: 12,
+                              color: AppColors.white,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -437,6 +567,31 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           fontSize: 18.0,
                           data: DateTimeUtil()
                               .prayerTimeFormat(prayerTimes!.isha),
+                        ),
+                        Container(
+                          width: 74,
+                          height: 24,
+                          child: ElevatedButton.icon(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    AppColors.unSelectedIconColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ))),
+                            onPressed: null,
+                            icon: Icon(
+                              Icons.ac_unit_outlined,
+                              size: 12,
+                              color: AppColors.white,
+                            ),
+                            label: BoldText(
+                              data: "MUTE",
+                              fontSize: 12,
+                              color: AppColors.white,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -450,6 +605,9 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
 
   AssetImage prayerTimeImage() {
     AssetImage? assetImage;
+
+    assetImage = AssetImage("assets/images/magrib.png");
+
     if (prayerTimeNow!.fajr.isAfter(DateTime.now())) {
       return assetImage = AssetImage("assets/images/Isha.png");
     }
@@ -474,69 +632,111 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
       return assetImage = AssetImage("assets/images/magrib.png");
     }
 
-    assetImage = AssetImage("assets/images/magrib.png");
+    if (!prayerTimeNow!.isha.isAfter(DateTime.now())) {
+      return assetImage = AssetImage("assets/images/Isha.png");
+    }
 
     return assetImage;
   }
 
   Map<String, dynamic> calculatingCurrentPrayerTime() {
-    Map<String, dynamic> myObject = {'name': null, 'time': null};
+    print("fajir - ${prayerTimeNow!.fajr}");
+    print("s - ${prayerTimeNow!.sunrise}");
+    print("d - ${prayerTimeNow!.dhuhr}");
+    print("a - ${prayerTimeNow!.asr}");
+    print("m - ${prayerTimeNow!.maghrib}");
+    print("i - ${prayerTimeNow!.isha}");
+    print(DateTime.now());
+    print(prayerTimeNow!.maghrib.isAfter(DateTime.now()));
+    print(prayerTimeNow!.maghrib.isAfter(DateTime.now()) &&
+        prayerTimeNow!.asr.isBefore(DateTime.now()));
+
+    Map<String, dynamic> myObject = {
+      'name': null,
+      'time': null,
+      'nName': null,
+      'nTime': null,
+      'image': null
+    };
     if (prayerTimeNow!.fajr.isAfter(DateTime.now())) {
-      myObject = {'name': "Isha", 'time': prayerTimeNow!.isha};
+      myObject = {
+        'name': "Isha",
+        'time': prayerTimeNow!.isha,
+        'nName': "Fajr",
+        'nTime': prayerTimeNow!.fajr,
+        'image': AssetImage("assets/images/Isha.png")
+      };
     }
 
-    if (prayerTimeNow!.sunrise.isAfter(DateTime.now())) {
-      myObject = {'name': "Fajr", 'time': prayerTimeNow!.fajr};
+    if (prayerTimeNow!.sunrise.isAfter(DateTime.now()) &&
+        prayerTimeNow!.fajr.isBefore(DateTime.now())) {
+      myObject = {
+        'name': "Fajr",
+        'time': prayerTimeNow!.fajr,
+        'nName': "Sunrise",
+        'nTime': prayerTimeNow!.sunrise,
+        'image': AssetImage("assets/images/Fajr.png")
+      };
     }
 
-    if (prayerTimeNow!.dhuhr.isAfter(DateTime.now())) {
-      myObject = {'name': "Sunrise", 'time': prayerTimeNow!.sunrise};
+    if (prayerTimeNow!.dhuhr.isAfter(DateTime.now()) &&
+        prayerTimeNow!.sunrise.isBefore(DateTime.now())) {
+      myObject = {
+        'name': "Sunrise",
+        'time': prayerTimeNow!.sunrise,
+        'nName': "Duhur",
+        'nTime': prayerTimeNow!.dhuhr,
+        'image': AssetImage("assets/images/sunrise.png")
+      };
     }
 
-    if (prayerTimeNow!.asr.isAfter(DateTime.now())) {
-      myObject = {'name': "Dhuhr", 'time': prayerTimeNow!.dhuhr};
+    if (prayerTimeNow!.asr.isAfter(DateTime.now()) &&
+        prayerTimeNow!.dhuhr.isBefore(DateTime.now())) {
+      myObject = {
+        'name': "Duhur",
+        'time': prayerTimeNow!.dhuhr,
+        'nName': "Asr",
+        'nTime': prayerTimeNow!.asr,
+        'image': AssetImage("assets/images/Duhr.png")
+      };
     }
 
-    if (prayerTimeNow!.maghrib.isAfter(DateTime.now())) {
-      myObject = {'name': "Asr", 'time': prayerTimeNow!.asr};
+    if (prayerTimeNow!.maghrib.isAfter(DateTime.now()) &&
+        prayerTimeNow!.asr.isBefore(DateTime.now())) {
+      myObject = {
+        'name': "Asr",
+        'time': prayerTimeNow!.asr,
+        'nName': "Magrib",
+        'nTime': prayerTimeNow!.maghrib,
+        'image': AssetImage("assets/images/Asir.png")
+      };
     }
 
-    if (prayerTimeNow!.isha.isAfter(DateTime.now())) {
-      myObject = {'name': "Maghrib", 'time': prayerTimeNow!.maghrib};
+    if (prayerTimeNow!.isha.isAfter(DateTime.now()) &&
+        prayerTimeNow!.maghrib.isBefore(DateTime.now())) {
+      myObject = {
+        'name': "Magrib",
+        'time': prayerTimeNow!.maghrib,
+        'nName': "Isha",
+        'nTime': prayerTimeNow!.isha,
+        'image': AssetImage("assets/images/magrib.png")
+      };
+    }
+
+    if (!prayerTimeNow!.isha.isAfter(DateTime.now())) {
+      myObject = {
+        'name': "Isha",
+        'time': prayerTimeNow!.isha,
+        'nName': "Fajr",
+        'nTime': prayerTimeNow!.fajr,
+        'image': AssetImage("assets/images/Isha.png")
+      };
     }
 
     return myObject;
   }
 
-  Map<String, dynamic> calculatingNextPrayerTime() {
-    Map<String, dynamic> myObject = {'name': null, 'time': null};
-
-    print("ASIR${prayerTimes!.asr.millisecond}");
-    print("NOW${DateTime.now().millisecond}");
-
-    if (prayerTimeNow!.fajr.isAfter(DateTime.now())) {
-      myObject = {'name': "Fajr", 'time': prayerTimeNow!.fajr};
-    }
-
-    if (prayerTimeNow!.sunrise.isAfter(DateTime.now())) {
-      myObject = {'name': "Sunrise", 'time': prayerTimeNow!.sunrise};
-    }
-
-    if (prayerTimeNow!.dhuhr.isAfter(DateTime.now())) {
-      myObject = {'name': "Dhuhr", 'time': prayerTimeNow!.dhuhr};
-    }
-
-    if (prayerTimeNow!.asr.isAfter(DateTime.now())) {
-      myObject = {'name': "Asr", 'time': prayerTimeNow!.asr};
-    }
-
-    if (prayerTimeNow!.maghrib.isAfter(DateTime.now())) {
-      myObject = {'name': "Maghrib", 'time': prayerTimeNow!.maghrib};
-    }
-
-    if (prayerTimeNow!.isha.isAfter(DateTime.now())) {
-      myObject = {'name': "Isha", 'time': prayerTimeNow!.isha};
-    }
-    return myObject;
+  void nowPrayingTime() {
+    print("Heyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
   }
 }

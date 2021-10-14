@@ -12,9 +12,10 @@ import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
 import 'package:masalah/util/locale_string.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HomeWidget.registerBackgroundCallback(backgroundCallback);
+
   runApp(MyApp());
 }
 
@@ -94,6 +95,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     print("Connection..........$_connectionStatus");
+
     return GetMaterialApp(
       translations: LocaleString(),
       locale: Locale('hi', 'IN'),
