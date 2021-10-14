@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:adhan/adhan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:home_widget/home_widget.dart';
@@ -10,6 +11,7 @@ import 'package:masalah/screens/prayer_time_screen.dart';
 import 'package:masalah/screens/qibla_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
+import 'package:masalah/util/date_time_util.dart';
 import 'package:masalah/util/locale_string.dart';
 
 void main() async {
@@ -20,14 +22,27 @@ void main() async {
 }
 
 dynamic backgroundCallback(Uri? uri) async {
+  DateTime? selectedDate = DateTime.now();
+  PrayerTimes? prayerTimes;
+  PrayerTimes? prayerTimeNow;
+  Coordinates? myCoordinates;
+  CalculationParameters? params;
+  myCoordinates =
+      Coordinates(16.8409, 96.1735); // Replace with your own location lat, lng.
+  params = CalculationMethod.karachi.getParameters();
+  params.madhab = Madhab.hanafi;
+  prayerTimes = PrayerTimes.today(myCoordinates, params);
+  prayerTimeNow = PrayerTimes.today(myCoordinates, params);
+  print("*******************updateingggggggggggggggg");
   if (uri!.host == 'updatecounter') {
-    int _counter = 0;
-    await HomeWidget.getWidgetData<int>('_counter', defaultValue: 0)
+    print("*******************################");
+    String _counter = "0";
+    await HomeWidget.getWidgetData<String>('_counter', defaultValue: "0")
         .then((value) {
       _counter = value!;
-      _counter++;
     });
-    await HomeWidget.saveWidgetData<int>('_counter', _counter);
+    await HomeWidget.saveWidgetData<String>('_counter',
+        DateTimeUtil().prayerTimeFormat(prayerTimeNow.fajr).toString());
     await HomeWidget.updateWidget(
         name: 'AppWidgetProvider', iOSName: 'AppWidgetProvider');
   }
