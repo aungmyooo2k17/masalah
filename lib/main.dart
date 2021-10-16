@@ -12,11 +12,28 @@ import 'package:masalah/screens/qibla_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
 import 'package:masalah/util/date_time_util.dart';
+import 'package:masalah/util/local_notification.dart';
 import 'package:masalah/util/locale_string.dart';
+import 'package:workmanager/workmanager.dart';
+
+void callbackDispatcher() {
+  Workmanager().executeTask((taskName, inputData) async {
+    //show the notification
+    LocalNotification.Initializer();
+    LocalNotification.ShowOneTimeNotification(DateTime.now());
+
+    return Future.value(true);
+  });
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HomeWidget.registerBackgroundCallback(backgroundCallback);
+  await Workmanager().initialize(callbackDispatcher);
+  await Workmanager().registerPeriodicTask("test_workertask", "test_workertask",
+      inputData: {"data1": "value1", "data2": "value2"},
+      frequency: Duration(minutes: 1),
+      initialDelay: Duration(minutes: 1));
 
   runApp(MyApp());
 }
