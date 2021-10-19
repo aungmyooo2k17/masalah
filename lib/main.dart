@@ -16,54 +16,54 @@ import 'package:masalah/util/local_notification.dart';
 import 'package:masalah/util/locale_string.dart';
 import 'package:workmanager/workmanager.dart';
 
-void callbackDispatcher() {
-  Workmanager().executeTask((taskName, inputData) async {
-    //show the notification
-    LocalNotification.Initializer();
-    LocalNotification.ShowOneTimeNotification(DateTime.now());
+// void callbackDispatcher() {
+//   Workmanager().executeTask((taskName, inputData) async {
+//     //show the notification
+//     LocalNotification.Initializer();
+//     LocalNotification.ShowOneTimeNotification(DateTime.now());
 
-    return Future.value(true);
-  });
-}
+//     return Future.value(true);
+//   });
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HomeWidget.registerBackgroundCallback(backgroundCallback);
-  await Workmanager().initialize(callbackDispatcher);
-  await Workmanager().registerPeriodicTask("test_workertask", "test_workertask",
-      inputData: {"data1": "value1", "data2": "value2"},
-      frequency: Duration(minutes: 1),
-      initialDelay: Duration(minutes: 1));
+  // HomeWidget.registerBackgroundCallback(backgroundCallback);
+  // await Workmanager().initialize(callbackDispatcher);
+  // await Workmanager().registerPeriodicTask("test_workertask", "test_workertask",
+  //     inputData: {"data1": "value1", "data2": "value2"},
+  //     frequency: Duration(minutes: 1),
+  //     initialDelay: Duration(minutes: 1));
 
   runApp(MyApp());
 }
 
-dynamic backgroundCallback(Uri? uri) async {
-  DateTime? selectedDate = DateTime.now();
-  PrayerTimes? prayerTimes;
-  PrayerTimes? prayerTimeNow;
-  Coordinates? myCoordinates;
-  CalculationParameters? params;
-  myCoordinates =
-      Coordinates(16.8409, 96.1735); // Replace with your own location lat, lng.
-  params = CalculationMethod.karachi.getParameters();
-  params.madhab = Madhab.hanafi;
-  prayerTimes = PrayerTimes.today(myCoordinates, params);
-  prayerTimeNow = PrayerTimes.today(myCoordinates, params);
-  print("*******************updateingggggggggggggggg");
-  if (uri!.host == 'updatecounter') {
-    print("*******************################");
-    String _counter = "0";
-    await HomeWidget.getWidgetData<String>('_counter', defaultValue: "0")
-        .then((value) {
-      _counter = value!;
-    });
-    await HomeWidget.saveWidgetData<String>('_counter',
-        DateTimeUtil().prayerTimeFormat(prayerTimeNow.fajr).toString());
-    await HomeWidget.updateWidget(
-        name: 'AppWidgetProvider', iOSName: 'AppWidgetProvider');
-  }
-}
+// dynamic backgroundCallback(Uri? uri) async {
+//   DateTime? selectedDate = DateTime.now();
+//   PrayerTimes? prayerTimes;
+//   PrayerTimes? prayerTimeNow;
+//   Coordinates? myCoordinates;
+//   CalculationParameters? params;
+//   myCoordinates =
+//       Coordinates(16.8409, 96.1735); // Replace with your own location lat, lng.
+//   params = CalculationMethod.karachi.getParameters();
+//   params.madhab = Madhab.hanafi;
+//   prayerTimes = PrayerTimes.today(myCoordinates, params);
+//   prayerTimeNow = PrayerTimes.today(myCoordinates, params);
+//   print("*******************updateingggggggggggggggg");
+//   if (uri!.host == 'updatecounter') {
+//     print("*******************################");
+//     String _counter = "0";
+//     await HomeWidget.getWidgetData<String>('_counter', defaultValue: "0")
+//         .then((value) {
+//       _counter = value!;
+//     });
+//     await HomeWidget.saveWidgetData<String>('_counter',
+//         DateTimeUtil().prayerTimeFormat(prayerTimeNow.fajr).toString());
+//     await HomeWidget.updateWidget(
+//         name: 'AppWidgetProvider', iOSName: 'AppWidgetProvider');
+//   }
+// }
 
 /// This is the main application widget.
 class MyApp extends StatelessWidget {
@@ -73,10 +73,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
-    );
+    return MyStatefulWidget();
+    // return const MaterialApp(
+    //   title: _title,
+    //   debugShowCheckedModeBanner: false,
+    //   home: MyStatefulWidget(),
+    // );
   }
 }
 
@@ -129,6 +131,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     print("Connection..........$_connectionStatus");
 
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       translations: LocaleString(),
       locale: Locale('hi', 'IN'),
       home: Scaffold(

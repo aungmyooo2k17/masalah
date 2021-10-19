@@ -31,10 +31,10 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         selectedDate = picked;
         // PrayerTimes.utcOffset(coordinates, dateComponents, calculationParameters, utcOffset)
         prayerTimes = PrayerTimes.utcOffset(
-            myCoordinates,
+            myCoordinates!,
             DateComponents(
                 selectedDate!.year, selectedDate!.month, selectedDate!.day),
-            params,
+            params!,
             Duration(hours: 6, minutes: 30));
         print("*#*#*#*#**#*#**#*#*");
         print(prayerTimes!.asr);
@@ -48,44 +48,44 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         16.8409, 96.1735); // Replace with your own location lat, lng.
     params = CalculationMethod.karachi.getParameters();
     params!.madhab = Madhab.hanafi;
-    prayerTimes = PrayerTimes.today(myCoordinates, params);
-    prayerTimeNow = PrayerTimes.today(myCoordinates, params);
+    prayerTimes = PrayerTimes.today(myCoordinates!, params!);
+    prayerTimeNow = PrayerTimes.today(myCoordinates!, params!);
   }
 
   @override
   Widget build(BuildContext context) {
-    print('Kushtia Prayer Times');
+    // print('Kushtia Prayer Times');
 
     // prayerTimes =
     //     PrayerTimes.utc(myCoordinates, DateComponents(2021, 1, 1), params);
-    print(
-        "---Today's Prayer Times in Your Local Timezone(${prayerTimes!.fajr.timeZoneName})---");
-    print(prayerTimes!.fajr);
-    print(prayerTimes!.sunrise);
-    print(prayerTimes!.dhuhr);
-    print(prayerTimes!.asr);
-    print(prayerTimes!.maghrib);
-    print(prayerTimes!.isha);
+    // print(
+    //     "---Today's Prayer Times in Your Local Timezone(${prayerTimes!.fajr.timeZoneName})---");
+    // print(prayerTimes!.fajr);
+    // print(prayerTimes!.sunrise);
+    // print(prayerTimes!.dhuhr);
+    // print(prayerTimes!.asr);
+    // print(prayerTimes!.maghrib);
+    // print(prayerTimes!.isha);
 
-    print('---');
+    // print('---');
 
-    // Custom Timezone Usage. (Most of you won't need this).
-    print('NewYork Prayer Times');
-    final newYork = Coordinates(35.7750, -78.6336);
-    final nyUtcOffset = Duration(hours: -4);
-    final nyDate = DateComponents(2015, 7, 12);
-    final nyParams = CalculationMethod.north_america.getParameters();
-    nyParams.madhab = Madhab.hanafi;
-    final nyPrayerTimes =
-        PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
+    // // Custom Timezone Usage. (Most of you won't need this).
+    // print('NewYork Prayer Times');
+    // final newYork = Coordinates(35.7750, -78.6336);
+    // final nyUtcOffset = Duration(hours: -4);
+    // final nyDate = DateComponents(2015, 7, 12);
+    // final nyParams = CalculationMethod.north_america.getParameters();
+    // nyParams.madhab = Madhab.hanafi;
+    // final nyPrayerTimes =
+    //     PrayerTimes(newYork, nyDate, nyParams, utcOffset: nyUtcOffset);
 
-    print(nyPrayerTimes.fajr.timeZoneName);
-    print(nyPrayerTimes.fajr);
-    print(nyPrayerTimes.sunrise);
-    print(nyPrayerTimes.dhuhr);
-    print(nyPrayerTimes.asr);
-    print(nyPrayerTimes.maghrib);
-    print(nyPrayerTimes.isha);
+    // print(nyPrayerTimes.fajr.timeZoneName);
+    // print(nyPrayerTimes.fajr);
+    // print(nyPrayerTimes.sunrise);
+    // print(nyPrayerTimes.dhuhr);
+    // print(nyPrayerTimes.asr);
+    // print(nyPrayerTimes.maghrib);
+    // print(nyPrayerTimes.isha);
     return Scaffold(
         backgroundColor: AppColors.bgColor,
         appBar: AppTopBar(
@@ -93,32 +93,26 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
           bgColor: AppColors.bgColor,
           textColor: AppColors.primaryText,
         ),
-        body: Column(
-          children: [
+        body: SingleChildScrollView(
+          child: Column(children: [
             Container(
               margin: EdgeInsets.all(16),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 4.6,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(18.0)),
-                image: DecorationImage(
-                  image: calculatingCurrentPrayerTime()["image"],
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(18.0),
+                  image: DecorationImage(
+                      image: calculatingCurrentPrayerTime()["image"],
+                      fit: BoxFit.cover)),
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     RegularText(
                       data: calculatingCurrentPrayerTime()["name"],
                       fontSize: 16,
                       color: AppColors.white,
-                    ),
-                    SizedBox(
-                      height: 8,
                     ),
                     BoldText(
                       fontSize: 26,
@@ -126,27 +120,23 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           calculatingCurrentPrayerTime()["time"]),
                       color: AppColors.white,
                     ),
-                    SizedBox(
-                      height: 14,
-                    ),
                     RegularText(
                       fontSize: 16,
                       data: "Next Pray: " +
                           calculatingCurrentPrayerTime()["nName"],
                       color: AppColors.white,
                     ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    BoldText(
-                      fontSize: 16,
-                      data: DateTimeUtil().prayerTimeFormat(
-                          calculatingCurrentPrayerTime()["nTime"]),
-                      color: AppColors.white,
+                    Expanded(
+                      child: BoldText(
+                        fontSize: 16,
+                        data: DateTimeUtil().prayerTimeFormat(
+                            calculatingCurrentPrayerTime()["nTime"]),
+                        color: AppColors.white,
+                      ),
                     ),
                   ],
                 ),
-              ) /* add child content here */,
+              ),
             ),
             Container(
               padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
@@ -156,7 +146,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
               ),
               margin:
                   EdgeInsets.only(left: 16.0, top: 8, right: 16.0, bottom: 8.0),
-              child: Stack(
+              child: Row(
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -165,78 +155,75 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                             selectedDate!.subtract(Duration(days: 1));
 
                         prayerTimes = PrayerTimes.utcOffset(
-                            myCoordinates,
+                            myCoordinates!,
                             DateComponents(selectedDate!.year,
                                 selectedDate!.month, selectedDate!.day),
-                            params,
+                            params!,
                             Duration(hours: 6, minutes: 30));
                       });
                     },
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Container(
-                          width: 28,
-                          height: 28,
-                          decoration: BoxDecoration(
-                            color: AppColors.bgBtn,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(18.0)),
-                          ),
-                          child: Icon(
-                            Icons.arrow_back_outlined,
-                            size: 18.0,
-                            color: AppColors.white,
-                          ),
-                        )),
+                    child: Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                        color: AppColors.bgBtn,
+                        borderRadius: BorderRadius.all(Radius.circular(18.0)),
+                      ),
+                      child: Icon(
+                        Icons.arrow_back_outlined,
+                        size: 18.0,
+                        color: AppColors.white,
+                      ),
+                    ),
                   ),
+                  Spacer(),
                   GestureDetector(
                     onTap: () {
                       _selectDate(context);
                     },
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: BoldText(
-                          data: DateTimeUtil()
-                              .prayerTimeHumanReadable(selectedDate),
-                          fontSize: 16,
-                          color: AppColors.primaryText,
-                        )),
+                    child: BoldText(
+                      data:
+                          DateTimeUtil().prayerTimeHumanReadable(selectedDate),
+                      fontSize: 16,
+                      color: AppColors.primaryText,
+                    ),
                   ),
+                  Spacer(),
                   GestureDetector(
                     onTap: () {
                       setState(() {
                         print(selectedDate.toString());
                         selectedDate = selectedDate!.add(Duration(days: 1));
                         prayerTimes = PrayerTimes.utcOffset(
-                            myCoordinates,
+                            myCoordinates!,
                             DateComponents(selectedDate!.year,
                                 selectedDate!.month, selectedDate!.day),
-                            params,
+                            params!,
                             Duration(hours: 6, minutes: 30));
                         print("#############");
                         print(selectedDate.toString());
                       });
                     },
-                    child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          width: 28,
-                          height: 28,
-                          decoration: BoxDecoration(
-                            color: AppColors.bgBtn,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(18.0)),
-                          ),
-                          child: Icon(
-                            Icons.arrow_forward_outlined,
-                            size: 18.0,
-                            color: AppColors.white,
-                          ),
-                        )),
+                    child: Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                        color: AppColors.bgBtn,
+                        borderRadius: BorderRadius.all(Radius.circular(18.0)),
+                      ),
+                      child: Icon(
+                        Icons.arrow_forward_outlined,
+                        size: 18.0,
+                        color: AppColors.white,
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
+
+            ///TimeTable widget
+
             Container(
               padding: EdgeInsets.only(
                 top: 8,
@@ -248,27 +235,35 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
               margin:
                   EdgeInsets.only(left: 16.0, top: 8, right: 16.0, bottom: 8.0),
               child: Column(
+                // shrinkWrap: true,
+                // scrollDirection: Axis.vertical,
+                // mainAxisAlignment: MainAxisAlignment.start,
+                // mainAxisSize: MainAxisSize.max,
                 children: [
-                  Container(
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 16.0, top: 8, right: 16.0, bottom: 8.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        RegularText(
-                          color: AppColors.primaryText,
-                          fontSize: 14.0,
-                          data: "Prayer",
+                        Expanded(
+                          flex: 1,
+                          child: RegularText(
+                            textAlign: TextAlign.left,
+                            color: AppColors.primaryText,
+                            fontSize: 14.0,
+                            data: "Prayer",
+                          ),
                         ),
-                        RegularText(
-                          color: AppColors.primaryText,
-                          fontSize: 14.0,
-                          data: "Adhan",
+                        Expanded(
+                          flex: 2,
+                          child: RegularText(
+                            color: AppColors.primaryText,
+                            fontSize: 14.0,
+                            data: "Adhan",
+                          ),
                         ),
-                        Container()
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
                   ),
                   Container(
                     padding: EdgeInsets.only(
@@ -278,54 +273,50 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                                     DateTime.now().millisecond &&
                                 prayerTimes!.sunrise.millisecond >=
                                     DateTime.now().millisecond
-                            ? AppColors.bgColor
+                            ? AppColors.linkColor
                             : Colors.white),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: "Fajr",
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: "Fajr",
+                          ),
                         ),
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: DateTimeUtil()
-                              .prayerTimeFormat(prayerTimes!.fajr),
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: DateTimeUtil()
+                                .prayerTimeFormat(prayerTimes!.fajr),
+                          ),
                         ),
-                        Container(
-                          width: 74,
-                          height: 24,
-                          child: ElevatedButton.icon(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    AppColors.unSelectedIconColor),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ))),
-                            onPressed: () async {
-                              print("hello");
-                            },
-                            icon: Icon(
-                              Icons.ac_unit_outlined,
-                              size: 12,
-                              color: AppColors.white,
-                            ),
-                            label: BoldText(
-                              data: "MUTE",
-                              fontSize: 12,
-                              color: AppColors.white,
-                            ),
+                        ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  AppColors.unSelectedIconColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ))),
+                          onPressed: () async {
+                            print("hello");
+                          },
+                          icon: Icon(
+                            Icons.ac_unit_outlined,
+                            size: 12,
+                            color: AppColors.white,
+                          ),
+                          label: BoldText(
+                            data: "MUTE",
+                            fontSize: 12,
+                            color: AppColors.white,
                           ),
                         )
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
                   ),
                   Container(
                     padding: EdgeInsets.only(
@@ -337,49 +328,46 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           : Colors.white,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: "Sunrise",
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: "Sunrise",
+                          ),
                         ),
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: DateTimeUtil()
-                              .prayerTimeFormat(prayerTimes!.sunrise),
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: DateTimeUtil()
+                                .prayerTimeFormat(prayerTimes!.sunrise),
+                          ),
                         ),
-                        Container(
-                          width: 74,
-                          height: 24,
-                          child: ElevatedButton.icon(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    AppColors.unSelectedIconColor),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ))),
-                            onPressed: null,
-                            icon: Icon(
-                              Icons.ac_unit_outlined,
-                              size: 12,
-                              color: AppColors.white,
-                            ),
-                            label: BoldText(
-                              data: "MUTE",
-                              fontSize: 12,
-                              color: AppColors.white,
-                            ),
+                        ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  AppColors.unSelectedIconColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ))),
+                          onPressed: null,
+                          icon: Icon(
+                            Icons.ac_unit_outlined,
+                            size: 12,
+                            color: AppColors.white,
+                          ),
+                          label: BoldText(
+                            data: "MUTE",
+                            fontSize: 12,
+                            color: AppColors.white,
                           ),
                         )
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
                   ),
                   Container(
                     padding: EdgeInsets.only(
@@ -391,49 +379,46 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           : Colors.white,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: "Dhuhr",
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: "Dhuhr",
+                          ),
                         ),
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: DateTimeUtil()
-                              .prayerTimeFormat(prayerTimes!.dhuhr),
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: DateTimeUtil()
+                                .prayerTimeFormat(prayerTimes!.dhuhr),
+                          ),
                         ),
-                        Container(
-                          width: 74,
-                          height: 24,
-                          child: ElevatedButton.icon(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    AppColors.unSelectedIconColor),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ))),
-                            onPressed: null,
-                            icon: Icon(
-                              Icons.ac_unit_outlined,
-                              size: 12,
-                              color: AppColors.white,
-                            ),
-                            label: BoldText(
-                              data: "MUTE",
-                              fontSize: 12,
-                              color: AppColors.white,
-                            ),
+                        ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  AppColors.unSelectedIconColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ))),
+                          onPressed: null,
+                          icon: Icon(
+                            Icons.ac_unit_outlined,
+                            size: 12,
+                            color: AppColors.white,
+                          ),
+                          label: BoldText(
+                            data: "MUTE",
+                            fontSize: 12,
+                            color: AppColors.white,
                           ),
                         )
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
                   ),
                   Container(
                     padding: EdgeInsets.only(
@@ -445,49 +430,45 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           : Colors.white,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: "Asr",
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: "Asr",
+                          ),
                         ),
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data:
-                              DateTimeUtil().prayerTimeFormat(prayerTimes!.asr),
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: DateTimeUtil()
+                                .prayerTimeFormat(prayerTimes!.asr),
+                          ),
                         ),
-                        Container(
-                          width: 74,
-                          height: 24,
-                          child: ElevatedButton.icon(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    AppColors.unSelectedIconColor),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ))),
-                            onPressed: null,
-                            icon: Icon(
-                              Icons.ac_unit_outlined,
-                              size: 12,
-                              color: AppColors.white,
-                            ),
-                            label: BoldText(
-                              data: "MUTE",
-                              fontSize: 12,
-                              color: AppColors.white,
-                            ),
+                        ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  AppColors.unSelectedIconColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ))),
+                          onPressed: null,
+                          icon: Icon(
+                            Icons.ac_unit_outlined,
+                            size: 12,
+                            color: AppColors.white,
+                          ),
+                          label: BoldText(
+                            data: "MUTE",
+                            fontSize: 12,
+                            color: AppColors.white,
                           ),
                         )
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
                   ),
                   Container(
                     padding: EdgeInsets.only(
@@ -499,49 +480,46 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           : Colors.white,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: "Magrib",
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: "Magrib",
+                          ),
                         ),
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: DateTimeUtil()
-                              .prayerTimeFormat(prayerTimes!.maghrib),
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: DateTimeUtil()
+                                .prayerTimeFormat(prayerTimes!.maghrib),
+                          ),
                         ),
-                        Container(
-                          width: 74,
-                          height: 24,
-                          child: ElevatedButton.icon(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    AppColors.unSelectedIconColor),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ))),
-                            onPressed: null,
-                            icon: Icon(
-                              Icons.ac_unit_outlined,
-                              size: 12,
-                              color: AppColors.white,
-                            ),
-                            label: BoldText(
-                              data: "MUTE",
-                              fontSize: 12,
-                              color: AppColors.white,
-                            ),
+                        ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  AppColors.unSelectedIconColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ))),
+                          onPressed: null,
+                          icon: Icon(
+                            Icons.ac_unit_outlined,
+                            size: 12,
+                            color: AppColors.white,
+                          ),
+                          label: BoldText(
+                            data: "MUTE",
+                            fontSize: 12,
+                            color: AppColors.white,
                           ),
                         )
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
                   ),
                   Container(
                     padding: EdgeInsets.only(
@@ -555,42 +533,42 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                           : Colors.white,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: "Isha",
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: "Isha",
+                          ),
                         ),
-                        BoldText(
-                          color: AppColors.primaryText,
-                          fontSize: 18.0,
-                          data: DateTimeUtil()
-                              .prayerTimeFormat(prayerTimes!.isha),
+                        Expanded(
+                          child: BoldText(
+                            color: AppColors.primaryText,
+                            fontSize: 18.0,
+                            data: DateTimeUtil()
+                                .prayerTimeFormat(prayerTimes!.isha),
+                          ),
                         ),
-                        Container(
-                          width: 74,
-                          height: 24,
-                          child: ElevatedButton.icon(
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    AppColors.unSelectedIconColor),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ))),
-                            onPressed: null,
-                            icon: Icon(
-                              Icons.ac_unit_outlined,
-                              size: 12,
-                              color: AppColors.white,
-                            ),
-                            label: BoldText(
-                              data: "MUTE",
-                              fontSize: 12,
-                              color: AppColors.white,
-                            ),
+                        ElevatedButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  AppColors.unSelectedIconColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ))),
+                          onPressed: null,
+                          icon: Icon(
+                            Icons.ac_unit_outlined,
+                            size: 12,
+                            color: AppColors.white,
+                          ),
+                          label: BoldText(
+                            data: "MUTE",
+                            fontSize: 12,
+                            color: AppColors.white,
                           ),
                         )
                       ],
@@ -598,8 +576,8 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                   ),
                 ],
               ),
-            ),
-          ],
+            )
+          ]),
         ));
   }
 
