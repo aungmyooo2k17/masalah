@@ -2,12 +2,14 @@ import 'dart:core';
 import 'package:adhan/adhan.dart';
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/model/ui_prayer_time.dart';
 import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
 import 'package:masalah/reusable_widget/app_bar.dart';
 import 'package:masalah/reusable_widget/app_text.dart';
 import 'package:masalah/screens/prayer_card_item_widget.dart';
-import 'package:masalah/screens/prayer_item_widget.dart';
 import 'package:masalah/util/date_time_util.dart';
+
+import 'prayer_item_widget.dart';
 
 class PrayerTimeScreen extends StatefulWidget {
   @override
@@ -26,7 +28,9 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         lastDate: DateTime(2101));
     if (picked != null && picked != selectedDate)
       setState(() {
-        // selectedDate = picked;
+        selectedDate = picked;
+        prayerTimePluginUtil.initWithOffset(
+            Coordinates(16.8409, 96.1735), selectedDate!);
         // // PrayerTimes.utcOffset(coordinates, dateComponents, calculationParameters, utcOffset)
         // prayerTimes = PrayerTimes.utcOffset(
         //     myCoordinates!,
@@ -46,6 +50,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         16.8409, 96.1735); // Replace with your own location lat, lng.
 
     prayerTimePluginUtil.init(myCoordinates);
+    // prayerTimePluginUtil.getCurrentDatePrayers();
   }
 
   @override
@@ -59,9 +64,17 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            PrayerCardItemWidget(
-                uiPrayerTimeItemCard:
-                    prayerTimePluginUtil.getUiPrayerItemCard()),
+            StreamBuilder<UiPrayerTimeItemCard>(
+                stream: prayerTimePluginUtil.getUiPrayerItemCard(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError ||
+                      snapshot.error != null ||
+                      snapshot.data == null) {
+                    return CircularProgressIndicator();
+                  }
+                  return PrayerCardItemWidget(
+                      uiPrayerTimeItemCard: snapshot.data!);
+                }),
             Container(
               padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
               decoration: BoxDecoration(
@@ -77,9 +90,9 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                       setState(() {
                         selectedDate =
                             selectedDate!.subtract(Duration(days: 1));
-                        prayerTimePluginUtil.initWithOffset(
-                            Coordinates(16.8409, 96.1735), selectedDate!);
                       });
+                      prayerTimePluginUtil.initWithOffset(
+                          Coordinates(16.8409, 96.1735), selectedDate!);
                     },
                     child: Container(
                       width: 28,
@@ -113,10 +126,9 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                       setState(() {
                         print(selectedDate.toString());
                         selectedDate = selectedDate!.add(Duration(days: 1));
-
-                        prayerTimePluginUtil.initWithOffset(
-                            Coordinates(16.8409, 96.1735), selectedDate!);
                       });
+                      prayerTimePluginUtil.initWithOffset(
+                          Coordinates(16.8409, 96.1735), selectedDate!);
                     },
                     child: Container(
                       width: 28,
@@ -175,16 +187,30 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                       ],
                     ),
                   ),
-                  for (var prayerItem
-                      in prayerTimePluginUtil.getCurrentDatePrayers())
-                    PrayerItemWidget(uiPrayerItem: prayerItem),
-                 
+                  StreamBuilder<List<UiPrayerTimeItem>>(
+                    stream: prayerTimePluginUtil.getCurrentDatePrayers(),
+                    initialData: [],
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError ||
+                          snapshot.error != null ||
+                          snapshot.data == null) {
+                        return CircularProgressIndicator();
+                      }
+                      return ListView(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          children: snapshot.data!
+                              .map((e) => PrayerItemWidget(uiPrayerItem: e))
+                              .toList());
+                    },
+                  )
                 ],
               ),
             )
           ]),
         ));
   }
+
   void nowPrayingTime() {
     print("Heyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
   }

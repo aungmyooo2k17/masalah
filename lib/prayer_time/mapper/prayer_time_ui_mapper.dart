@@ -22,7 +22,7 @@ class PrayerTimeUiMapper {
         currentPrayerTimeItem: mapUiPrayerItem(currentPrayer),
         nextPrayerName: nextPrayerTime.prayerName,
         nextPrayerTime:
-            DateTimeUtil().prayerTimeHumanReadable(nextPrayerTime.prayerTime),
+            DateTimeUtil().prayerTimeFormat(nextPrayerTime.prayerTime),
         currentPrayerImage: _getPrayerImage(currentPrayer));
   }
 

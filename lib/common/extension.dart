@@ -18,7 +18,7 @@ extension PrayerTimeExtension on Prayer {
       case Prayer.isha:
         return 'Isha';
       default:
-        return throw Exception('Prayer is null');
+        return '';
     }
   }
 }
