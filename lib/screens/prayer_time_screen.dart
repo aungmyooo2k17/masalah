@@ -19,6 +19,7 @@ class PrayerTimeScreen extends StatefulWidget {
 class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   final PrayerTimePluginUtil prayerTimePluginUtil = PrayerTimePluginUtil();
   DateTime? selectedDate = DateTime.now();
+  UiPrayerTimeItemCard? prayerTimeItemCard;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -29,8 +30,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
-        prayerTimePluginUtil.initWithOffset(
-            Coordinates(16.8409, 96.1735), selectedDate!);
+
         // // PrayerTimes.utcOffset(coordinates, dateComponents, calculationParameters, utcOffset)
         // prayerTimes = PrayerTimes.utcOffset(
         //     myCoordinates!,
@@ -41,16 +41,18 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         // print("*#*#*#*#**#*#**#*#*");
         // print(prayerTimes!.asr);
       });
+    prayerTimePluginUtil.initWithOffset(
+        Coordinates(16.7827, 96.1771), selectedDate!);
   }
 
   @override
   void initState() {
     super.initState();
     final myCoordinates = Coordinates(
-        16.8409, 96.1735); // Replace with your own location lat, lng.
+        16.7827, 96.1771); // Replace with your own location lat, lng.
 
     prayerTimePluginUtil.init(myCoordinates);
-    // prayerTimePluginUtil.getCurrentDatePrayers();
+    prayerTimeItemCard = prayerTimePluginUtil.getUiPrayerItemCard();
   }
 
   @override
@@ -64,17 +66,9 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            StreamBuilder<UiPrayerTimeItemCard>(
-                stream: prayerTimePluginUtil.getUiPrayerItemCard(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError ||
-                      snapshot.error != null ||
-                      snapshot.data == null) {
-                    return CircularProgressIndicator();
-                  }
-                  return PrayerCardItemWidget(
-                      uiPrayerTimeItemCard: snapshot.data!);
-                }),
+            if(prayerTimeItemCard != null)
+            PrayerCardItemWidget(uiPrayerTimeItemCard: prayerTimeItemCard!),
+           
             Container(
               padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
               decoration: BoxDecoration(
