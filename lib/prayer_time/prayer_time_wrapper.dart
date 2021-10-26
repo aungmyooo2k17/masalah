@@ -97,8 +97,7 @@ class PrayerTimePluginUtil {
     final currentPrayerEntity = getCurrentPrayerItem();
 
     final nextPrayerEntity = getNextPrayerItem();
-    return 
-        uiMapper.mapUiPrayerCardItem(currentPrayerEntity, nextPrayerEntity);
+    return uiMapper.mapUiPrayerCardItem(currentPrayerEntity, nextPrayerEntity);
   }
 
   Stream<List<UiPrayerTimeItem>> getCurrentDatePrayers() {
@@ -107,23 +106,14 @@ class PrayerTimePluginUtil {
     final currentPrayersList =
         domainMapper.getPrayerTimesEntity(_prayerTimesPlugin);
 
-    return Stream.value(uiMapper.mapUiPrayerItems(currentPrayersList));
-    // return uiMapper.mapUiPrayerItems(currentPrayersList);
+    return Stream.value(uiMapper.mapUiPrayerItems(
+        prayerTimeList: currentPrayersList,
+        currentPrayerTime: _prayerTimesPlugin
+            .timeForPrayer(_prayerTimesPlugin.currentPrayer())));
   }
 
   Prayer getPrayerIfLibNone(bool isCurrent) {
     final currentDateTime = DateTime.now();
-    final pluginDate = DateTime(
-        _prayerTimesPlugin.dateComponents.year,
-        _prayerTimesPlugin.dateComponents.month,
-        _prayerTimesPlugin.dateComponents.day);
-    final currentDate = DateTime(
-        currentDateTime.year, currentDateTime.month, currentDateTime.day);
-    // debugPrint('Fajr Time ${_prayerTimesPlugin.fajr} -- $currentDate');
-
-    // debugPrint('Isha Time ${_prayerTimesPlugin.isha} -- $currentDate');
-    // debugPrint(
-    //     'testing ${_prayerTimesPlugin.nextPrayerByDateTime(currentDate.add(Duration(days: 1)))} -- $currentDate');
 
     ///PrayerTime plugin must be initialized with today
 
