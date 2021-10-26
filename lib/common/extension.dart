@@ -21,5 +21,7 @@ extension PrayerTimeExtension on Prayer {
         return '';
     }
   }
+
+ 
 }
 
