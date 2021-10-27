@@ -66,9 +66,9 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            if(prayerTimeItemCard != null)
-            PrayerCardItemWidget(uiPrayerTimeItemCard: prayerTimeItemCard!),
-           
+            if (prayerTimeItemCard != null)
+              PrayerCardItemWidget(uiPrayerTimeItemCard: prayerTimeItemCard!),
+
             Container(
               padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
               decoration: BoxDecoration(
@@ -181,8 +181,8 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                       ],
                     ),
                   ),
-                  StreamBuilder<List<UiPrayerTimeItem>>(
-                    stream: prayerTimePluginUtil.getCurrentDatePrayers(),
+                  FutureBuilder<List<UiPrayerTimeItem>>(
+                    future: prayerTimePluginUtil.getCurrentDatePrayers(),
                     initialData: [],
                     builder: (context, snapshot) {
                       if (snapshot.hasError ||
@@ -193,9 +193,18 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                       return ListView(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          children: snapshot.data!
-                              .map((e) => PrayerItemWidget(uiPrayerItem: e))
-                              .toList());
+                          children: snapshot.data!.map((e) {
+                            return PrayerItemWidget(
+                              key: UniqueKey(),
+                              uiPrayerItem: e,
+                              onMutePressed: (prayerName) {
+                                prayerTimePluginUtil
+                                    .toogleMuteStatus(prayerName);
+
+                                setState(() {});
+                              },
+                            );
+                          }).toList());
                     },
                   )
                 ],

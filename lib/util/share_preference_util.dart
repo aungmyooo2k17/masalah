@@ -1,6 +1,17 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceUtil {
+  static const String PRAYER_MUTE_LIST = "prayer_mute_list";
+  Future<List<String>?> loadList(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getStringList(key);
+  }
+
+  Future<void> saveList(String key, List<String> value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList(key, value);
+  }
+
   addStringToSF(key, value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);

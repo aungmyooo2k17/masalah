@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:masalah/common/constants/color_constant.dart';
@@ -11,23 +12,20 @@ import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
 import 'package:masalah/util/locale_string.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await AndroidAlarmManager.initialize();
 
   runApp(MyApp());
 }
-
 
 /// This is the main application widget.
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return MyStatefulWidget();
-   
   }
 }
 
@@ -38,10 +36,9 @@ class MyStatefulWidget extends StatefulWidget {
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
-
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
- 
+
   static List<Widget> _widgetOptions = <Widget>[
     MasalahCategoryScreen(),
     PrayerTimeScreen(),

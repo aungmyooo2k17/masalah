@@ -6,6 +6,7 @@ import 'package:masalah/model/ui_prayer_time.dart';
 import 'package:masalah/prayer_time/mapper/prayer_time_domain_mapper.dart';
 import 'package:masalah/prayer_time/mapper/prayer_time_ui_mapper.dart';
 import 'package:masalah/util/date_time_util.dart';
+import 'package:masalah/util/share_preference_util.dart';
 
 abstract class PrayerTimeWrapper {}
 
@@ -100,14 +101,17 @@ class PrayerTimePluginUtil {
     return uiMapper.mapUiPrayerCardItem(currentPrayerEntity, nextPrayerEntity);
   }
 
-  Stream<List<UiPrayerTimeItem>> getCurrentDatePrayers() {
+  Future<List<UiPrayerTimeItem>> getCurrentDatePrayers() async {
     final uiMapper = PrayerTimeUiMapper();
     final domainMapper = PrayerTimeDomainMapper();
     final currentPrayersList =
         domainMapper.getPrayerTimesEntity(_prayerTimesPlugin);
+    final mutedPrayers = await SharedPreferenceUtil()
+        .loadList(SharedPreferenceUtil.PRAYER_MUTE_LIST);
 
-    return Stream.value(uiMapper.mapUiPrayerItems(
+    return new Future.value(uiMapper.mapUiPrayerItems(
         prayerTimeList: currentPrayersList,
+        mutePrayerList: mutedPrayers,
         currentPrayerTime: _prayerTimesPlugin
             .timeForPrayer(_prayerTimesPlugin.currentPrayer())));
   }
@@ -137,5 +141,24 @@ class PrayerTimePluginUtil {
       return isCurrent ? Prayer.isha : Prayer.fajr;
     }
     return Prayer.none;
+  }
+
+  void toogleMuteStatus(String prayerTime) async {
+    final sharePrefUtil = SharedPreferenceUtil();
+    var mutePrayers =
+        await sharePrefUtil.loadList(SharedPreferenceUtil.PRAYER_MUTE_LIST) ??
+            [];
+    if (mutePrayers.length < 1) {
+      // final
+    }
+
+    if (mutePrayers.contains(prayerTime)) {
+      mutePrayers.remove(prayerTime);
+    } else {
+      mutePrayers.add(prayerTime);
+    }
+    sharePrefUtil.saveList(SharedPreferenceUtil.PRAYER_MUTE_LIST, mutePrayers);
+
+    getCurrentDatePrayers();
   }
 }
