@@ -1,4 +1,3 @@
-import 'package:adhan/src/prayer.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/model/prayer_item/prayer_time_entity.dart';
 import 'package:masalah/model/ui_prayer_time.dart';
@@ -7,17 +6,21 @@ import 'package:masalah/util/date_time_util.dart';
 class PrayerTimeUiMapper {
   List<UiPrayerTimeItem> mapUiPrayerItems(
           {required List<PrayerTimeEntity> prayerTimeList,
-          DateTime? currentPrayerTime}) =>
+          DateTime? currentPrayerTime,
+          List<String>? mutePrayerList}) =>
       prayerTimeList
-          .map((e) => mapUiPrayerItem(e, currentPrayerTime: currentPrayerTime))
+          .map((e) => mapUiPrayerItem(e, currentPrayerTime: currentPrayerTime,mutedPrayerList: mutePrayerList))
           .toList();
 
-  UiPrayerTimeItem mapUiPrayerItem(PrayerTimeEntity prayerTimeEntity,{DateTime? currentPrayerTime}) {
+  UiPrayerTimeItem mapUiPrayerItem(PrayerTimeEntity prayerTimeEntity,
+      {DateTime? currentPrayerTime, List<String>? mutedPrayerList}) {
     return UiPrayerTimeItem(
         name: prayerTimeEntity.prayerName,
         isCurrentPrayerTime: prayerTimeEntity.prayerTime == currentPrayerTime,
-        currentPrayerTime: DateTimeUtil().prayerTimeFormat(prayerTimeEntity.prayerTime),
-        isMuteForCurrentPrayer: false);
+        currentPrayerTime:
+            DateTimeUtil().prayerTimeFormat(prayerTimeEntity.prayerTime),
+        isMuteForCurrentPrayer:
+            mutedPrayerList?.contains(prayerTimeEntity.prayerName) ?? false);
   }
 
   UiPrayerTimeItemCard mapUiPrayerCardItem(

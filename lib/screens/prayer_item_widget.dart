@@ -5,8 +5,10 @@ import 'package:masalah/reusable_widget/app_text.dart';
 
 class PrayerItemWidget extends StatelessWidget {
   final UiPrayerTimeItem uiPrayerItem;
-  PrayerItemWidget({required this.uiPrayerItem});
-
+  final Function(String) onMutePressed;
+  PrayerItemWidget(
+      {Key? key, required this.uiPrayerItem, required this.onMutePressed})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,8 +40,12 @@ class PrayerItemWidget extends StatelessWidget {
                     RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ))),
-            onPressed: () async {
-              print("hello");
+            onPressed: () {
+              onMutePressed(uiPrayerItem.name);
+              // prayerTimeUtil.toogleMuteStatus(uiPrayerItem.name);
+              // setState(() {
+              //   isCurrentPrayerMuted = true;
+              // });
             },
             icon: Icon(
               Icons.ac_unit_outlined,
@@ -47,7 +53,7 @@ class PrayerItemWidget extends StatelessWidget {
               color: AppColors.white,
             ),
             label: BoldText(
-              data: "MUTE",
+              data: uiPrayerItem.isMuteForCurrentPrayer ? "UNMUTE" : "MUTE",
               fontSize: 12,
               color: AppColors.white,
             ),
@@ -57,3 +63,70 @@ class PrayerItemWidget extends StatelessWidget {
     );
   }
 }
+
+// class PrayerItemWidget extends StatefulWidget {
+//   final UiPrayerTimeItem uiPrayerItem;
+//   PrayerItemWidget({required this.uiPrayerItem});
+
+//   @override
+//   State<PrayerItemWidget> createState() => _PrayerItemWidgetState();
+// }
+
+// class _PrayerItemWidgetState extends State<PrayerItemWidget> {
+//   final PrayerTimePluginUtil prayerTimeUtil = PrayerTimePluginUtil();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: EdgeInsets.only(left: 16.0, top: 8, right: 16.0, bottom: 8.0),
+//       decoration: BoxDecoration(
+//           color: widget.uiPrayerItem.isCurrentPrayerTime
+//               ? AppColors.linkColor
+//               : Colors.white),
+//       child: Row(
+//         children: [
+//           Expanded(
+//             child: BoldText(
+//               color: AppColors.primaryText,
+//               fontSize: 18.0,
+//               data: widget.uiPrayerItem.name,
+//             ),
+//           ),
+//           Expanded(
+//             child: BoldText(
+//                 color: AppColors.primaryText,
+//                 fontSize: 18.0,
+//                 data: widget.uiPrayerItem.currentPrayerTime),
+//           ),
+//           ElevatedButton.icon(
+//             style: ButtonStyle(
+//                 backgroundColor:
+//                     MaterialStateProperty.all(AppColors.unSelectedIconColor),
+//                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+//                     RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(8.0),
+//                 ))),
+//             onPressed: () async {
+//               prayerTimeUtil.toogleMuteStatus(widget.uiPrayerItem.name);
+//               // setState(() {
+//               //   isCurrentPrayerMuted = true;
+//               // });
+//             },
+//             icon: Icon(
+//               Icons.ac_unit_outlined,
+//               size: 12,
+//               color: AppColors.white,
+//             ),
+//             label: BoldText(
+//               data: widget.uiPrayerItem.isMuteForCurrentPrayer
+//                   ? "UNMUTE"
+//                   : "MUTE",
+//               fontSize: 12,
+//               color: AppColors.white,
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
