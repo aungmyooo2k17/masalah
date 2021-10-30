@@ -38,6 +38,8 @@ dependencies:
   path_provider: ^2.0.2
   shared_preferences: ^2.0.7
   sqflite: ^2.0.0+3
+  flutter_local_notifications: ^9.0.0
+
 
 dev_dependencies:
   flutter_test:
@@ -54,17 +56,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
-    - assets/images/Asir.png
-    - assets/images/magrib.png
-    - assets/images/Isha.png
-    - assets/images/Fajr.png
-    - assets/images/sunrise.png
-    - assets/images/Duhr.png
-    - assets/images/adhan.png
-    - assets/images/qibla.png
-    - assets/images/converter.png
-    - assets/images/masalah.png
+    - sound/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

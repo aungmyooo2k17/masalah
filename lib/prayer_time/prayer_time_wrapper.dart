@@ -25,8 +25,6 @@ class PrayerTimePluginUtil {
     final parameters = CalculationMethod.karachi.getParameters();
     parameters.madhab = Madhab.hanafi;
     _prayerTimesPlugin = PrayerTimes.today(coordinates, parameters);
-
-    // getUiPrayerItemCard();
   }
 
   void initWithOffset(Coordinates coordinates, DateTime selectDateTime) {
@@ -36,9 +34,7 @@ class PrayerTimePluginUtil {
         selectDateTime.year, selectDateTime.month, selectDateTime.day);
     _prayerTimesPlugin = PrayerTimes.utcOffset(coordinates, dateComponents,
         parameters, Duration(hours: 6, minutes: 30));
-    // test();
     getCurrentDatePrayers();
-    // getUiPrayerItemCard();
   }
 
   PrayerTimeEntity getNextPrayerItem() {
