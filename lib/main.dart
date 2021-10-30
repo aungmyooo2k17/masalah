@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:isolate';
 
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
@@ -6,16 +7,20 @@ import 'package:flutter/services.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/screens/converter_screen.dart';
 import 'package:masalah/screens/masalah_category_screen.dart';
-import 'package:masalah/screens/prayer_time_screen.dart';
+import 'package:masalah/screens/prayer_time/prayer_time_screen.dart';
 import 'package:masalah/screens/qibla_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
+import 'package:masalah/service/alarm_scheduler.dart';
+import 'package:masalah/service/notification_service.dart';
 import 'package:masalah/util/locale_string.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AndroidAlarmManager.initialize();
-
+  await NotificationService().init();
+  AlarmScheduler().cancelAlarm();
+  await AlarmScheduler().setAlarm();
   runApp(MyApp());
 }
 

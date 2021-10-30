@@ -2,6 +2,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceUtil {
   static const String PRAYER_MUTE_LIST = "prayer_mute_list";
+  static const String ALARM_PRAYER_NAME = "alarm_prayer_name";
+  static const String ALARM_PRAYER_TIME = "alarm_prayer_time";
+
+  static final SharedPreferenceUtil _sharedPreferenceUtil =
+      SharedPreferenceUtil._();
+
+  SharedPreferenceUtil._();
+
+  factory SharedPreferenceUtil() {
+    return _sharedPreferenceUtil;
+  }
+
   Future<List<String>?> loadList(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getStringList(key);
@@ -12,12 +24,12 @@ class SharedPreferenceUtil {
     prefs.setStringList(key, value);
   }
 
-  addStringToSF(key, value) async {
+  addStringToSF(String key,String value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);
   }
 
-  addIntToSF(key, value) async {
+  addIntToSF(String key, int value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt(key, value);
   }
