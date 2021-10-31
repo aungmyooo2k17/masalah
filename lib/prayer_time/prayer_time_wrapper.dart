@@ -54,7 +54,6 @@ class PrayerTimePluginUtil {
 
       nextPrayerTime = _pTimes.timeForPrayer(nextPrayer);
 
-      debugPrint('Hello testing 12343 $nextPrayerTime');
 
       // _prayerTimesPlugin
     } else {

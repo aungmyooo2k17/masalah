@@ -12,8 +12,9 @@ import 'package:masalah/screens/qibla_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:get/get.dart';
 import 'package:masalah/service/alarm_scheduler.dart';
-import 'package:masalah/service/notification_service.dart';
 import 'package:masalah/util/locale_string.dart';
+
+import 'service/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
