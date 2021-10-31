@@ -1,5 +1,6 @@
 import 'package:adhan/adhan.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:masalah/model/prayer_item/prayer_time_entity.dart';
 import 'package:masalah/service/notification_service.dart';
 import 'package:masalah/util/share_preference_util.dart';
@@ -38,6 +39,7 @@ class AlarmScheduler {
         break;
       }
     }
+
     ///If current time is after today Isha,then do loop again and add 1 day to set alarm for next day fajr
     if (!nextAlarmFound) {
       for (var prayerName in prayerNames) {
@@ -49,7 +51,7 @@ class AlarmScheduler {
         if (nextPrayerTime.isBefore(DateTime.now())) {
           nameOfPrayerFound = prayerName;
           nextAlarmFound = true;
-          nextPrayerTime.add(Duration(days: 1));
+          nextPrayerTime = nextPrayerTime.add(Duration(days: 1));
           break;
         }
       }
@@ -88,8 +90,13 @@ class AlarmScheduler {
 void runOnAlarm() async {
   final prayerName = await SharedPreferenceUtil()
       .getStringValuesSF(SharedPreferenceUtil.ALARM_PRAYER_NAME);
-  AndroidAlarmManager.cancel(ALARM_ID);
-  AlarmScheduler().setAlarm();
   NotificationService().showNotification(
       id: NOTIFICATION_ID, body: 'This is body', title: prayerName);
+  AlarmScheduler()
+    ..cancelAlarm()
+    ..setAlarm();
+//   AndroidAlarmManager
+//   ..cancel(ALARM_ID)
+// ;
+//   AlarmScheduler()..cancel.setAlarm();
 }
