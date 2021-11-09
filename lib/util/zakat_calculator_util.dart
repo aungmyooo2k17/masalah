@@ -331,6 +331,22 @@ class ZakatCalculatorUtil {
         .addDoubleToSF("minusPreZakat", double.parse(minusPreZakat));
   }
 
+  saveGoldPrice(price) {
+    SharedPreferenceUtil().addDoubleToSF("goldPrice", double.parse(price));
+  }
+
+  getGoldPrice() {
+    return SharedPreferenceUtil().getDoubleValuesSF("goldPrice");
+  }
+
+  saveSilverPrice(price) {
+    SharedPreferenceUtil().addDoubleToSF("silverPrice", double.parse(price));
+  }
+
+  getSilverPrice() {
+    return SharedPreferenceUtil().getDoubleValuesSF("silverPrice");
+  }
+
   getMinus() {
     return {
       "minusDebtMahur":
@@ -401,6 +417,244 @@ class ZakatCalculatorUtil {
       }
     }
   }
+
+  getTotalGoldPlatinum(shweOneKyattharPrice) {
+    var totalYwae = 0.0;
+    ZakatCalculatorUtil().getGoldAkhout()["kyatthar"].then((value) {
+      totalYwae = totalYwae + (value * 128);
+    });
+    ZakatCalculatorUtil().getGoldAkhout()["pae"].then((value) {
+      totalYwae = totalYwae + (value * 8);
+    });
+    ZakatCalculatorUtil().getGoldAkhout()["ywae"].then((value) {
+      totalYwae = totalYwae + value;
+    });
+
+    ZakatCalculatorUtil().getGoldAHtae()["kyatthar"].then((value) {
+      totalYwae = totalYwae + (value * 128);
+    });
+    ZakatCalculatorUtil().getGoldAHtae()["pae"].then((value) {
+      totalYwae = totalYwae + (value * 8);
+    });
+    ZakatCalculatorUtil().getGoldAHtae()["ywae"].then((value) {
+      totalYwae = totalYwae + value;
+    });
+
+    ZakatCalculatorUtil().getGoldPyitCee()["kyatthar"].then((value) {
+      totalYwae = totalYwae + (value * 128);
+    });
+    ZakatCalculatorUtil().getGoldPyitCee()["pae"].then((value) {
+      totalYwae = totalYwae + (value * 8);
+    });
+    ZakatCalculatorUtil().getGoldPyitCee()["ywae"].then((value) {
+      totalYwae = totalYwae + value;
+    });
+
+    ZakatCalculatorUtil().getWhiteSilverAkhout()["kyatthar"].then((value) {
+      totalYwae = totalYwae + (value * 128);
+    });
+    ZakatCalculatorUtil().getWhiteSilverAkhout()["pae"].then((value) {
+      totalYwae = totalYwae + (value * 8);
+    });
+    ZakatCalculatorUtil().getWhiteSilverAkhout()["ywae"].then((value) {
+      totalYwae = totalYwae + value;
+    });
+
+    ZakatCalculatorUtil().getWhiteSilverAHtae()["kyatthar"].then((value) {
+      totalYwae = totalYwae + (value * 128);
+    });
+    ZakatCalculatorUtil().getWhiteSilverAHtae()["pae"].then((value) {
+      totalYwae = totalYwae + (value * 8);
+    });
+    ZakatCalculatorUtil().getWhiteSilverAHtae()["ywae"].then((value) {
+      totalYwae = totalYwae + value;
+    });
+
+    ZakatCalculatorUtil().getWhiteSilverPyitCee()["kyatthar"].then((value) {
+      totalYwae = totalYwae + (value * 128);
+    });
+    ZakatCalculatorUtil().getWhiteSilverPyitCee()["pae"].then((value) {
+      totalYwae = totalYwae + (value * 8);
+    });
+    ZakatCalculatorUtil().getWhiteSilverPyitCee()["ywae"].then((value) {
+      totalYwae = totalYwae + value;
+    });
+
+    return totalYwae * calcOneYwaePrice(shweOneKyattharPrice);
+  }
+
+  getTotalSilverMoneyOther(silverOneKyattharPrice) {
+    var totalYwae = 0.0;
+    var totalSilver = 0.0;
+    var totalCash = 0.0;
+    ZakatCalculatorUtil().getSilverAkhout()["kyatthar"].then((value) {
+      totalYwae = totalYwae + (value * 128);
+    });
+    ZakatCalculatorUtil().getSilverAkhout()["pae"].then((value) {
+      totalYwae = totalYwae + (value * 8);
+    });
+    ZakatCalculatorUtil().getSilverAkhout()["ywae"].then((value) {
+      totalYwae = totalYwae + value;
+    });
+
+    ZakatCalculatorUtil().getSilverAHtae()["kyatthar"].then((value) {
+      totalYwae = totalYwae + (value * 128);
+    });
+    ZakatCalculatorUtil().getSilverAHtae()["pae"].then((value) {
+      totalYwae = totalYwae + (value * 8);
+    });
+    ZakatCalculatorUtil().getSilverAHtae()["ywae"].then((value) {
+      totalYwae = totalYwae + value;
+    });
+
+    ZakatCalculatorUtil().getSilverPyitCee()["kyatthar"].then((value) {
+      totalYwae = totalYwae + (value * 128);
+    });
+    ZakatCalculatorUtil().getSilverPyitCee()["pae"].then((value) {
+      totalYwae = totalYwae + (value * 8);
+    });
+    ZakatCalculatorUtil().getSilverPyitCee()["ywae"].then((value) {
+      totalYwae = totalYwae + value;
+    });
+    totalSilver = totalYwae * calcOneYwaePrice(silverOneKyattharPrice);
+
+    ZakatCalculatorUtil().getInHand()["inHandSuHtarTaw"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getInHand()["inHandPyitceeSold"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getInHand()["inHandPyitceeBorrow"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getInHand()["inHandForeignCurrency"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getInHand()["inHandContract"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getInHand()["inHandOther"].then((v) {
+      totalCash = totalCash + v;
+    });
+    // .......Inhand.......
+
+    ZakatCalculatorUtil().getInBank()["inBankInBank"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getInBank()["inBankThuMyarHlwae"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getInBank()["inBankSalary"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getInBank()["inBankOther"].then((v) {
+      totalCash = totalCash + v;
+    });
+    // ..........InBank..........
+
+    ZakatCalculatorUtil()
+        .getThuMyarPayHtrTawDebt()["thuMyarDebtPyitceeSold"]
+        .then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil()
+        .getThuMyarPayHtrTawDebt()["thuMyarDebtChayPay"]
+        .then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil()
+        .getThuMyarPayHtrTawDebt()["thuMyarDebtAttHtrTaw"]
+        .then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil()
+        .getThuMyarPayHtrTawDebt()["thuMyarDebtOther"]
+        .then((v) {
+      totalCash = totalCash + v;
+    });
+    // .........ThuMyarPayHtrTawDebt..........
+
+    ZakatCalculatorUtil().getRealEstate()["realEstateSellHouse"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getRealEstate()["realEstateSellEscort"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getRealEstate()["realEstateSellCar"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getRealEstate()["realEstateOther"].then((v) {
+      totalCash = totalCash + v;
+    });
+    // ...........RealEstate............
+
+    ZakatCalculatorUtil().getRaw()["rawWearhouse"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getRaw()["rawHome"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getRaw()["rawShop"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getRaw()["rawOther"].then((v) {
+      totalCash = totalCash + v;
+    });
+    // ..............Raw...........
+
+    ZakatCalculatorUtil().getFinish()["finishWearhouse"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getFinish()["finishHome"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getFinish()["finishShop"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getFinish()["finishAnimal"].then((v) {
+      totalCash = totalCash + v;
+    });
+    ZakatCalculatorUtil().getFinish()["finishOther"].then((v) {
+      totalCash = totalCash + v;
+    });
+
+    return totalSilver + totalCash;
+  }
+
+  getTotalMinus() {
+    var totalMinus = 0.0;
+    ZakatCalculatorUtil().getMinus()["minusDebtMahur"].then((v) {
+      totalMinus = totalMinus + v;
+    });
+    ZakatCalculatorUtil().getMinus()["minusDebt"].then((v) {
+      totalMinus = totalMinus + v;
+    });
+    ZakatCalculatorUtil().getMinus()["minusSukyae"].then((v) {
+      totalMinus = totalMinus + v;
+    });
+    ZakatCalculatorUtil().getMinus()["minusMeterBill"].then((v) {
+      totalMinus = totalMinus + v;
+    });
+    ZakatCalculatorUtil().getMinus()["minusPaybill"].then((v) {
+      totalMinus = totalMinus + v;
+    });
+    ZakatCalculatorUtil().getMinus()["minusPaySalary"].then((v) {
+      totalMinus = totalMinus + v;
+    });
+    ZakatCalculatorUtil().getMinus()["minusPayRent"].then((v) {
+      totalMinus = totalMinus + v;
+    });
+    ZakatCalculatorUtil().getMinus()["minusBuyGoodPay"].then((v) {
+      totalMinus = totalMinus + v;
+    });
+    ZakatCalculatorUtil().getMinus()["minusPreZakat"].then((v) {
+      totalMinus = totalMinus + v;
+    });
+
+    return totalMinus;
+  }
+
+  prepareToCalculateZakat() {}
 
   calcZakatForGoatSheep(totalGoatSheep) {
     if (totalGoatSheep >= 400) {
