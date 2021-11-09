@@ -349,4 +349,72 @@ class ZakatCalculatorUtil {
           SharedPreferenceUtil().getDoubleValuesSF("minusPreZakat"),
     };
   }
+
+  // gold 1kyatthar, 2pae, 5 ywae => total ywae => 149 ywae
+  // silver 1kyatthar, 2pae, 5 ywae => total ywae => 149 ywae
+  // platinum 1kyatthar, 2pae, 5 ywae => total ywae => 149 ywae
+  calcTotalYwae(kyatthar, pae, ywae) {
+    double totalYwae = 0.0;
+    totalYwae = totalYwae + (kyatthar * 128);
+    totalYwae = totalYwae + (pae * 8);
+
+    return totalYwae;
+  }
+
+  //gold price - 2000000 => oneYwaePrice => 15625
+  //platinum price - 2000000 => oneYwaePrice => 15625
+  //silver price - 2000000 => oneYwaePrice => 156.25
+  calcOneYwaePrice(oneKyattharPrice) {
+    return oneKyattharPrice / 128;
+  }
+
+  // The price that have in man
+  // gold 15625 * 149 = 2328125
+  // platinum 15625 * 149 = 2328125
+  // silver 156.25 * 149 = 23281.25
+  calcTotalGoldAndSilverPrice(oneYwaePrice, totalYwae) {
+    return oneYwaePrice * totalYwae;
+  }
+
+  goldZakatAmount(goldPrice) {
+    return goldPrice * 673.5;
+  }
+
+  silverZakatAmount(silver) {
+    return silver * 4715.5;
+  }
+
+  calcFinalZakatAmount(
+      totalGoldPlatinum, totalSilverOther, totalMinus, goldPrice, silverPrice) {
+    if (totalSilverOther == 0) {
+      if (totalGoldPlatinum >= goldZakatAmount(goldPrice)) {
+        return totalGoldPlatinum / 40;
+      } else {
+        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
+      }
+    } else {
+      double totalAmount = (totalGoldPlatinum + totalSilverOther) - totalMinus;
+      if (totalAmount >= silverZakatAmount(silverPrice)) {
+        return totalAmount / 40;
+      } else {
+        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
+      }
+    }
+  }
+
+  calcZakatForGoatSheep(totalGoatSheep) {
+    if (totalGoatSheep >= 400) {
+      String gs = (totalGoatSheep / 100).toString();
+      var arr = gs.split('.');
+      return int.parse(arr[0]);
+    } else if (totalGoatSheep >= 201) {
+      return 3;
+    } else if (totalGoatSheep >= 121) {
+      return 2;
+    } else if (totalGoatSheep >= 40) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 }
