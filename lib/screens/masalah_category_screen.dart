@@ -35,7 +35,7 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
         });
     _searchController.addListener(() {
       //here you have the changes of your textfield
-      print("value: ${_searchController.text}");
+
       //use setState to rebuild the widget
       setState(() {});
     });
@@ -55,8 +55,6 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("_searchController.text");
-    print(_searchController.text);
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppTopBar(
@@ -91,7 +89,6 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
                     : _apiResponse.getCategories(),
                 builder:
                     (BuildContext context, AsyncSnapshot<Result> snapshot) {
-                  print(snapshot.data);
                   if (snapshot.data is SuccessState) {
                     List<Category> categories =
                         (snapshot.data as SuccessState).value;
@@ -141,9 +138,7 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       result = await _connectivity.checkConnectivity();
-    } on PlatformException catch (e) {
-      print(e.toString());
-    }
+    } on PlatformException catch (e) {}
 
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling

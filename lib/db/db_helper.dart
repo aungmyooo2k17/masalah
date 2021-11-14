@@ -85,7 +85,6 @@ class DatabaseHelper {
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
   Future<Result> queryAllCategoryRows(String query) async {
-    print("queryAllCategoryRows");
     Database db = await instance.database;
     final d = await db.query(masalahCategoryTable,
         where: '$categoryName like ?', whereArgs: ['%$query%']);

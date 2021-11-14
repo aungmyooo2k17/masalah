@@ -12,6 +12,8 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   int _currentStep = 0;
   StepperType stepperType = StepperType.vertical;
 
+  String _result = "";
+
   final goldAkhoutKyatthar = TextEditingController();
   final goldAkhoutPae = TextEditingController();
   final goldAkhoutYwae = TextEditingController();
@@ -1577,7 +1579,124 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                   Step(
                     title: new Text('အဖြေ'),
                     content: Column(
-                      children: [],
+                      children: [
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            foregroundColor: MaterialStateProperty.all<Color>(
+                                AppColors.white),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _result = ZakatCalculatorUtil()
+                                  .calcFinalZakatAmount(
+                                      ZakatCalculatorUtil()
+                                          .getTotalGoldPlatinum2(
+                                        double.parse(goldPrice.text),
+                                        double.parse(goldAkhoutKyatthar.text),
+                                        double.parse(goldAkhoutPae.text),
+                                        double.parse(goldAkhoutYwae.text),
+                                        double.parse(goldAhtaeKyatthar.text),
+                                        double.parse(goldAhtaePae.text),
+                                        double.parse(goldAhtaeYwae.text),
+                                        double.parse(goldPyitceeKyatthar.text),
+                                        double.parse(goldPyitceePae.text),
+                                        double.parse(goldPyitceeYwae.text),
+                                        double.parse(
+                                            whiteSilverAkhoutKyatthar.text),
+                                        double.parse(whiteSilverAkhoutPae.text),
+                                        double.parse(
+                                            whiteSilverAkhoutYwae.text),
+                                        double.parse(
+                                            whiteSilverAhtaeKyatthar.text),
+                                        double.parse(whiteSilverAhtaePae.text),
+                                        double.parse(whiteSilverAhtaeYwae.text),
+                                        double.parse(
+                                            whiteSilverPyitceeKyatthar.text),
+                                        double.parse(
+                                            whiteSilverPyitceePae.text),
+                                        double.parse(
+                                            whiteSilverPyitceeYwae.text),
+                                      ),
+                                      ZakatCalculatorUtil()
+                                          .getTotalSilverMoneyOther2(
+                                              double.parse(silverPrice.text),
+                                              double.parse(
+                                                  silverAkhoutKyatthar.text),
+                                              double.parse(
+                                                  silverAkhoutPae.text),
+                                              double.parse(
+                                                  silverAkhoutYwae.text),
+                                              double.parse(
+                                                  silverAhtaeKyatthar.text),
+                                              double.parse(silverAhtaePae.text),
+                                              double.parse(
+                                                  silverAhtaeYwae.text),
+                                              double.parse(
+                                                  silverPyitceeKyatthar.text),
+                                              double.parse(
+                                                  silverPyitceePae.text),
+                                              double.parse(
+                                                  silverPyitceeYwae.text),
+                                              double.parse(
+                                                  inHandSuHtarTaw.text),
+                                              double.parse(
+                                                  inHandPyitceeSold.text),
+                                              double.parse(
+                                                  inHandPyitceeBorrow.text),
+                                              double.parse(
+                                                  inHandForeignCurrency.text),
+                                              double.parse(inHandContract.text),
+                                              double.parse(inHandOther.text),
+                                              double.parse(inBankInBank.text),
+                                              double.parse(
+                                                  inBankThuMyarHlwae.text),
+                                              double.parse(inBankSalary.text),
+                                              double.parse(inBankOther.text),
+                                              double.parse(
+                                                  thuMyarDebtPyitceeSold.text),
+                                              double.parse(
+                                                  thuMyarDebtChayPay.text),
+                                              double.parse(
+                                                  thuMyarDebtAttHtrTaw.text),
+                                              double.parse(
+                                                  thuMyarDebtOther.text),
+                                              double.parse(
+                                                  realEstateSellHouse.text),
+                                              double.parse(
+                                                  realEstateSellEscort.text),
+                                              double.parse(
+                                                  realEstateSellCar.text),
+                                              double.parse(
+                                                  realEstateOther.text),
+                                              double.parse(rawWearhouse.text),
+                                              double.parse(rawHome.text),
+                                              double.parse(rawShop.text),
+                                              double.parse(rawOther.text),
+                                              double.parse(
+                                                  finishWearhouse.text),
+                                              double.parse(finishHome.text),
+                                              double.parse(finishShop.text),
+                                              double.parse(finishAnimal.text),
+                                              double.parse(finishOther.text)),
+                                      ZakatCalculatorUtil().getTotalMinus2(
+                                          double.parse(minusDebtMahur.text),
+                                          double.parse(minusDebt.text),
+                                          double.parse(minusSukyae.text),
+                                          double.parse(minusMeterBill.text),
+                                          double.parse(minusPaybill.text),
+                                          double.parse(minusPaySalary.text),
+                                          double.parse(minusPayRent.text),
+                                          double.parse(minusBuyGoodPay.text),
+                                          double.parse(minusPreZakat.text)),
+                                      double.parse(goldPrice.text),
+                                      double.parse(silverPrice.text))
+                                  .toString();
+                            });
+                          },
+                          child: Text("Save"),
+                        ),
+                        Text(_result)
+                      ],
                     ),
                     isActive: _currentStep >= 0,
                     state: _currentStep >= 0

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:masalah/util/share_preference_util.dart';
 
 class ZakatCalculatorUtil {
@@ -393,27 +395,34 @@ class ZakatCalculatorUtil {
   }
 
   goldZakatAmount(goldPrice) {
-    return goldPrice * 673.5;
+    return calcOneYwaePrice(goldPrice) * 673.5;
   }
 
   silverZakatAmount(silver) {
-    return silver * 4715.5;
+    return calcOneYwaePrice(silver) * 4715.5;
   }
 
   calcFinalZakatAmount(
       totalGoldPlatinum, totalSilverOther, totalMinus, goldPrice, silverPrice) {
+    print({
+      "totalGoldPlatinum": totalGoldPlatinum,
+      "totalSilverOther": totalSilverOther,
+      "totalMinus": totalMinus,
+      "goldPrice": goldPrice,
+      "silverPrice": silverPrice
+    });
     if (totalSilverOther == 0) {
       if (totalGoldPlatinum >= goldZakatAmount(goldPrice)) {
         return totalGoldPlatinum / 40;
       } else {
-        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
+        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ###";
       }
     } else {
       double totalAmount = (totalGoldPlatinum + totalSilverOther) - totalMinus;
       if (totalAmount >= silverZakatAmount(silverPrice)) {
         return totalAmount / 40;
       } else {
-        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
+        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ***";
       }
     }
   }
@@ -421,6 +430,7 @@ class ZakatCalculatorUtil {
   getTotalGoldPlatinum(shweOneKyattharPrice) {
     var totalYwae = 0.0;
     ZakatCalculatorUtil().getGoldAkhout()["kyatthar"].then((value) {
+      print("helloooo");
       totalYwae = totalYwae + (value * 128);
     });
     ZakatCalculatorUtil().getGoldAkhout()["pae"].then((value) {
@@ -479,6 +489,53 @@ class ZakatCalculatorUtil {
     ZakatCalculatorUtil().getWhiteSilverPyitCee()["ywae"].then((value) {
       totalYwae = totalYwae + value;
     });
+
+    return totalYwae * calcOneYwaePrice(shweOneKyattharPrice);
+  }
+
+  getTotalGoldPlatinum2(
+      shweOneKyattharPrice,
+      goldAkhoutKyatthar,
+      goldAkhoutPae,
+      goldAkhoutYwae,
+      goldAhtaeKyatthar,
+      goldAhtaePae,
+      goldAhtaeYwae,
+      goldPyitceeKyatthar,
+      goldPyitceePae,
+      goldPyitceeYwae,
+      whiteSilverAkhoutKyatthar,
+      whiteSilverAkhoutPae,
+      whiteSilverAkhoutYwae,
+      whiteSilverAhtaeKyatthar,
+      whiteSilverAhtaePae,
+      whiteSilverAhtaeYwae,
+      whiteSilverPyitceeKyatthar,
+      whiteSilverPyitceePae,
+      whiteSilverPyitceeYwae) {
+    var totalYwae = 0.0;
+
+    totalYwae = totalYwae + (goldAkhoutKyatthar * 128);
+    totalYwae = totalYwae + (goldAkhoutPae * 8);
+    totalYwae = totalYwae + goldAkhoutYwae;
+    totalYwae = totalYwae + (goldAhtaeKyatthar * 128);
+    totalYwae = totalYwae + (goldAhtaePae * 8);
+    totalYwae = totalYwae + goldAhtaeYwae;
+    totalYwae = totalYwae + (goldPyitceeKyatthar * 128);
+    totalYwae = totalYwae + (goldPyitceePae * 8);
+    totalYwae = totalYwae + goldPyitceeYwae;
+
+    totalYwae = totalYwae + (whiteSilverAkhoutKyatthar * 128);
+    totalYwae = totalYwae + (whiteSilverAkhoutPae * 8);
+    totalYwae = totalYwae + whiteSilverAkhoutYwae;
+    totalYwae = totalYwae + (whiteSilverAhtaeKyatthar * 128);
+    totalYwae = totalYwae + (whiteSilverAhtaePae * 8);
+    totalYwae = totalYwae + whiteSilverAhtaeYwae;
+    totalYwae = totalYwae + (whiteSilverPyitceeKyatthar * 128);
+    totalYwae = totalYwae + (whiteSilverPyitceePae * 8);
+    totalYwae = totalYwae + whiteSilverPyitceeYwae;
+
+    print("totalYwae =>" + totalYwae.toString());
 
     return totalYwae * calcOneYwaePrice(shweOneKyattharPrice);
   }
@@ -621,6 +678,91 @@ class ZakatCalculatorUtil {
     return totalSilver + totalCash;
   }
 
+  getTotalSilverMoneyOther2(
+      silverPrice,
+      silverAkhoutKyatthar,
+      silverAkhoutPae,
+      silverAkhoutYwae,
+      silverAhtaeKyatthar,
+      silverAhtaePae,
+      silverAhtaeYwae,
+      silverPyitceeKyatthar,
+      silverPyitceePae,
+      silverPyitceeYwae,
+      inHandSuHtarTaw,
+      inHandPyitceeSold,
+      inHandPyitceeBorrow,
+      inHandForeignCurrency,
+      inHandContract,
+      inHandOther,
+      inBankInBank,
+      inBankThuMyarHlwae,
+      inBankSalary,
+      inBankOther,
+      thuMyarDebtPyitceeSold,
+      thuMyarDebtChayPay,
+      thuMyarDebtAttHtrTaw,
+      thuMyarDebtOther,
+      realEstateSellHouse,
+      realEstateSellEscort,
+      realEstateSellCar,
+      realEstateOther,
+      rawWearhouse,
+      rawHome,
+      rawShop,
+      rawOther,
+      finishWearhouse,
+      finishHome,
+      finishShop,
+      finishAnimal,
+      finishOther) {
+    var totalYwae = 0.0;
+    var totalSilver = 0.0;
+    var totalCash = 0.0;
+
+    totalYwae = totalYwae + (silverAkhoutKyatthar * 128);
+    totalYwae = totalYwae + (silverAkhoutPae * 8);
+    totalYwae = totalYwae + silverAkhoutYwae;
+    totalYwae = totalYwae + (silverAhtaeKyatthar * 128);
+    totalYwae = totalYwae + (silverAhtaePae * 8);
+    totalYwae = totalYwae + silverAhtaeYwae;
+    totalYwae = totalYwae + (silverPyitceeKyatthar * 128);
+    totalYwae = totalYwae + (silverPyitceePae * 8);
+    totalYwae = totalYwae + silverPyitceeYwae;
+
+    totalSilver = totalYwae * calcOneYwaePrice(silverPrice);
+
+    totalCash = totalCash + inHandSuHtarTaw;
+    totalCash = totalCash + inHandPyitceeSold;
+    totalCash = totalCash + inHandPyitceeBorrow;
+    totalCash = totalCash + inHandForeignCurrency;
+    totalCash = totalCash + inHandContract;
+    totalCash = totalCash + inHandOther;
+    totalCash = totalCash + inBankInBank;
+    totalCash = totalCash + inBankThuMyarHlwae;
+    totalCash = totalCash + inBankSalary;
+    totalCash = totalCash + inBankOther;
+    totalCash = totalCash + thuMyarDebtPyitceeSold;
+    totalCash = totalCash + thuMyarDebtChayPay;
+    totalCash = totalCash + thuMyarDebtAttHtrTaw;
+    totalCash = totalCash + thuMyarDebtOther;
+    totalCash = totalCash + realEstateSellHouse;
+    totalCash = totalCash + realEstateSellEscort;
+    totalCash = totalCash + realEstateSellCar;
+    totalCash = totalCash + realEstateOther;
+    totalCash = totalCash + rawWearhouse;
+    totalCash = totalCash + rawHome;
+    totalCash = totalCash + rawShop;
+    totalCash = totalCash + rawOther;
+    totalCash = totalCash + finishWearhouse;
+    totalCash = totalCash + finishHome;
+    totalCash = totalCash + finishShop;
+    totalCash = totalCash + finishAnimal;
+    totalCash = totalCash + finishOther;
+
+    return totalSilver + totalCash;
+  }
+
   getTotalMinus() {
     var totalMinus = 0.0;
     ZakatCalculatorUtil().getMinus()["minusDebtMahur"].then((v) {
@@ -650,6 +792,30 @@ class ZakatCalculatorUtil {
     ZakatCalculatorUtil().getMinus()["minusPreZakat"].then((v) {
       totalMinus = totalMinus + v;
     });
+
+    return totalMinus;
+  }
+
+  getTotalMinus2(
+      minusDebtMahur,
+      minusDebt,
+      minusSukyae,
+      minusMeterBill,
+      minusPaybill,
+      minusPaySalary,
+      minusPayRent,
+      minusBuyGoodPay,
+      minusPreZakat) {
+    var totalMinus = 0.0;
+    totalMinus = totalMinus + minusDebtMahur;
+    totalMinus = totalMinus + minusDebt;
+    totalMinus = totalMinus + minusSukyae;
+    totalMinus = totalMinus + minusMeterBill;
+    totalMinus = totalMinus + minusPaybill;
+    totalMinus = totalMinus + minusPaySalary;
+    totalMinus = totalMinus + minusPayRent;
+    totalMinus = totalMinus + minusBuyGoodPay;
+    totalMinus = totalMinus + minusPreZakat;
 
     return totalMinus;
   }

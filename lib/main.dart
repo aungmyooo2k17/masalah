@@ -50,9 +50,8 @@ dynamic backgroundCallback(Uri? uri) async {
   params.madhab = Madhab.hanafi;
   prayerTimes = PrayerTimes.today(myCoordinates, params);
   prayerTimeNow = PrayerTimes.today(myCoordinates, params);
-  print("*******************updateingggggggggggggggg");
+
   if (uri!.host == 'updatecounter') {
-    print("*******************################");
     String _counter = "0";
     await HomeWidget.getWidgetData<String>('_counter', defaultValue: "0")
         .then((value) {
@@ -126,8 +125,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("Connection..........$_connectionStatus");
-
     return GetMaterialApp(
       translations: LocaleString(),
       locale: Locale('hi', 'IN'),
