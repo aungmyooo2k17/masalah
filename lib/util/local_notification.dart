@@ -18,9 +18,7 @@ class LocalNotification {
         onSelectNotification: onNotificationSelect);
   }
 
-  static Future<void> onNotificationSelect(String? payload) async {
-    print(payload);
-  }
+  static Future<void> onNotificationSelect(String? payload) async {}
 
   static ShowOneTimeNotification(DateTime scheduledDate) async {
     var notificationDetails =
