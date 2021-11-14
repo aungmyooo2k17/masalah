@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_qiblah/flutter_qiblah.dart';
+// import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/reusable_widget/app_bar.dart';
 
@@ -12,7 +12,7 @@ class QiblaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _deviceSupport = FlutterQiblah.androidDeviceSensorSupport();
+    // final _deviceSupport = FlutterQiblah.androidDeviceSensorSupport();
 
     return MaterialApp(
       theme: ThemeData(
@@ -29,22 +29,23 @@ class QiblaScreen extends StatelessWidget {
           bgColor: AppColors.bgColor,
           textColor: AppColors.primaryText,
         ),
-        body: FutureBuilder(
-          future: _deviceSupport,
-          builder: (_, AsyncSnapshot<bool?> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting)
-              return LoadingIndicator();
-            if (snapshot.hasError)
-              return Center(
-                child: Text("Error: ${snapshot.error.toString()}"),
-              );
+        body: SizedBox.shrink(),
+        // body: FutureBuilder(
+        //   future: _deviceSupport,
+        //   builder: (_, AsyncSnapshot<bool?> snapshot) {
+        //     if (snapshot.connectionState == ConnectionState.waiting)
+        //       return LoadingIndicator();
+        //     if (snapshot.hasError)
+        //       return Center(
+        //         child: Text("Error: ${snapshot.error.toString()}"),
+        //       );
 
-            if (snapshot.data!)
-              return QiblahCompass();
-            else
-              return QiblahMaps();
-          },
-        ),
+        //     if (snapshot.data!)
+        //       return QiblahCompass();
+        //     else
+        //       return QiblahMaps();
+        //   },
+        // ),
       ),
     );
   }

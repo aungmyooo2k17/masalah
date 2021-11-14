@@ -1,372 +1,398 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:1:1-86:12
-INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:1:1-86:12
-INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:1:1-86:12
-INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:1:1-86:12
-MERGED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:1:1-86:12
-MERGED from [:flutter_qiblah] /home/aung/flutter/masalah/build/flutter_qiblah/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
-MERGED from [:google_maps_flutter] /home/aung/flutter/masalah/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:flutter_plugin_android_lifecycle] /home/aung/flutter/masalah/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:geolocator_android] /home/aung/flutter/masalah/build/geolocator_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:connectivity] /home/aung/flutter/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:shared_preferences] /home/aung/flutter/masalah/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:home_widget] /home/aung/flutter/masalah/build/home_widget/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:flutter_compass] /home/aung/flutter/masalah/build/flutter_compass/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:sqflite] /home/aung/flutter/masalah/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:path_provider] /home/aung/flutter/masalah/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:android_alarm_manager] /home/aung/flutter/masalah/build/android_alarm_manager/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.multidex:multidex:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/e0c80cb72d282da5b4cd1966a30d3891/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.appcompat:appcompat:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/ddfeebee320e213e4569474cdfe875cf/appcompat-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:17:1-38:12
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:17:1-29:12
-MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.fragment:fragment:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2fd9120a6da4df3dbabdd40f6a2d8995/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/555cf706dacdc8d298d0dbe18bcfb468/vectordrawable-animated-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/b69d809a7d56669e263a6dd73fa3f3e0/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/fead7ea2e43546ae73f7f9d07ac64f5f/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/958168e6270f43b3add5508c73f3044c/vectordrawable-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/eb26273f8f7192460456ce62b9bdf9ef/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/d9536c14ffde0b7289f12ba6def6bfa4/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/68dbf8ea01a1dbd974fc87b5753550f0/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c55ef91c26d4308e6afaf93e553ef302/coordinatorlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/a71638e40cbd9c9c6e5d2d7449ca53dd/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/6e82373554eac6f416a47581a6cf4f62/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.customview:customview:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/bc28a09d8d2212ffd5788fe6c1853326/customview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/bb361c9951ec30a475ef40f80e89b874/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/57910a85af155c3103487e39ce23f678/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/aung/.gradle/caches/transforms-2/files-2.1/ca6b214160bd0909b103aa12202ef51c/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2271d874344878e62b9a8e309af0c39d/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/fb333fb43575d8a3b51161295454427f/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/cad25976877a6ae855ef6821534f58a1/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c39070be4a8b092ae5970162a829e305/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/5f606c30f064eed94124828de37fadc0/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/96aee308bccd03bc62c306516c23a410/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/15ddec56bd001fb2d4fc04a7d71346e8/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/b6c34301107cd06a29fdce8c3ef58e3a/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/f15d67ff15ac844b69200ea1a0376a7a/print-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/15792e6083b2b5b5a7ffa285d47daa24/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/b962778313a0e23f9ca3dbafc012c1af/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:1:1-102:12
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:1:1-102:12
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:1:1-102:12
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:1:1-102:12
+MERGED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:1:1-102:12
+MERGED from [:google_maps_flutter] /home/soethan/Documents/FlutterProjects/masalah/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_plugin_android_lifecycle] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:connectivity] /home/soethan/Documents/FlutterProjects/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:shared_preferences] /home/soethan/Documents/FlutterProjects/masalah/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:home_widget] /home/soethan/Documents/FlutterProjects/masalah/build/home_widget/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_compass] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_compass/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] /home/soethan/Documents/FlutterProjects/masalah/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:android_alarm_manager_plus] /home/soethan/Documents/FlutterProjects/masalah/build/android_alarm_manager_plus/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-28:12
+MERGED from [:path_provider] /home/soethan/Documents/FlutterProjects/masalah/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.multidex:multidex:2.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/ac6e867a9341442f40685644ec3c1092/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/1773fae4338e64154ebf7716b05b80e3/appcompat-1.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/b4224165a83d22618acdb8e4a6546ff0/media-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:17:1-38:12
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e57feb9fc5bbb823ae68e3ebbcc13bdd/jetified-play-services-base-17.0.0/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6aac01a5ca1a78e257b819a1d20b9f49/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/2458a77aa42ef442649e75cd4489b1cf/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.fragment:fragment:1.3.6] /home/soethan/.gradle/caches/transforms-2/files-2.1/d61d169e29e21d980c5722c522c62f0c/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.2.4] /home/soethan/.gradle/caches/transforms-2/files-2.1/501bb9a7e089c0286e544ad5cd1fba7d/jetified-activity-1.2.4/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/2acebe04bfb0cb22503801778c954c77/jetified-appcompat-resources-1.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/1581d94240a89695ab1ef29acea08d4f/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/8911a3ecd6aa12e0e84bb43db8e5d4d9/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/c51007774f4fd6d14ba4adbca0679a8a/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/5e4810477365094dd32b38f89aaacad5/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/532ccf14bb4e1d9f013b5b40be860ef3/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/f8347eebbb40a7a16c766592439b20a2/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.6.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/44318f973e18fa59fe3957d8af199b21/core-1.6.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/bf224960c448cf8df3cc05170c7e1480/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/1a358deacd4a0a9d6b36d27789f32086/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/92e6b919cde2985708bccc9bc7166477/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/3155a794f6015a7ac7a6534d280b5af6/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/4e44a2a897a9ea7b0be63945b5e7c8e4/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/0f790ce44fc21da22b7a8500a4d4bae7/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/51ee241fc071c840c1958154b88ad1d9/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/f54e62666ba380bc20503fa908ba466f/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/4a9e8b88b3bc970366ef65e27aed2015/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.tracing:tracing:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/353d713371cc45bbe32e571325b51724/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/fb92da9c2dd107fc56f3a9f27e43e30b/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/soethan/.gradle/caches/transforms-2/files-2.1/b4ccbf74d27d6c0d85adab0141bb0893/jetified-threetenabp-1.2.3/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e8947babe14030ab36b6f95be15600ef/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 	package
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:2:5-34
-		INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml
-		INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:2:5-34
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:1:1-86:12
-		INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:1:1-102:12
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:1:1-86:12
-		INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:1:1-102:12
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:5:5-67
-MERGED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:5:5-67
-MERGED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:5:5-67
-MERGED from [:flutter_qiblah] /home/aung/flutter/masalah/build/flutter_qiblah/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-67
-MERGED from [:flutter_qiblah] /home/aung/flutter/masalah/build/flutter_qiblah/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-67
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:24:5-67
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:24:5-67
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:5:5-67
+MERGED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:5:5-67
+MERGED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:5:5-67
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:24:5-67
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:5:22-64
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_COARSE_LOCATIO
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:6:5-80
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:6:5-80
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:6:22-77
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:6:22-77
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:7:5-79
-MERGED from [:flutter_qiblah] /home/aung/flutter/masalah/build/flutter_qiblah/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-79
-MERGED from [:flutter_qiblah] /home/aung/flutter/masalah/build/flutter_qiblah/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-79
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:7:22-76
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:7:22-76
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:8:5-80
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:9:5-81
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:8:22-78
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:9:22-78
+uses-permission#android.permission.VIBRATE
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:10:2-63
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-66
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-66
+	android:name
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:10:19-60
 uses-permission#android.permission.WAKE_LOCK
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:9:5-67
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:11:2-65
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:9:22-65
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:11:19-62
+uses-permission#android.permission.SCHEDULE_EXACT_ALARM
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:12:5-78
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-79
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-79
+	android:name
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:12:22-76
 application
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:10:4-85:19
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.core:core:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/96aee308bccd03bc62c306516c23a410/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/96aee308bccd03bc62c306516c23a410/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:16:4-101:19
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-26:19
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-26:19
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e57feb9fc5bbb823ae68e3ebbcc13bdd/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e57feb9fc5bbb823ae68e3ebbcc13bdd/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6aac01a5ca1a78e257b819a1d20b9f49/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6aac01a5ca1a78e257b819a1d20b9f49/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/2458a77aa42ef442649e75cd4489b1cf/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/2458a77aa42ef442649e75cd4489b1cf/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.6.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/44318f973e18fa59fe3957d8af199b21/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/44318f973e18fa59fe3957d8af199b21/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/bf224960c448cf8df3cc05170c7e1480/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/bf224960c448cf8df3cc05170c7e1480/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/soethan/.gradle/caches/transforms-2/files-2.1/b4ccbf74d27d6c0d85adab0141bb0893/jetified-threetenabp-1.2.3/AndroidManifest.xml:7:5-20
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/soethan/.gradle/caches/transforms-2/files-2.1/b4ccbf74d27d6c0d85adab0141bb0893/jetified-threetenabp-1.2.3/AndroidManifest.xml:7:5-20
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.6.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/44318f973e18fa59fe3957d8af199b21/core-1.6.0/AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:12:9-32
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:19:9-32
 	android:icon
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:13:9-43
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:20:9-43
 	android:allowBackup
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:11:9-36
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:18:9-36
+	android:name
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:17:9-57
 activity#com.example.masalah.MainActivity
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:14:9-42:20
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:21:9-49:20
 	android:launchMode
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:16:13-43
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:23:13-43
 	android:hardwareAccelerated
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:19:13-47
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:26:13-47
 	android:windowSoftInputMode
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:20:13-55
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:27:13-55
 	android:configChanges
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:18:13-163
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:25:13-163
 	android:theme
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:17:13-47
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:24:13-47
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:15:13-41
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:22:13-41
 meta-data#io.flutter.embedding.android.NormalTheme
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:25:13-28:17
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:32:13-35:17
 	android:resource
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:27:15-52
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:34:15-52
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:26:15-70
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:33:15-70
 meta-data#io.flutter.embedding.android.SplashScreenDrawable
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:34:13-37:17
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:41:13-44:17
 	android:resource
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:36:15-61
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:43:15-61
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:35:15-79
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:42:15-79
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:38:13-41:29
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:45:13-48:29
 action#android.intent.action.MAIN
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:39:17-68
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:46:17-68
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:39:25-66
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:46:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:40:17-76
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:47:17-76
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:40:27-74
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:47:27-74
 receiver#com.example.masalah.AppWidgetProvider
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:45:8-51:19
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:52:8-58:19
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:45:18-50
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:52:18-50
 intent-filter#action:name:android.appwidget.action.APPWIDGET_UPDATE
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:46:12-48:28
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:53:12-55:28
 action#android.appwidget.action.APPWIDGET_UPDATE
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:47:16-83
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:54:16-83
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:47:24-80
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:54:24-80
 meta-data#android.appwidget.provider
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:49:12-50:54
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:56:12-57:54
 	android:resource
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:50:16-51
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:57:16-51
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:49:23-64
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:56:23-64
 receiver#es.antonborri.home_widget.HomeWidgetBackgroundReceiver
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:53:8-57:19
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:60:8-64:19
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:53:18-87
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:60:18-87
 intent-filter#action:name:es.antonborri.home_widget.action.BACKGROUND
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:54:12-56:28
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:61:12-63:28
 action#es.antonborri.home_widget.action.BACKGROUND
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:55:16-85
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:62:16-85
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:55:24-82
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:62:24-82
 service#es.antonborri.home_widget.HomeWidgetBackgroundService
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:58:8-59:94
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:65:8-66:94
 	android:exported
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:59:69-92
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:66:69-92
 	android:permission
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:59:12-68
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:66:12-68
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:58:17-85
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:65:17-85
 meta-data#flutterEmbedding
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:65:9-67:33
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:72:9-74:33
 	android:value
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:67:13-30
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:74:13-30
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:66:13-44
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:73:13-44
 meta-data#com.google.android.geo.API_KEY
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:68:9-69:70
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:75:9-76:70
 	android:value
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:69:13-68
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:76:13-68
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:68:20-65
-service#io.flutter.plugins.androidalarmmanager.AlarmService
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:71:9-74:39
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:75:20-65
+receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:78:13-83:14
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-25:20
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-25:20
 	android:exported
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:74:13-37
-	android:permission
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:73:13-69
+		ADDED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-37
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:72:13-79
-receiver#io.flutter.plugins.androidalarmmanager.AlarmBroadcastReceiver
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:75:9-77:39
-	android:exported
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:77:13-37
-	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:76:13-89
-receiver#io.flutter.plugins.androidalarmmanager.RebootBroadcastReceiver
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:78:9-84:20
-	android:enabled
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:80:13-36
-	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:79:13-90
-intent-filter#action:name:android.intent.action.BOOT_COMPLETED
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:81:13-83:29
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:78:23-111
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MY_PACKAGE_REPLACED
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:79:4-82:20
 action#android.intent.action.BOOT_COMPLETED
-ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:82:17-78
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:80:5-67
 	android:name
-		ADDED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml:82:25-76
-uses-sdk
-INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml
-INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml
-MERGED from [:flutter_qiblah] /home/aung/flutter/masalah/build/flutter_qiblah/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:flutter_qiblah] /home/aung/flutter/masalah/build/flutter_qiblah/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter] /home/aung/flutter/masalah/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter] /home/aung/flutter/masalah/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] /home/aung/flutter/masalah/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] /home/aung/flutter/masalah/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:geolocator_android] /home/aung/flutter/masalah/build/geolocator_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:geolocator_android] /home/aung/flutter/masalah/build/geolocator_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:connectivity] /home/aung/flutter/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:connectivity] /home/aung/flutter/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences] /home/aung/flutter/masalah/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences] /home/aung/flutter/masalah/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:home_widget] /home/aung/flutter/masalah/build/home_widget/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:home_widget] /home/aung/flutter/masalah/build/home_widget/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:flutter_compass] /home/aung/flutter/masalah/build/flutter_compass/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:flutter_compass] /home/aung/flutter/masalah/build/flutter_compass/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:sqflite] /home/aung/flutter/masalah/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:sqflite] /home/aung/flutter/masalah/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:path_provider] /home/aung/flutter/masalah/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:path_provider] /home/aung/flutter/masalah/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:android_alarm_manager] /home/aung/flutter/masalah/build/android_alarm_manager/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:android_alarm_manager] /home/aung/flutter/masalah/build/android_alarm_manager/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [androidx.multidex:multidex:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/e0c80cb72d282da5b4cd1966a30d3891/multidex-2.0.0/AndroidManifest.xml:20:5-43
-MERGED from [androidx.multidex:multidex:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/e0c80cb72d282da5b4cd1966a30d3891/multidex-2.0.0/AndroidManifest.xml:20:5-43
-MERGED from [androidx.appcompat:appcompat:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/ddfeebee320e213e4569474cdfe875cf/appcompat-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/ddfeebee320e213e4569474cdfe875cf/appcompat-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2fd9120a6da4df3dbabdd40f6a2d8995/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2fd9120a6da4df3dbabdd40f6a2d8995/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/555cf706dacdc8d298d0dbe18bcfb468/vectordrawable-animated-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/555cf706dacdc8d298d0dbe18bcfb468/vectordrawable-animated-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/b69d809a7d56669e263a6dd73fa3f3e0/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/b69d809a7d56669e263a6dd73fa3f3e0/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/fead7ea2e43546ae73f7f9d07ac64f5f/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/fead7ea2e43546ae73f7f9d07ac64f5f/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/958168e6270f43b3add5508c73f3044c/vectordrawable-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/958168e6270f43b3add5508c73f3044c/vectordrawable-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/eb26273f8f7192460456ce62b9bdf9ef/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/eb26273f8f7192460456ce62b9bdf9ef/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/d9536c14ffde0b7289f12ba6def6bfa4/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/d9536c14ffde0b7289f12ba6def6bfa4/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/68dbf8ea01a1dbd974fc87b5753550f0/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/68dbf8ea01a1dbd974fc87b5753550f0/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c55ef91c26d4308e6afaf93e553ef302/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c55ef91c26d4308e6afaf93e553ef302/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/a71638e40cbd9c9c6e5d2d7449ca53dd/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/a71638e40cbd9c9c6e5d2d7449ca53dd/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/6e82373554eac6f416a47581a6cf4f62/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/6e82373554eac6f416a47581a6cf4f62/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/bc28a09d8d2212ffd5788fe6c1853326/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/bc28a09d8d2212ffd5788fe6c1853326/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/bb361c9951ec30a475ef40f80e89b874/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/bb361c9951ec30a475ef40f80e89b874/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/57910a85af155c3103487e39ce23f678/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/57910a85af155c3103487e39ce23f678/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/aung/.gradle/caches/transforms-2/files-2.1/ca6b214160bd0909b103aa12202ef51c/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/aung/.gradle/caches/transforms-2/files-2.1/ca6b214160bd0909b103aa12202ef51c/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2271d874344878e62b9a8e309af0c39d/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/2271d874344878e62b9a8e309af0c39d/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/fb333fb43575d8a3b51161295454427f/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/fb333fb43575d8a3b51161295454427f/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/cad25976877a6ae855ef6821534f58a1/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/cad25976877a6ae855ef6821534f58a1/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c39070be4a8b092ae5970162a829e305/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c39070be4a8b092ae5970162a829e305/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/5f606c30f064eed94124828de37fadc0/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/5f606c30f064eed94124828de37fadc0/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/96aee308bccd03bc62c306516c23a410/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/96aee308bccd03bc62c306516c23a410/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.documentfile:documentfile:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/15ddec56bd001fb2d4fc04a7d71346e8/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/15ddec56bd001fb2d4fc04a7d71346e8/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/b6c34301107cd06a29fdce8c3ef58e3a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/b6c34301107cd06a29fdce8c3ef58e3a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/f15d67ff15ac844b69200ea1a0376a7a/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/f15d67ff15ac844b69200ea1a0376a7a/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/15792e6083b2b5b5a7ffa285d47daa24/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/aung/.gradle/caches/transforms-2/files-2.1/15792e6083b2b5b5a7ffa285d47daa24/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/b962778313a0e23f9ca3dbafc012c1af/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/b962778313a0e23f9ca3dbafc012c1af/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml
-INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml
-	android:targetSdkVersion
-		INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml
-		INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml
-	android:minSdkVersion
-		INJECTED from /home/aung/flutter/masalah/android/app/src/main/AndroidManifest.xml
-		INJECTED from /home/aung/flutter/masalah/android/app/src/debug/AndroidManifest.xml
-uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from [:flutter_qiblah] /home/aung/flutter/masalah/build/flutter_qiblah/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-81
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:80:13-64
+action#android.intent.action.MY_PACKAGE_REPLACED
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:81:5-72
 	android:name
-		ADDED from [:flutter_qiblah] /home/aung/flutter/masalah/build/flutter_qiblah/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-78
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [:connectivity] /home/aung/flutter/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
-	android:name
-		ADDED from [:connectivity] /home/aung/flutter/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
-uses-feature#0x00020000
-ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
-	android:glEsVersion
-		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:27:9-41
-	android:required
-		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:28:9-32
-uses-library#org.apache.http.legacy
-ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
-	android:required
-		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
-	android:name
-		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/c5de8972dacd649c27c247c9e16de3ac/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:81:13-69
+receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:84:3-100
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:13:9-15:40
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:13:9-15:40
 	android:exported
-		ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+		ADDED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
+	android:name
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:84:13-97
+service#dev.fluttercommunity.plus.androidalarmmanager.AlarmService
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:87:1-90:31
+	android:exported
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:90:5-29
+	android:permission
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:89:5-61
+	android:name
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:88:5-78
+receiver#dev.fluttercommunity.plus.androidalarmmanager.AlarmBroadcastReceiver
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:91:1-93:31
+	android:exported
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:93:5-29
+	android:name
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:92:5-88
+receiver#dev.fluttercommunity.plus.androidalarmmanager.RebootBroadcastReceiver
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:94:1-100:12
+	android:enabled
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:96:5-28
+	android:name
+		ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:95:5-89
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED
+ADDED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml:97:5-99:21
+uses-sdk
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml
+MERGED from [:google_maps_flutter] /home/soethan/Documents/FlutterProjects/masalah/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter] /home/soethan/Documents/FlutterProjects/masalah/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] /home/soethan/Documents/FlutterProjects/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] /home/soethan/Documents/FlutterProjects/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /home/soethan/Documents/FlutterProjects/masalah/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /home/soethan/Documents/FlutterProjects/masalah/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:home_widget] /home/soethan/Documents/FlutterProjects/masalah/build/home_widget/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:home_widget] /home/soethan/Documents/FlutterProjects/masalah/build/home_widget/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_compass] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_compass/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_compass] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_compass/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/soethan/Documents/FlutterProjects/masalah/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/soethan/Documents/FlutterProjects/masalah/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:android_alarm_manager_plus] /home/soethan/Documents/FlutterProjects/masalah/build/android_alarm_manager_plus/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:android_alarm_manager_plus] /home/soethan/Documents/FlutterProjects/masalah/build/android_alarm_manager_plus/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/soethan/Documents/FlutterProjects/masalah/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/soethan/Documents/FlutterProjects/masalah/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [androidx.multidex:multidex:2.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/ac6e867a9341442f40685644ec3c1092/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/ac6e867a9341442f40685644ec3c1092/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [androidx.appcompat:appcompat:1.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/1773fae4338e64154ebf7716b05b80e3/appcompat-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/1773fae4338e64154ebf7716b05b80e3/appcompat-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/b4224165a83d22618acdb8e4a6546ff0/media-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/b4224165a83d22618acdb8e4a6546ff0/media-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e57feb9fc5bbb823ae68e3ebbcc13bdd/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e57feb9fc5bbb823ae68e3ebbcc13bdd/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6aac01a5ca1a78e257b819a1d20b9f49/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6aac01a5ca1a78e257b819a1d20b9f49/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/2458a77aa42ef442649e75cd4489b1cf/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/2458a77aa42ef442649e75cd4489b1cf/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.3.6] /home/soethan/.gradle/caches/transforms-2/files-2.1/d61d169e29e21d980c5722c522c62f0c/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /home/soethan/.gradle/caches/transforms-2/files-2.1/d61d169e29e21d980c5722c522c62f0c/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] /home/soethan/.gradle/caches/transforms-2/files-2.1/501bb9a7e089c0286e544ad5cd1fba7d/jetified-activity-1.2.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] /home/soethan/.gradle/caches/transforms-2/files-2.1/501bb9a7e089c0286e544ad5cd1fba7d/jetified-activity-1.2.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/2acebe04bfb0cb22503801778c954c77/jetified-appcompat-resources-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/2acebe04bfb0cb22503801778c954c77/jetified-appcompat-resources-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/1581d94240a89695ab1ef29acea08d4f/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/1581d94240a89695ab1ef29acea08d4f/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/8911a3ecd6aa12e0e84bb43db8e5d4d9/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/8911a3ecd6aa12e0e84bb43db8e5d4d9/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/c51007774f4fd6d14ba4adbca0679a8a/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/c51007774f4fd6d14ba4adbca0679a8a/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/5e4810477365094dd32b38f89aaacad5/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/5e4810477365094dd32b38f89aaacad5/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/532ccf14bb4e1d9f013b5b40be860ef3/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/532ccf14bb4e1d9f013b5b40be860ef3/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/f8347eebbb40a7a16c766592439b20a2/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/f8347eebbb40a7a16c766592439b20a2/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.6.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/44318f973e18fa59fe3957d8af199b21/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/44318f973e18fa59fe3957d8af199b21/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/bf224960c448cf8df3cc05170c7e1480/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/bf224960c448cf8df3cc05170c7e1480/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/1a358deacd4a0a9d6b36d27789f32086/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/1a358deacd4a0a9d6b36d27789f32086/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/92e6b919cde2985708bccc9bc7166477/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/92e6b919cde2985708bccc9bc7166477/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/3155a794f6015a7ac7a6534d280b5af6/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/3155a794f6015a7ac7a6534d280b5af6/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/4e44a2a897a9ea7b0be63945b5e7c8e4/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/4e44a2a897a9ea7b0be63945b5e7c8e4/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/0f790ce44fc21da22b7a8500a4d4bae7/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/0f790ce44fc21da22b7a8500a4d4bae7/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/51ee241fc071c840c1958154b88ad1d9/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/51ee241fc071c840c1958154b88ad1d9/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/f54e62666ba380bc20503fa908ba466f/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /home/soethan/.gradle/caches/transforms-2/files-2.1/f54e62666ba380bc20503fa908ba466f/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/4a9e8b88b3bc970366ef65e27aed2015/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/4a9e8b88b3bc970366ef65e27aed2015/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/353d713371cc45bbe32e571325b51724/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/353d713371cc45bbe32e571325b51724/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/fb92da9c2dd107fc56f3a9f27e43e30b/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/fb92da9c2dd107fc56f3a9f27e43e30b/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/soethan/.gradle/caches/transforms-2/files-2.1/b4ccbf74d27d6c0d85adab0141bb0893/jetified-threetenabp-1.2.3/AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/soethan/.gradle/caches/transforms-2/files-2.1/b4ccbf74d27d6c0d85adab0141bb0893/jetified-threetenabp-1.2.3/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e8947babe14030ab36b6f95be15600ef/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e8947babe14030ab36b6f95be15600ef/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml
+INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/soethan/Documents/FlutterProjects/masalah/android/app/src/debug/AndroidManifest.xml
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:connectivity] /home/soethan/Documents/FlutterProjects/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from [:connectivity] /home/soethan/Documents/FlutterProjects/masalah/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
+uses-permission#android.permission.USE_FULL_SCREEN_INTENT
+ADDED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-78
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MY_PACKAGE_REPLACED+action:name:android.intent.action.QUICKBOOT_POWERON+action:name:com.htc.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-24:29
+action#android.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:22:17-82
+	android:name
+		ADDED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:22:25-79
+action#com.htc.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:23:17-82
+	android:name
+		ADDED from [:flutter_local_notifications] /home/soethan/Documents/FlutterProjects/masalah/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:23:25-79
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:27:9-41
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:28:9-32
+uses-library#org.apache.http.legacy
+ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/6a31667014e52d45ec1b97f39720aaa1/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e57feb9fc5bbb823ae68e3ebbcc13bdd/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e57feb9fc5bbb823ae68e3ebbcc13bdd/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e57feb9fc5bbb823ae68e3ebbcc13bdd/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/e57feb9fc5bbb823ae68e3ebbcc13bdd/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/2458a77aa42ef442649e75cd4489b1cf/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/2458a77aa42ef442649e75cd4489b1cf/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/aung/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/soethan/.gradle/caches/transforms-2/files-2.1/2458a77aa42ef442649e75cd4489b1cf/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
