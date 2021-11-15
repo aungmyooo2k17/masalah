@@ -20,10 +20,8 @@ class RemoteDataSource {
       //2
       final response = await client.request(
           requestType: RequestType.GET, path: "assets/masalah_categories.json");
-      print("***************");
-      print(response.statusCode);
+
       if (response.statusCode == 200) {
-        print("networkingggg");
         CategoryApi data = CategoryApi.fromRawJson(response.body);
 
         return Result<List<Category>>.success(data.categories!);
@@ -40,8 +38,7 @@ class RemoteDataSource {
       //2
       final response = await client.request(
           requestType: RequestType.GET, path: "assets/masalah_data.json");
-      print("***************");
-      print(response.statusCode);
+
       if (response.statusCode == 200) {
         MasalahApi data = MasalahApi.fromRawJson(response.body);
         return Result<List<Masalah>>.success(data.masalahs!);

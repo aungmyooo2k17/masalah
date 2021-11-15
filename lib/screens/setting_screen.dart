@@ -81,7 +81,6 @@ class SettingScreen extends StatelessWidget {
                       child: GestureDetector(
                         child: Text(locale[index]['name']),
                         onTap: () {
-                          print(locale[index]['name']);
                           updateLanguage(locale[index]['locale']);
                         },
                       ),
