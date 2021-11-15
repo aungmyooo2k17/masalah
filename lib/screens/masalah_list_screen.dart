@@ -40,7 +40,7 @@ class _MasalahListScreenState extends State<MasalahListScreen> {
         });
     _searchController.addListener(() {
       //here you have the changes of your textfield
-      print("value: ${_searchController.text}");
+
       //use setState to rebuild the widget
       setState(() {});
     });
@@ -93,7 +93,6 @@ class _MasalahListScreenState extends State<MasalahListScreen> {
                     : _apiResponse.getMasalahs(),
                 builder:
                     (BuildContext context, AsyncSnapshot<Result> snapshot) {
-                  print(snapshot.data);
                   if (snapshot.data is SuccessState) {
                     List<Masalah> masalahs =
                         (snapshot.data as SuccessState).value;

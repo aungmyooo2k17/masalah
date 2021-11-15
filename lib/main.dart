@@ -78,8 +78,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("Connection..........$_connectionStatus");
-
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       translations: LocaleString(),

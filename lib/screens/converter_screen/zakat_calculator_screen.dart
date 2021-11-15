@@ -12,6 +12,8 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   int _currentStep = 0;
   StepperType stepperType = StepperType.vertical;
 
+  String _result = "";
+
   final goldAkhoutKyatthar = TextEditingController();
   final goldAkhoutPae = TextEditingController();
   final goldAkhoutYwae = TextEditingController();
@@ -84,6 +86,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   final minusPayRent = TextEditingController();
   final minusBuyGoodPay = TextEditingController();
   final minusPreZakat = TextEditingController();
+
+  final goldPrice = TextEditingController();
+  final silverPrice = TextEditingController();
 
   @override
   void initState() {
@@ -182,6 +187,144 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
       whiteSilverPyitceeYwae.text = "$value";
     });
     // .... WhiteSilver ....
+
+    ZakatCalculatorUtil().getInHand()["inHandSuHtarTaw"].then((v) {
+      inHandSuHtarTaw.text = "$v";
+    });
+    ZakatCalculatorUtil().getInHand()["inHandPyitceeSold"].then((v) {
+      inHandPyitceeSold.text = "$v";
+    });
+    ZakatCalculatorUtil().getInHand()["inHandPyitceeBorrow"].then((v) {
+      inHandPyitceeBorrow.text = "$v";
+    });
+    ZakatCalculatorUtil().getInHand()["inHandForeignCurrency"].then((v) {
+      inHandForeignCurrency.text = "$v";
+    });
+    ZakatCalculatorUtil().getInHand()["inHandContract"].then((v) {
+      inHandContract.text = "$v";
+    });
+    ZakatCalculatorUtil().getInHand()["inHandOther"].then((v) {
+      inHandOther.text = "$v";
+    });
+    // .......Inhand.......
+
+    ZakatCalculatorUtil().getInBank()["inBankInBank"].then((v) {
+      inBankInBank.text = "$v";
+    });
+    ZakatCalculatorUtil().getInBank()["inBankThuMyarHlwae"].then((v) {
+      inBankThuMyarHlwae.text = "$v";
+    });
+    ZakatCalculatorUtil().getInBank()["inBankSalary"].then((v) {
+      inBankSalary.text = "$v";
+    });
+    ZakatCalculatorUtil().getInBank()["inBankOther"].then((v) {
+      inBankOther.text = "$v";
+    });
+    // ..........InBank..........
+
+    ZakatCalculatorUtil()
+        .getThuMyarPayHtrTawDebt()["thuMyarDebtPyitceeSold"]
+        .then((v) {
+      thuMyarDebtPyitceeSold.text = "$v";
+    });
+    ZakatCalculatorUtil()
+        .getThuMyarPayHtrTawDebt()["thuMyarDebtChayPay"]
+        .then((v) {
+      thuMyarDebtChayPay.text = "$v";
+    });
+    ZakatCalculatorUtil()
+        .getThuMyarPayHtrTawDebt()["thuMyarDebtAttHtrTaw"]
+        .then((v) {
+      thuMyarDebtAttHtrTaw.text = "$v";
+    });
+    ZakatCalculatorUtil()
+        .getThuMyarPayHtrTawDebt()["thuMyarDebtOther"]
+        .then((v) {
+      thuMyarDebtOther.text = "$v";
+    });
+    // .........ThuMyarPayHtrTawDebt..........
+
+    ZakatCalculatorUtil().getRealEstate()["realEstateSellHouse"].then((v) {
+      realEstateSellHouse.text = "$v";
+    });
+    ZakatCalculatorUtil().getRealEstate()["realEstateSellEscort"].then((v) {
+      realEstateSellEscort.text = "$v";
+    });
+    ZakatCalculatorUtil().getRealEstate()["realEstateSellCar"].then((v) {
+      realEstateSellCar.text = "$v";
+    });
+    ZakatCalculatorUtil().getRealEstate()["realEstateOther"].then((v) {
+      realEstateOther.text = "$v";
+    });
+    // ...........RealEstate............
+
+    ZakatCalculatorUtil().getRaw()["rawWearhouse"].then((v) {
+      rawWearhouse.text = "$v";
+    });
+    ZakatCalculatorUtil().getRaw()["rawHome"].then((v) {
+      rawHome.text = "$v";
+    });
+    ZakatCalculatorUtil().getRaw()["rawShop"].then((v) {
+      rawShop.text = "$v";
+    });
+    ZakatCalculatorUtil().getRaw()["rawOther"].then((v) {
+      rawOther.text = "$v";
+    });
+    // ..............Raw...........
+
+    ZakatCalculatorUtil().getFinish()["finishWearhouse"].then((v) {
+      finishWearhouse.text = "$v";
+    });
+    ZakatCalculatorUtil().getFinish()["finishHome"].then((v) {
+      finishHome.text = "$v";
+    });
+    ZakatCalculatorUtil().getFinish()["finishShop"].then((v) {
+      finishShop.text = "$v";
+    });
+    ZakatCalculatorUtil().getFinish()["finishAnimal"].then((v) {
+      finishAnimal.text = "$v";
+    });
+    ZakatCalculatorUtil().getFinish()["finishOther"].then((v) {
+      finishOther.text = "$v";
+    });
+    // ..........finish...........
+
+    ZakatCalculatorUtil().getMinus()["minusDebtMahur"].then((v) {
+      minusDebtMahur.text = "$v";
+    });
+    ZakatCalculatorUtil().getMinus()["minusDebt"].then((v) {
+      minusDebt.text = "$v";
+    });
+    ZakatCalculatorUtil().getMinus()["minusSukyae"].then((v) {
+      minusSukyae.text = "$v";
+    });
+    ZakatCalculatorUtil().getMinus()["minusMeterBill"].then((v) {
+      minusMeterBill.text = "$v";
+    });
+    ZakatCalculatorUtil().getMinus()["minusPaybill"].then((v) {
+      minusPaybill.text = "$v";
+    });
+    ZakatCalculatorUtil().getMinus()["minusPaySalary"].then((v) {
+      minusPaySalary.text = "$v";
+    });
+    ZakatCalculatorUtil().getMinus()["minusPayRent"].then((v) {
+      minusPayRent.text = "$v";
+    });
+    ZakatCalculatorUtil().getMinus()["minusBuyGoodPay"].then((v) {
+      minusBuyGoodPay.text = "$v";
+    });
+    ZakatCalculatorUtil().getMinus()["minusPreZakat"].then((v) {
+      minusPreZakat.text = "$v";
+    });
+    // ............Minus.............
+
+    ZakatCalculatorUtil().getGoldPrice().then((v) {
+      goldPrice.text = "$v";
+    });
+    ZakatCalculatorUtil().getSilverPrice().then((v) {
+      silverPrice.text = "$v";
+    });
+
     super.initState();
   }
 
@@ -716,24 +859,30 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                 color: AppColors.primaryText,
                               ),
                               TextFormField(
+                                controller: inHandSuHtarTaw,
                                 decoration: InputDecoration(
                                     labelText: 'စုဆောင်းထားသော'),
                               ),
                               TextFormField(
+                                controller: inHandPyitceeSold,
                                 decoration: InputDecoration(
                                     labelText: 'ပစ္စည်းရောင်း၍ရထားသော'),
                               ),
                               TextFormField(
+                                  controller: inHandPyitceeBorrow,
                                   decoration: InputDecoration(
                                       labelText: 'ပစ္စည်းငှားရမ်းခရထားသော')),
                               TextFormField(
+                                  controller: inHandForeignCurrency,
                                   decoration: InputDecoration(
                                       labelText: 'နိုင်ငံခြားငွေ(ကျပ်ဖြင့်)')),
                               TextFormField(
+                                  controller: inHandContract,
                                   decoration: InputDecoration(
                                       labelText:
                                           'ငွေချေးစာချုပ်၊ချက်လက်မှတ်...')),
                               TextFormField(
+                                  controller: inHandOther,
                                   decoration:
                                       InputDecoration(labelText: 'အခြား')),
                               SizedBox(
@@ -745,7 +894,17 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                       MaterialStateProperty.all<Color>(
                                           AppColors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ZakatCalculatorUtil().saveInHand(
+                                      inHandSuHtarTaw.text,
+                                      inHandPyitceeSold.text,
+                                      inHandPyitceeBorrow.text,
+                                      inHandForeignCurrency.text,
+                                      inHandContract.text,
+                                      inHandOther.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Saved')));
+                                },
                                 child: Text("Save"),
                               ),
                             ],
@@ -769,17 +928,21 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                 color: AppColors.primaryText,
                               ),
                               TextFormField(
+                                controller: inBankInBank,
                                 decoration: InputDecoration(
                                     labelText: 'ဘဏ်ထဲထည့်ထားသော'),
                               ),
                               TextFormField(
+                                controller: inBankThuMyarHlwae,
                                 decoration: InputDecoration(
                                     labelText: 'သူများလွှဲပေးထားသော'),
                               ),
                               TextFormField(
+                                  controller: inBankSalary,
                                   decoration: InputDecoration(
                                       labelText: 'လစာ၊ပင်စင်တစ်ခုခုရထားသော')),
                               TextFormField(
+                                  controller: inBankOther,
                                   decoration: InputDecoration(
                                       labelText: 'အခြား (Digital Money, etc)')),
                               SizedBox(
@@ -791,7 +954,15 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                       MaterialStateProperty.all<Color>(
                                           AppColors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ZakatCalculatorUtil().saveInBank(
+                                      inBankInBank.text,
+                                      inBankThuMyarHlwae.text,
+                                      inBankSalary.text,
+                                      inBankOther.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Saved')));
+                                },
                                 child: Text("Save"),
                               ),
                             ],
@@ -815,18 +986,22 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                 color: AppColors.primaryText,
                               ),
                               TextFormField(
+                                controller: thuMyarDebtPyitceeSold,
                                 decoration: InputDecoration(
                                     labelText: 'ပစ္စည်းရောင်း၍ရရန်ရှိသော'),
                               ),
                               TextFormField(
+                                controller: thuMyarDebtChayPay,
                                 decoration:
                                     InputDecoration(labelText: 'ချေးပေးထားသော'),
                               ),
                               TextFormField(
+                                  controller: thuMyarDebtAttHtrTaw,
                                   decoration: InputDecoration(
                                       labelText:
                                           'တစ်ဦးတစ်ယောက်ထံအပ်နှံထားသော')),
                               TextFormField(
+                                  controller: thuMyarDebtOther,
                                   decoration:
                                       InputDecoration(labelText: 'အခြား')),
                               SizedBox(
@@ -838,7 +1013,16 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                       MaterialStateProperty.all<Color>(
                                           AppColors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ZakatCalculatorUtil()
+                                      .saveThuMyarPayHtrTawDebt(
+                                          thuMyarDebtPyitceeSold.text,
+                                          thuMyarDebtChayPay.text,
+                                          thuMyarDebtAttHtrTaw.text,
+                                          thuMyarDebtOther.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Saved')));
+                                },
                                 child: Text("Save"),
                               ),
                             ],
@@ -870,17 +1054,21 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                 color: AppColors.primaryText,
                               ),
                               TextFormField(
+                                controller: realEstateSellHouse,
                                 decoration: InputDecoration(
                                     labelText: 'ရောင်းရန်ရှိသောအိမ်'),
                               ),
                               TextFormField(
+                                controller: realEstateSellEscort,
                                 decoration: InputDecoration(
                                     labelText: 'ရောင်းရန်ရှိသောခြံ/မြေ'),
                               ),
                               TextFormField(
+                                  controller: realEstateSellCar,
                                   decoration: InputDecoration(
                                       labelText: 'ရောင်းရန်ရှိသောကား')),
                               TextFormField(
+                                  controller: realEstateOther,
                                   decoration:
                                       InputDecoration(labelText: 'အခြား')),
                               SizedBox(
@@ -892,7 +1080,15 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                       MaterialStateProperty.all<Color>(
                                           AppColors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ZakatCalculatorUtil().saveRealEstate(
+                                      realEstateSellHouse.text,
+                                      realEstateSellEscort.text,
+                                      realEstateSellCar.text,
+                                      realEstateOther.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Saved')));
+                                },
                                 child: Text("Save"),
                               ),
                             ],
@@ -916,17 +1112,21 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                 color: AppColors.primaryText,
                               ),
                               TextFormField(
+                                controller: rawWearhouse,
                                 decoration: InputDecoration(
                                     labelText: 'ဂိုထောင်တွင်ရှိသော'),
                               ),
                               TextFormField(
+                                controller: rawHome,
                                 decoration: InputDecoration(
                                     labelText: 'အိမ်တွင်ရှိသော'),
                               ),
                               TextFormField(
+                                  controller: rawShop,
                                   decoration: InputDecoration(
                                       labelText: 'ဆိုင်တွင်ရှိသော')),
                               TextFormField(
+                                  controller: rawOther,
                                   decoration:
                                       InputDecoration(labelText: 'အခြား')),
                               SizedBox(
@@ -938,7 +1138,15 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                       MaterialStateProperty.all<Color>(
                                           AppColors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ZakatCalculatorUtil().saveRaw(
+                                      rawWearhouse.text,
+                                      rawHome.text,
+                                      rawShop.text,
+                                      rawOther.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Saved')));
+                                },
                                 child: Text("Save"),
                               ),
                             ],
@@ -962,21 +1170,26 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                 color: AppColors.primaryText,
                               ),
                               TextFormField(
+                                controller: finishWearhouse,
                                 decoration: InputDecoration(
                                     labelText: 'ဂိုထောင်တွင်ရှိသော'),
                               ),
                               TextFormField(
+                                controller: finishHome,
                                 decoration: InputDecoration(
                                     labelText: 'အိမ်တွင်ရှိသော'),
                               ),
                               TextFormField(
+                                  controller: finishShop,
                                   decoration: InputDecoration(
                                       labelText: 'ဆိုင်တွင်ရှိသော')),
                               TextFormField(
+                                  controller: finishAnimal,
                                   decoration: InputDecoration(
                                       labelText:
                                           'မွေးမြူရေးခြံထဲရှိရောင်းရန်သားကောင်များ')),
                               TextFormField(
+                                  controller: finishOther,
                                   decoration:
                                       InputDecoration(labelText: 'အခြား')),
                               SizedBox(
@@ -988,7 +1201,16 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                       MaterialStateProperty.all<Color>(
                                           AppColors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ZakatCalculatorUtil().saveFinish(
+                                      finishWearhouse.text,
+                                      finishHome.text,
+                                      finishShop.text,
+                                      finishAnimal.text,
+                                      finishOther.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Saved')));
+                                },
                                 child: Text("Save"),
                               ),
                             ],
@@ -1151,37 +1373,46 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               TextFormField(
+                                controller: minusDebtMahur,
                                 decoration: InputDecoration(
                                     labelText: 'ဇနီးကိုမပေးရသေးသောမဟ်ရ်'),
                               ),
                               TextFormField(
+                                controller: minusDebt,
                                 decoration: InputDecoration(
                                     labelText: 'သူများကိုပေးဆပ်ရမည့်အကြွေး'),
                               ),
                               TextFormField(
+                                  controller: minusSukyae,
                                   decoration: InputDecoration(
                                       labelText:
                                           'စုကြေးရရှိပြီးပေးသွင်းရန်ကျန်ငွေပေါင်း')),
                               TextFormField(
+                                  controller: minusMeterBill,
                                   decoration: InputDecoration(
                                       labelText: 'ပေးဆောင်ရန်ကျန်သောမီတာခ')),
                               TextFormField(
+                                  controller: minusPaybill,
                                   decoration: InputDecoration(
                                       labelText:
                                           'ပေးဆောင်ရန်ကျန်သောအဖိုးအခများ')),
                               TextFormField(
+                                  controller: minusPaySalary,
                                   decoration: InputDecoration(
                                       labelText:
                                           'ဝန်ထမ်းများကိုပေးရန်ကျန်သောလစာများ')),
                               TextFormField(
+                                  controller: minusPayRent,
                                   decoration: InputDecoration(
                                       labelText:
                                           'ပေးဆောင်ရန်ကျန်သောငှားရမ်းခများ')),
                               TextFormField(
+                                  controller: minusBuyGoodPay,
                                   decoration: InputDecoration(
                                       labelText:
                                           'ပစ္စည်းဝယ်ပြီးပေးချေရန်ကျန်သောအကြွေး')),
                               TextFormField(
+                                  controller: minusPreZakat,
                                   decoration: InputDecoration(
                                       labelText:
                                           'ယခင်နှစ်များ၏မပေးရသေးသောဇကားသ်')),
@@ -1194,7 +1425,20 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                       MaterialStateProperty.all<Color>(
                                           AppColors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ZakatCalculatorUtil().saveMinus(
+                                      minusDebtMahur.text,
+                                      minusDebt.text,
+                                      minusSukyae.text,
+                                      minusMeterBill.text,
+                                      minusPaybill.text,
+                                      minusPaySalary.text,
+                                      minusPayRent.text,
+                                      minusBuyGoodPay.text,
+                                      minusPreZakat.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Saved')));
+                                },
                                 child: Text("Save"),
                               ),
                             ],
@@ -1226,6 +1470,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                 color: AppColors.primaryText,
                               ),
                               TextFormField(
+                                controller: goldPrice,
                                 decoration: InputDecoration(labelText: ' '),
                               ),
                               SizedBox(
@@ -1237,7 +1482,12 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                       MaterialStateProperty.all<Color>(
                                           AppColors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ZakatCalculatorUtil()
+                                      .saveGoldPrice(goldPrice.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Saved')));
+                                },
                                 child: Text("Save"),
                               ),
                             ],
@@ -1261,6 +1511,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                 color: AppColors.primaryText,
                               ),
                               TextFormField(
+                                controller: silverPrice,
                                 decoration: InputDecoration(labelText: ' '),
                               ),
                               SizedBox(
@@ -1272,7 +1523,12 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                       MaterialStateProperty.all<Color>(
                                           AppColors.white),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ZakatCalculatorUtil()
+                                      .saveSilverPrice(silverPrice.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Saved')));
+                                },
                                 child: Text("Save"),
                               ),
                             ],
@@ -1324,129 +1580,122 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     title: new Text('အဖြေ'),
                     content: Column(
                       children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            foregroundColor: MaterialStateProperty.all<Color>(
+                                AppColors.white),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အခေါက်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {},
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
+                          onPressed: () {
+                            setState(() {
+                              _result = ZakatCalculatorUtil()
+                                  .calcFinalZakatAmount(
+                                      ZakatCalculatorUtil()
+                                          .getTotalGoldPlatinum2(
+                                        double.parse(goldPrice.text),
+                                        double.parse(goldAkhoutKyatthar.text),
+                                        double.parse(goldAkhoutPae.text),
+                                        double.parse(goldAkhoutYwae.text),
+                                        double.parse(goldAhtaeKyatthar.text),
+                                        double.parse(goldAhtaePae.text),
+                                        double.parse(goldAhtaeYwae.text),
+                                        double.parse(goldPyitceeKyatthar.text),
+                                        double.parse(goldPyitceePae.text),
+                                        double.parse(goldPyitceeYwae.text),
+                                        double.parse(
+                                            whiteSilverAkhoutKyatthar.text),
+                                        double.parse(whiteSilverAkhoutPae.text),
+                                        double.parse(
+                                            whiteSilverAkhoutYwae.text),
+                                        double.parse(
+                                            whiteSilverAhtaeKyatthar.text),
+                                        double.parse(whiteSilverAhtaePae.text),
+                                        double.parse(whiteSilverAhtaeYwae.text),
+                                        double.parse(
+                                            whiteSilverPyitceeKyatthar.text),
+                                        double.parse(
+                                            whiteSilverPyitceePae.text),
+                                        double.parse(
+                                            whiteSilverPyitceeYwae.text),
+                                      ),
+                                      ZakatCalculatorUtil()
+                                          .getTotalSilverMoneyOther2(
+                                              double.parse(silverPrice.text),
+                                              double.parse(
+                                                  silverAkhoutKyatthar.text),
+                                              double.parse(
+                                                  silverAkhoutPae.text),
+                                              double.parse(
+                                                  silverAkhoutYwae.text),
+                                              double.parse(
+                                                  silverAhtaeKyatthar.text),
+                                              double.parse(silverAhtaePae.text),
+                                              double.parse(
+                                                  silverAhtaeYwae.text),
+                                              double.parse(
+                                                  silverPyitceeKyatthar.text),
+                                              double.parse(
+                                                  silverPyitceePae.text),
+                                              double.parse(
+                                                  silverPyitceeYwae.text),
+                                              double.parse(
+                                                  inHandSuHtarTaw.text),
+                                              double.parse(
+                                                  inHandPyitceeSold.text),
+                                              double.parse(
+                                                  inHandPyitceeBorrow.text),
+                                              double.parse(
+                                                  inHandForeignCurrency.text),
+                                              double.parse(inHandContract.text),
+                                              double.parse(inHandOther.text),
+                                              double.parse(inBankInBank.text),
+                                              double.parse(
+                                                  inBankThuMyarHlwae.text),
+                                              double.parse(inBankSalary.text),
+                                              double.parse(inBankOther.text),
+                                              double.parse(
+                                                  thuMyarDebtPyitceeSold.text),
+                                              double.parse(
+                                                  thuMyarDebtChayPay.text),
+                                              double.parse(
+                                                  thuMyarDebtAttHtrTaw.text),
+                                              double.parse(
+                                                  thuMyarDebtOther.text),
+                                              double.parse(
+                                                  realEstateSellHouse.text),
+                                              double.parse(
+                                                  realEstateSellEscort.text),
+                                              double.parse(
+                                                  realEstateSellCar.text),
+                                              double.parse(
+                                                  realEstateOther.text),
+                                              double.parse(rawWearhouse.text),
+                                              double.parse(rawHome.text),
+                                              double.parse(rawShop.text),
+                                              double.parse(rawOther.text),
+                                              double.parse(
+                                                  finishWearhouse.text),
+                                              double.parse(finishHome.text),
+                                              double.parse(finishShop.text),
+                                              double.parse(finishAnimal.text),
+                                              double.parse(finishOther.text)),
+                                      ZakatCalculatorUtil().getTotalMinus2(
+                                          double.parse(minusDebtMahur.text),
+                                          double.parse(minusDebt.text),
+                                          double.parse(minusSukyae.text),
+                                          double.parse(minusMeterBill.text),
+                                          double.parse(minusPaybill.text),
+                                          double.parse(minusPaySalary.text),
+                                          double.parse(minusPayRent.text),
+                                          double.parse(minusBuyGoodPay.text),
+                                          double.parse(minusPreZakat.text)),
+                                      double.parse(goldPrice.text),
+                                      double.parse(silverPrice.text))
+                                  .toString();
+                            });
+                          },
+                          child: Text("Save"),
                         ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အထည်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {},
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အသုံးဆောင်ပစ္စည်း",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {},
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
+                        Text(_result)
                       ],
                     ),
                     isActive: _currentStep >= 0,
