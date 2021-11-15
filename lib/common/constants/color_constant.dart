@@ -12,3 +12,14 @@ class AppColors {
   static const Color selectedIconColor = Color(0xFF2EAAFC);
   static const Color linkColor = Color(0xFF000AFF);
 }
+
+class AppImages {
+  AppImages._();
+
+  static const String fajr = "assets/images/Fajr.png";
+  static const String surise = "assets/images/sunrise.png";
+  static const String duhr = "assets/images/Duhr.png";
+  static const String asir = "assets/images/Asir.png";
+  static const String magrib = "assets/images/magrib.png";
+  static const String isha = "assets/images/Isha.png";
+}
