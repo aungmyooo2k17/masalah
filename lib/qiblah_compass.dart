@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:math' show pi;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'loading_indicator.dart';
 import 'location_error_widget.dart';
@@ -13,14 +15,14 @@ class QiblahCompass extends StatefulWidget {
 }
 
 class _QiblahCompassState extends State<QiblahCompass> {
-  // final _locationStreamController =
-  //     StreamController<LocationStatus>.broadcast();
+  final _locationStreamController =
+      StreamController<LocationStatus>.broadcast();
 
-  // get stream => _locationStreamController.stream;
+  get stream => _locationStreamController.stream;
 
   @override
   void initState() {
-    // _checkLocationStatus();
+    _checkLocationStatus();
     super.initState();
   }
 
@@ -29,70 +31,69 @@ class _QiblahCompassState extends State<QiblahCompass> {
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox.shrink(),
-      // child: StreamBuilder(
-      //   stream: stream,
-      //   builder: (context, AsyncSnapshot<LocationStatus> snapshot) {
-      //     if (snapshot.connectionState == ConnectionState.waiting)
-      //       return LoadingIndicator();
-      //     if (snapshot.data!.enabled == true) {
-      //       switch (snapshot.data!.status) {
-      //         case LocationPermission.always:
-      //         case LocationPermission.whileInUse:
-      //           return QiblahCompassWidget();
+      child: StreamBuilder(
+        stream: stream,
+        builder: (context, AsyncSnapshot<LocationStatus> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return LoadingIndicator();
+          if (snapshot.data!.enabled == true) {
+            switch (snapshot.data!.status) {
+              case LocationPermission.always:
+              case LocationPermission.whileInUse:
+                return QiblahCompassWidget();
 
-      //         case LocationPermission.denied:
-      //           return LocationErrorWidget(
-      //             error: "Location service permission denied",
-      //             callback: _checkLocationStatus,
-      //           );
-      //         case LocationPermission.deniedForever:
-      //           return LocationErrorWidget(
-      //             error: "Location service Denied Forever !",
-      //             callback: _checkLocationStatus,
-      //           );
-      //         // case GeolocationStatus.unknown:
-      //         //   return LocationErrorWidget(
-      //         //     error: "Unknown Location service error",
-      //         //     callback: _checkLocationStatus,
-      //         //   );
-      //         default:
-      //           return Container();
-      //       }
-      //     } else {
-      //       return LocationErrorWidget(
-      //         error: "Please enable Location service",
-      //         callback: _checkLocationStatus,
-      //       );
-      //     }
-      //   },
-      // ),
+              case LocationPermission.denied:
+                return LocationErrorWidget(
+                  error: "Location service permission denied",
+                  callback: _checkLocationStatus,
+                );
+              case LocationPermission.deniedForever:
+                return LocationErrorWidget(
+                  error: "Location service Denied Forever !",
+                  callback: _checkLocationStatus,
+                );
+              // case GeolocationStatus.unknown:
+              //   return LocationErrorWidget(
+              //     error: "Unknown Location service error",
+              //     callback: _checkLocationStatus,
+              //   );
+              default:
+                return Container();
+            }
+          } else {
+            return LocationErrorWidget(
+              error: "Please enable Location service",
+              callback: _checkLocationStatus,
+            );
+          }
+        },
+      ),
     );
   }
 
-  // Future<void> _checkLocationStatus() async {
-  //   final locationStatus = await FlutterQiblah.checkLocationStatus();
-  //   if (locationStatus.enabled &&
-  //       locationStatus.status == LocationPermission.denied) {
-  //     await FlutterQiblah.requestPermissions();
-  //     final s = await FlutterQiblah.checkLocationStatus();
-  //     _locationStreamController.sink.add(s);
-  //   } else
-  //     _locationStreamController.sink.add(locationStatus);
-  // }
+  Future<void> _checkLocationStatus() async {
+    final locationStatus = await FlutterQiblah.checkLocationStatus();
+    if (locationStatus.enabled &&
+        locationStatus.status == LocationPermission.denied) {
+      await FlutterQiblah.requestPermissions();
+      final s = await FlutterQiblah.checkLocationStatus();
+      _locationStreamController.sink.add(s);
+    } else
+      _locationStreamController.sink.add(locationStatus);
+  }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   _locationStreamController.close();
-  //   FlutterQiblah().dispose();
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+    _locationStreamController.close();
+    FlutterQiblah().dispose();
+  }
 }
 
 class QiblahCompassWidget extends StatelessWidget {
-  final _compassSvg = SvgPicture.asset('assets/compass.svg');
+  final _compassSvg = SvgPicture.asset('assets/images/compass.svg');
   final _needleSvg = SvgPicture.asset(
-    'assets/needle.svg',
+    'assets/images/needle.svg',
     fit: BoxFit.contain,
     height: 300,
     alignment: Alignment.center,
@@ -100,34 +101,33 @@ class QiblahCompassWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
-    // return StreamBuilder(
-    //   stream: FlutterQiblah.qiblahStream,
-    //   builder: (_, AsyncSnapshot<QiblahDirection> snapshot) {
-    //     if (snapshot.connectionState == ConnectionState.waiting)
-    //       return LoadingIndicator();
+    return StreamBuilder(
+      stream: FlutterQiblah.qiblahStream,
+      builder: (_, AsyncSnapshot<QiblahDirection> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting)
+          return LoadingIndicator();
 
-    //     final qiblahDirection = snapshot.data!;
+        final qiblahDirection = snapshot.data!;
 
-    //     return Stack(
-    //       alignment: Alignment.center,
-    //       children: <Widget>[
-    //         Transform.rotate(
-    //           angle: (qiblahDirection.direction * (pi / 180) * -1),
-    //           child: _compassSvg,
-    //         ),
-    //         Transform.rotate(
-    //           angle: (qiblahDirection.qiblah * (pi / 180) * -1),
-    //           alignment: Alignment.center,
-    //           child: _needleSvg,
-    //         ),
-    //         Positioned(
-    //           bottom: 8,
-    //           child: Text("${qiblahDirection.offset.toStringAsFixed(3)}°"),
-    //         )
-    //       ],
-    //     );
-    //   },
-    // );
+        return Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Transform.rotate(
+              angle: (qiblahDirection.direction * (pi / 180) * -1),
+              child: _compassSvg,
+            ),
+            Transform.rotate(
+              angle: (qiblahDirection.qiblah * (pi / 180) * -1),
+              alignment: Alignment.center,
+              child: _needleSvg,
+            ),
+            Positioned(
+              bottom: 8,
+              child: Text("${qiblahDirection.offset.toStringAsFixed(3)}°"),
+            )
+          ],
+        );
+      },
+    );
   }
 }
