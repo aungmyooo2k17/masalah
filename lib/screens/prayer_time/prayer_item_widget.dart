@@ -15,7 +15,7 @@ class PrayerItemWidget extends StatelessWidget {
       padding: EdgeInsets.only(left: 16.0, top: 8, right: 16.0, bottom: 8.0),
       decoration: BoxDecoration(
           color: uiPrayerItem.isCurrentPrayerTime
-              ? AppColors.linkColor
+              ? AppColors.bgBtn
               : Colors.white),
       child: Row(
         children: [
@@ -32,14 +32,7 @@ class PrayerItemWidget extends StatelessWidget {
                 fontSize: 18.0,
                 data: uiPrayerItem.currentPrayerTime),
           ),
-          ElevatedButton.icon(
-            style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(AppColors.unSelectedIconColor),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ))),
+          IconButton(
             onPressed: () {
               onMutePressed(uiPrayerItem.name);
               // prayerTimeUtil.toogleMuteStatus(uiPrayerItem.name);
@@ -48,16 +41,13 @@ class PrayerItemWidget extends StatelessWidget {
               // });
             },
             icon: Icon(
-              Icons.ac_unit_outlined,
-              size: 12,
-              color: AppColors.white,
+              uiPrayerItem.isMuteForCurrentPrayer
+                  ? Icons.alarm_off_rounded
+                  : Icons.alarm_on_rounded,
+              size: 18,
+              color: AppColors.linkColor,
             ),
-            label: BoldText(
-              data: uiPrayerItem.isMuteForCurrentPrayer ? "UNMUTE" : "MUTE",
-              fontSize: 12,
-              color: AppColors.white,
-            ),
-          )
+          ),
         ],
       ),
     );

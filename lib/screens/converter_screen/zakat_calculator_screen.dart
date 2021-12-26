@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/reusable_widget/app_bar.dart';
 import 'package:masalah/reusable_widget/app_text.dart';
+import 'package:masalah/screens/setting_screen.dart';
 import 'package:masalah/util/zakat_calculator_util.dart';
 
 class ZakatCalculator extends StatefulWidget {
@@ -13,6 +15,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   StepperType stepperType = StepperType.vertical;
 
   String _result = "";
+  String _resultSateThoe = "";
+  String _resultKywaeNwar = "";
+  String _resultKalaout = "";
 
   final goldAkhoutKyatthar = TextEditingController();
   final goldAkhoutPae = TextEditingController();
@@ -87,6 +92,12 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   final minusBuyGoodPay = TextEditingController();
   final minusPreZakat = TextEditingController();
 
+  final kalaout = TextEditingController();
+  final kywae = TextEditingController();
+  final nwar = TextEditingController();
+  final sate = TextEditingController();
+  final thoe = TextEditingController();
+
   final goldPrice = TextEditingController();
   final silverPrice = TextEditingController();
 
@@ -94,235 +105,235 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   void initState() {
     // .... Gold ....
     ZakatCalculatorUtil().getGoldAkhout()["kyatthar"].then((value) {
-      goldAkhoutKyatthar.text = "$value";
+      goldAkhoutKyatthar.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getGoldAkhout()["pae"].then((value) {
-      goldAkhoutPae.text = "$value";
+      goldAkhoutPae.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getGoldAkhout()["ywae"].then((value) {
-      goldAkhoutYwae.text = "$value";
+      goldAkhoutYwae.text = value == 0.0 ? '' : value;
     });
 
     ZakatCalculatorUtil().getGoldAHtae()["kyatthar"].then((value) {
-      goldAhtaeKyatthar.text = "$value";
+      goldAhtaeKyatthar.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getGoldAHtae()["pae"].then((value) {
-      goldAhtaePae.text = "$value";
+      goldAhtaePae.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getGoldAHtae()["ywae"].then((value) {
-      goldAhtaeYwae.text = "$value";
+      goldAhtaeYwae.text = value == 0.0 ? '' : value;
     });
 
     ZakatCalculatorUtil().getGoldPyitCee()["kyatthar"].then((value) {
-      goldPyitceeKyatthar.text = "$value";
+      goldPyitceeKyatthar.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getGoldPyitCee()["pae"].then((value) {
-      goldPyitceePae.text = "$value";
+      goldPyitceePae.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getGoldPyitCee()["ywae"].then((value) {
-      goldPyitceeYwae.text = "$value";
+      goldPyitceeYwae.text = value == 0.0 ? '' : value;
     });
     // .... Gold ....
 
     // .... Silver ....
     ZakatCalculatorUtil().getSilverAkhout()["kyatthar"].then((value) {
-      silverAkhoutKyatthar.text = "$value";
+      silverAkhoutKyatthar.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getSilverAkhout()["pae"].then((value) {
-      silverAkhoutPae.text = "$value";
+      silverAkhoutPae.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getSilverAkhout()["ywae"].then((value) {
-      silverAkhoutYwae.text = "$value";
+      silverAkhoutYwae.text = value == 0.0 ? '' : value;
     });
 
     ZakatCalculatorUtil().getSilverAHtae()["kyatthar"].then((value) {
-      silverAhtaeKyatthar.text = "$value";
+      silverAhtaeKyatthar.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getSilverAHtae()["pae"].then((value) {
-      silverAhtaePae.text = "$value";
+      silverAhtaePae.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getSilverAHtae()["ywae"].then((value) {
-      silverAhtaeYwae.text = "$value";
+      silverAhtaeYwae.text = value == 0.0 ? '' : value;
     });
 
     ZakatCalculatorUtil().getSilverPyitCee()["kyatthar"].then((value) {
-      silverPyitceeKyatthar.text = "$value";
+      silverPyitceeKyatthar.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getSilverPyitCee()["pae"].then((value) {
-      silverPyitceePae.text = "$value";
+      silverPyitceePae.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getSilverPyitCee()["ywae"].then((value) {
-      silverPyitceeYwae.text = "$value";
+      silverPyitceeYwae.text = value == 0.0 ? '' : value;
     });
     // .... Silver ....
 
     // .... WhiteSilver ....
     ZakatCalculatorUtil().getWhiteSilverAkhout()["kyatthar"].then((value) {
-      whiteSilverAkhoutKyatthar.text = "$value";
+      whiteSilverAkhoutKyatthar.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getWhiteSilverAkhout()["pae"].then((value) {
-      whiteSilverAkhoutPae.text = "$value";
+      whiteSilverAkhoutPae.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getWhiteSilverAkhout()["ywae"].then((value) {
-      whiteSilverAkhoutYwae.text = "$value";
+      whiteSilverAkhoutYwae.text = value == 0.0 ? '' : value;
     });
 
     ZakatCalculatorUtil().getWhiteSilverAHtae()["kyatthar"].then((value) {
-      whiteSilverAhtaeKyatthar.text = "$value";
+      whiteSilverAhtaeKyatthar.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getWhiteSilverAHtae()["pae"].then((value) {
-      whiteSilverAhtaePae.text = "$value";
+      whiteSilverAhtaePae.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getWhiteSilverAHtae()["ywae"].then((value) {
-      whiteSilverAhtaeYwae.text = "$value";
+      whiteSilverAhtaeYwae.text = value == 0.0 ? '' : value;
     });
 
     ZakatCalculatorUtil().getWhiteSilverPyitCee()["kyatthar"].then((value) {
-      whiteSilverPyitceeKyatthar.text = "$value";
+      whiteSilverPyitceeKyatthar.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getWhiteSilverPyitCee()["pae"].then((value) {
-      whiteSilverPyitceePae.text = "$value";
+      whiteSilverPyitceePae.text = value == 0.0 ? '' : value;
     });
     ZakatCalculatorUtil().getWhiteSilverPyitCee()["ywae"].then((value) {
-      whiteSilverPyitceeYwae.text = "$value";
+      whiteSilverPyitceeYwae.text = value == 0.0 ? '' : value;
     });
     // .... WhiteSilver ....
 
     ZakatCalculatorUtil().getInHand()["inHandSuHtarTaw"].then((v) {
-      inHandSuHtarTaw.text = "$v";
+      inHandSuHtarTaw.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getInHand()["inHandPyitceeSold"].then((v) {
-      inHandPyitceeSold.text = "$v";
+      inHandPyitceeSold.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getInHand()["inHandPyitceeBorrow"].then((v) {
-      inHandPyitceeBorrow.text = "$v";
+      inHandPyitceeBorrow.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getInHand()["inHandForeignCurrency"].then((v) {
-      inHandForeignCurrency.text = "$v";
+      inHandForeignCurrency.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getInHand()["inHandContract"].then((v) {
-      inHandContract.text = "$v";
+      inHandContract.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getInHand()["inHandOther"].then((v) {
-      inHandOther.text = "$v";
+      inHandOther.text = v == 0.0 ? '' : v;
     });
     // .......Inhand.......
 
     ZakatCalculatorUtil().getInBank()["inBankInBank"].then((v) {
-      inBankInBank.text = "$v";
+      inBankInBank.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getInBank()["inBankThuMyarHlwae"].then((v) {
-      inBankThuMyarHlwae.text = "$v";
+      inBankThuMyarHlwae.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getInBank()["inBankSalary"].then((v) {
-      inBankSalary.text = "$v";
+      inBankSalary.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getInBank()["inBankOther"].then((v) {
-      inBankOther.text = "$v";
+      inBankOther.text = v == 0.0 ? '' : v;
     });
     // ..........InBank..........
 
     ZakatCalculatorUtil()
         .getThuMyarPayHtrTawDebt()["thuMyarDebtPyitceeSold"]
         .then((v) {
-      thuMyarDebtPyitceeSold.text = "$v";
+      thuMyarDebtPyitceeSold.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil()
         .getThuMyarPayHtrTawDebt()["thuMyarDebtChayPay"]
         .then((v) {
-      thuMyarDebtChayPay.text = "$v";
+      thuMyarDebtChayPay.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil()
         .getThuMyarPayHtrTawDebt()["thuMyarDebtAttHtrTaw"]
         .then((v) {
-      thuMyarDebtAttHtrTaw.text = "$v";
+      thuMyarDebtAttHtrTaw.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil()
         .getThuMyarPayHtrTawDebt()["thuMyarDebtOther"]
         .then((v) {
-      thuMyarDebtOther.text = "$v";
+      thuMyarDebtOther.text = v == 0.0 ? '' : v;
     });
     // .........ThuMyarPayHtrTawDebt..........
 
     ZakatCalculatorUtil().getRealEstate()["realEstateSellHouse"].then((v) {
-      realEstateSellHouse.text = "$v";
+      realEstateSellHouse.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getRealEstate()["realEstateSellEscort"].then((v) {
-      realEstateSellEscort.text = "$v";
+      realEstateSellEscort.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getRealEstate()["realEstateSellCar"].then((v) {
-      realEstateSellCar.text = "$v";
+      realEstateSellCar.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getRealEstate()["realEstateOther"].then((v) {
-      realEstateOther.text = "$v";
+      realEstateOther.text = v == 0.0 ? '' : v;
     });
     // ...........RealEstate............
 
     ZakatCalculatorUtil().getRaw()["rawWearhouse"].then((v) {
-      rawWearhouse.text = "$v";
+      rawWearhouse.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getRaw()["rawHome"].then((v) {
-      rawHome.text = "$v";
+      rawHome.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getRaw()["rawShop"].then((v) {
-      rawShop.text = "$v";
+      rawShop.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getRaw()["rawOther"].then((v) {
-      rawOther.text = "$v";
+      rawOther.text = v == 0.0 ? '' : v;
     });
     // ..............Raw...........
 
     ZakatCalculatorUtil().getFinish()["finishWearhouse"].then((v) {
-      finishWearhouse.text = "$v";
+      finishWearhouse.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getFinish()["finishHome"].then((v) {
-      finishHome.text = "$v";
+      finishHome.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getFinish()["finishShop"].then((v) {
-      finishShop.text = "$v";
+      finishShop.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getFinish()["finishAnimal"].then((v) {
-      finishAnimal.text = "$v";
+      finishAnimal.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getFinish()["finishOther"].then((v) {
-      finishOther.text = "$v";
+      finishOther.text = v == 0.0 ? '' : v;
     });
     // ..........finish...........
 
     ZakatCalculatorUtil().getMinus()["minusDebtMahur"].then((v) {
-      minusDebtMahur.text = "$v";
+      minusDebtMahur.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getMinus()["minusDebt"].then((v) {
-      minusDebt.text = "$v";
+      minusDebt.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getMinus()["minusSukyae"].then((v) {
-      minusSukyae.text = "$v";
+      minusSukyae.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getMinus()["minusMeterBill"].then((v) {
-      minusMeterBill.text = "$v";
+      minusMeterBill.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getMinus()["minusPaybill"].then((v) {
-      minusPaybill.text = "$v";
+      minusPaybill.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getMinus()["minusPaySalary"].then((v) {
-      minusPaySalary.text = "$v";
+      minusPaySalary.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getMinus()["minusPayRent"].then((v) {
-      minusPayRent.text = "$v";
+      minusPayRent.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getMinus()["minusBuyGoodPay"].then((v) {
-      minusBuyGoodPay.text = "$v";
+      minusBuyGoodPay.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getMinus()["minusPreZakat"].then((v) {
-      minusPreZakat.text = "$v";
+      minusPreZakat.text = v == 0.0 ? '' : v;
     });
     // ............Minus.............
 
     ZakatCalculatorUtil().getGoldPrice().then((v) {
-      goldPrice.text = "$v";
+      goldPrice.text = v == 0.0 ? '' : v;
     });
     ZakatCalculatorUtil().getSilverPrice().then((v) {
-      silverPrice.text = "$v";
+      silverPrice.text = v == 0.0 ? '' : v;
     });
 
     super.initState();
@@ -331,1387 +342,1147 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('Flutter Stepper Demo'),
-        centerTitle: true,
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Expanded(
-              child: Stepper(
-                type: stepperType,
-                physics: ScrollPhysics(),
-                currentStep: _currentStep,
-                onStepTapped: (step) => tapped(step),
-                onStepContinue: continued,
-                onStepCancel: cancel,
-                steps: <Step>[
-                  Step(
-                    title: new Text('ရွှေ'),
-                    content: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အခေါက်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: goldAkhoutKyatthar,
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                controller: goldAkhoutPae,
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  controller: goldAkhoutYwae,
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveGoldAkhout(
-                                      goldAkhoutKyatthar.text,
-                                      goldAkhoutPae.text,
-                                      goldAkhoutYwae.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အထည်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: goldAhtaeKyatthar,
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                controller: goldAhtaePae,
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  controller: goldAhtaeYwae,
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveGoldAHtae(
-                                      goldAhtaeKyatthar.text,
-                                      goldAhtaePae.text,
-                                      goldAhtaeYwae.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အသုံးဆောင်ပစ္စည်း",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: goldPyitceeKyatthar,
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                controller: goldPyitceePae,
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  controller: goldPyitceeYwae,
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveGoldPyitCee(
-                                      goldPyitceeKyatthar.text,
-                                      goldPyitceePae.text,
-                                      goldPyitceeYwae.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: new Text('ရွှေဖြူ'),
-                    content: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အခေါက်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: whiteSilverAkhoutKyatthar,
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                controller: whiteSilverAkhoutPae,
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  controller: whiteSilverAkhoutYwae,
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveWhiteSilverAkhout(
-                                      whiteSilverAkhoutKyatthar.text,
-                                      whiteSilverAkhoutPae.text,
-                                      whiteSilverAkhoutYwae.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အထည်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: whiteSilverAhtaeKyatthar,
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                controller: whiteSilverAhtaePae,
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  controller: whiteSilverAhtaeYwae,
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveWhiteSilverAHtae(
-                                      whiteSilverAhtaeKyatthar.text,
-                                      whiteSilverAhtaePae.text,
-                                      whiteSilverAhtaeYwae.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အသုံးဆောင်ပစ္စည်း",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: whiteSilverPyitceeKyatthar,
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                controller: whiteSilverPyitceePae,
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  controller: whiteSilverPyitceeYwae,
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveWhiteSilverPyitCee(
-                                      whiteSilverPyitceeKyatthar.text,
-                                      whiteSilverPyitceePae.text,
-                                      whiteSilverPyitceeYwae.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: new Text('ငွေ'),
-                    content: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အခေါက်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: silverAkhoutKyatthar,
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                controller: silverAkhoutPae,
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  controller: silverAkhoutYwae,
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveSilverAkhout(
-                                      silverAkhoutKyatthar.text,
-                                      silverAkhoutPae.text,
-                                      silverAkhoutYwae.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အထည်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: silverAhtaeKyatthar,
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                controller: silverAhtaePae,
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  controller: silverAhtaeYwae,
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveSilverAHtae(
-                                      silverAhtaeKyatthar.text,
-                                      silverAhtaePae.text,
-                                      silverAhtaeYwae.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အသုံးဆောင်ပစ္စည်း",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: silverPyitceeKyatthar,
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                controller: silverPyitceePae,
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  controller: silverPyitceeYwae,
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveSilverPyitCee(
-                                      silverPyitceeKyatthar.text,
-                                      silverPyitceePae.text,
-                                      silverPyitceeYwae.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: new Text('ပိုက်ဆံ'),
-                    content: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "လက်ထဲရှိ",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: inHandSuHtarTaw,
-                                decoration: InputDecoration(
-                                    labelText: 'စုဆောင်းထားသော'),
-                              ),
-                              TextFormField(
-                                controller: inHandPyitceeSold,
-                                decoration: InputDecoration(
-                                    labelText: 'ပစ္စည်းရောင်း၍ရထားသော'),
-                              ),
-                              TextFormField(
-                                  controller: inHandPyitceeBorrow,
-                                  decoration: InputDecoration(
-                                      labelText: 'ပစ္စည်းငှားရမ်းခရထားသော')),
-                              TextFormField(
-                                  controller: inHandForeignCurrency,
-                                  decoration: InputDecoration(
-                                      labelText: 'နိုင်ငံခြားငွေ(ကျပ်ဖြင့်)')),
-                              TextFormField(
-                                  controller: inHandContract,
-                                  decoration: InputDecoration(
-                                      labelText:
-                                          'ငွေချေးစာချုပ်၊ချက်လက်မှတ်...')),
-                              TextFormField(
-                                  controller: inHandOther,
-                                  decoration:
-                                      InputDecoration(labelText: 'အခြား')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveInHand(
-                                      inHandSuHtarTaw.text,
-                                      inHandPyitceeSold.text,
-                                      inHandPyitceeBorrow.text,
-                                      inHandForeignCurrency.text,
-                                      inHandContract.text,
-                                      inHandOther.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "ဘဏ်ထဲရှိ",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: inBankInBank,
-                                decoration: InputDecoration(
-                                    labelText: 'ဘဏ်ထဲထည့်ထားသော'),
-                              ),
-                              TextFormField(
-                                controller: inBankThuMyarHlwae,
-                                decoration: InputDecoration(
-                                    labelText: 'သူများလွှဲပေးထားသော'),
-                              ),
-                              TextFormField(
-                                  controller: inBankSalary,
-                                  decoration: InputDecoration(
-                                      labelText: 'လစာ၊ပင်စင်တစ်ခုခုရထားသော')),
-                              TextFormField(
-                                  controller: inBankOther,
-                                  decoration: InputDecoration(
-                                      labelText: 'အခြား (Digital Money, etc)')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveInBank(
-                                      inBankInBank.text,
-                                      inBankThuMyarHlwae.text,
-                                      inBankSalary.text,
-                                      inBankOther.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "သူများကိုပေးထားသောအကြွေး",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: thuMyarDebtPyitceeSold,
-                                decoration: InputDecoration(
-                                    labelText: 'ပစ္စည်းရောင်း၍ရရန်ရှိသော'),
-                              ),
-                              TextFormField(
-                                controller: thuMyarDebtChayPay,
-                                decoration:
-                                    InputDecoration(labelText: 'ချေးပေးထားသော'),
-                              ),
-                              TextFormField(
-                                  controller: thuMyarDebtAttHtrTaw,
-                                  decoration: InputDecoration(
-                                      labelText:
-                                          'တစ်ဦးတစ်ယောက်ထံအပ်နှံထားသော')),
-                              TextFormField(
-                                  controller: thuMyarDebtOther,
-                                  decoration:
-                                      InputDecoration(labelText: 'အခြား')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil()
-                                      .saveThuMyarPayHtrTawDebt(
-                                          thuMyarDebtPyitceeSold.text,
-                                          thuMyarDebtChayPay.text,
-                                          thuMyarDebtAttHtrTaw.text,
-                                          thuMyarDebtOther.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: new Text('အရောင်းအဝယ်ကုန်ပစ္စည်း'),
-                    content: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အိမ်၊ခြံ၊မြေ",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: realEstateSellHouse,
-                                decoration: InputDecoration(
-                                    labelText: 'ရောင်းရန်ရှိသောအိမ်'),
-                              ),
-                              TextFormField(
-                                controller: realEstateSellEscort,
-                                decoration: InputDecoration(
-                                    labelText: 'ရောင်းရန်ရှိသောခြံ/မြေ'),
-                              ),
-                              TextFormField(
-                                  controller: realEstateSellCar,
-                                  decoration: InputDecoration(
-                                      labelText: 'ရောင်းရန်ရှိသောကား')),
-                              TextFormField(
-                                  controller: realEstateOther,
-                                  decoration:
-                                      InputDecoration(labelText: 'အခြား')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveRealEstate(
-                                      realEstateSellHouse.text,
-                                      realEstateSellEscort.text,
-                                      realEstateSellCar.text,
-                                      realEstateOther.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "ကုန်ကြမ်းများ",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: rawWearhouse,
-                                decoration: InputDecoration(
-                                    labelText: 'ဂိုထောင်တွင်ရှိသော'),
-                              ),
-                              TextFormField(
-                                controller: rawHome,
-                                decoration: InputDecoration(
-                                    labelText: 'အိမ်တွင်ရှိသော'),
-                              ),
-                              TextFormField(
-                                  controller: rawShop,
-                                  decoration: InputDecoration(
-                                      labelText: 'ဆိုင်တွင်ရှိသော')),
-                              TextFormField(
-                                  controller: rawOther,
-                                  decoration:
-                                      InputDecoration(labelText: 'အခြား')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveRaw(
-                                      rawWearhouse.text,
-                                      rawHome.text,
-                                      rawShop.text,
-                                      rawOther.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "ကုန်ချောများ",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: finishWearhouse,
-                                decoration: InputDecoration(
-                                    labelText: 'ဂိုထောင်တွင်ရှိသော'),
-                              ),
-                              TextFormField(
-                                controller: finishHome,
-                                decoration: InputDecoration(
-                                    labelText: 'အိမ်တွင်ရှိသော'),
-                              ),
-                              TextFormField(
-                                  controller: finishShop,
-                                  decoration: InputDecoration(
-                                      labelText: 'ဆိုင်တွင်ရှိသော')),
-                              TextFormField(
-                                  controller: finishAnimal,
-                                  decoration: InputDecoration(
-                                      labelText:
-                                          'မွေးမြူရေးခြံထဲရှိရောင်းရန်သားကောင်များ')),
-                              TextFormField(
-                                  controller: finishOther,
-                                  decoration:
-                                      InputDecoration(labelText: 'အခြား')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveFinish(
-                                      finishWearhouse.text,
-                                      finishHome.text,
-                                      finishShop.text,
-                                      finishAnimal.text,
-                                      finishOther.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: new Text(
-                        'စားကျက်တွင်လွတ်ထားသောမွေးမြူရေးတိရိစ္ဆာန်များ'),
-                    content: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "ကုလားအုပ်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {},
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "ကျွဲ၊နွား",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {},
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "ဆိတ်၊သိုး",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                decoration:
-                                    InputDecoration(labelText: 'ကျပ်သား'),
-                              ),
-                              TextFormField(
-                                decoration: InputDecoration(labelText: 'ပဲ'),
-                              ),
-                              TextFormField(
-                                  decoration:
-                                      InputDecoration(labelText: 'ရွှေး')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {},
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: new Text('အနှုတ်စာရင်း'),
-                    content: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextFormField(
-                                controller: minusDebtMahur,
-                                decoration: InputDecoration(
-                                    labelText: 'ဇနီးကိုမပေးရသေးသောမဟ်ရ်'),
-                              ),
-                              TextFormField(
-                                controller: minusDebt,
-                                decoration: InputDecoration(
-                                    labelText: 'သူများကိုပေးဆပ်ရမည့်အကြွေး'),
-                              ),
-                              TextFormField(
-                                  controller: minusSukyae,
-                                  decoration: InputDecoration(
-                                      labelText:
-                                          'စုကြေးရရှိပြီးပေးသွင်းရန်ကျန်ငွေပေါင်း')),
-                              TextFormField(
-                                  controller: minusMeterBill,
-                                  decoration: InputDecoration(
-                                      labelText: 'ပေးဆောင်ရန်ကျန်သောမီတာခ')),
-                              TextFormField(
-                                  controller: minusPaybill,
-                                  decoration: InputDecoration(
-                                      labelText:
-                                          'ပေးဆောင်ရန်ကျန်သောအဖိုးအခများ')),
-                              TextFormField(
-                                  controller: minusPaySalary,
-                                  decoration: InputDecoration(
-                                      labelText:
-                                          'ဝန်ထမ်းများကိုပေးရန်ကျန်သောလစာများ')),
-                              TextFormField(
-                                  controller: minusPayRent,
-                                  decoration: InputDecoration(
-                                      labelText:
-                                          'ပေးဆောင်ရန်ကျန်သောငှားရမ်းခများ')),
-                              TextFormField(
-                                  controller: minusBuyGoodPay,
-                                  decoration: InputDecoration(
-                                      labelText:
-                                          'ပစ္စည်းဝယ်ပြီးပေးချေရန်ကျန်သောအကြွေး')),
-                              TextFormField(
-                                  controller: minusPreZakat,
-                                  decoration: InputDecoration(
-                                      labelText:
-                                          'ယခင်နှစ်များ၏မပေးရသေးသောဇကားသ်')),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil().saveMinus(
-                                      minusDebtMahur.text,
-                                      minusDebt.text,
-                                      minusSukyae.text,
-                                      minusMeterBill.text,
-                                      minusPaybill.text,
-                                      minusPaySalary.text,
-                                      minusPayRent.text,
-                                      minusBuyGoodPay.text,
-                                      minusPreZakat.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: new Text('ပေါက်ဈေး'),
-                    content: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "ရွှေဈေးစုံစမ်း၍ထည့်ရန်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: goldPrice,
-                                decoration: InputDecoration(labelText: ' '),
-                              ),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil()
-                                      .saveGoldPrice(goldPrice.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "ငွေဈေးစုံစမ်း၍ထည့်ရန်",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                controller: silverPrice,
-                                decoration: InputDecoration(labelText: ' '),
-                              ),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {
-                                  ZakatCalculatorUtil()
-                                      .saveSilverPrice(silverPrice.text);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Saved')));
-                                },
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အောက်တိုတွက်ပေးပါ။",
-                                color: AppColors.primaryText,
-                              ),
-                              TextFormField(
-                                decoration: InputDecoration(labelText: ' '),
-                              ),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          AppColors.white),
-                                ),
-                                onPressed: () {},
-                                child: Text("Save"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                  Step(
-                    title: new Text('အဖြေ'),
-                    content: Column(
-                      children: [
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all<Color>(
-                                AppColors.white),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _result = ZakatCalculatorUtil()
-                                  .calcFinalZakatAmount(
-                                      ZakatCalculatorUtil()
-                                          .getTotalGoldPlatinum2(
-                                        double.parse(goldPrice.text),
-                                        double.parse(goldAkhoutKyatthar.text),
-                                        double.parse(goldAkhoutPae.text),
-                                        double.parse(goldAkhoutYwae.text),
-                                        double.parse(goldAhtaeKyatthar.text),
-                                        double.parse(goldAhtaePae.text),
-                                        double.parse(goldAhtaeYwae.text),
-                                        double.parse(goldPyitceeKyatthar.text),
-                                        double.parse(goldPyitceePae.text),
-                                        double.parse(goldPyitceeYwae.text),
-                                        double.parse(
-                                            whiteSilverAkhoutKyatthar.text),
-                                        double.parse(whiteSilverAkhoutPae.text),
-                                        double.parse(
-                                            whiteSilverAkhoutYwae.text),
-                                        double.parse(
-                                            whiteSilverAhtaeKyatthar.text),
-                                        double.parse(whiteSilverAhtaePae.text),
-                                        double.parse(whiteSilverAhtaeYwae.text),
-                                        double.parse(
-                                            whiteSilverPyitceeKyatthar.text),
-                                        double.parse(
-                                            whiteSilverPyitceePae.text),
-                                        double.parse(
-                                            whiteSilverPyitceeYwae.text),
-                                      ),
-                                      ZakatCalculatorUtil()
-                                          .getTotalSilverMoneyOther2(
-                                              double.parse(silverPrice.text),
-                                              double.parse(
-                                                  silverAkhoutKyatthar.text),
-                                              double.parse(
-                                                  silverAkhoutPae.text),
-                                              double.parse(
-                                                  silverAkhoutYwae.text),
-                                              double.parse(
-                                                  silverAhtaeKyatthar.text),
-                                              double.parse(silverAhtaePae.text),
-                                              double.parse(
-                                                  silverAhtaeYwae.text),
-                                              double.parse(
-                                                  silverPyitceeKyatthar.text),
-                                              double.parse(
-                                                  silverPyitceePae.text),
-                                              double.parse(
-                                                  silverPyitceeYwae.text),
-                                              double.parse(
-                                                  inHandSuHtarTaw.text),
-                                              double.parse(
-                                                  inHandPyitceeSold.text),
-                                              double.parse(
-                                                  inHandPyitceeBorrow.text),
-                                              double.parse(
-                                                  inHandForeignCurrency.text),
-                                              double.parse(inHandContract.text),
-                                              double.parse(inHandOther.text),
-                                              double.parse(inBankInBank.text),
-                                              double.parse(
-                                                  inBankThuMyarHlwae.text),
-                                              double.parse(inBankSalary.text),
-                                              double.parse(inBankOther.text),
-                                              double.parse(
-                                                  thuMyarDebtPyitceeSold.text),
-                                              double.parse(
-                                                  thuMyarDebtChayPay.text),
-                                              double.parse(
-                                                  thuMyarDebtAttHtrTaw.text),
-                                              double.parse(
-                                                  thuMyarDebtOther.text),
-                                              double.parse(
-                                                  realEstateSellHouse.text),
-                                              double.parse(
-                                                  realEstateSellEscort.text),
-                                              double.parse(
-                                                  realEstateSellCar.text),
-                                              double.parse(
-                                                  realEstateOther.text),
-                                              double.parse(rawWearhouse.text),
-                                              double.parse(rawHome.text),
-                                              double.parse(rawShop.text),
-                                              double.parse(rawOther.text),
-                                              double.parse(
-                                                  finishWearhouse.text),
-                                              double.parse(finishHome.text),
-                                              double.parse(finishShop.text),
-                                              double.parse(finishAnimal.text),
-                                              double.parse(finishOther.text)),
-                                      ZakatCalculatorUtil().getTotalMinus2(
-                                          double.parse(minusDebtMahur.text),
-                                          double.parse(minusDebt.text),
-                                          double.parse(minusSukyae.text),
-                                          double.parse(minusMeterBill.text),
-                                          double.parse(minusPaybill.text),
-                                          double.parse(minusPaySalary.text),
-                                          double.parse(minusPayRent.text),
-                                          double.parse(minusBuyGoodPay.text),
-                                          double.parse(minusPreZakat.text)),
-                                      double.parse(goldPrice.text),
-                                      double.parse(silverPrice.text))
-                                  .toString();
-                            });
-                          },
-                          child: Text("Save"),
-                        ),
-                        Text(_result)
-                      ],
-                    ),
-                    isActive: _currentStep >= 0,
-                    state: _currentStep >= 0
-                        ? StepState.complete
-                        : StepState.disabled,
-                  ),
-                ],
-              ),
-            ),
-          ],
+        iconTheme: IconThemeData(
+          color: AppColors.primaryText, //change your color here
         ),
+        automaticallyImplyLeading: true,
+        elevation: 0,
+        backgroundColor: AppColors.bgColor,
+        titleTextStyle: TextStyle(fontSize: 26),
+        title: BoldText(
+          data: "Zakat Calculator",
+          color: AppColors.primaryText,
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.more_vert,
+              color: AppColors.primaryText,
+            ),
+            tooltip: 'More',
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SettingScreen()));
+            },
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.list),
-        onPressed: switchStepsType,
+      body: Stepper(
+        type: StepperType.horizontal,
+        physics: ScrollPhysics(),
+        currentStep: _currentStep,
+        // onStepTapped: (step) => tapped(step),
+        onStepContinue: continued,
+        onStepCancel: cancel,
+        steps: <Step>[
+          Step(
+            title: RegularText(
+              data: 'ရွှေ',
+              fontSize: _currentStep == 0 ? 14.0 : 10.0,
+              color: Colors.black87,
+            ),
+            content: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.bgBtn,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        fontSize: 14,
+                        color: AppColors.white,
+                        data:
+                            "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အခေါက်",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: goldAkhoutKyatthar,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ကျပ်သား'),
+                      ),
+                      TextFormField(
+                        controller: goldAkhoutPae,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ပဲ'),
+                      ),
+                      TextFormField(
+                          controller: goldAkhoutYwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'ရွှေး')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အထည်",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: goldAhtaeKyatthar,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ကျပ်သား'),
+                      ),
+                      TextFormField(
+                        controller: goldAhtaePae,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ပဲ'),
+                      ),
+                      TextFormField(
+                          controller: goldAhtaeYwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'ရွှေး')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အသုံးဆောင်ပစ္စည်း",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: goldPyitceeKyatthar,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ကျပ်သား'),
+                      ),
+                      TextFormField(
+                        controller: goldPyitceePae,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ပဲ'),
+                      ),
+                      TextFormField(
+                          controller: goldPyitceeYwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'ရွှေး')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            isActive: _currentStep >= 0,
+            state: _currentStep >= 0 ? StepState.complete : StepState.indexed,
+          ),
+          Step(
+            title: RegularText(
+              data: 'ရွှေဖြူ',
+              fontSize: _currentStep == 1 ? 14.0 : 10.0,
+              color: Colors.black87,
+            ),
+            content: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.bgBtn,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        fontSize: 14,
+                        color: AppColors.white,
+                        data:
+                            "ရွှေဖြူ (White Gold) ကိုရွှေဖြူဟုခေါ်တွင်သည်ဖြစ်စေ၊ပလာတီနမ်ဟုခေါ်တွင်သည်ဖြစ်စေ၊ ရွှေဖြူသည်ရွှေသာဖြစ်သည်။ထို့ကြောင့်ရွှေဖြူတွင်ဇကားသ်ရှိသည်။ သို့သောပလာတီနမ်(စစ်စစ်)သည်အခြားသတ္တုဖြစ်သဖြင့်ပလာတီနမ်တွင်ဇကားသ်မရှိပါ။ ",
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အခေါက်",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: whiteSilverAkhoutKyatthar,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ကျပ်သား'),
+                      ),
+                      TextFormField(
+                        controller: whiteSilverAkhoutPae,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ပဲ'),
+                      ),
+                      TextFormField(
+                          controller: whiteSilverAkhoutYwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'ရွှေး')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အထည်",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: whiteSilverAhtaeKyatthar,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ကျပ်သား'),
+                      ),
+                      TextFormField(
+                        controller: whiteSilverAhtaePae,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ပဲ'),
+                      ),
+                      TextFormField(
+                          controller: whiteSilverAhtaeYwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'ရွှေး')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အသုံးဆောင်ပစ္စည်း",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: whiteSilverPyitceeKyatthar,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ကျပ်သား'),
+                      ),
+                      TextFormField(
+                        controller: whiteSilverPyitceePae,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ပဲ'),
+                      ),
+                      TextFormField(
+                          controller: whiteSilverPyitceeYwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'ရွှေး')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            isActive: _currentStep >= 1,
+            state: _currentStep >= 1 ? StepState.complete : StepState.indexed,
+          ),
+          Step(
+            title: RegularText(
+              data: 'ငွေ',
+              fontSize: _currentStep == 2 ? 14.0 : 10.0,
+              color: Colors.black87,
+            ),
+            content: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.bgBtn,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        fontSize: 14,
+                        color: AppColors.white,
+                        data:
+                            "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အခေါက်",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: silverAkhoutKyatthar,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ကျပ်သား'),
+                      ),
+                      TextFormField(
+                        controller: silverAkhoutPae,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ပဲ'),
+                      ),
+                      TextFormField(
+                          controller: silverAkhoutYwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'ရွှေး')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အထည်",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: silverAhtaeKyatthar,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ကျပ်သား'),
+                      ),
+                      TextFormField(
+                        controller: silverAhtaePae,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ပဲ'),
+                      ),
+                      TextFormField(
+                          controller: silverAhtaeYwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'ရွှေး')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အသုံးဆောင်ပစ္စည်း",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: silverPyitceeKyatthar,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ကျပ်သား'),
+                      ),
+                      TextFormField(
+                        controller: silverPyitceePae,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ပဲ'),
+                      ),
+                      TextFormField(
+                          controller: silverPyitceeYwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'ရွှေး')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            isActive: _currentStep >= 2,
+            state: _currentStep >= 2 ? StepState.complete : StepState.indexed,
+          ),
+          Step(
+            title: RegularText(
+              data: 'ပိုက်ဆံ',
+              fontSize: _currentStep == 3 ? 14.0 : 10.0,
+              color: Colors.black87,
+            ),
+            content: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.bgBtn,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        fontSize: 14,
+                        color: AppColors.white,
+                        data:
+                            "အိမ်ငှားရန်စပေါ်တင်ထားသောငွေနှင့်ပတ်သက်ပြီးစစ်မှန်သောမုဖ်သီတစ်ပါးအားကိုယ့်အခြေအနေအကြောင်းစုံတင်ပြကာမတ်စ်အလဟ်မေးမြန်းပြီးအကယ်၍ထည့်တွက်ရမည်ဆိုပါက'အခြား'ဆိုသောအကွက်တွင်ထည့်တွက်ပါ။ ပိုင်ဆိုင်ထားသောအွန်လိုင်းပိုက်ဆံများနှင့်အခြားအွန်လိုင်းပိုင်ဆိုင်မှုများကိုလည်းထည့်တွက်ရပါမည်။",
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "လက်ထဲရှိ",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: inHandSuHtarTaw,
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            InputDecoration(labelText: 'စုဆောင်းထားသော'),
+                      ),
+                      TextFormField(
+                        controller: inHandPyitceeSold,
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            InputDecoration(labelText: 'ပစ္စည်းရောင်း၍ရထားသော'),
+                      ),
+                      TextFormField(
+                          controller: inHandPyitceeBorrow,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ပစ္စည်းငှားရမ်းခရထားသော')),
+                      TextFormField(
+                          controller: inHandForeignCurrency,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'နိုင်ငံခြားငွေ(ကျပ်ဖြင့်)')),
+                      TextFormField(
+                          controller: inHandContract,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ငွေချေးစာချုပ်၊ချက်လက်မှတ်...')),
+                      TextFormField(
+                          controller: inHandOther,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'အခြား')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "ဘဏ်ထဲရှိ",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: inBankInBank,
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            InputDecoration(labelText: 'ဘဏ်ထဲထည့်ထားသော'),
+                      ),
+                      TextFormField(
+                        controller: inBankThuMyarHlwae,
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            InputDecoration(labelText: 'သူများလွှဲပေးထားသော'),
+                      ),
+                      TextFormField(
+                          controller: inBankSalary,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'လစာ၊ပင်စင်တစ်ခုခုရထားသော')),
+                      TextFormField(
+                          controller: inBankOther,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'အခြား (Digital Money, etc)')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "သူများကိုပေးထားသောအကြွေး",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: thuMyarDebtPyitceeSold,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            labelText: 'ပစ္စည်းရောင်း၍ရရန်ရှိသော'),
+                      ),
+                      TextFormField(
+                        controller: thuMyarDebtChayPay,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: 'ချေးပေးထားသော'),
+                      ),
+                      TextFormField(
+                          controller: thuMyarDebtAttHtrTaw,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'တစ်ဦးတစ်ယောက်ထံအပ်နှံထားသော')),
+                      TextFormField(
+                          controller: thuMyarDebtOther,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'အခြား')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            isActive: _currentStep >= 3,
+            state: _currentStep >= 3 ? StepState.complete : StepState.indexed,
+          ),
+          Step(
+            title: RegularText(
+              data: _currentStep == 4 ? 'အရောင်းအဝယ်\nကုန်ပစ္စည်း' : 'အရောင်း',
+              fontSize: _currentStep == 4 ? 14.0 : 10.0,
+              color: Colors.black87,
+            ),
+            content: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.bgBtn,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        fontSize: 14,
+                        color: AppColors.white,
+                        data:
+                            "ရောင်းရန်ရည်ရွယ်ထားသောပစ္စည်းဟူသမျှတွင်ဇကားသ်တာဝန်ရှိပါသည်။ ခုချက်ချင်းရောင်းရန်ရည်ရွယ်ထားသည်ဖြစ်စေ၊ ဈေးကောင်းရမည့်အချိန်ရောင်းရန်ရည်ရွယ်ပြီးယခုကိုယ်တိုင်အသုံးပြုနေသည်ဖြစ်စေ၊ အားလုံးကိုထည့်တွက်ရမည်။",
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အိမ်၊ခြံ၊မြေ",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: realEstateSellHouse,
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            InputDecoration(labelText: 'ရောင်းရန်ရှိသောအိမ်'),
+                      ),
+                      TextFormField(
+                        controller: realEstateSellEscort,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            labelText: 'ရောင်းရန်ရှိသောခြံ/မြေ'),
+                      ),
+                      TextFormField(
+                          controller: realEstateSellCar,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'ရောင်းရန်ရှိသောကား')),
+                      TextFormField(
+                          controller: realEstateOther,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'အခြား')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "ကုန်ကြမ်းများ",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: rawWearhouse,
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            InputDecoration(labelText: 'ဂိုထောင်တွင်ရှိသော'),
+                      ),
+                      TextFormField(
+                        controller: rawHome,
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
+                      ),
+                      TextFormField(
+                          controller: rawShop,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'ဆိုင်တွင်ရှိသော')),
+                      TextFormField(
+                          controller: rawOther,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'အခြား')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "ကုန်ချောများ",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: finishWearhouse,
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            InputDecoration(labelText: 'ဂိုထောင်တွင်ရှိသော'),
+                      ),
+                      TextFormField(
+                        controller: finishHome,
+                        keyboardType: TextInputType.number,
+                        decoration:
+                            InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
+                      ),
+                      TextFormField(
+                          controller: finishShop,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'ဆိုင်တွင်ရှိသော')),
+                      TextFormField(
+                          controller: finishAnimal,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText:
+                                  'မွေးမြူရေးခြံထဲရှိရောင်းရန်သားကောင်များ')),
+                      TextFormField(
+                          controller: finishOther,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(labelText: 'အခြား')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            isActive: _currentStep >= 4,
+            state: _currentStep >= 4 ? StepState.complete : StepState.indexed,
+          ),
+          Step(
+            title: RegularText(
+              data: _currentStep == 5
+                  ? 'စားကျက်တွင်လွတ်ထားသော\nမွေးမြူရေးတိရိစ္ဆာန်များ'
+                  : 'စားကျက်',
+              fontSize: _currentStep == 5 ? 14.0 : 10.0,
+              color: Colors.black87,
+            ),
+            content: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.bgBtn,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        fontSize: 14,
+                        color: AppColors.white,
+                        data:
+                            "သားကောင်၏ဇကားသ်နှင့်ပတ်သက်၍သိသင့်သိထိုက်သောအရာများ \n (၁) ရောင်းဝယ်ဖောက်ကားရန်မွေးမြူထားသော၊တစ်ချိန်ချိန်တွင်ပြန်ရောင်းရန်ဆန္ဒရှိသောသားကောင်များကိုဤစာရင်းတွင်မထည့်သွင်းရပါ။ ထိုသားကောင်းများ၏ဈေးနှုန်းကိုအရောင်းအဝယ်ကုန်ပစ္စည်းတွင်ထည့်၍တွက်ပါ။ \n (၂) နို့ရယူရန်သို့မဟုတ်ဝါသနာအရမွေးမြူထား၍ရောင်းရန်ဆန္ဒမရှိသောသားကောင်များကိုသာဤနေရာတွင်ထည့်တွက်ပါ။ \n (၃) မွေးမြူထားသောသားကောင်သည်လွန်ခဲ့သည့်တစ်နှစ်တာကာလတွင် (၆)လကျော် စားကျက်တွင်ကျက်စားထားသောသားကောင်ဖြစ်ရမည်။ အကယ်၍ (၆)လတိတိ သို့မဟုတ် (၆) လအထက်ကာလတွင်အိမ်တွင်း၌အစာဝယ်ယူကျွေးမွေးခဲ့ပါကထိုသားကောင်ကိုထည့်မတွက်ရပါ။ \n (၄) ကုလားအုပ်မ ဇကားသ်ထိုက်သောပုံစံများတွင်ကုလားအုပ်မသာပေးရမည်။သို့မဟုတ်ကုလားအုပ်မ၏တန်ဖိုးနှင့်ညီမျှသောတန်ဖိုးရှိကုလားအုပ်ပေးရမည်။ ကုလားအုပ်မတစ်ကောင်အစားကုလားအုပ်တစ်ကောင်ပေးခွင့်မရှိပါ။ \n (၅) ကုလားအုပ် မှအပကျန်သားကောင်အမျိုးအစားများတွင် အထီးအမ မခွဲခြားထားပါ။ ကြိုက်နှစ်သက်ရာပေးခွင့်ရှိသည်။ \n (၆) ဇကားသ်တွင်ပေးရသောဆိတ်သည်အနည်းဆုံးအသက်တစ်နှစ်ပြည့်ရမည်။ ",
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "ကုလားအုပ်",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: kalaout,
+                        decoration: InputDecoration(labelText: 'ကုလားအုပ်'),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "ကျွဲ၊နွား",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: kywae,
+                        decoration: InputDecoration(labelText: 'ကျွဲ'),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: nwar,
+                        decoration: InputDecoration(labelText: 'နွား'),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "ဆိတ်၊သိုး",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: sate,
+                        decoration: InputDecoration(labelText: 'ဆိတ်'),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: thoe,
+                        decoration: InputDecoration(labelText: 'သိုး'),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            isActive: _currentStep >= 5,
+            state: _currentStep >= 5 ? StepState.complete : StepState.indexed,
+          ),
+          Step(
+            title: RegularText(
+              data: 'အနှုတ်စာရင်း',
+              fontSize: _currentStep == 6 ? 14.0 : 10.0,
+              color: Colors.black87,
+            ),
+            content: Column(
+              children: [
+                // Container(
+                //   padding: EdgeInsets.all(16),
+                //   decoration: BoxDecoration(
+                //     color: AppColors.bgBtn,
+                //     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                //   ),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+
+                //       BoldText(
+                //         fontSize: 14,
+                //         color: AppColors.white,
+                //         data:
+                //             "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+                //       )
+                //     ],
+                //   ),
+                // ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        controller: minusDebtMahur,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            labelText: 'ဇနီးကိုမပေးရသေးသောမဟ်ရ်'),
+                      ),
+                      TextFormField(
+                        controller: minusDebt,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            labelText: 'သူများကိုပေးဆပ်ရမည့်အကြွေး'),
+                      ),
+                      TextFormField(
+                          controller: minusSukyae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText:
+                                  'စုကြေးရရှိပြီးပေးသွင်းရန်ကျန်ငွေပေါင်း')),
+                      TextFormField(
+                          controller: minusMeterBill,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ပေးဆောင်ရန်ကျန်သောမီတာခ')),
+                      TextFormField(
+                          controller: minusPaybill,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ပေးဆောင်ရန်ကျန်သောအဖိုးအခများ')),
+                      TextFormField(
+                          controller: minusPaySalary,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ဝန်ထမ်းများကိုပေးရန်ကျန်သောလစာများ')),
+                      TextFormField(
+                          controller: minusPayRent,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ပေးဆောင်ရန်ကျန်သောငှားရမ်းခများ')),
+                      TextFormField(
+                          controller: minusBuyGoodPay,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText:
+                                  'ပစ္စည်းဝယ်ပြီးပေးချေရန်ကျန်သောအကြွေး')),
+                      TextFormField(
+                          controller: minusPreZakat,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ယခင်နှစ်များ၏မပေးရသေးသောဇကားသ်')),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            isActive: _currentStep >= 6,
+            state: _currentStep >= 6 ? StepState.complete : StepState.indexed,
+          ),
+          Step(
+            title: RegularText(
+              data: 'ပေါက်ဈေး',
+              fontSize: _currentStep == 7 ? 14.0 : 10.0,
+              color: Colors.black87,
+            ),
+            content: Column(
+              children: [
+                // Container(
+                //   padding: EdgeInsets.all(16),
+                //   decoration: BoxDecoration(
+                //     color: AppColors.bgBtn,
+                //     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                //   ),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+
+                //       BoldText(
+                //         fontSize: 14,
+                //         color: AppColors.white,
+                //         data:
+                //             "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+                //       )
+                //     ],
+                //   ),
+                // ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "ရွှေဈေးစုံစမ်း၍ထည့်ရန်",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: goldPrice,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: ' '),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "ငွေဈေးစုံစမ်း၍ထည့်ရန်",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        controller: silverPrice,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: ' '),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BoldText(
+                        data: "အောက်တိုတွက်ပေးပါ။",
+                        color: AppColors.primaryText,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(labelText: ' '),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            isActive: _currentStep >= 7,
+            state: _currentStep >= 7 ? StepState.complete : StepState.indexed,
+          ),
+          Step(
+            title: RegularText(
+              data: 'အဖြေ',
+              fontSize: _currentStep == 8 ? 14.0 : 10.0,
+              color: Colors.black87,
+            ),
+            content: Column(
+              children: [
+                Text(_result),
+                Text("***" + _resultKalaout),
+                Text("***" + _resultKywaeNwar),
+                Text("***" + _resultSateThoe)
+              ],
+            ),
+            isActive: _currentStep >= 8,
+            state: _currentStep >= 8 ? StepState.complete : StepState.indexed,
+          ),
+        ],
       ),
     );
   }
@@ -1727,6 +1498,260 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   }
 
   continued() {
+    final isLastStep = _currentStep == 8;
+
+    if (isLastStep) {
+      // logic here;
+    }
+
+    if (_currentStep == 0) {
+      ZakatCalculatorUtil().saveGoldAkhout(
+          goldAkhoutKyatthar.text == '' ? '0.0' : goldAkhoutKyatthar.text,
+          goldAkhoutPae.text == '' ? '0.0' : goldAkhoutPae.text,
+          goldAkhoutYwae.text == '' ? '0.0' : goldAkhoutYwae.text);
+      ZakatCalculatorUtil().saveGoldAHtae(
+          goldAhtaeKyatthar.text == '' ? '0.0' : goldAhtaeKyatthar.text,
+          goldAhtaePae.text == '' ? '0.0' : goldAhtaePae.text,
+          goldAhtaeYwae.text == '' ? '0.0' : goldAhtaeYwae.text);
+      ZakatCalculatorUtil().saveGoldPyitCee(
+          goldPyitceeKyatthar.text == '' ? '0.0' : goldPyitceeKyatthar.text,
+          goldPyitceePae.text == '' ? '0.0' : goldPyitceePae.text,
+          goldPyitceeYwae.text == '' ? '0.0' : goldPyitceeYwae.text);
+    } else if (_currentStep == 1) {
+      ZakatCalculatorUtil().saveWhiteSilverAkhout(
+          whiteSilverAkhoutKyatthar.text == ''
+              ? '0.0'
+              : whiteSilverAkhoutKyatthar.text,
+          whiteSilverAkhoutPae.text == '' ? '0.0' : whiteSilverAkhoutPae.text,
+          whiteSilverAkhoutYwae.text == ''
+              ? '0.0'
+              : whiteSilverAkhoutYwae.text);
+      ZakatCalculatorUtil().saveWhiteSilverAHtae(
+          whiteSilverAhtaeKyatthar.text == ''
+              ? '0.0'
+              : whiteSilverAhtaeKyatthar,
+          whiteSilverAhtaePae.text == '' ? '0.0' : whiteSilverAhtaePae.text,
+          whiteSilverAhtaeYwae.text == '' ? '0.0' : whiteSilverAhtaeYwae.text);
+      ZakatCalculatorUtil().saveWhiteSilverPyitCee(
+          whiteSilverPyitceeKyatthar.text == ''
+              ? '0.0'
+              : whiteSilverPyitceeKyatthar.text,
+          whiteSilverPyitceePae.text == '' ? '0.0' : whiteSilverPyitceePae.text,
+          whiteSilverPyitceeYwae.text == ''
+              ? '0.0'
+              : whiteSilverPyitceeYwae.text);
+    } else if (_currentStep == 2) {
+      ZakatCalculatorUtil().saveSilverAkhout(
+          silverAkhoutKyatthar.text == '' ? '0.0' : silverAkhoutKyatthar.text,
+          silverAkhoutPae.text == '' ? '0.0' : silverAkhoutPae.text,
+          silverAkhoutYwae.text == '' ? '0.0' : silverAkhoutYwae.text);
+      ZakatCalculatorUtil().saveSilverAHtae(
+          silverAhtaeKyatthar.text == '' ? '0.0' : silverAhtaeKyatthar.text,
+          silverAhtaePae.text == '' ? '0.0' : silverAhtaePae.text,
+          silverAhtaeYwae.text == '' ? '0.0' : silverAhtaeYwae.text);
+      ZakatCalculatorUtil().saveSilverPyitCee(
+          silverPyitceeKyatthar.text == '' ? '0.0' : silverPyitceeKyatthar.text,
+          silverPyitceePae.text == '' ? '0.0' : silverPyitceePae.text,
+          silverPyitceeYwae.text == '' ? '0.0' : silverPyitceeYwae.text);
+    } else if (_currentStep == 3) {
+      ZakatCalculatorUtil().saveInHand(
+          inHandSuHtarTaw.text == '' ? '0.0' : inHandSuHtarTaw.text,
+          inHandPyitceeSold.text == '' ? '0.0' : inHandPyitceeSold.text,
+          inHandPyitceeBorrow.text == '' ? '0.0' : inHandPyitceeBorrow.text,
+          inHandForeignCurrency.text == '' ? '0.0' : inHandForeignCurrency.text,
+          inHandContract.text == '' ? '0.0' : inHandContract.text,
+          inHandOther.text == '' ? '0.0' : inHandOther.text);
+      ZakatCalculatorUtil().saveInBank(
+          inBankInBank.text == '' ? '0.0' : inBankInBank.text,
+          inBankThuMyarHlwae.text == '' ? '0.0' : inBankThuMyarHlwae.text,
+          inBankSalary.text == '' ? '0.0' : inBankSalary,
+          inBankOther.text == '' ? '0.0' : inBankOther.text);
+      ZakatCalculatorUtil().saveThuMyarPayHtrTawDebt(
+          thuMyarDebtPyitceeSold.text == ''
+              ? '0.0'
+              : thuMyarDebtPyitceeSold.text,
+          thuMyarDebtChayPay.text == '' ? '0.0' : thuMyarDebtChayPay.text,
+          thuMyarDebtAttHtrTaw.text == '' ? '0.0' : thuMyarDebtAttHtrTaw.text,
+          thuMyarDebtOther.text == '' ? '0.0' : thuMyarDebtOther.text);
+    } else if (_currentStep == 4) {
+      ZakatCalculatorUtil().saveRealEstate(
+          realEstateSellHouse.text == '' ? '0.0' : realEstateSellHouse.text,
+          realEstateSellEscort.text == '' ? '0.0' : realEstateSellEscort.text,
+          realEstateSellCar.text == '' ? '0.0' : realEstateSellCar.text,
+          realEstateOther.text == '' ? '0.0' : realEstateOther.text);
+      ZakatCalculatorUtil().saveRaw(
+          rawWearhouse.text == '' ? '0.0' : rawWearhouse.text,
+          rawHome.text == '' ? '0.0' : rawHome.text,
+          rawShop.text == '' ? '0.0' : rawShop.text,
+          rawOther.text == '' ? '0.0' : rawOther.text);
+      ZakatCalculatorUtil().saveFinish(
+          finishWearhouse.text == '' ? '0.0' : finishWearhouse.text,
+          finishHome.text == '' ? '0.0' : finishHome.text,
+          finishShop.text == '' ? '0.0' : finishShop.text,
+          finishAnimal.text == '' ? '0.0' : finishAnimal.text,
+          finishOther.text == '' ? '0.0' : finishOther.text);
+    } else if (_currentStep == 5) {
+      print('animal');
+      setState(() {
+        _resultSateThoe = ZakatCalculatorUtil()
+            .calcZakatForGoatSheep(int.parse(sate.text) + int.parse(thoe.text))
+            .toString();
+
+        _resultKywaeNwar = ZakatCalculatorUtil().calcZakatForKywaeNwar(
+            int.parse(kywae.text) + int.parse(nwar.text));
+
+        _resultKalaout =
+            ZakatCalculatorUtil().calcZakatForKalaout(int.parse(kalaout.text));
+      });
+    } else if (_currentStep == 6) {
+      ZakatCalculatorUtil().saveMinus(
+          minusDebtMahur.text == '' ? '0.0' : minusDebtMahur.text,
+          minusDebt.text == '' ? '0.0' : minusDebt.text,
+          minusSukyae.text == '' ? '0.0' : minusSukyae.text,
+          minusMeterBill.text == '' ? '0.0' : minusMeterBill.text,
+          minusPaybill.text == '' ? '0.0' : minusPaybill.text,
+          minusPaySalary.text == '' ? '0.0' : minusPaySalary.text,
+          minusPayRent.text == '' ? '0.0' : minusPayRent.text,
+          minusBuyGoodPay.text == '' ? '0.0' : minusBuyGoodPay.text,
+          minusPreZakat.text == '' ? '0.0' : minusPreZakat.text);
+    } else if (_currentStep == 7) {
+      ZakatCalculatorUtil().saveGoldPrice(goldPrice.text);
+      ZakatCalculatorUtil().saveSilverPrice(silverPrice.text);
+    } else if (_currentStep == 8) {
+      setState(() {
+        _result = ZakatCalculatorUtil()
+            .calcFinalZakatAmount(
+                ZakatCalculatorUtil().getTotalGoldPlatinum2(
+                  double.parse(goldPrice.text == '' ? '0.0' : goldPrice.text),
+                  double.parse(goldAkhoutKyatthar.text == ''
+                      ? '0.0'
+                      : goldAkhoutKyatthar.text),
+                  double.parse(
+                      goldAkhoutPae.text == '' ? '0.0' : goldAkhoutPae.text),
+                  double.parse(
+                      goldAkhoutYwae.text == '' ? '0.0' : goldAkhoutYwae.text),
+                  double.parse(goldAhtaeKyatthar.text == ''
+                      ? '0.0'
+                      : goldAhtaeKyatthar.text),
+                  double.parse(
+                      goldAhtaePae.text == '' ? '0.0' : goldAhtaePae.text),
+                  double.parse(
+                      goldAhtaeYwae.text == '' ? '0.0' : goldAhtaeYwae.text),
+                  double.parse(goldPyitceeKyatthar.text == ''
+                      ? '0.0'
+                      : goldPyitceeKyatthar.text),
+                  double.parse(
+                      goldPyitceePae.text == '' ? '0.0' : goldPyitceePae.text),
+                  double.parse(goldPyitceeYwae.text == ''
+                      ? '0.0'
+                      : goldPyitceeYwae.text),
+                  double.parse(whiteSilverAkhoutKyatthar.text == ''
+                      ? '0.0'
+                      : whiteSilverAkhoutKyatthar.text),
+                  double.parse(whiteSilverAkhoutPae.text == ''
+                      ? '0.0'
+                      : whiteSilverAkhoutPae.text),
+                  double.parse(whiteSilverAkhoutYwae.text == ''
+                      ? '0.0'
+                      : whiteSilverAkhoutYwae.text),
+                  double.parse(whiteSilverAhtaeKyatthar.text == ''
+                      ? '0.0'
+                      : whiteSilverAhtaeKyatthar.text),
+                  double.parse(whiteSilverAhtaePae.text == ''
+                      ? '0.0'
+                      : whiteSilverAhtaePae.text),
+                  double.parse(whiteSilverAhtaeYwae.text == ''
+                      ? '0.0'
+                      : whiteSilverAhtaeYwae.text),
+                  double.parse(whiteSilverPyitceeKyatthar.text == ''
+                      ? '0.0'
+                      : whiteSilverPyitceeKyatthar.text),
+                  double.parse(whiteSilverPyitceePae.text == ''
+                      ? '0.0'
+                      : whiteSilverPyitceePae.text),
+                  double.parse(whiteSilverPyitceeYwae.text == ''
+                      ? '0.0'
+                      : whiteSilverPyitceeYwae.text),
+                ),
+                ZakatCalculatorUtil().getTotalSilverMoneyOther2(
+                    double.parse(
+                        silverPrice.text == '' ? '0.0' : silverPrice.text),
+                    double.parse(silverAkhoutKyatthar.text == ''
+                        ? '0.0'
+                        : silverAkhoutKyatthar.text),
+                    double.parse(silverAkhoutPae.text == ''
+                        ? '0.0'
+                        : silverAkhoutPae.text),
+                    double.parse(silverAkhoutYwae.text == ''
+                        ? '0.0'
+                        : silverAkhoutYwae.text),
+                    double.parse(silverAhtaeKyatthar.text == ''
+                        ? '0.0'
+                        : silverAhtaeKyatthar.text),
+                    double.parse(silverAhtaePae.text == ''
+                        ? '0.0'
+                        : silverAhtaePae.text),
+                    double.parse(silverAhtaeYwae.text == ''
+                        ? '0.0'
+                        : silverAhtaeYwae.text),
+                    double.parse(silverPyitceeKyatthar.text == ''
+                        ? '0.0'
+                        : silverPyitceeKyatthar.text),
+                    double.parse(silverPyitceePae.text == ''
+                        ? '0.0'
+                        : silverPyitceePae.text),
+                    double.parse(silverPyitceeYwae.text == ''
+                        ? '0.0'
+                        : silverPyitceeYwae.text),
+                    double.parse(inHandSuHtarTaw.text == ''
+                        ? '0.0'
+                        : inHandSuHtarTaw.text),
+                    double.parse(inHandPyitceeSold.text == ''
+                        ? '0.0'
+                        : inHandPyitceeSold.text),
+                    double.parse(inHandPyitceeBorrow.text == ''
+                        ? '0.0'
+                        : inHandPyitceeBorrow.text),
+                    double.parse(inHandForeignCurrency.text == ''
+                        ? '0.0'
+                        : inHandForeignCurrency.text),
+                    double.parse(inHandContract.text == ''
+                        ? '0.0'
+                        : inHandContract.text),
+                    double.parse(
+                        inHandOther.text == '' ? '0.0' : inHandOther.text),
+                    double.parse(
+                        inBankInBank.text == '' ? '0.0' : inBankInBank.text),
+                    double.parse(inBankThuMyarHlwae.text == ''
+                        ? '0.0'
+                        : inBankThuMyarHlwae.text),
+                    double.parse(
+                        inBankSalary.text == '' ? '0.0' : inBankSalary.text),
+                    double.parse(inBankOther.text == '' ? '0.0' : inBankOther.text),
+                    double.parse(thuMyarDebtPyitceeSold.text == '' ? '0.0' : thuMyarDebtPyitceeSold.text),
+                    double.parse(thuMyarDebtChayPay.text == '' ? '0.0' : thuMyarDebtChayPay.text),
+                    double.parse(thuMyarDebtAttHtrTaw.text == '' ? '0.0' : thuMyarDebtAttHtrTaw.text),
+                    double.parse(thuMyarDebtOther.text == '' ? '0.0' : thuMyarDebtOther.text),
+                    double.parse(realEstateSellHouse.text == '' ? '0.0' : realEstateSellHouse.text),
+                    double.parse(realEstateSellEscort.text == '' ? '0.0' : realEstateSellEscort.text),
+                    double.parse(realEstateSellCar.text == '' ? '0.0' : realEstateSellCar.text),
+                    double.parse(realEstateOther.text == '' ? '0.0' : realEstateOther.text),
+                    double.parse(rawWearhouse.text == '' ? '0.0' : rawWearhouse.text),
+                    double.parse(rawHome.text == '' ? '0.0' : rawHome.text),
+                    double.parse(rawShop.text == '' ? '0.0' : rawShop.text),
+                    double.parse(rawOther.text == '' ? '0.0' : rawOther.text),
+                    double.parse(finishWearhouse.text == '' ? '0.0' : finishWearhouse.text),
+                    double.parse(finishHome.text == '' ? '0.0' : finishHome.text),
+                    double.parse(finishShop.text == '' ? '0.0' : finishShop.text),
+                    double.parse(finishAnimal.text == '' ? '0.0' : finishAnimal.text),
+                    double.parse(finishOther.text == '' ? '0.0' : finishOther.text)),
+                ZakatCalculatorUtil().getTotalMinus2(double.parse(minusDebtMahur.text == '' ? '0.0' : minusDebtMahur.text), double.parse(minusDebt.text == '' ? '0.0' : minusDebt.text), double.parse(minusSukyae.text == '' ? '0.0' : minusSukyae.text), double.parse(minusMeterBill.text == '' ? '0.0' : minusMeterBill.text), double.parse(minusPaybill.text == '' ? '0.0' : minusPaybill.text), double.parse(minusPaySalary.text == '' ? '0.0' : minusPaySalary.text), double.parse(minusPayRent.text == '' ? '0.0' : minusPayRent.text), double.parse(minusBuyGoodPay.text == '' ? '0.0' : minusBuyGoodPay.text), double.parse(minusPreZakat.text == '' ? '0.0' : minusPreZakat.text)),
+                double.parse(goldPrice.text),
+                double.parse(silverPrice.text))
+            .toString();
+      });
+    }
+
     _currentStep < 8 ? setState(() => _currentStep += 1) : null;
   }
 
