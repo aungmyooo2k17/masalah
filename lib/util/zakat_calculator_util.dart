@@ -907,11 +907,21 @@ class ZakatCalculatorUtil {
     if (totalKywaeNwar > 120) {
       totalStep = int.parse(((totalKywaeNwar - 120) / 10).toStringAsFixed(0));
       twoYear = twoYear + 3;
+
+      for (int i = 1; i <= totalStep; i++) {
+        if (oneYear == 0) {
+          oneYear = twoYear + 1;
+          twoYear = 0;
+        } else {
+          oneYear = oneYear - 1;
+          twoYear = twoYear + 1;
+        }
+      }
+
+      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
     }
 
-    if (totalKywaeNwar > 120) {
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
-    } else if (totalKywaeNwar <= 120 && totalKywaeNwar > 110) {
+    if (totalKywaeNwar <= 120 && totalKywaeNwar > 110) {
       twoYear = twoYear + 3;
       return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
     } else if (totalKywaeNwar >= 110) {
