@@ -1,3 +1,4 @@
+import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
@@ -47,6 +48,58 @@ class RemoteDataSource {
       }
     } catch (error) {
       return Result.error("Something went wrong!\n$error");
+    }
+  }
+
+  Future<String> getUSDRate() async {
+    try {
+      final response =
+          await http.get(Uri.parse('https://forex.cbm.gov.mm/api/latest'));
+
+      var rs = jsonDecode(response.body);
+      var usd = rs['rates']['USD'];
+
+      print('getusddd');
+      print(usd);
+      return usd;
+    } catch (error) {
+      return "Error";
+    }
+  }
+
+  Future<double> getGoldRate() async {
+    try {
+      final response = await http
+          .get(Uri.parse('https://www.goldapi.io/api/XAU/USD'), headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "x-access-token": "goldapi-4goeustkvyvclwr-io"
+      });
+
+      var rs = jsonDecode(response.body);
+      var usd = rs['price'];
+
+      return usd;
+    } catch (error) {
+      return 0.0;
+    }
+  }
+
+  Future<double> getSilverRate() async {
+    try {
+      final response = await http
+          .get(Uri.parse('https://www.goldapi.io/api/XAG/USD'), headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "x-access-token": "goldapi-4goeustkvyvclwr-io"
+      });
+
+      var rs = jsonDecode(response.body);
+      var usd = rs['price'];
+
+      return usd;
+    } catch (error) {
+      return 0.0;
     }
   }
 }

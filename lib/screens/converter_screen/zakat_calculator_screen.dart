@@ -1,7 +1,18 @@
+import 'dart:convert';
+import 'dart:typed_data';
+import 'dart:async';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/network/remote_data_source.dart';
 import 'package:masalah/reusable_widget/app_bar.dart';
 import 'package:masalah/reusable_widget/app_text.dart';
+import 'package:masalah/screens/display_picture.dart';
 import 'package:masalah/screens/setting_screen.dart';
 import 'package:masalah/util/zakat_calculator_util.dart';
 
@@ -11,6 +22,7 @@ class ZakatCalculator extends StatefulWidget {
 }
 
 class _ZakatCalculatorState extends State<ZakatCalculator> {
+  GlobalKey _globalKey = new GlobalKey();
   int _currentStep = 0;
   StepperType stepperType = StepperType.vertical;
 
@@ -18,6 +30,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   String _resultSateThoe = "";
   String _resultKywaeNwar = "";
   String _resultKalaout = "";
+  bool _optionAuto = true;
 
   final goldAkhoutKyatthar = TextEditingController();
   final goldAkhoutPae = TextEditingController();
@@ -101,8 +114,23 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   final goldPrice = TextEditingController();
   final silverPrice = TextEditingController();
 
+  final RemoteDataSource _apiResponse = RemoteDataSource();
+
+  double goldRate = 0.0;
+  double silverRate = 0.0;
+  double usdRate = 0.0;
+
   @override
   void initState() {
+    _apiResponse.getUSDRate().then((value) {
+      print("usdddd");
+      print(value);
+      value = value.replaceAll(',', '');
+      usdRate = double.parse(value);
+    });
+    _apiResponse.getGoldRate().then((value) => {goldRate = value});
+    _apiResponse.getSilverRate().then((value) => {silverRate = value});
+
     // .... Gold ....
     ZakatCalculatorUtil().getGoldAkhout()["kyatthar"].then((value) {
       goldAkhoutKyatthar.text = value == 0.0 ? '' : value;
@@ -1360,106 +1388,135 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
               color: Colors.black87,
             ),
             content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Container(
-                //   padding: EdgeInsets.all(16),
-                //   decoration: BoxDecoration(
-                //     color: AppColors.bgBtn,
-                //     borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                //   ),
-                //   child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-
-                //       BoldText(
-                //         fontSize: 14,
-                //         color: AppColors.white,
-                //         data:
-                //             "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-                //       )
-                //     ],
-                //   ),
-                // ),
-                SizedBox(
-                  height: 24.0,
-                ),
-                Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BoldText(
-                        data: "ရွှေဈေးစုံစမ်း၍ထည့်ရန်",
-                        color: AppColors.primaryText,
-                      ),
-                      TextFormField(
-                        controller: goldPrice,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(labelText: ' '),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                    ],
-                  ),
+                Row(
+                  children: [
+                    RegularText(
+                      data: 'Manual',
+                      color: AppColors.primaryText,
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    CupertinoSwitch(
+                      value: _optionAuto,
+                      onChanged: (value) {
+                        setState(() {
+                          _optionAuto = value;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    RegularText(
+                      data: 'Auto',
+                      color: AppColors.primaryText,
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 24.0,
                 ),
-                Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BoldText(
-                        data: "ငွေဈေးစုံစမ်း၍ထည့်ရန်",
-                        color: AppColors.primaryText,
-                      ),
-                      TextFormField(
-                        controller: silverPrice,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(labelText: ' '),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 24.0,
-                ),
-                Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BoldText(
-                        data: "အောက်တိုတွက်ပေးပါ။",
-                        color: AppColors.primaryText,
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(labelText: ' '),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                    ],
-                  ),
-                ),
+                !_optionAuto
+                    ? Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                BoldText(
+                                  data: "ရွှေဈေးစုံစမ်း၍ထည့်ရန်",
+                                  color: AppColors.primaryText,
+                                ),
+                                TextFormField(
+                                  controller: goldPrice,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(labelText: ' '),
+                                ),
+                                SizedBox(
+                                  height: 8.0,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 24.0,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0)),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                BoldText(
+                                  data: "ငွေဈေးစုံစမ်း၍ထည့်ရန်",
+                                  color: AppColors.primaryText,
+                                ),
+                                TextFormField(
+                                  controller: silverPrice,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(labelText: ' '),
+                                ),
+                                SizedBox(
+                                  height: 8.0,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 24.0,
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          Row(
+                            children: [
+                              RegularText(
+                                data: "Gold Rate",
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              BoldText(
+                                data: ZakatCalculatorUtil()
+                                    .getRate(goldRate, usdRate)
+                                    .toString(),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              RegularText(
+                                data: "Silver Rate",
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              BoldText(
+                                data: ZakatCalculatorUtil()
+                                    .getRate(silverRate, usdRate)
+                                    .toString(),
+                              )
+                            ],
+                          )
+                        ],
+                      )
               ],
             ),
             isActive: _currentStep >= 7,
@@ -1471,13 +1528,34 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
               fontSize: _currentStep == 8 ? 14.0 : 10.0,
               color: Colors.black87,
             ),
-            content: Column(
-              children: [
-                Text(_result),
-                Text("***" + _resultKalaout),
-                Text("***" + _resultKywaeNwar),
-                Text("***" + _resultSateThoe)
-              ],
+            content: RepaintBoundary(
+              key: _globalKey,
+              child: Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                ),
+                child: Column(
+                  children: [
+                    RegularText(
+                      data: "ထိုက်သောဇကားသ်",
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    BoldText(
+                      data: _result +
+                          "\n" +
+                          _resultKalaout +
+                          "\n" +
+                          _resultKywaeNwar +
+                          "\n" +
+                          _resultSateThoe,
+                    )
+                  ],
+                ),
+              ),
             ),
             isActive: _currentStep >= 8,
             state: _currentStep >= 8 ? StepState.complete : StepState.indexed,
@@ -1529,7 +1607,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
       ZakatCalculatorUtil().saveWhiteSilverAHtae(
           whiteSilverAhtaeKyatthar.text == ''
               ? '0.0'
-              : whiteSilverAhtaeKyatthar,
+              : whiteSilverAhtaeKyatthar.text,
           whiteSilverAhtaePae.text == '' ? '0.0' : whiteSilverAhtaePae.text,
           whiteSilverAhtaeYwae.text == '' ? '0.0' : whiteSilverAhtaeYwae.text);
       ZakatCalculatorUtil().saveWhiteSilverPyitCee(
@@ -1594,14 +1672,17 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
       print('animal');
       setState(() {
         _resultSateThoe = ZakatCalculatorUtil()
-            .calcZakatForGoatSheep(int.parse(sate.text) + int.parse(thoe.text))
+            .calcZakatForGoatSheep(
+                int.parse(sate.text == '' ? '0' : sate.text) +
+                    int.parse(thoe.text == '' ? '0' : thoe.text))
             .toString();
 
         _resultKywaeNwar = ZakatCalculatorUtil().calcZakatForKywaeNwar(
-            int.parse(kywae.text) + int.parse(nwar.text));
+            int.parse(kywae.text == '' ? '0' : kywae.text) +
+                int.parse(nwar.text == '' ? '0' : nwar.text));
 
-        _resultKalaout =
-            ZakatCalculatorUtil().calcZakatForKalaout(int.parse(kalaout.text));
+        _resultKalaout = ZakatCalculatorUtil().calcZakatForKalaout(
+            int.parse(kalaout.text == '' ? '0' : kalaout.text));
       });
     } else if (_currentStep == 6) {
       ZakatCalculatorUtil().saveMinus(
@@ -1615,9 +1696,19 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
           minusBuyGoodPay.text == '' ? '0.0' : minusBuyGoodPay.text,
           minusPreZakat.text == '' ? '0.0' : minusPreZakat.text);
     } else if (_currentStep == 7) {
-      ZakatCalculatorUtil().saveGoldPrice(goldPrice.text);
-      ZakatCalculatorUtil().saveSilverPrice(silverPrice.text);
-    } else if (_currentStep == 8) {
+      if (_optionAuto) {
+        ZakatCalculatorUtil().saveGoldPrice(
+            ZakatCalculatorUtil().getRate(goldRate, usdRate).toString());
+        ZakatCalculatorUtil().saveSilverPrice(
+            ZakatCalculatorUtil().getRate(silverRate, usdRate).toString());
+        goldPrice.text =
+            ZakatCalculatorUtil().getRate(goldRate, usdRate).toString();
+        silverPrice.text =
+            ZakatCalculatorUtil().getRate(silverRate, usdRate).toString();
+      } else {
+        ZakatCalculatorUtil().saveGoldPrice(goldPrice.text);
+        ZakatCalculatorUtil().saveSilverPrice(silverPrice.text);
+      }
       setState(() {
         _result = ZakatCalculatorUtil()
             .calcFinalZakatAmount(
@@ -1750,6 +1841,14 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                 double.parse(silverPrice.text))
             .toString();
       });
+    } else if (_currentStep == 8) {
+      _capturePng().then((value) => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  DisplayPictureScreen(imageAnalysed: value.toString()),
+            ),
+          ));
     }
 
     _currentStep < 8 ? setState(() => _currentStep += 1) : null;
@@ -1757,5 +1856,24 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
 
   cancel() {
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
+  }
+
+  Future<String?> _capturePng() async {
+    try {
+      print('inside');
+      RenderRepaintBoundary? boundary = _globalKey.currentContext!
+          .findRenderObject() as RenderRepaintBoundary?;
+      ui.Image image = await boundary!.toImage(pixelRatio: 3.0);
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      var pngBytes = byteData!.buffer.asUint8List();
+      var bs64 = base64Encode(pngBytes);
+      print(pngBytes);
+      print(bs64);
+      setState(() {});
+      return bs64;
+    } catch (e) {
+      return null;
+    }
   }
 }

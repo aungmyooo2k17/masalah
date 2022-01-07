@@ -408,14 +408,14 @@ class ZakatCalculatorUtil {
       if (totalGoldPlatinum >= goldZakatAmount(goldPrice)) {
         return totalGoldPlatinum / 40;
       } else {
-        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ###";
+        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
       }
     } else {
       double totalAmount = (totalGoldPlatinum + totalSilverOther) - totalMinus;
       if (totalAmount >= silverZakatAmount(silverPrice)) {
         return totalAmount / 40;
       } else {
-        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ***";
+        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
       }
     }
   }
@@ -824,7 +824,7 @@ class ZakatCalculatorUtil {
     } else if (totalGoatSheep >= 40) {
       return 1;
     } else {
-      return 0;
+      return '';
     }
   }
 
@@ -894,7 +894,7 @@ class ZakatCalculatorUtil {
     } else if (totalKalaout >= 5) {
       return 'တစ်နှစ်ပြည့်	ဆိတ်	1 ကောင်';
     } else if (totalKalaout < 5) {
-      return 'no';
+      return '';
     }
   }
 
@@ -952,7 +952,13 @@ class ZakatCalculatorUtil {
       oneYear = oneYear + 1;
       return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
     } else if (totalKywaeNwar < 30) {
-      return 'no';
+      return '';
     }
+  }
+
+  getRate(rate, usdRate) {
+    print('************************');
+    print({rate, usdRate});
+    return (rate / 1.875) * usdRate;
   }
 }

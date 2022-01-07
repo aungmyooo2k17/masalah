@@ -35,6 +35,31 @@ class ApiClient {
             "The HTTP request method is not found");
     }
   }
+
+  Future<Response> requestBase(
+      {@required RequestType? requestType,
+      @required String? path,
+      @required String? baseUrl,
+      @required dynamic headers,
+      dynamic parameter = Nothing}) async {
+    print(baseUrl);
+    switch (requestType) {
+      case RequestType.GET:
+        print("here");
+        return _client.get(Uri.https(baseUrl!, "/$path"), headers: headers);
+
+      case RequestType.POST:
+        return _client.post(Uri.https(baseUrl!, "/$path"),
+            headers: headers, body: json.encode(parameter));
+
+      case RequestType.DELETE:
+        return _client.delete(Uri.https(baseUrl!, "/$path"));
+
+      default:
+        return throw RequestTypeNotFoundException(
+            "The HTTP request method is not found");
+    }
+  }
 }
 
 enum RequestType { GET, POST, DELETE }
