@@ -1,20 +1,13 @@
-import 'dart:convert';
-import 'dart:typed_data';
-import 'dart:async';
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/network/remote_data_source.dart';
-import 'package:masalah/reusable_widget/app_bar.dart';
 import 'package:masalah/reusable_widget/app_text.dart';
-import 'package:masalah/screens/display_picture.dart';
-import 'package:masalah/screens/setting_screen.dart';
 import 'package:masalah/util/zakat_calculator_util.dart';
+
+import 'zakat_list_screen.dart';
 
 class ZakatCalculator extends StatefulWidget {
   @override
@@ -25,6 +18,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   GlobalKey _globalKey = new GlobalKey();
   int _currentStep = 0;
   StepperType stepperType = StepperType.vertical;
+  final dbHelper = DatabaseHelper.instance;
 
   String _result = "";
   String _resultSateThoe = "";
@@ -131,239 +125,6 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
     _apiResponse.getGoldRate().then((value) => {goldRate = value});
     _apiResponse.getSilverRate().then((value) => {silverRate = value});
 
-    // .... Gold ....
-    ZakatCalculatorUtil().getGoldAkhout()["kyatthar"].then((value) {
-      goldAkhoutKyatthar.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getGoldAkhout()["pae"].then((value) {
-      goldAkhoutPae.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getGoldAkhout()["ywae"].then((value) {
-      goldAkhoutYwae.text = value == 0.0 ? '' : value;
-    });
-
-    ZakatCalculatorUtil().getGoldAHtae()["kyatthar"].then((value) {
-      goldAhtaeKyatthar.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getGoldAHtae()["pae"].then((value) {
-      goldAhtaePae.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getGoldAHtae()["ywae"].then((value) {
-      goldAhtaeYwae.text = value == 0.0 ? '' : value;
-    });
-
-    ZakatCalculatorUtil().getGoldPyitCee()["kyatthar"].then((value) {
-      goldPyitceeKyatthar.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getGoldPyitCee()["pae"].then((value) {
-      goldPyitceePae.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getGoldPyitCee()["ywae"].then((value) {
-      goldPyitceeYwae.text = value == 0.0 ? '' : value;
-    });
-    // .... Gold ....
-
-    // .... Silver ....
-    ZakatCalculatorUtil().getSilverAkhout()["kyatthar"].then((value) {
-      silverAkhoutKyatthar.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getSilverAkhout()["pae"].then((value) {
-      silverAkhoutPae.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getSilverAkhout()["ywae"].then((value) {
-      silverAkhoutYwae.text = value == 0.0 ? '' : value;
-    });
-
-    ZakatCalculatorUtil().getSilverAHtae()["kyatthar"].then((value) {
-      silverAhtaeKyatthar.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getSilverAHtae()["pae"].then((value) {
-      silverAhtaePae.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getSilverAHtae()["ywae"].then((value) {
-      silverAhtaeYwae.text = value == 0.0 ? '' : value;
-    });
-
-    ZakatCalculatorUtil().getSilverPyitCee()["kyatthar"].then((value) {
-      silverPyitceeKyatthar.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getSilverPyitCee()["pae"].then((value) {
-      silverPyitceePae.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getSilverPyitCee()["ywae"].then((value) {
-      silverPyitceeYwae.text = value == 0.0 ? '' : value;
-    });
-    // .... Silver ....
-
-    // .... WhiteSilver ....
-    ZakatCalculatorUtil().getWhiteSilverAkhout()["kyatthar"].then((value) {
-      whiteSilverAkhoutKyatthar.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getWhiteSilverAkhout()["pae"].then((value) {
-      whiteSilverAkhoutPae.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getWhiteSilverAkhout()["ywae"].then((value) {
-      whiteSilverAkhoutYwae.text = value == 0.0 ? '' : value;
-    });
-
-    ZakatCalculatorUtil().getWhiteSilverAHtae()["kyatthar"].then((value) {
-      whiteSilverAhtaeKyatthar.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getWhiteSilverAHtae()["pae"].then((value) {
-      whiteSilverAhtaePae.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getWhiteSilverAHtae()["ywae"].then((value) {
-      whiteSilverAhtaeYwae.text = value == 0.0 ? '' : value;
-    });
-
-    ZakatCalculatorUtil().getWhiteSilverPyitCee()["kyatthar"].then((value) {
-      whiteSilverPyitceeKyatthar.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getWhiteSilverPyitCee()["pae"].then((value) {
-      whiteSilverPyitceePae.text = value == 0.0 ? '' : value;
-    });
-    ZakatCalculatorUtil().getWhiteSilverPyitCee()["ywae"].then((value) {
-      whiteSilverPyitceeYwae.text = value == 0.0 ? '' : value;
-    });
-    // .... WhiteSilver ....
-
-    ZakatCalculatorUtil().getInHand()["inHandSuHtarTaw"].then((v) {
-      inHandSuHtarTaw.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getInHand()["inHandPyitceeSold"].then((v) {
-      inHandPyitceeSold.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getInHand()["inHandPyitceeBorrow"].then((v) {
-      inHandPyitceeBorrow.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getInHand()["inHandForeignCurrency"].then((v) {
-      inHandForeignCurrency.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getInHand()["inHandContract"].then((v) {
-      inHandContract.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getInHand()["inHandOther"].then((v) {
-      inHandOther.text = v == 0.0 ? '' : v;
-    });
-    // .......Inhand.......
-
-    ZakatCalculatorUtil().getInBank()["inBankInBank"].then((v) {
-      inBankInBank.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getInBank()["inBankThuMyarHlwae"].then((v) {
-      inBankThuMyarHlwae.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getInBank()["inBankSalary"].then((v) {
-      inBankSalary.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getInBank()["inBankOther"].then((v) {
-      inBankOther.text = v == 0.0 ? '' : v;
-    });
-    // ..........InBank..........
-
-    ZakatCalculatorUtil()
-        .getThuMyarPayHtrTawDebt()["thuMyarDebtPyitceeSold"]
-        .then((v) {
-      thuMyarDebtPyitceeSold.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil()
-        .getThuMyarPayHtrTawDebt()["thuMyarDebtChayPay"]
-        .then((v) {
-      thuMyarDebtChayPay.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil()
-        .getThuMyarPayHtrTawDebt()["thuMyarDebtAttHtrTaw"]
-        .then((v) {
-      thuMyarDebtAttHtrTaw.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil()
-        .getThuMyarPayHtrTawDebt()["thuMyarDebtOther"]
-        .then((v) {
-      thuMyarDebtOther.text = v == 0.0 ? '' : v;
-    });
-    // .........ThuMyarPayHtrTawDebt..........
-
-    ZakatCalculatorUtil().getRealEstate()["realEstateSellHouse"].then((v) {
-      realEstateSellHouse.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getRealEstate()["realEstateSellEscort"].then((v) {
-      realEstateSellEscort.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getRealEstate()["realEstateSellCar"].then((v) {
-      realEstateSellCar.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getRealEstate()["realEstateOther"].then((v) {
-      realEstateOther.text = v == 0.0 ? '' : v;
-    });
-    // ...........RealEstate............
-
-    ZakatCalculatorUtil().getRaw()["rawWearhouse"].then((v) {
-      rawWearhouse.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getRaw()["rawHome"].then((v) {
-      rawHome.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getRaw()["rawShop"].then((v) {
-      rawShop.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getRaw()["rawOther"].then((v) {
-      rawOther.text = v == 0.0 ? '' : v;
-    });
-    // ..............Raw...........
-
-    ZakatCalculatorUtil().getFinish()["finishWearhouse"].then((v) {
-      finishWearhouse.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getFinish()["finishHome"].then((v) {
-      finishHome.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getFinish()["finishShop"].then((v) {
-      finishShop.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getFinish()["finishAnimal"].then((v) {
-      finishAnimal.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getFinish()["finishOther"].then((v) {
-      finishOther.text = v == 0.0 ? '' : v;
-    });
-    // ..........finish...........
-
-    ZakatCalculatorUtil().getMinus()["minusDebtMahur"].then((v) {
-      minusDebtMahur.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getMinus()["minusDebt"].then((v) {
-      minusDebt.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getMinus()["minusSukyae"].then((v) {
-      minusSukyae.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getMinus()["minusMeterBill"].then((v) {
-      minusMeterBill.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getMinus()["minusPaybill"].then((v) {
-      minusPaybill.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getMinus()["minusPaySalary"].then((v) {
-      minusPaySalary.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getMinus()["minusPayRent"].then((v) {
-      minusPayRent.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getMinus()["minusBuyGoodPay"].then((v) {
-      minusBuyGoodPay.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getMinus()["minusPreZakat"].then((v) {
-      minusPreZakat.text = v == 0.0 ? '' : v;
-    });
-    // ............Minus.............
-
-    ZakatCalculatorUtil().getGoldPrice().then((v) {
-      goldPrice.text = v == 0.0 ? '' : v;
-    });
-    ZakatCalculatorUtil().getSilverPrice().then((v) {
-      silverPrice.text = v == 0.0 ? '' : v;
-    });
-
     super.initState();
   }
 
@@ -392,7 +153,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
             tooltip: 'More',
             onPressed: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => SettingScreen()));
+                  MaterialPageRoute(builder: (context) => ZakatListScreen()));
             },
           ),
         ],
@@ -3016,137 +2777,17 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
       // logic here;
     }
 
-    if (_currentStep == 0) {
-      ZakatCalculatorUtil().saveGoldAkhout(
-          goldAkhoutKyatthar.text == '' ? '0.0' : goldAkhoutKyatthar.text,
-          goldAkhoutPae.text == '' ? '0.0' : goldAkhoutPae.text,
-          goldAkhoutYwae.text == '' ? '0.0' : goldAkhoutYwae.text);
-      ZakatCalculatorUtil().saveGoldAHtae(
-          goldAhtaeKyatthar.text == '' ? '0.0' : goldAhtaeKyatthar.text,
-          goldAhtaePae.text == '' ? '0.0' : goldAhtaePae.text,
-          goldAhtaeYwae.text == '' ? '0.0' : goldAhtaeYwae.text);
-      ZakatCalculatorUtil().saveGoldPyitCee(
-          goldPyitceeKyatthar.text == '' ? '0.0' : goldPyitceeKyatthar.text,
-          goldPyitceePae.text == '' ? '0.0' : goldPyitceePae.text,
-          goldPyitceeYwae.text == '' ? '0.0' : goldPyitceeYwae.text);
-    } else if (_currentStep == 1) {
-      ZakatCalculatorUtil().saveWhiteSilverAkhout(
-          whiteSilverAkhoutKyatthar.text == ''
-              ? '0.0'
-              : whiteSilverAkhoutKyatthar.text,
-          whiteSilverAkhoutPae.text == '' ? '0.0' : whiteSilverAkhoutPae.text,
-          whiteSilverAkhoutYwae.text == ''
-              ? '0.0'
-              : whiteSilverAkhoutYwae.text);
-      ZakatCalculatorUtil().saveWhiteSilverAHtae(
-          whiteSilverAhtaeKyatthar.text == ''
-              ? '0.0'
-              : whiteSilverAhtaeKyatthar.text,
-          whiteSilverAhtaePae.text == '' ? '0.0' : whiteSilverAhtaePae.text,
-          whiteSilverAhtaeYwae.text == '' ? '0.0' : whiteSilverAhtaeYwae.text);
-      ZakatCalculatorUtil().saveWhiteSilverPyitCee(
-          whiteSilverPyitceeKyatthar.text == ''
-              ? '0.0'
-              : whiteSilverPyitceeKyatthar.text,
-          whiteSilverPyitceePae.text == '' ? '0.0' : whiteSilverPyitceePae.text,
-          whiteSilverPyitceeYwae.text == ''
-              ? '0.0'
-              : whiteSilverPyitceeYwae.text);
-    } else if (_currentStep == 2) {
-      ZakatCalculatorUtil().saveSilverAkhout(
-          silverAkhoutKyatthar.text == '' ? '0.0' : silverAkhoutKyatthar.text,
-          silverAkhoutPae.text == '' ? '0.0' : silverAkhoutPae.text,
-          silverAkhoutYwae.text == '' ? '0.0' : silverAkhoutYwae.text);
-      ZakatCalculatorUtil().saveSilverAHtae(
-          silverAhtaeKyatthar.text == '' ? '0.0' : silverAhtaeKyatthar.text,
-          silverAhtaePae.text == '' ? '0.0' : silverAhtaePae.text,
-          silverAhtaeYwae.text == '' ? '0.0' : silverAhtaeYwae.text);
-      ZakatCalculatorUtil().saveSilverPyitCee(
-          silverPyitceeKyatthar.text == '' ? '0.0' : silverPyitceeKyatthar.text,
-          silverPyitceePae.text == '' ? '0.0' : silverPyitceePae.text,
-          silverPyitceeYwae.text == '' ? '0.0' : silverPyitceeYwae.text);
-    } else if (_currentStep == 3) {
-      ZakatCalculatorUtil().saveInHand(
-          inHandSuHtarTaw.text == '' ? '0.0' : inHandSuHtarTaw.text,
-          inHandPyitceeSold.text == '' ? '0.0' : inHandPyitceeSold.text,
-          inHandPyitceeBorrow.text == '' ? '0.0' : inHandPyitceeBorrow.text,
-          inHandForeignCurrency.text == '' ? '0.0' : inHandForeignCurrency.text,
-          inHandContract.text == '' ? '0.0' : inHandContract.text,
-          inHandOther.text == '' ? '0.0' : inHandOther.text);
-      ZakatCalculatorUtil().saveInBank(
-          inBankInBank.text == '' ? '0.0' : inBankInBank.text,
-          inBankThuMyarHlwae.text == '' ? '0.0' : inBankThuMyarHlwae.text,
-          inBankSalary.text == '' ? '0.0' : inBankSalary,
-          inBankOther.text == '' ? '0.0' : inBankOther.text);
-      ZakatCalculatorUtil().saveThuMyarPayHtrTawDebt(
-          thuMyarDebtPyitceeSold.text == ''
-              ? '0.0'
-              : thuMyarDebtPyitceeSold.text,
-          thuMyarDebtChayPay.text == '' ? '0.0' : thuMyarDebtChayPay.text,
-          thuMyarDebtAttHtrTaw.text == '' ? '0.0' : thuMyarDebtAttHtrTaw.text,
-          thuMyarDebtOther.text == '' ? '0.0' : thuMyarDebtOther.text);
-    } else if (_currentStep == 4) {
-      ZakatCalculatorUtil().saveRealEstate(
-          realEstateSellHouse.text == '' ? '0.0' : realEstateSellHouse.text,
-          realEstateSellEscort.text == '' ? '0.0' : realEstateSellEscort.text,
-          realEstateSellCar.text == '' ? '0.0' : realEstateSellCar.text,
-          realEstateOther.text == '' ? '0.0' : realEstateOther.text);
-      ZakatCalculatorUtil().saveRaw(
-          rawWearhouse.text == '' ? '0.0' : rawWearhouse.text,
-          rawHome.text == '' ? '0.0' : rawHome.text,
-          rawShop.text == '' ? '0.0' : rawShop.text,
-          rawOther.text == '' ? '0.0' : rawOther.text);
-      ZakatCalculatorUtil().saveFinish(
-          finishWearhouse.text == '' ? '0.0' : finishWearhouse.text,
-          finishHome.text == '' ? '0.0' : finishHome.text,
-          finishShop.text == '' ? '0.0' : finishShop.text,
-          finishAnimal.text == '' ? '0.0' : finishAnimal.text,
-          finishOther.text == '' ? '0.0' : finishOther.text);
-    } else if (_currentStep == 5) {
-      print('animal');
-      setState(() {
-        _resultSateThoe = ZakatCalculatorUtil()
-            .calcZakatForGoatSheep(
-                int.parse(sate.text == '' ? '0' : sate.text) +
-                    int.parse(thoe.text == '' ? '0' : thoe.text))
-            .toString();
-
-        _resultKywaeNwar = ZakatCalculatorUtil().calcZakatForKywaeNwar(
-            int.parse(kywae.text == '' ? '0' : kywae.text) +
-                int.parse(nwar.text == '' ? '0' : nwar.text));
-
-        _resultKalaout = ZakatCalculatorUtil().calcZakatForKalaout(
-            int.parse(kalaout.text == '' ? '0' : kalaout.text));
-      });
-    } else if (_currentStep == 6) {
-      ZakatCalculatorUtil().saveMinus(
-          minusDebtMahur.text == '' ? '0.0' : minusDebtMahur.text,
-          minusDebt.text == '' ? '0.0' : minusDebt.text,
-          minusSukyae.text == '' ? '0.0' : minusSukyae.text,
-          minusMeterBill.text == '' ? '0.0' : minusMeterBill.text,
-          minusPaybill.text == '' ? '0.0' : minusPaybill.text,
-          minusPaySalary.text == '' ? '0.0' : minusPaySalary.text,
-          minusPayRent.text == '' ? '0.0' : minusPayRent.text,
-          minusBuyGoodPay.text == '' ? '0.0' : minusBuyGoodPay.text,
-          minusPreZakat.text == '' ? '0.0' : minusPreZakat.text);
-    } else if (_currentStep == 7) {
+    if (_currentStep == 7) {
       if (_optionAuto) {
-        ZakatCalculatorUtil().saveGoldPrice(
-            ZakatCalculatorUtil().getRate(goldRate, usdRate).toString());
-        ZakatCalculatorUtil().saveSilverPrice(
-            ZakatCalculatorUtil().getRate(silverRate, usdRate).toString());
         goldPrice.text =
             ZakatCalculatorUtil().getRate(goldRate, usdRate).toString();
         silverPrice.text =
             ZakatCalculatorUtil().getRate(silverRate, usdRate).toString();
-      } else {
-        ZakatCalculatorUtil().saveGoldPrice(goldPrice.text);
-        ZakatCalculatorUtil().saveSilverPrice(silverPrice.text);
-      }
+      } else {}
       setState(() {
         _result = ZakatCalculatorUtil()
             .calcFinalZakatAmount(
-                ZakatCalculatorUtil().getTotalGoldPlatinum2(
+                ZakatCalculatorUtil().getTotalGoldPlatinum(
                   double.parse(goldPrice.text == '' ? '0.0' : goldPrice.text),
                   double.parse(goldAkhoutKyatthar.text == ''
                       ? '0.0'
@@ -3198,7 +2839,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       ? '0.0'
                       : whiteSilverPyitceeYwae.text),
                 ),
-                ZakatCalculatorUtil().getTotalSilverMoneyOther2(
+                ZakatCalculatorUtil().getTotalSilverMoneyOther(
                     double.parse(
                         silverPrice.text == '' ? '0.0' : silverPrice.text),
                     double.parse(silverAkhoutKyatthar.text == ''
@@ -3270,19 +2911,151 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     double.parse(finishShop.text == '' ? '0.0' : finishShop.text),
                     double.parse(finishAnimal.text == '' ? '0.0' : finishAnimal.text),
                     double.parse(finishOther.text == '' ? '0.0' : finishOther.text)),
-                ZakatCalculatorUtil().getTotalMinus2(double.parse(minusDebtMahur.text == '' ? '0.0' : minusDebtMahur.text), double.parse(minusDebt.text == '' ? '0.0' : minusDebt.text), double.parse(minusSukyae.text == '' ? '0.0' : minusSukyae.text), double.parse(minusMeterBill.text == '' ? '0.0' : minusMeterBill.text), double.parse(minusPaybill.text == '' ? '0.0' : minusPaybill.text), double.parse(minusPaySalary.text == '' ? '0.0' : minusPaySalary.text), double.parse(minusPayRent.text == '' ? '0.0' : minusPayRent.text), double.parse(minusBuyGoodPay.text == '' ? '0.0' : minusBuyGoodPay.text), double.parse(minusPreZakat.text == '' ? '0.0' : minusPreZakat.text)),
+                ZakatCalculatorUtil().getTotalMinus(double.parse(minusDebtMahur.text == '' ? '0.0' : minusDebtMahur.text), double.parse(minusDebt.text == '' ? '0.0' : minusDebt.text), double.parse(minusSukyae.text == '' ? '0.0' : minusSukyae.text), double.parse(minusMeterBill.text == '' ? '0.0' : minusMeterBill.text), double.parse(minusPaybill.text == '' ? '0.0' : minusPaybill.text), double.parse(minusPaySalary.text == '' ? '0.0' : minusPaySalary.text), double.parse(minusPayRent.text == '' ? '0.0' : minusPayRent.text), double.parse(minusBuyGoodPay.text == '' ? '0.0' : minusBuyGoodPay.text), double.parse(minusPreZakat.text == '' ? '0.0' : minusPreZakat.text)),
                 double.parse(goldPrice.text),
                 double.parse(silverPrice.text))
             .toString();
       });
     } else if (_currentStep == 8) {
-      _capturePng().then((value) => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  DisplayPictureScreen(imageAnalysed: value.toString()),
-            ),
-          ));
+      Map<String, dynamic> row = {
+        DatabaseHelper.zakatId: new DateTime.now().millisecondsSinceEpoch,
+        DatabaseHelper.goldAkhoutKyatthar:
+            goldAkhoutKyatthar.text != '' ? goldAkhoutKyatthar.text : 0.0,
+        DatabaseHelper.goldAkhoutPae:
+            goldAkhoutPae.text != '' ? goldAkhoutPae.text : 0.0,
+        DatabaseHelper.goldAkhoutYwae:
+            goldAkhoutYwae.text != '' ? goldAkhoutYwae.text : 0.0,
+        DatabaseHelper.goldAhtaeKyatthar:
+            goldAhtaeKyatthar.text != '' ? goldAhtaeKyatthar.text : 0.0,
+        DatabaseHelper.goldAhtaePae:
+            goldAhtaePae.text != '' ? goldAhtaePae.text : 0.0,
+        DatabaseHelper.goldAhtaeYwae:
+            goldAhtaeYwae.text != '' ? goldAhtaeYwae.text : 0.0,
+        DatabaseHelper.goldPyitceeKyatthar:
+            goldPyitceeKyatthar.text != '' ? goldPyitceeKyatthar.text : 0.0,
+        DatabaseHelper.goldPyitceePae:
+            goldPyitceePae.text != '' ? goldPyitceePae.text : 0.0,
+        DatabaseHelper.goldPyitceeYwae:
+            goldPyitceeYwae.text != '' ? goldPyitceeYwae.text : 0.0,
+        DatabaseHelper.whiteSilverAkhoutKyatthar:
+            whiteSilverAkhoutKyatthar.text != ''
+                ? whiteSilverAkhoutKyatthar.text
+                : 0.0,
+        DatabaseHelper.whiteSilverAkhoutPae:
+            whiteSilverAkhoutPae.text != '' ? whiteSilverAkhoutPae.text : 0.0,
+        DatabaseHelper.whiteSilverAkhoutYwae:
+            whiteSilverAkhoutYwae.text != '' ? whiteSilverAkhoutYwae.text : 0.0,
+        DatabaseHelper.whiteSilverAhtaeKyatthar:
+            whiteSilverAhtaeKyatthar.text != ''
+                ? whiteSilverAhtaeKyatthar.text
+                : 0.0,
+        DatabaseHelper.whiteSilverAhtaePae:
+            whiteSilverAhtaePae.text != '' ? whiteSilverAhtaePae.text : 0.0,
+        DatabaseHelper.whiteSilverAhtaeYwae:
+            whiteSilverAhtaeYwae.text != '' ? whiteSilverAhtaeYwae.text : 0.0,
+        DatabaseHelper.whiteSilverPyitceeKyatthar:
+            whiteSilverPyitceeKyatthar.text != ''
+                ? whiteSilverPyitceeKyatthar.text
+                : 0.0,
+        DatabaseHelper.whiteSilverPyitceePae:
+            whiteSilverPyitceePae.text != '' ? whiteSilverPyitceePae.text : 0.0,
+        DatabaseHelper.whiteSilverPyitceeYwae: whiteSilverPyitceeYwae.text != ''
+            ? whiteSilverPyitceeYwae.text
+            : 0.0,
+        DatabaseHelper.silverAkhoutKyatthar:
+            silverAkhoutKyatthar.text != '' ? silverAkhoutKyatthar.text : 0.0,
+        DatabaseHelper.silverAkhoutPae:
+            silverAkhoutPae.text != '' ? silverAkhoutPae.text : 0.0,
+        DatabaseHelper.silverAkhoutYwae:
+            silverAkhoutYwae.text != '' ? silverAkhoutYwae.text : 0.0,
+        DatabaseHelper.silverAhtaeKyatthar:
+            silverAhtaeKyatthar.text != '' ? silverAhtaeKyatthar.text : 0.0,
+        DatabaseHelper.silverAhtaePae:
+            silverAhtaePae.text != '' ? silverAhtaePae.text : 0.0,
+        DatabaseHelper.silverAhtaeYwae:
+            silverAhtaeYwae.text != '' ? silverAhtaeYwae.text : 0.0,
+        DatabaseHelper.silverPyitceeKyatthar:
+            silverPyitceeKyatthar.text != '' ? silverPyitceeKyatthar.text : 0.0,
+        DatabaseHelper.silverPyitceePae:
+            silverPyitceePae.text != '' ? silverPyitceePae.text : 0.0,
+        DatabaseHelper.silverPyitceeYwae:
+            silverPyitceeYwae.text != '' ? silverPyitceeYwae.text : 0.0,
+        DatabaseHelper.inHandSuHtarTaw:
+            inHandSuHtarTaw.text != '' ? inHandSuHtarTaw.text : 0.0,
+        DatabaseHelper.inHandPyitceeSold:
+            inHandPyitceeSold.text != '' ? inHandPyitceeSold.text : 0.0,
+        DatabaseHelper.inHandPyitceeBorrow:
+            inHandPyitceeBorrow.text != '' ? inHandPyitceeBorrow.text : 0.0,
+        DatabaseHelper.inHandForeignCurrency:
+            inHandForeignCurrency.text != '' ? inHandForeignCurrency.text : 0.0,
+        DatabaseHelper.inHandContract:
+            inHandContract.text != '' ? inHandContract.text : 0.0,
+        DatabaseHelper.inHandOther:
+            inHandOther.text != '' ? inHandOther.text : 0.0,
+        DatabaseHelper.inBankInBank:
+            inBankInBank.text != '' ? inBankInBank.text : 0.0,
+        DatabaseHelper.inBankThuMyarHlwae:
+            inBankThuMyarHlwae.text != '' ? inBankThuMyarHlwae.text : 0.0,
+        DatabaseHelper.inBankSalary:
+            inBankSalary.text != '' ? inBankSalary.text : 0.0,
+        DatabaseHelper.inBankOther:
+            inBankOther.text != '' ? inBankOther.text : 0.0,
+        DatabaseHelper.thuMyarDebtPyitceeSold: thuMyarDebtPyitceeSold.text != ''
+            ? thuMyarDebtPyitceeSold.text
+            : 0.0,
+        DatabaseHelper.thuMyarDebtChayPay:
+            thuMyarDebtChayPay.text != '' ? thuMyarDebtChayPay.text : 0.0,
+        DatabaseHelper.thuMyarDebtAttHtrTaw:
+            thuMyarDebtAttHtrTaw.text != '' ? thuMyarDebtAttHtrTaw.text : 0.0,
+        DatabaseHelper.thuMyarDebtOther:
+            thuMyarDebtOther.text != '' ? thuMyarDebtOther.text : 0.0,
+        DatabaseHelper.realEstateSellHouse:
+            realEstateSellHouse.text != '' ? realEstateSellHouse.text : 0.0,
+        DatabaseHelper.realEstateSellEscort:
+            realEstateSellEscort.text != '' ? realEstateSellEscort.text : 0.0,
+        DatabaseHelper.realEstateSellCar:
+            realEstateSellCar.text != '' ? realEstateSellCar.text : 0.0,
+        DatabaseHelper.realEstateOther:
+            realEstateOther.text != '' ? realEstateOther.text : 0.0,
+        DatabaseHelper.rawWearhouse:
+            rawWearhouse.text != '' ? rawWearhouse.text : 0.0,
+        DatabaseHelper.rawHome: rawHome.text != '' ? rawHome.text : 0.0,
+        DatabaseHelper.rawShop: rawShop.text != '' ? rawShop.text : 0.0,
+        DatabaseHelper.rawOther: rawOther.text != '' ? rawOther.text : 0.0,
+        DatabaseHelper.finishWearhouse:
+            finishWearhouse.text != '' ? finishWearhouse.text : 0.0,
+        DatabaseHelper.finishHome:
+            finishHome.text != '' ? finishHome.text : 0.0,
+        DatabaseHelper.finishShop:
+            finishShop.text != '' ? finishShop.text : 0.0,
+        DatabaseHelper.finishAnimal:
+            finishAnimal.text != '' ? finishAnimal.text : 0.0,
+        DatabaseHelper.finishOther:
+            finishOther.text != '' ? finishOther.text : 0.0,
+        DatabaseHelper.sate: sate.text != '' ? sate.text : 0.0,
+        DatabaseHelper.thoe: thoe.text != '' ? thoe.text : 0.0,
+        DatabaseHelper.kalaout: kalaout.text != '' ? kalaout.text : 0.0,
+        DatabaseHelper.minusDebtMahur:
+            minusDebtMahur.text != '' ? minusDebtMahur.text : 0.0,
+        DatabaseHelper.minusDebt: minusDebt.text != '' ? minusDebt.text : 0.0,
+        DatabaseHelper.minusSukyae:
+            minusSukyae.text != '' ? minusSukyae.text : 0.0,
+        DatabaseHelper.minusMeterBill:
+            minusMeterBill.text != '' ? minusMeterBill.text : 0.0,
+        DatabaseHelper.minusPaybill:
+            minusPaybill.text != '' ? minusPaybill.text : 0.0,
+        DatabaseHelper.minusPaySalary:
+            minusPaySalary.text != '' ? minusPaySalary.text : 0.0,
+        DatabaseHelper.minusPayRent:
+            minusPayRent.text != '' ? minusPayRent.text : 0.0,
+        DatabaseHelper.minusBuyGoodPay:
+            minusBuyGoodPay.text != '' ? minusBuyGoodPay.text : 0.0,
+        DatabaseHelper.minusPreZakat:
+            minusPreZakat.text != '' ? minusPreZakat.text : 0.0
+      };
+      dbHelper.insertZakat(row);
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => ZakatListScreen()));
     }
 
     _currentStep < 8 ? setState(() => _currentStep += 1) : null;
@@ -3290,24 +3063,5 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
 
   cancel() {
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
-  }
-
-  Future<String?> _capturePng() async {
-    try {
-      print('inside');
-      RenderRepaintBoundary? boundary = _globalKey.currentContext!
-          .findRenderObject() as RenderRepaintBoundary?;
-      ui.Image image = await boundary!.toImage(pixelRatio: 3.0);
-      ByteData? byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
-      var pngBytes = byteData!.buffer.asUint8List();
-      var bs64 = base64Encode(pngBytes);
-      print(pngBytes);
-      print(bs64);
-      setState(() {});
-      return bs64;
-    } catch (e) {
-      return null;
-    }
   }
 }
