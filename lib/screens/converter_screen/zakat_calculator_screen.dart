@@ -3051,7 +3051,13 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
         DatabaseHelper.minusBuyGoodPay:
             minusBuyGoodPay.text != '' ? minusBuyGoodPay.text : 0.0,
         DatabaseHelper.minusPreZakat:
-            minusPreZakat.text != '' ? minusPreZakat.text : 0.0
+            minusPreZakat.text != '' ? minusPreZakat.text : 0.0,
+        DatabaseHelper.createdAt: DateTime.now().toString(),
+        DatabaseHelper.updatedAt: DateTime.now().toString(),
+        DatabaseHelper.goldRate: 12312312.0,
+        DatabaseHelper.silverRate: 12312312.0,
+        DatabaseHelper.yourWorth: 12312312.0,
+        DatabaseHelper.yourZakat: 12312312.0
       };
       dbHelper.insertZakat(row);
       Navigator.of(context)

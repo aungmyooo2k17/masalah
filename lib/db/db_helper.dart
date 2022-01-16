@@ -93,6 +93,13 @@ class DatabaseHelper {
   static final minusPayRent = 'minusPayRent';
   static final minusBuyGoodPay = 'minusBuyGoodPay';
   static final minusPreZakat = 'minusPreZakat';
+  static final createdAt = 'createdAt';
+  static final updatedAt = 'updatedAt';
+  static final goldRate = 'goldRate';
+  static final silverRate = 'silverRate';
+  static final yourWorth = 'yourWorth';
+  static final yourZakat = 'yourZakat';
+
   // make this a singleton class
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -201,7 +208,13 @@ class DatabaseHelper {
             $minusPaySalary Double NOT NULL,
             $minusPayRent Double NOT NULL,
             $minusBuyGoodPay Double NOT NULL,
-            $minusPreZakat Double NOT NULL
+            $minusPreZakat Double NOT NULL,
+            $createdAt String NOT NULL,
+            $updatedAt String NOT NULL,
+            $goldRate Double NOT NULL,
+            $silverRate Double NOT NULL,
+            $yourWorth Double NOT NULL,
+            $yourZakat Double NOT NULL
           )
           ''');
   }
@@ -258,6 +271,15 @@ class DatabaseHelper {
     return Result<List<Zakat>>.success(data);
   }
 
+  Future<Result> queryZakatById(String id) async {
+    Database db = await instance.database;
+    final d =
+        await db.query(zakatTable, where: '$zakatId = ?', whereArgs: ['$id']);
+
+    List<Zakat> data = d.map((i) => Zakat.fromJson(i)).toList();
+    return Result<Zakat>.success(data.first);
+  }
+
   // All of the methods (insert, query, update, delete) can also be done using
   // raw SQL commands. This method uses a raw query to give the row count.
   Future<int?> queryCategoryRowCount() async {
@@ -292,6 +314,13 @@ class DatabaseHelper {
     int id = row[masalahId];
     return await db.update(masalahDataTable, row,
         where: '$masalahId = ?', whereArgs: [id]);
+  }
+
+  Future<int> updateZakat(Map<String, dynamic> row) async {
+    Database db = await instance.database;
+    String id = row[zakatId];
+    return await db
+        .update(zakatTable, row, where: '$zakatId = ?', whereArgs: [id]);
   }
 
   // Deletes the row specified by the id. The number of affected rows is
