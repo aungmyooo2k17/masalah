@@ -99,7 +99,10 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
                       color: AppColors.secondaryText,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        dbHelper.deleteZakat(zakat.zakatId!);
+                        setState(() {});
+                      },
                       child: Icon(
                         Icons.delete,
                         color: Colors.red,

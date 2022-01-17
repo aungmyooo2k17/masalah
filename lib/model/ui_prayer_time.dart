@@ -1,7 +1,7 @@
 class UiPrayerTimeItem {
   final String name;
   final String currentPrayerTime;
-  final bool isCurrentPrayerTime ;
+  final bool isCurrentPrayerTime;
   final bool isMuteForCurrentPrayer;
 
   UiPrayerTimeItem(
@@ -16,12 +16,14 @@ class UiPrayerTimeItemCard {
   final String currentPrayerImage;
   final String nextPrayerName;
   final String nextPrayerTime;
+  final String location;
 
   UiPrayerTimeItemCard(
       {required this.currentPrayerTimeItem,
       required this.nextPrayerName,
       required this.nextPrayerTime,
-      required this.currentPrayerImage});
+      required this.currentPrayerImage,
+      required this.location});
 }
 
 calculatingCurrentPrayerTime() {}

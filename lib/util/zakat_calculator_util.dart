@@ -33,22 +33,42 @@ class ZakatCalculatorUtil {
     return calcOneYwaePrice(silver) * 4715.5;
   }
 
-  calcFinalZakatAmount(
+  Map<String, String> calcFinalZakatAmount(
       totalGoldPlatinum, totalSilverOther, totalMinus, goldPrice, silverPrice) {
+    double totalAmount = (totalGoldPlatinum + totalSilverOther) - totalMinus;
+    Map<String, String> resultMap = {"result": "", "netWorth": ""};
+
     if (totalSilverOther == 0) {
       if (totalGoldPlatinum >= goldZakatAmount(goldPrice)) {
-        return totalGoldPlatinum / 40;
+        resultMap['result'] = (totalGoldPlatinum / 40).toString();
+        resultMap['netWorth'] = totalAmount.toString();
+
+        return resultMap;
       } else {
-        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
+        resultMap['result'] = "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
+        resultMap['netWorth'] = totalAmount.toString();
+
+        return resultMap;
       }
     } else {
-      double totalAmount = (totalGoldPlatinum + totalSilverOther) - totalMinus;
       if (totalAmount >= silverZakatAmount(silverPrice)) {
-        return totalAmount / 40;
+        resultMap['result'] = (totalAmount / 40).toString();
+        resultMap['netWorth'] = totalAmount.toString();
+
+        return resultMap;
       } else {
-        return "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
+        resultMap['result'] = "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
+        resultMap['netWorth'] = totalAmount.toString();
+
+        return resultMap;
       }
     }
+  }
+
+  totalWorth(totalGoldPlatinum, totalSilverOther, totalMinus) {
+    double totalAmount = (totalGoldPlatinum + totalSilverOther) - totalMinus;
+
+    return totalAmount;
   }
 
   getTotalGoldPlatinum(

@@ -84,6 +84,8 @@ class DatabaseHelper {
   static final sate = 'sate';
   static final thoe = 'thoe';
   static final kalaout = 'kalaout';
+  static final kywae = 'kywae';
+  static final nwar = 'nwar';
   static final minusDebtMahur = 'minusDebtMahur';
   static final minusDebt = 'minusDebt';
   static final minusSukyae = 'minusSukyae';
@@ -200,6 +202,8 @@ class DatabaseHelper {
             $sate Double NOT NULL,
             $thoe Double NOT NULL,
             $kalaout Double NOT NULL,
+            $kywae Double NOT NULL,
+            $nwar Double NOT NULL,
             $minusDebtMahur Double NOT NULL,
             $minusDebt Double NOT NULL,
             $minusSukyae Double NOT NULL,
@@ -316,9 +320,8 @@ class DatabaseHelper {
         where: '$masalahId = ?', whereArgs: [id]);
   }
 
-  Future<int> updateZakat(Map<String, dynamic> row) async {
+  Future<int> updateZakat(Map<String, dynamic> row, String id) async {
     Database db = await instance.database;
-    String id = row[zakatId];
     return await db
         .update(zakatTable, row, where: '$zakatId = ?', whereArgs: [id]);
   }
@@ -335,5 +338,10 @@ class DatabaseHelper {
     Database db = await instance.database;
     return await db
         .delete(masalahDataTable, where: '$masalahId = ?', whereArgs: [id]);
+  }
+
+  Future<int> deleteZakat(String id) async {
+    Database db = await instance.database;
+    return await db.delete(zakatTable, where: '$zakatId = ?', whereArgs: [id]);
   }
 }

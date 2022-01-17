@@ -20,7 +20,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
   StepperType stepperType = StepperType.vertical;
   final dbHelper = DatabaseHelper.instance;
 
-  String _result = "";
+  late Map<String, String> _result = {"result": "", "netWorth": ""};
   String _resultSateThoe = "";
   String _resultKywaeNwar = "";
   String _resultKalaout = "";
@@ -2740,7 +2740,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       width: 16,
                     ),
                     BoldText(
-                      data: _result +
+                      data: _result['result']! +
                           "\n" +
                           _resultKalaout +
                           "\n" +
@@ -2785,136 +2785,129 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
             ZakatCalculatorUtil().getRate(silverRate, usdRate).toString();
       } else {}
       setState(() {
-        _result = ZakatCalculatorUtil()
-            .calcFinalZakatAmount(
-                ZakatCalculatorUtil().getTotalGoldPlatinum(
-                  double.parse(goldPrice.text == '' ? '0.0' : goldPrice.text),
-                  double.parse(goldAkhoutKyatthar.text == ''
-                      ? '0.0'
-                      : goldAkhoutKyatthar.text),
-                  double.parse(
-                      goldAkhoutPae.text == '' ? '0.0' : goldAkhoutPae.text),
-                  double.parse(
-                      goldAkhoutYwae.text == '' ? '0.0' : goldAkhoutYwae.text),
-                  double.parse(goldAhtaeKyatthar.text == ''
-                      ? '0.0'
-                      : goldAhtaeKyatthar.text),
-                  double.parse(
-                      goldAhtaePae.text == '' ? '0.0' : goldAhtaePae.text),
-                  double.parse(
-                      goldAhtaeYwae.text == '' ? '0.0' : goldAhtaeYwae.text),
-                  double.parse(goldPyitceeKyatthar.text == ''
-                      ? '0.0'
-                      : goldPyitceeKyatthar.text),
-                  double.parse(
-                      goldPyitceePae.text == '' ? '0.0' : goldPyitceePae.text),
-                  double.parse(goldPyitceeYwae.text == ''
-                      ? '0.0'
-                      : goldPyitceeYwae.text),
-                  double.parse(whiteSilverAkhoutKyatthar.text == ''
-                      ? '0.0'
-                      : whiteSilverAkhoutKyatthar.text),
-                  double.parse(whiteSilverAkhoutPae.text == ''
-                      ? '0.0'
-                      : whiteSilverAkhoutPae.text),
-                  double.parse(whiteSilverAkhoutYwae.text == ''
-                      ? '0.0'
-                      : whiteSilverAkhoutYwae.text),
-                  double.parse(whiteSilverAhtaeKyatthar.text == ''
-                      ? '0.0'
-                      : whiteSilverAhtaeKyatthar.text),
-                  double.parse(whiteSilverAhtaePae.text == ''
-                      ? '0.0'
-                      : whiteSilverAhtaePae.text),
-                  double.parse(whiteSilverAhtaeYwae.text == ''
-                      ? '0.0'
-                      : whiteSilverAhtaeYwae.text),
-                  double.parse(whiteSilverPyitceeKyatthar.text == ''
-                      ? '0.0'
-                      : whiteSilverPyitceeKyatthar.text),
-                  double.parse(whiteSilverPyitceePae.text == ''
-                      ? '0.0'
-                      : whiteSilverPyitceePae.text),
-                  double.parse(whiteSilverPyitceeYwae.text == ''
-                      ? '0.0'
-                      : whiteSilverPyitceeYwae.text),
-                ),
-                ZakatCalculatorUtil().getTotalSilverMoneyOther(
-                    double.parse(
-                        silverPrice.text == '' ? '0.0' : silverPrice.text),
-                    double.parse(silverAkhoutKyatthar.text == ''
-                        ? '0.0'
-                        : silverAkhoutKyatthar.text),
-                    double.parse(silverAkhoutPae.text == ''
-                        ? '0.0'
-                        : silverAkhoutPae.text),
-                    double.parse(silverAkhoutYwae.text == ''
-                        ? '0.0'
-                        : silverAkhoutYwae.text),
-                    double.parse(silverAhtaeKyatthar.text == ''
-                        ? '0.0'
-                        : silverAhtaeKyatthar.text),
-                    double.parse(silverAhtaePae.text == ''
-                        ? '0.0'
-                        : silverAhtaePae.text),
-                    double.parse(silverAhtaeYwae.text == ''
-                        ? '0.0'
-                        : silverAhtaeYwae.text),
-                    double.parse(silverPyitceeKyatthar.text == ''
-                        ? '0.0'
-                        : silverPyitceeKyatthar.text),
-                    double.parse(silverPyitceePae.text == ''
-                        ? '0.0'
-                        : silverPyitceePae.text),
-                    double.parse(silverPyitceeYwae.text == ''
-                        ? '0.0'
-                        : silverPyitceeYwae.text),
-                    double.parse(inHandSuHtarTaw.text == ''
-                        ? '0.0'
-                        : inHandSuHtarTaw.text),
-                    double.parse(inHandPyitceeSold.text == ''
-                        ? '0.0'
-                        : inHandPyitceeSold.text),
-                    double.parse(inHandPyitceeBorrow.text == ''
-                        ? '0.0'
-                        : inHandPyitceeBorrow.text),
-                    double.parse(inHandForeignCurrency.text == ''
-                        ? '0.0'
-                        : inHandForeignCurrency.text),
-                    double.parse(inHandContract.text == ''
-                        ? '0.0'
-                        : inHandContract.text),
-                    double.parse(
-                        inHandOther.text == '' ? '0.0' : inHandOther.text),
-                    double.parse(
-                        inBankInBank.text == '' ? '0.0' : inBankInBank.text),
-                    double.parse(inBankThuMyarHlwae.text == ''
-                        ? '0.0'
-                        : inBankThuMyarHlwae.text),
-                    double.parse(
-                        inBankSalary.text == '' ? '0.0' : inBankSalary.text),
-                    double.parse(inBankOther.text == '' ? '0.0' : inBankOther.text),
-                    double.parse(thuMyarDebtPyitceeSold.text == '' ? '0.0' : thuMyarDebtPyitceeSold.text),
-                    double.parse(thuMyarDebtChayPay.text == '' ? '0.0' : thuMyarDebtChayPay.text),
-                    double.parse(thuMyarDebtAttHtrTaw.text == '' ? '0.0' : thuMyarDebtAttHtrTaw.text),
-                    double.parse(thuMyarDebtOther.text == '' ? '0.0' : thuMyarDebtOther.text),
-                    double.parse(realEstateSellHouse.text == '' ? '0.0' : realEstateSellHouse.text),
-                    double.parse(realEstateSellEscort.text == '' ? '0.0' : realEstateSellEscort.text),
-                    double.parse(realEstateSellCar.text == '' ? '0.0' : realEstateSellCar.text),
-                    double.parse(realEstateOther.text == '' ? '0.0' : realEstateOther.text),
-                    double.parse(rawWearhouse.text == '' ? '0.0' : rawWearhouse.text),
-                    double.parse(rawHome.text == '' ? '0.0' : rawHome.text),
-                    double.parse(rawShop.text == '' ? '0.0' : rawShop.text),
-                    double.parse(rawOther.text == '' ? '0.0' : rawOther.text),
-                    double.parse(finishWearhouse.text == '' ? '0.0' : finishWearhouse.text),
-                    double.parse(finishHome.text == '' ? '0.0' : finishHome.text),
-                    double.parse(finishShop.text == '' ? '0.0' : finishShop.text),
-                    double.parse(finishAnimal.text == '' ? '0.0' : finishAnimal.text),
-                    double.parse(finishOther.text == '' ? '0.0' : finishOther.text)),
-                ZakatCalculatorUtil().getTotalMinus(double.parse(minusDebtMahur.text == '' ? '0.0' : minusDebtMahur.text), double.parse(minusDebt.text == '' ? '0.0' : minusDebt.text), double.parse(minusSukyae.text == '' ? '0.0' : minusSukyae.text), double.parse(minusMeterBill.text == '' ? '0.0' : minusMeterBill.text), double.parse(minusPaybill.text == '' ? '0.0' : minusPaybill.text), double.parse(minusPaySalary.text == '' ? '0.0' : minusPaySalary.text), double.parse(minusPayRent.text == '' ? '0.0' : minusPayRent.text), double.parse(minusBuyGoodPay.text == '' ? '0.0' : minusBuyGoodPay.text), double.parse(minusPreZakat.text == '' ? '0.0' : minusPreZakat.text)),
-                double.parse(goldPrice.text),
-                double.parse(silverPrice.text))
-            .toString();
+        _result = ZakatCalculatorUtil().calcFinalZakatAmount(
+            ZakatCalculatorUtil().getTotalGoldPlatinum(
+              double.parse(goldPrice.text == '' ? '0.0' : goldPrice.text),
+              double.parse(goldAkhoutKyatthar.text == ''
+                  ? '0.0'
+                  : goldAkhoutKyatthar.text),
+              double.parse(
+                  goldAkhoutPae.text == '' ? '0.0' : goldAkhoutPae.text),
+              double.parse(
+                  goldAkhoutYwae.text == '' ? '0.0' : goldAkhoutYwae.text),
+              double.parse(goldAhtaeKyatthar.text == ''
+                  ? '0.0'
+                  : goldAhtaeKyatthar.text),
+              double.parse(goldAhtaePae.text == '' ? '0.0' : goldAhtaePae.text),
+              double.parse(
+                  goldAhtaeYwae.text == '' ? '0.0' : goldAhtaeYwae.text),
+              double.parse(goldPyitceeKyatthar.text == ''
+                  ? '0.0'
+                  : goldPyitceeKyatthar.text),
+              double.parse(
+                  goldPyitceePae.text == '' ? '0.0' : goldPyitceePae.text),
+              double.parse(
+                  goldPyitceeYwae.text == '' ? '0.0' : goldPyitceeYwae.text),
+              double.parse(whiteSilverAkhoutKyatthar.text == ''
+                  ? '0.0'
+                  : whiteSilverAkhoutKyatthar.text),
+              double.parse(whiteSilverAkhoutPae.text == ''
+                  ? '0.0'
+                  : whiteSilverAkhoutPae.text),
+              double.parse(whiteSilverAkhoutYwae.text == ''
+                  ? '0.0'
+                  : whiteSilverAkhoutYwae.text),
+              double.parse(whiteSilverAhtaeKyatthar.text == ''
+                  ? '0.0'
+                  : whiteSilverAhtaeKyatthar.text),
+              double.parse(whiteSilverAhtaePae.text == ''
+                  ? '0.0'
+                  : whiteSilverAhtaePae.text),
+              double.parse(whiteSilverAhtaeYwae.text == ''
+                  ? '0.0'
+                  : whiteSilverAhtaeYwae.text),
+              double.parse(whiteSilverPyitceeKyatthar.text == ''
+                  ? '0.0'
+                  : whiteSilverPyitceeKyatthar.text),
+              double.parse(whiteSilverPyitceePae.text == ''
+                  ? '0.0'
+                  : whiteSilverPyitceePae.text),
+              double.parse(whiteSilverPyitceeYwae.text == ''
+                  ? '0.0'
+                  : whiteSilverPyitceeYwae.text),
+            ),
+            ZakatCalculatorUtil().getTotalSilverMoneyOther(
+                double.parse(silverPrice.text == '' ? '0.0' : silverPrice.text),
+                double.parse(silverAkhoutKyatthar.text == ''
+                    ? '0.0'
+                    : silverAkhoutKyatthar.text),
+                double.parse(
+                    silverAkhoutPae.text == '' ? '0.0' : silverAkhoutPae.text),
+                double.parse(silverAkhoutYwae.text == ''
+                    ? '0.0'
+                    : silverAkhoutYwae.text),
+                double.parse(silverAhtaeKyatthar.text == ''
+                    ? '0.0'
+                    : silverAhtaeKyatthar.text),
+                double.parse(
+                    silverAhtaePae.text == '' ? '0.0' : silverAhtaePae.text),
+                double.parse(
+                    silverAhtaeYwae.text == '' ? '0.0' : silverAhtaeYwae.text),
+                double.parse(silverPyitceeKyatthar.text == ''
+                    ? '0.0'
+                    : silverPyitceeKyatthar.text),
+                double.parse(silverPyitceePae.text == ''
+                    ? '0.0'
+                    : silverPyitceePae.text),
+                double.parse(silverPyitceeYwae.text == ''
+                    ? '0.0'
+                    : silverPyitceeYwae.text),
+                double.parse(
+                    inHandSuHtarTaw.text == '' ? '0.0' : inHandSuHtarTaw.text),
+                double.parse(inHandPyitceeSold.text == ''
+                    ? '0.0'
+                    : inHandPyitceeSold.text),
+                double.parse(inHandPyitceeBorrow.text == ''
+                    ? '0.0'
+                    : inHandPyitceeBorrow.text),
+                double.parse(inHandForeignCurrency.text == ''
+                    ? '0.0'
+                    : inHandForeignCurrency.text),
+                double.parse(
+                    inHandContract.text == '' ? '0.0' : inHandContract.text),
+                double.parse(inHandOther.text == '' ? '0.0' : inHandOther.text),
+                double.parse(
+                    inBankInBank.text == '' ? '0.0' : inBankInBank.text),
+                double.parse(inBankThuMyarHlwae.text == ''
+                    ? '0.0'
+                    : inBankThuMyarHlwae.text),
+                double.parse(
+                    inBankSalary.text == '' ? '0.0' : inBankSalary.text),
+                double.parse(inBankOther.text == '' ? '0.0' : inBankOther.text),
+                double.parse(thuMyarDebtPyitceeSold.text == ''
+                    ? '0.0'
+                    : thuMyarDebtPyitceeSold.text),
+                double.parse(thuMyarDebtChayPay.text == ''
+                    ? '0.0'
+                    : thuMyarDebtChayPay.text),
+                double.parse(thuMyarDebtAttHtrTaw.text == '' ? '0.0' : thuMyarDebtAttHtrTaw.text),
+                double.parse(thuMyarDebtOther.text == '' ? '0.0' : thuMyarDebtOther.text),
+                double.parse(realEstateSellHouse.text == '' ? '0.0' : realEstateSellHouse.text),
+                double.parse(realEstateSellEscort.text == '' ? '0.0' : realEstateSellEscort.text),
+                double.parse(realEstateSellCar.text == '' ? '0.0' : realEstateSellCar.text),
+                double.parse(realEstateOther.text == '' ? '0.0' : realEstateOther.text),
+                double.parse(rawWearhouse.text == '' ? '0.0' : rawWearhouse.text),
+                double.parse(rawHome.text == '' ? '0.0' : rawHome.text),
+                double.parse(rawShop.text == '' ? '0.0' : rawShop.text),
+                double.parse(rawOther.text == '' ? '0.0' : rawOther.text),
+                double.parse(finishWearhouse.text == '' ? '0.0' : finishWearhouse.text),
+                double.parse(finishHome.text == '' ? '0.0' : finishHome.text),
+                double.parse(finishShop.text == '' ? '0.0' : finishShop.text),
+                double.parse(finishAnimal.text == '' ? '0.0' : finishAnimal.text),
+                double.parse(finishOther.text == '' ? '0.0' : finishOther.text)),
+            ZakatCalculatorUtil().getTotalMinus(double.parse(minusDebtMahur.text == '' ? '0.0' : minusDebtMahur.text), double.parse(minusDebt.text == '' ? '0.0' : minusDebt.text), double.parse(minusSukyae.text == '' ? '0.0' : minusSukyae.text), double.parse(minusMeterBill.text == '' ? '0.0' : minusMeterBill.text), double.parse(minusPaybill.text == '' ? '0.0' : minusPaybill.text), double.parse(minusPaySalary.text == '' ? '0.0' : minusPaySalary.text), double.parse(minusPayRent.text == '' ? '0.0' : minusPayRent.text), double.parse(minusBuyGoodPay.text == '' ? '0.0' : minusBuyGoodPay.text), double.parse(minusPreZakat.text == '' ? '0.0' : minusPreZakat.text)),
+            double.parse(goldPrice.text),
+            double.parse(silverPrice.text));
       });
     } else if (_currentStep == 8) {
       Map<String, dynamic> row = {
@@ -3035,6 +3028,8 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
         DatabaseHelper.sate: sate.text != '' ? sate.text : 0.0,
         DatabaseHelper.thoe: thoe.text != '' ? thoe.text : 0.0,
         DatabaseHelper.kalaout: kalaout.text != '' ? kalaout.text : 0.0,
+        DatabaseHelper.kywae: kywae.text != '' ? kywae.text : 0.0,
+        DatabaseHelper.nwar: nwar.text != '' ? nwar.text : 0.0,
         DatabaseHelper.minusDebtMahur:
             minusDebtMahur.text != '' ? minusDebtMahur.text : 0.0,
         DatabaseHelper.minusDebt: minusDebt.text != '' ? minusDebt.text : 0.0,
@@ -3054,10 +3049,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
             minusPreZakat.text != '' ? minusPreZakat.text : 0.0,
         DatabaseHelper.createdAt: DateTime.now().toString(),
         DatabaseHelper.updatedAt: DateTime.now().toString(),
-        DatabaseHelper.goldRate: 12312312.0,
-        DatabaseHelper.silverRate: 12312312.0,
-        DatabaseHelper.yourWorth: 12312312.0,
-        DatabaseHelper.yourZakat: 12312312.0
+        DatabaseHelper.goldRate: goldPrice.text,
+        DatabaseHelper.silverRate: silverPrice.text,
+        DatabaseHelper.yourWorth: _result['netWorth']!,
+        DatabaseHelper.yourZakat: _result['result']!
       };
       dbHelper.insertZakat(row);
       Navigator.of(context)
