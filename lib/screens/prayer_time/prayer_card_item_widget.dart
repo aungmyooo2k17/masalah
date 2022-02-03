@@ -41,10 +41,20 @@ class PrayerCardItemWidget extends StatelessWidget {
               color: AppColors.white,
             ),
             Expanded(
-              child: BoldText(
-                fontSize: 16,
-                data: uiPrayerTimeItemCard.nextPrayerTime,
-                color: AppColors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  BoldText(
+                    fontSize: 16,
+                    data: uiPrayerTimeItemCard.nextPrayerTime,
+                    color: AppColors.white,
+                  ),
+                  BoldText(
+                    fontSize: 16,
+                    data: uiPrayerTimeItemCard.location,
+                    color: AppColors.white,
+                  ),
+                ],
               ),
             ),
           ],

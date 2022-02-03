@@ -52,7 +52,8 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         16.7827, 96.1771); // Replace with your own location lat, lng.
 
     prayerTimePluginUtil.init(myCoordinates);
-    prayerTimeItemCard = prayerTimePluginUtil.getUiPrayerItemCard();
+    prayerTimeItemCard =
+        prayerTimePluginUtil.getUiPrayerItemCard(myCoordinates);
   }
 
   @override

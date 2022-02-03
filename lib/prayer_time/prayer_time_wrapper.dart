@@ -37,23 +37,22 @@ class PrayerTimePluginUtil {
     getCurrentDatePrayers();
   }
 
-  PrayerTimeEntity getNextPrayerItem() {
+  PrayerTimeEntity getNextPrayerItem(Coordinates coordinates) {
     var nextPrayer = _prayerTimesPlugin.nextPrayer();
     DateTime? nextPrayerTime;
     if (nextPrayer == Prayer.none) {
       final currentDate = DateTime.now();
       nextPrayer = getPrayerIfLibNone(false);
-      final myCoordinates = Coordinates(16.7827, 96.1771);
+      // final myCoordinates = Coordinates(16.7827, 96.1771);
       final parameters = CalculationMethod.karachi.getParameters();
       parameters.madhab = Madhab.hanafi;
       final _pTimes = PrayerTimes(
-          myCoordinates,
+          coordinates,
           DateComponents(
               currentDate.year, currentDate.month, currentDate.day + 1),
           parameters);
 
       nextPrayerTime = _pTimes.timeForPrayer(nextPrayer);
-
 
       // _prayerTimesPlugin
     } else {
@@ -64,17 +63,17 @@ class PrayerTimePluginUtil {
         prayerName: nextPrayer.displayTitle, prayerTime: nextPrayerTime!);
   }
 
-  PrayerTimeEntity getCurrentPrayerItem() {
+  PrayerTimeEntity getCurrentPrayerItem(Coordinates coordinates) {
     var currentPrayer = _prayerTimesPlugin.currentPrayer();
     DateTime? currentPrayerTime;
     if (currentPrayer == Prayer.none) {
       final currentDate = DateTime.now();
       currentPrayer = getPrayerIfLibNone(true);
-      final myCoordinates = Coordinates(16.7827, 96.1771);
+      // final myCoordinates = Coordinates(16.7827, 96.1771);
       final parameters = CalculationMethod.karachi.getParameters();
       parameters.madhab = Madhab.hanafi;
       final _pTimes = PrayerTimes(
-          myCoordinates,
+          coordinates,
           DateComponents(
               currentDate.year, currentDate.month, currentDate.day - 1),
           parameters);
@@ -88,11 +87,11 @@ class PrayerTimePluginUtil {
         prayerName: currentPrayer.displayTitle, prayerTime: currentPrayerTime!);
   }
 
-  UiPrayerTimeItemCard getUiPrayerItemCard() {
+  UiPrayerTimeItemCard getUiPrayerItemCard(Coordinates coordinates) {
     final uiMapper = PrayerTimeUiMapper();
-    final currentPrayerEntity = getCurrentPrayerItem();
+    final currentPrayerEntity = getCurrentPrayerItem(coordinates);
 
-    final nextPrayerEntity = getNextPrayerItem();
+    final nextPrayerEntity = getNextPrayerItem(coordinates);
     return uiMapper.mapUiPrayerCardItem(currentPrayerEntity, nextPrayerEntity);
   }
 

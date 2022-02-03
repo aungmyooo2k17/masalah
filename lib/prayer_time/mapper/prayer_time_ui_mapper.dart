@@ -9,7 +9,9 @@ class PrayerTimeUiMapper {
           DateTime? currentPrayerTime,
           List<String>? mutePrayerList}) =>
       prayerTimeList
-          .map((e) => mapUiPrayerItem(e, currentPrayerTime: currentPrayerTime,mutedPrayerList: mutePrayerList))
+          .map((e) => mapUiPrayerItem(e,
+              currentPrayerTime: currentPrayerTime,
+              mutedPrayerList: mutePrayerList))
           .toList();
 
   UiPrayerTimeItem mapUiPrayerItem(PrayerTimeEntity prayerTimeEntity,
@@ -30,7 +32,8 @@ class PrayerTimeUiMapper {
         nextPrayerName: nextPrayerTime.prayerName,
         nextPrayerTime:
             DateTimeUtil().prayerTimeFormat(nextPrayerTime.prayerTime),
-        currentPrayerImage: _getPrayerImage(currentPrayer));
+        currentPrayerImage: _getPrayerImage(currentPrayer),
+        location: "Yangon");
   }
 
   String _getPrayerImage(PrayerTimeEntity currentPrayer) {
