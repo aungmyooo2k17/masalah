@@ -29,7 +29,7 @@ class AppWidgetProvider : HomeWidgetProvider() {
                 var counterText = "Your: $counter"
 
                 if (counter == "0") {
-                    counterText = "You have not pressed the counter button"
+                    counterText = "11:00 AM"
                 }
 
                  //

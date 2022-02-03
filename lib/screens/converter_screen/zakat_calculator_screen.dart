@@ -2049,7 +2049,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         controller: inHandSuHtarTaw,
                         keyboardType: TextInputType.number,
                         decoration:
-                            InputDecoration(labelText: 'စုဆောင်းထားသော'),
+                            InputDecoration(labelText: 'စုဆောင်းထားသော',),
                       ),
                       TextFormField(
                         controller: inHandPyitceeSold,

@@ -1,8 +1,10 @@
 <FrameLayout
     android:id="@+id/widget_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="260dp"
-    android:layout_height="360dp">
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/llRefresh"
@@ -10,24 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="8dp"
-        android:background="#ffffff">
+        android:background="@drawable/layout_bg">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Prayer Times"
+            android:text="Today"
             android:textSize="16dp"
-            android:textColor="#252525"
+            android:textColor="#ffffff"
             android:gravity="center"
             />
 
         <LinearLayout
             android:gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:background="#f4f4f4"
             android:weightSum="0"
             android:orientation="horizontal">
 
@@ -35,11 +36,16 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="#252525"
+                android:textStyle="normal"
+                android:textColor="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Fajr"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/stat_notify_call_mute"/>
 
             <TextView
                 android:id="@+id/tv_counter"
@@ -48,13 +54,13 @@
                 android:layout_width="0dp"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="#252525"
+                android:textColor="#ffffff"
                 android:layout_height="wrap_content"
                 android:text="4:30 AM"/>
         </LinearLayout>
         <LinearLayout
             android:gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -65,11 +71,15 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="#252525"
+                android:textStyle="normal"
+                android:textColor="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Sunrise"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/stat_notify_call_mute"/>
 
             <TextView
                 android:id="@+id/tvFajrTime"
@@ -78,29 +88,33 @@
                 android:layout_width="0dp"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="#252525"
+                android:textColor="#ffffff"
                 android:layout_height="wrap_content"
                 android:text="4:30 AM"/>
         </LinearLayout>
         <LinearLayout
             android:gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:weightSum="0"
             android:orientation="horizontal">
 
+
             <TextView
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="#252525"
+                android:textStyle="normal"
+                android:textColor="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Duhr"/>
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/stat_notify_call_mute"/>
             <TextView
                 android:id="@+id/tvFajrTime"
                 android:gravity="center"
@@ -108,13 +122,13 @@
                 android:layout_width="0dp"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="#252525"
+                android:textColor="#ffffff"
                 android:layout_height="wrap_content"
                 android:text="4:30 AM"/>
         </LinearLayout>
         <LinearLayout
             android:gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -125,12 +139,15 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="#252525"
+                android:textStyle="normal"
+                android:textColor="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Asr"/>
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/stat_notify_call_mute"/>
             <TextView
                 android:id="@+id/tvFajrTime"
                 android:gravity="center"
@@ -138,13 +155,13 @@
                 android:layout_width="0dp"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="#252525"
+                android:textColor="#ffffff"
                 android:layout_height="wrap_content"
                 android:text="4:30 AM"/>
         </LinearLayout>
         <LinearLayout
             android:gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -155,12 +172,15 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="#252525"
+                android:textStyle="normal"
+                android:textColor="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Magrib"/>
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/stat_notify_call_mute"/>
             <TextView
                 android:id="@+id/tvFajrTime"
                 android:gravity="center"
@@ -168,13 +188,13 @@
                 android:layout_width="0dp"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="#252525"
+                android:textColor="#ffffff"
                 android:layout_height="wrap_content"
                 android:text="4:30 AM"/>
         </LinearLayout>
         <LinearLayout
             android:gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -185,12 +205,15 @@
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="#252525"
+                android:textStyle="normal"
+                android:textColor="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Isha"/>
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/stat_notify_call_mute"/>
             <TextView
                 android:id="@+id/tvFajrTime"
                 android:gravity="center"
@@ -198,7 +221,7 @@
                 android:layout_width="0dp"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="#252525"
+                android:textColor="#ffffff"
                 android:layout_height="wrap_content"
                 android:text="4:30 AM"/>
         </LinearLayout>
