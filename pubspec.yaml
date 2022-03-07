@@ -21,9 +21,6 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  adhan: ^2.0.0-nullsafety.1
-  android_alarm_manager_plus: ^2.0.2
-  connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -34,12 +31,15 @@ dependencies:
   intl: ^0.17.0
   path: ^1.8.0
   path_provider: ^2.0.2
-  shared_preferences: ^2.0.7
+  shared_preferences: ^2.0.13
   sqflite: ^2.0.0+3
   flutter_local_notifications: ^9.0.0
   google_maps_flutter: ^2.0.1
   geolocator: ^7.0.1
+  adhan: ^2.0.0-nullsafety.1
+  connectivity_plus: ^2.2.1
   flutter_qiblah:
+  android_alarm_manager_plus: ^2.0.5
 
 dev_dependencies:
   flutter_test:

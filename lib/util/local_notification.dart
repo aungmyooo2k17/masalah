@@ -18,7 +18,7 @@
 //         onSelectNotification: onNotificationSelect);
 //   }
 
-  static Future<void> onNotificationSelect(String? payload) async {}
+Future<void> onNotificationSelect(String? payload) async {}
 
 //   static ShowOneTimeNotification(DateTime scheduledDate) async {
 //     var notificationDetails =
