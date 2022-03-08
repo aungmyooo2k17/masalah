@@ -162,56 +162,55 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
         type: StepperType.horizontal,
         physics: ScrollPhysics(),
         currentStep: _currentStep,
-        // onStepTapped: (step) => tapped(step),
+        onStepTapped: (step) => tapped(step),
         onStepContinue: continued,
         onStepCancel: cancel,
-        // controlsBuilder: (BuildContext context,
-        //     {VoidCallback? onStepContinue, VoidCallback? onStepCancel}) {
-        //   return Row(
-        //     children: <Widget>[
-        //       Flexible(
-        //         child: Container(
-        //           margin: EdgeInsets.only(right: 4.0),
-        //           width: 1000.0,
-        //           child: ElevatedButton(
-        //             style: ButtonStyle(
-        //               backgroundColor:
-        //                   MaterialStateProperty.all(AppColors.primaryText),
-        //               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-        //                 RoundedRectangleBorder(
-        //                   borderRadius: BorderRadius.circular(8.0),
-        //                 ),
-        //               ),
-        //             ),
-        //             child: Text('PREVIOUS'),
-        //             onPressed: onStepCancel,
-        //           ),
-        //         ),
-        //         flex: 1,
-        //       ),
-        //       Flexible(
-        //         child: Container(
-        //           margin: EdgeInsets.only(left: 4.0),
-        //           width: 1000.0,
-        //           child: ElevatedButton(
-        //             style: ButtonStyle(
-        //               backgroundColor:
-        //                   MaterialStateProperty.all(AppColors.primaryText),
-        //               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-        //                 RoundedRectangleBorder(
-        //                   borderRadius: BorderRadius.circular(8.0),
-        //                 ),
-        //               ),
-        //             ),
-        //             child: Text('NEXT'),
-        //             onPressed: onStepContinue,
-        //           ),
-        //         ),
-        //         flex: 1,
-        //       ),
-        //     ],
-        //   );
-        // },
+        controlsBuilder: (BuildContext context, ControlsDetails details) {
+          return Row(
+            children: <Widget>[
+              Flexible(
+                child: Container(
+                  margin: EdgeInsets.only(right: 4.0),
+                  width: 1000.0,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(AppColors.primaryText),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    child: Text('PREVIOUS'),
+                    onPressed: details.onStepCancel,
+                  ),
+                ),
+                flex: 1,
+              ),
+              Flexible(
+                child: Container(
+                  margin: EdgeInsets.only(left: 4.0),
+                  width: 1000.0,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(AppColors.primaryText),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    child: Text('NEXT'),
+                    onPressed: details.onStepContinue,
+                  ),
+                ),
+                flex: 1,
+              ),
+            ],
+          );
+        },
         steps: <Step>[
           Step(
             title: RegularText(
@@ -2048,8 +2047,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       TextFormField(
                         controller: inHandSuHtarTaw,
                         keyboardType: TextInputType.number,
-                        decoration:
-                            InputDecoration(labelText: 'စုဆောင်းထားသော',),
+                        decoration: InputDecoration(
+                          labelText: 'စုဆောင်းထားသော',
+                        ),
                       ),
                       TextFormField(
                         controller: inHandPyitceeSold,
