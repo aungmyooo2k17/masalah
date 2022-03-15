@@ -162,7 +162,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
         type: StepperType.horizontal,
         physics: ScrollPhysics(),
         currentStep: _currentStep,
-        onStepTapped: (step) => tapped(step),
+        // onStepTapped: (step) => tapped(step),
         onStepContinue: continued,
         onStepCancel: cancel,
         controlsBuilder: (BuildContext context, ControlsDetails details) {
@@ -214,7 +214,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
         steps: <Step>[
           Step(
             title: RegularText(
-              data: _currentStep == 0 ? 'Step 1' : '',
+              data: _currentStep == 0 ? '' : '',
               fontSize: 14.0,
               color: Colors.black87,
             ),
@@ -392,7 +392,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွှေး',
+                                              data: 'ရွေး',
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -576,7 +576,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွှေး',
+                                              data: 'ရွေး',
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -760,7 +760,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွှေး',
+                                              data: 'ရွေး',
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -809,7 +809,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
           ),
           Step(
             title: RegularText(
-              data: _currentStep == 1 ? 'Step 2' : '',
+              data: _currentStep == 1 ? '' : '',
               fontSize: 14.0,
               color: Colors.black87,
             ),
@@ -837,7 +837,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         fontSize: 14,
                         color: AppColors.white,
                         data:
-                            "ရွှေဖြူ (White Gold) ကိုရွှေဖြူဟုခေါ်တွင်သည်ဖြစ်စေ၊ပလာတီနမ်ဟုခေါ်တွင်သည်ဖြစ်စေ၊ ရွှေဖြူသည်ရွှေသာဖြစ်သည်။ထို့ကြောင့်ရွှေဖြူတွင်ဇကားသ်ရှိသည်။ သို့သောပလာတီနမ်(စစ်စစ်)သည်အခြားသတ္တုဖြစ်သဖြင့်ပလာတီနမ်တွင်ဇကားသ်မရှိပါ။ ",
+                            "ရွှေဖြူ (White Gold) ကိုရွှေဖြူဟုခေါ်တွင်သည်ဖြစ်စေ၊ပလက်တီနမ်ဟုခေါ်တွင်သည်ဖြစ်စေ၊ ရွှေဖြူသည်ရွှေသာဖြစ်သည်။ထို့ကြောင့်ရွှေဖြူတွင်ဇကားသ်ရှိသည်။ သို့သော်ပလက်တီနမ်(စစ်စစ်)သည်အခြားသတ္တုဖြစ်သဖြင့်၄င်းတွင်ဇကားသ်မရှိပါ။ ",
                       )
                     ],
                   ),
@@ -987,7 +987,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွှေး',
+                                              data: 'ရွေး',
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1171,7 +1171,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွှေး',
+                                              data: 'ရွေး',
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1356,7 +1356,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွှေး',
+                                              data: 'ရွေး',
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1407,7 +1407,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
           ),
           Step(
             title: RegularText(
-              data: _currentStep == 2 ? 'Step 3' : '',
+              data: _currentStep == 2 ? '' : '',
               fontSize: 14.0,
               color: Colors.black87,
             ),
@@ -1585,7 +1585,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွှေး',
+                                              data: 'ရွေး',
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1769,7 +1769,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွှေး',
+                                              data: 'ရွေး',
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1953,7 +1953,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွှေး',
+                                              data: 'ရွေး',
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -2004,7 +2004,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
           ),
           Step(
             title: RegularText(
-              data: _currentStep == 3 ? 'Step 4' : '',
+              data: _currentStep == 3 ? '' : '',
               fontSize: 14.0,
               color: Colors.black87,
             ),
@@ -2108,7 +2108,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         controller: inBankThuMyarHlwae,
                         keyboardType: TextInputType.number,
                         decoration:
-                            InputDecoration(labelText: 'သူများလွှဲပေးထားသော'),
+                            InputDecoration(labelText: 'အခြားသူများလွှဲပေးထားသော'),
                       ),
                       TextFormField(
                           controller: inBankSalary,
@@ -2139,7 +2139,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "သူများကိုပေးထားသောအကြွေး",
+                        data: "အခြားသူမှ ရရန်ရှိသောအကြွေး",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
@@ -2178,7 +2178,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
           ),
           Step(
             title: RegularText(
-              data: _currentStep == 4 ? 'Step 5' : '',
+              data: _currentStep == 4 ? '' : '',
               fontSize: 14.0,
               color: Colors.black87,
             ),
@@ -2197,7 +2197,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         fontSize: 14,
                         color: AppColors.white,
                         data:
-                            "ရောင်းရန်ရည်ရွယ်ထားသောပစ္စည်းဟူသမျှတွင်ဇကားသ်တာဝန်ရှိပါသည်။ ခုချက်ချင်းရောင်းရန်ရည်ရွယ်ထားသည်ဖြစ်စေ၊ ဈေးကောင်းရမည့်အချိန်ရောင်းရန်ရည်ရွယ်ပြီးယခုကိုယ်တိုင်အသုံးပြုနေသည်ဖြစ်စေ၊ အားလုံးကိုထည့်တွက်ရမည်။",
+                            "ရောင်းရန်ရည်ရွယ်ထားသောပစ္စည်းဟူသမျှတွင်ဇကားသ်တာဝန်ရှိပါသည်။ လတ်တလောရောင်းရန်ရည်ရွယ်ထားသည်ဖြစ်စေ၊ ဈေးကောင်းရမည့်အချိန်ရောင်းရန်ရည်ရွယ်ပြီးယခုကိုယ်တိုင်အသုံးပြုနေသည်ဖြစ်စေ၊ အားလုံးကိုထည့်တွက်ရမည်။",
                       )
                     ],
                   ),
@@ -2265,7 +2265,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         controller: rawWearhouse,
                         keyboardType: TextInputType.number,
                         decoration:
-                            InputDecoration(labelText: 'ဂိုထောင်တွင်ရှိသော'),
+                            InputDecoration(labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
                       ),
                       TextFormField(
                         controller: rawHome,
@@ -2308,7 +2308,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         controller: finishWearhouse,
                         keyboardType: TextInputType.number,
                         decoration:
-                            InputDecoration(labelText: 'ဂိုထောင်တွင်ရှိသော'),
+                            InputDecoration(labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
                       ),
                       TextFormField(
                         controller: finishHome,
@@ -2326,7 +2326,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               labelText:
-                                  'မွေးမြူရေးခြံထဲရှိရောင်းရန်သားကောင်များ')),
+                                  'ရောင်းရန်မွေးမြူထားသောသားကောင် ရေးရန်')),
                       TextFormField(
                           controller: finishOther,
                           keyboardType: TextInputType.number,
@@ -2347,7 +2347,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
           ),
           Step(
             title: RegularText(
-              data: _currentStep == 5 ? 'Step 6' : '',
+              data: _currentStep == 5 ? '' : '',
               fontSize: 14.0,
               color: Colors.black87,
             ),
@@ -2366,7 +2366,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         fontSize: 14,
                         color: AppColors.white,
                         data:
-                            "သားကောင်၏ဇကားသ်နှင့်ပတ်သက်၍သိသင့်သိထိုက်သောအရာများ \n (၁) ရောင်းဝယ်ဖောက်ကားရန်မွေးမြူထားသော၊တစ်ချိန်ချိန်တွင်ပြန်ရောင်းရန်ဆန္ဒရှိသောသားကောင်များကိုဤစာရင်းတွင်မထည့်သွင်းရပါ။ ထိုသားကောင်းများ၏ဈေးနှုန်းကိုအရောင်းအဝယ်ကုန်ပစ္စည်းတွင်ထည့်၍တွက်ပါ။ \n (၂) နို့ရယူရန်သို့မဟုတ်ဝါသနာအရမွေးမြူထား၍ရောင်းရန်ဆန္ဒမရှိသောသားကောင်များကိုသာဤနေရာတွင်ထည့်တွက်ပါ။ \n (၃) မွေးမြူထားသောသားကောင်သည်လွန်ခဲ့သည့်တစ်နှစ်တာကာလတွင် (၆)လကျော် စားကျက်တွင်ကျက်စားထားသောသားကောင်ဖြစ်ရမည်။ အကယ်၍ (၆)လတိတိ သို့မဟုတ် (၆) လအထက်ကာလတွင်အိမ်တွင်း၌အစာဝယ်ယူကျွေးမွေးခဲ့ပါကထိုသားကောင်ကိုထည့်မတွက်ရပါ။ \n (၄) ကုလားအုပ်မ ဇကားသ်ထိုက်သောပုံစံများတွင်ကုလားအုပ်မသာပေးရမည်။သို့မဟုတ်ကုလားအုပ်မ၏တန်ဖိုးနှင့်ညီမျှသောတန်ဖိုးရှိကုလားအုပ်ပေးရမည်။ ကုလားအုပ်မတစ်ကောင်အစားကုလားအုပ်တစ်ကောင်ပေးခွင့်မရှိပါ။ \n (၅) ကုလားအုပ် မှအပကျန်သားကောင်အမျိုးအစားများတွင် အထီးအမ မခွဲခြားထားပါ။ ကြိုက်နှစ်သက်ရာပေးခွင့်ရှိသည်။ \n (၆) ဇကားသ်တွင်ပေးရသောဆိတ်သည်အနည်းဆုံးအသက်တစ်နှစ်ပြည့်ရမည်။ ",
+                            "သားကောင်၏ဇကားသ်နှင့်ပတ်သက်၍သိသင့်သိထိုက်သောအရာများ \n (၁) ရောင်းဝယ်ဖောက်ကားရန်မွေးမြူထားသော၊တစ်ချိန်ချိန်တွင်ပြန်ရောင်းရန်ဆန္ဒရှိသောသားကောင်များကိုဤစာရင်းတွင်မထည့်သွင်းရပါ။ ထိုသားကောင်များ၏တန်ဖိုးကို ရောင်းကုန်ပစ္စည်းများတွင် ထည့်၍တွက်ပါ။ \n (၂) နို့ရရှိရန် (သို့) မွေးမြူးထားပြီးရောင်းရန်ဆန္ဒမရှိသောသားကောင်များကိုသာဤနေရာတွင်ထည့်တွက်ပါ။ \n (၃) မွေးမြူထားသောသားကောင်သည်လွန်ခဲ့သည့်တစ်နှစ်တာကာလတွင် (၆)လကျော် စားကျက်တွင်ကျက်စားထားသောသားကောင်ဖြစ်ရမည်။ အကယ်၍ (၆)လကျော် အိမ်၌သာ ကျွေးမွေးခဲ့ပါကထိုသားကောင်ကိုထည့်မတွက်ရပါ။ \n (၄) ဇကားသ်ပေးရမည့်ကုလားအုပ်မအစား ကုလားအုပ်အထီးပေးလိုပါက ကုလားအုပ်မ၏တန်ဖိုးနှင့်ညီသော ကုလားအုပ်အထီးကိုသာပေးခွင့်ရှိ၏။ \n (၅) ကုလားအုတ် မှအပကျန်အိမ်မွေးတိရစ္ဆာန်များတွင် အထီးအမ မခွဲခြားထားပါ။ ကြိုက်နှစ်သက်ရာပေးခွင့်ရှိသည်။ \n (၆) ဇကားသ်အဖြစ်ပေးမည့်ဆိတ်သည် အနည်းဆုံ:အသက်တစ်နှစ်ပြည့်ပြီးဖြစ်ရမည်။ ",
                       )
                     ],
                   ),
@@ -2384,13 +2384,13 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "ကုလားအုပ်",
+                        data: "ကုလားအုတ်",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         keyboardType: TextInputType.number,
                         controller: kalaout,
-                        decoration: InputDecoration(labelText: 'ကုလားအုပ်'),
+                        decoration: InputDecoration(labelText: 'ကုလားအုတ်'),
                       ),
                       SizedBox(
                         height: 8.0,
@@ -2472,7 +2472,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
           ),
           Step(
             title: RegularText(
-              data: _currentStep == 6 ? 'Step 7' : '',
+              data: _currentStep == 6 ? '' : '',
               fontSize: 14.0,
               color: Colors.black87,
             ),
@@ -2574,7 +2574,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
           ),
           Step(
             title: RegularText(
-              data: _currentStep == 7 ? 'Step 8' : '',
+              data: _currentStep == 7 ? '' : '',
               fontSize: 14.0,
               color: Colors.black87,
             ),
@@ -2718,7 +2718,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
           ),
           Step(
             title: RegularText(
-              data: _currentStep == 8 ? 'Step 9' : '',
+              data: _currentStep == 8 ? '' : '',
               fontSize: 14.0,
               color: Colors.black87,
             ),
