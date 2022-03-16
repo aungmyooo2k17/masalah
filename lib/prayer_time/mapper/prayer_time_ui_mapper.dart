@@ -25,15 +25,15 @@ class PrayerTimeUiMapper {
             mutedPrayerList?.contains(prayerTimeEntity.prayerName) ?? false);
   }
 
-  UiPrayerTimeItemCard mapUiPrayerCardItem(
-      PrayerTimeEntity currentPrayer, PrayerTimeEntity nextPrayerTime) {
+  UiPrayerTimeItemCard mapUiPrayerCardItem(PrayerTimeEntity currentPrayer,
+      PrayerTimeEntity nextPrayerTime, String city) {
     return UiPrayerTimeItemCard(
         currentPrayerTimeItem: mapUiPrayerItem(currentPrayer),
         nextPrayerName: nextPrayerTime.prayerName,
         nextPrayerTime:
             DateTimeUtil().prayerTimeFormat(nextPrayerTime.prayerTime),
         currentPrayerImage: _getPrayerImage(currentPrayer),
-        location: "Yangon");
+        location: city);
   }
 
   String _getPrayerImage(PrayerTimeEntity currentPrayer) {

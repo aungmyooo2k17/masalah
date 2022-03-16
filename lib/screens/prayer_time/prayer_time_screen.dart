@@ -1,6 +1,9 @@
 import 'dart:core';
 import 'package:adhan/adhan.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/model/ui_prayer_time.dart';
 import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
@@ -20,6 +23,8 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   final PrayerTimePluginUtil prayerTimePluginUtil = PrayerTimePluginUtil();
   DateTime? selectedDate = DateTime.now();
   UiPrayerTimeItemCard? prayerTimeItemCard;
+  late LatLng _center;
+  late Position currentLocation;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -48,171 +53,217 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   @override
   void initState() {
     super.initState();
-    final myCoordinates = Coordinates(
-        16.7827, 96.1771); // Replace with your own location lat, lng.
+    getUserLocation();
+  }
 
-    prayerTimePluginUtil.init(myCoordinates);
-    prayerTimeItemCard =
-        prayerTimePluginUtil.getUiPrayerItemCard(myCoordinates);
+  Future<Position> locateUser() async {
+    return Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+  }
+
+  Future<LatLng> getUserLocation() async {
+    currentLocation = await locateUser();
+    _center = LatLng(currentLocation.latitude, currentLocation.longitude);
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          currentLocation.latitude, currentLocation.longitude);
+
+      Placemark place = placemarks[0];
+
+      final myCoordinates = Coordinates(
+          currentLocation.latitude,
+          currentLocation
+              .longitude); // Replace with your own location lat, lng.
+      prayerTimePluginUtil.init(myCoordinates);
+      prayerTimeItemCard = prayerTimePluginUtil.getUiPrayerItemCard(
+          myCoordinates, place.locality.toString());
+
+      return Future.value(_center);
+    } catch (e) {
+      print(e);
+    }
+    return Future.value(_center);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors.bgColor,
-        appBar: AppTopBar(
-          title: "PRAYER TIMES",
-          bgColor: AppColors.bgColor,
-          textColor: AppColors.primaryText,
-        ),
-        body: SingleChildScrollView(
-          child: Column(children: [
-            if (prayerTimeItemCard != null)
-              PrayerCardItemWidget(uiPrayerTimeItemCard: prayerTimeItemCard!),
+    return FutureBuilder(
+        future: getUserLocation(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            print("*************");
 
-            Container(
-              padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-              ),
-              margin:
-                  EdgeInsets.only(left: 16.0, top: 8, right: 16.0, bottom: 8.0),
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedDate =
-                            selectedDate!.subtract(Duration(days: 1));
-                      });
-                      prayerTimePluginUtil.initWithOffset(
-                          Coordinates(16.8409, 96.1735), selectedDate!);
-                    },
-                    child: Container(
-                      width: 28,
-                      height: 28,
+            _center = snapshot.data as LatLng;
+
+            return Scaffold(
+                backgroundColor: AppColors.bgColor,
+                appBar: AppTopBar(
+                  title: "PRAYER TIMES",
+                  bgColor: AppColors.bgColor,
+                  textColor: AppColors.primaryText,
+                ),
+                body: SingleChildScrollView(
+                  child: Column(children: [
+                    if (prayerTimeItemCard != null)
+                      PrayerCardItemWidget(
+                          uiPrayerTimeItemCard: prayerTimeItemCard!),
+
+                    Container(
+                      padding: EdgeInsets.only(
+                          left: 16, right: 16, top: 8, bottom: 8),
                       decoration: BoxDecoration(
-                        color: AppColors.bgBtn,
-                        borderRadius: BorderRadius.all(Radius.circular(18.0)),
-                      ),
-                      child: Icon(
-                        Icons.arrow_back_outlined,
-                        size: 18.0,
                         color: AppColors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      ),
+                      margin: EdgeInsets.only(
+                          left: 16.0, top: 8, right: 16.0, bottom: 8.0),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedDate =
+                                    selectedDate!.subtract(Duration(days: 1));
+                              });
+                              prayerTimePluginUtil.initWithOffset(
+                                  Coordinates(
+                                      _center.latitude, _center.longitude),
+                                  selectedDate!);
+                            },
+                            child: Container(
+                              width: 28,
+                              height: 28,
+                              decoration: BoxDecoration(
+                                color: AppColors.bgBtn,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(18.0)),
+                              ),
+                              child: Icon(
+                                Icons.arrow_back_outlined,
+                                size: 18.0,
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              _selectDate(context);
+                            },
+                            child: BoldText(
+                              data: DateTimeUtil()
+                                  .prayerTimeHumanReadable(selectedDate),
+                              fontSize: 16,
+                              color: AppColors.primaryText,
+                            ),
+                          ),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                print(selectedDate.toString());
+                                selectedDate =
+                                    selectedDate!.add(Duration(days: 1));
+                              });
+                              prayerTimePluginUtil.initWithOffset(
+                                  Coordinates(16.8409, 96.1735), selectedDate!);
+                            },
+                            child: Container(
+                              width: 28,
+                              height: 28,
+                              decoration: BoxDecoration(
+                                color: AppColors.bgBtn,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(18.0)),
+                              ),
+                              child: Icon(
+                                Icons.arrow_forward_outlined,
+                                size: 18.0,
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      _selectDate(context);
-                    },
-                    child: BoldText(
-                      data:
-                          DateTimeUtil().prayerTimeHumanReadable(selectedDate),
-                      fontSize: 16,
-                      color: AppColors.primaryText,
-                    ),
-                  ),
-                  Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        print(selectedDate.toString());
-                        selectedDate = selectedDate!.add(Duration(days: 1));
-                      });
-                      prayerTimePluginUtil.initWithOffset(
-                          Coordinates(16.8409, 96.1735), selectedDate!);
-                    },
-                    child: Container(
-                      width: 28,
-                      height: 28,
+
+                    ///TimeTable widget
+
+                    Container(
+                      padding: EdgeInsets.only(
+                        top: 8,
+                      ),
                       decoration: BoxDecoration(
-                        color: AppColors.bgBtn,
-                        borderRadius: BorderRadius.all(Radius.circular(18.0)),
-                      ),
-                      child: Icon(
-                        Icons.arrow_forward_outlined,
-                        size: 18.0,
                         color: AppColors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            ///TimeTable widget
-
-            Container(
-              padding: EdgeInsets.only(
-                top: 8,
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-              ),
-              margin:
-                  EdgeInsets.only(left: 16.0, top: 8, right: 16.0, bottom: 8.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: 16.0, top: 8, right: 16.0, bottom: 8.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: RegularText(
-                            textAlign: TextAlign.left,
-                            color: AppColors.primaryText,
-                            fontSize: 14.0,
-                            data: "Prayer",
+                      margin: EdgeInsets.only(
+                          left: 16.0, top: 8, right: 16.0, bottom: 8.0),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: 16.0, top: 8, right: 16.0, bottom: 8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: RegularText(
+                                    textAlign: TextAlign.left,
+                                    color: AppColors.primaryText,
+                                    fontSize: 14.0,
+                                    data: "Prayer",
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: RegularText(
+                                    color: AppColors.primaryText,
+                                    fontSize: 14.0,
+                                    data: "Adhan",
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: RegularText(
-                            color: AppColors.primaryText,
-                            fontSize: 14.0,
-                            data: "Adhan",
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  FutureBuilder<List<UiPrayerTimeItem>>(
-                    future: prayerTimePluginUtil.getCurrentDatePrayers(),
-                    initialData: [],
-                    builder: (context, snapshot) {
-                      if (snapshot.hasError ||
-                          snapshot.error != null ||
-                          snapshot.data == null) {
-                        return CircularProgressIndicator();
-                      }
-                      return ListView(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          children: snapshot.data!.map((e) {
-                            return PrayerItemWidget(
-                              key: UniqueKey(),
-                              uiPrayerItem: e,
-                              onMutePressed: (prayerName) {
-                                prayerTimePluginUtil
-                                    .toogleMuteStatus(prayerName);
+                          FutureBuilder<List<UiPrayerTimeItem>>(
+                            future:
+                                prayerTimePluginUtil.getCurrentDatePrayers(),
+                            initialData: [],
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError ||
+                                  snapshot.error != null ||
+                                  snapshot.data == null) {
+                                return CircularProgressIndicator();
+                              }
+                              return ListView(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  children: snapshot.data!.map((e) {
+                                    return PrayerItemWidget(
+                                      key: UniqueKey(),
+                                      uiPrayerItem: e,
+                                      onMutePressed: (prayerName) {
+                                        prayerTimePluginUtil
+                                            .toogleMuteStatus(prayerName);
 
-                                setState(() {});
-                              },
-                            );
-                          }).toList());
-                    },
-                  )
-                ],
-              ),
-            )
-          ]),
-        ));
+                                        setState(() {});
+                                      },
+                                    );
+                                  }).toList());
+                            },
+                          )
+                        ],
+                      ),
+                    )
+                  ]),
+                ));
+          }
+        });
   }
 
   void nowPrayingTime() {

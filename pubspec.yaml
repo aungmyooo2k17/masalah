@@ -40,6 +40,7 @@ dependencies:
   connectivity_plus: ^2.2.1
   flutter_qiblah:
   android_alarm_manager_plus: ^2.0.5
+  geocoding: ^2.0.4
 
 dev_dependencies:
   flutter_test:

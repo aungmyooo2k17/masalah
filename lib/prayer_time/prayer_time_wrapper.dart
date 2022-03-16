@@ -87,12 +87,14 @@ class PrayerTimePluginUtil {
         prayerName: currentPrayer.displayTitle, prayerTime: currentPrayerTime!);
   }
 
-  UiPrayerTimeItemCard getUiPrayerItemCard(Coordinates coordinates) {
+  UiPrayerTimeItemCard getUiPrayerItemCard(
+      Coordinates coordinates, String city) {
     final uiMapper = PrayerTimeUiMapper();
     final currentPrayerEntity = getCurrentPrayerItem(coordinates);
 
     final nextPrayerEntity = getNextPrayerItem(coordinates);
-    return uiMapper.mapUiPrayerCardItem(currentPrayerEntity, nextPrayerEntity);
+    return uiMapper.mapUiPrayerCardItem(
+        currentPrayerEntity, nextPrayerEntity, city);
   }
 
   Future<List<UiPrayerTimeItem>> getCurrentDatePrayers() async {
