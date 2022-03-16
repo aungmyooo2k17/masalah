@@ -3,6 +3,7 @@ import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/model/zakat.dart';
+import 'package:masalah/reusable_widget/404-page.dart';
 import 'package:masalah/reusable_widget/app_bar.dart';
 import 'package:masalah/reusable_widget/app_text.dart';
 import 'package:masalah/reusable_widget/no_internet.dart';
@@ -39,39 +40,40 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
         bgColor: AppColors.bgColor,
         textColor: AppColors.primaryText,
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            FutureBuilder(
-                future: dbHelper.queryAllZakatRows(),
-                builder:
-                    (BuildContext context, AsyncSnapshot<Result> snapshot) {
-                  if (snapshot.data is SuccessState) {
-                    List<Zakat> zakats = (snapshot.data as SuccessState).value;
+      body: FutureBuilder(
+          future: dbHelper.queryAllZakatRows(),
+          builder: (BuildContext context, AsyncSnapshot<Result> snapshot) {
+            print(snapshot.data);
+            if (snapshot.data is SuccessState) {
+              List<Zakat> zakats = (snapshot.data as SuccessState).value;
 
-                    return zakats.length != 0
-                        ? Column(
-                            children: [
-                              ...List.generate(
-                                zakats.length,
-                                (index) {
-                                  return zakatItem(zakats[index]);
-                                },
-                              ),
-                            ],
-                          )
-                        : NoInternet();
-                  } else if (snapshot.data is ErrorState) {
-                    String errorMessage = (snapshot.data as ErrorState).msg;
-                    return Text(errorMessage);
-                  } else {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                }),
-          ],
-        ),
-      ),
+              return zakats.length != 0
+                  ? Column(
+                      children: [
+                        ...List.generate(
+                          zakats.length,
+                          (index) {
+                            return zakatItem(zakats[index]);
+                          },
+                        ),
+                      ],
+                    )
+                  : NotFound();
+            } else if (snapshot.data is ErrorState) {
+              String errorMessage = (snapshot.data as ErrorState).msg;
+              return Text(errorMessage);
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          }),
+      // body: SingleChildScrollView(
+      //   scrollDirection: Axis.vertical,
+      //   child: Column(
+      //     children: [
+
+      //     ],
+      //   ),
+      // ),
     );
   }
 

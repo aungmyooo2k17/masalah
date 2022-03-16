@@ -272,6 +272,9 @@ class DatabaseHelper {
     final d = await db.query(zakatTable);
 
     List<Zakat> data = d.map((i) => Zakat.fromJson(i)).toList();
+
+    print("*****");
+    print(data);
     return Result<List<Zakat>>.success(data);
   }
 
@@ -321,6 +324,8 @@ class DatabaseHelper {
   }
 
   Future<int> updateZakat(Map<String, dynamic> row, String id) async {
+    print('*****row******');
+    print(row);
     Database db = await instance.database;
     return await db
         .update(zakatTable, row, where: '$zakatId = ?', whereArgs: [id]);

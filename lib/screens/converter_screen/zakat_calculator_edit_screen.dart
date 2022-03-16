@@ -32,6 +32,8 @@ class _ZakatCalculatorEditState extends State<ZakatCalculatorEdit> {
   String _resultKalaout = "";
   bool _optionAuto = true;
 
+  late Future<Result> mZakatData;
+
   final goldAkhoutKyatthar = TextEditingController();
   final goldAkhoutPae = TextEditingController();
   final goldAkhoutYwae = TextEditingController();
@@ -121,2947 +123,5682 @@ class _ZakatCalculatorEditState extends State<ZakatCalculatorEdit> {
     _apiResponse.getSilverRate().then((value) => {silverRate = value});
 
     super.initState();
+    dbHelper.queryZakatById(widget.zakatId).then((snapshot) {
+      Zakat zakats = (snapshot as SuccessState).value;
+
+      goldAkhoutKyatthar.text = zakats.goldAkhoutKyatthar.toString();
+      goldAkhoutPae.text = zakats.goldAkhoutPae.toString();
+      goldAkhoutYwae.text = zakats.goldAkhoutYwae.toString();
+      goldAhtaeKyatthar.text = zakats.goldAhtaeKyatthar.toString();
+      goldAhtaePae.text = zakats.goldAhtaePae.toString();
+      goldAhtaeYwae.text = zakats.goldAhtaeYwae.toString();
+      goldPyitceeKyatthar.text = zakats.goldPyitceeKyatthar.toString();
+      goldPyitceePae.text = zakats.goldPyitceePae.toString();
+      goldPyitceeYwae.text = zakats.goldPyitceeYwae.toString();
+      whiteSilverAkhoutKyatthar.text =
+          zakats.whiteSilverAkhoutKyatthar.toString();
+      whiteSilverAkhoutPae.text = zakats.whiteSilverAkhoutPae.toString();
+      whiteSilverAkhoutYwae.text = zakats.whiteSilverAkhoutYwae.toString();
+      whiteSilverAhtaeKyatthar.text =
+          zakats.whiteSilverAhtaeKyatthar.toString();
+      whiteSilverAhtaePae.text = zakats.whiteSilverAhtaePae.toString();
+      whiteSilverAhtaeYwae.text = zakats.whiteSilverAhtaeYwae.toString();
+      whiteSilverPyitceeKyatthar.text =
+          zakats.whiteSilverPyitceeKyatthar.toString();
+      whiteSilverPyitceePae.text = zakats.whiteSilverPyitceePae.toString();
+      whiteSilverPyitceeYwae.text = zakats.whiteSilverPyitceeYwae.toString();
+      silverAkhoutKyatthar.text = zakats.silverAkhoutKyatthar.toString();
+      silverAkhoutPae.text = zakats.silverAkhoutPae.toString();
+      silverAkhoutYwae.text = zakats.silverAkhoutYwae.toString();
+      silverAhtaeKyatthar.text = zakats.silverAhtaeKyatthar.toString();
+      silverAhtaePae.text = zakats.silverAhtaePae.toString();
+      silverAhtaeYwae.text = zakats.silverAhtaeYwae.toString();
+      silverPyitceeKyatthar.text = zakats.silverPyitceeKyatthar.toString();
+      silverPyitceePae.text = zakats.silverPyitceePae.toString();
+      silverPyitceeYwae.text = zakats.silverPyitceeYwae.toString();
+      inHandSuHtarTaw.text = zakats.inHandSuHtarTaw.toString();
+      inHandPyitceeSold.text = zakats.inHandPyitceeSold.toString();
+      inHandPyitceeBorrow.text = zakats.inHandPyitceeBorrow.toString();
+      inHandForeignCurrency.text = zakats.inHandForeignCurrency.toString();
+      inHandContract.text = zakats.inHandContract.toString();
+      inHandOther.text = zakats.inHandOther.toString();
+      inBankInBank.text = zakats.inBankInBank.toString();
+      inBankThuMyarHlwae.text = zakats.inBankThuMyarHlwae.toString();
+      inBankSalary.text = zakats.inBankSalary.toString();
+      inBankOther.text = zakats.inBankOther.toString();
+      thuMyarDebtPyitceeSold.text = zakats.thuMyarDebtPyitceeSold.toString();
+      thuMyarDebtChayPay.text = zakats.thuMyarDebtChayPay.toString();
+      thuMyarDebtAttHtrTaw.text = zakats.thuMyarDebtAttHtrTaw.toString();
+      thuMyarDebtOther.text = zakats.thuMyarDebtOther.toString();
+      realEstateSellHouse.text = zakats.realEstateSellHouse.toString();
+      realEstateSellEscort.text = zakats.realEstateSellEscort.toString();
+      realEstateSellCar.text = zakats.realEstateSellCar.toString();
+      realEstateOther.text = zakats.realEstateOther.toString();
+      rawWearhouse.text = zakats.rawWearhouse.toString();
+      rawHome.text = zakats.rawHome.toString();
+      rawShop.text = zakats.rawShop.toString();
+      rawOther.text = zakats.rawOther.toString();
+      finishWearhouse.text = zakats.finishWearhouse.toString();
+      finishHome.text = zakats.finishHome.toString();
+      finishShop.text = zakats.finishShop.toString();
+      finishAnimal.text = zakats.finishAnimal.toString();
+      finishOther.text = zakats.finishOther.toString();
+      minusDebtMahur.text = zakats.minusDebtMahur.toString();
+      minusDebt.text = zakats.minusDebt.toString();
+      minusSukyae.text = zakats.minusSukyae.toString();
+      minusMeterBill.text = zakats.minusMeterBill.toString();
+      minusPaybill.text = zakats.minusPaybill.toString();
+      minusPaySalary.text = zakats.minusPaySalary.toString();
+      minusPayRent.text = zakats.minusPayRent.toString();
+      minusBuyGoodPay.text = zakats.minusBuyGoodPay.toString();
+      minusPreZakat.text = zakats.minusPreZakat.toString();
+      kalaout.text = zakats.kalaout.toString();
+      kywae.text = '0';
+      nwar.text = '0';
+      sate.text = zakats.sate.toString();
+      thoe.text = zakats.thoe.toString();
+      goldPrice.text = zakats.goldRate.toString();
+      silverPrice.text = zakats.silverRate.toString();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: AppColors.primaryText, //change your color here
-        ),
-        automaticallyImplyLeading: true,
-        elevation: 0,
         backgroundColor: AppColors.bgColor,
-        titleTextStyle: TextStyle(fontSize: 26),
-        title: BoldText(
-          data: "Zakat Calculator",
-          color: AppColors.primaryText,
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.more_vert,
-              color: AppColors.primaryText,
-            ),
-            tooltip: 'More',
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ZakatListScreen()));
-            },
+        appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: AppColors.primaryText, //change your color here
           ),
-        ],
-      ),
-      body: FutureBuilder(
-        future: dbHelper.queryZakatById(widget.zakatId),
-        builder: (BuildContext context, AsyncSnapshot<Result> snapshot) {
-          if (snapshot.data is SuccessState) {
-            Zakat zakats = (snapshot.data as SuccessState).value;
-
-            goldAkhoutKyatthar.text = zakats.goldAkhoutKyatthar.toString();
-            goldAkhoutPae.text = zakats.goldAkhoutPae.toString();
-            goldAkhoutYwae.text = zakats.goldAkhoutYwae.toString();
-            goldAhtaeKyatthar.text = zakats.goldAhtaeKyatthar.toString();
-            goldAhtaePae.text = zakats.goldAhtaePae.toString();
-            goldAhtaeYwae.text = zakats.goldAhtaeYwae.toString();
-            goldPyitceeKyatthar.text = zakats.goldPyitceeKyatthar.toString();
-            goldPyitceePae.text = zakats.goldPyitceePae.toString();
-            goldPyitceeYwae.text = zakats.goldPyitceeYwae.toString();
-            whiteSilverAkhoutKyatthar.text =
-                zakats.whiteSilverAkhoutKyatthar.toString();
-            whiteSilverAkhoutPae.text = zakats.whiteSilverAkhoutPae.toString();
-            whiteSilverAkhoutYwae.text =
-                zakats.whiteSilverAkhoutYwae.toString();
-            whiteSilverAhtaeKyatthar.text =
-                zakats.whiteSilverAhtaeKyatthar.toString();
-            whiteSilverAhtaePae.text = zakats.whiteSilverAhtaePae.toString();
-            whiteSilverAhtaeYwae.text = zakats.whiteSilverAhtaeYwae.toString();
-            whiteSilverPyitceeKyatthar.text =
-                zakats.whiteSilverPyitceeKyatthar.toString();
-            whiteSilverPyitceePae.text =
-                zakats.whiteSilverPyitceePae.toString();
-            whiteSilverPyitceeYwae.text =
-                zakats.whiteSilverPyitceeYwae.toString();
-            silverAkhoutKyatthar.text = zakats.silverAkhoutKyatthar.toString();
-            silverAkhoutPae.text = zakats.silverAkhoutPae.toString();
-            silverAkhoutYwae.text = zakats.silverAkhoutYwae.toString();
-            silverAhtaeKyatthar.text = zakats.silverAhtaeKyatthar.toString();
-            silverAhtaePae.text = zakats.silverAhtaePae.toString();
-            silverAhtaeYwae.text = zakats.silverAhtaeYwae.toString();
-            silverPyitceeKyatthar.text =
-                zakats.silverPyitceeKyatthar.toString();
-            silverPyitceePae.text = zakats.silverPyitceePae.toString();
-            silverPyitceeYwae.text = zakats.silverPyitceeYwae.toString();
-            inHandSuHtarTaw.text = zakats.inHandSuHtarTaw.toString();
-            inHandPyitceeSold.text = zakats.inHandPyitceeSold.toString();
-            inHandPyitceeBorrow.text = zakats.inHandPyitceeBorrow.toString();
-            inHandForeignCurrency.text =
-                zakats.inHandForeignCurrency.toString();
-            inHandContract.text = zakats.inHandContract.toString();
-            inHandOther.text = zakats.inHandOther.toString();
-            inBankInBank.text = zakats.inBankInBank.toString();
-            inBankThuMyarHlwae.text = zakats.inBankThuMyarHlwae.toString();
-            inBankSalary.text = zakats.inBankSalary.toString();
-            inBankOther.text = zakats.inBankOther.toString();
-            thuMyarDebtPyitceeSold.text =
-                zakats.thuMyarDebtPyitceeSold.toString();
-            thuMyarDebtChayPay.text = zakats.thuMyarDebtChayPay.toString();
-            thuMyarDebtAttHtrTaw.text = zakats.thuMyarDebtAttHtrTaw.toString();
-            thuMyarDebtOther.text = zakats.thuMyarDebtOther.toString();
-            realEstateSellHouse.text = zakats.realEstateSellHouse.toString();
-            realEstateSellEscort.text = zakats.realEstateSellEscort.toString();
-            realEstateSellCar.text = zakats.realEstateSellCar.toString();
-            realEstateOther.text = zakats.realEstateOther.toString();
-            rawWearhouse.text = zakats.rawWearhouse.toString();
-            rawHome.text = zakats.rawHome.toString();
-            rawShop.text = zakats.rawShop.toString();
-            rawOther.text = zakats.rawOther.toString();
-            finishWearhouse.text = zakats.finishWearhouse.toString();
-            finishHome.text = zakats.finishHome.toString();
-            finishShop.text = zakats.finishShop.toString();
-            finishAnimal.text = zakats.finishAnimal.toString();
-            finishOther.text = zakats.finishOther.toString();
-            minusDebtMahur.text = zakats.minusDebtMahur.toString();
-            minusDebt.text = zakats.minusDebt.toString();
-            minusSukyae.text = zakats.minusSukyae.toString();
-            minusMeterBill.text = zakats.minusMeterBill.toString();
-            minusPaybill.text = zakats.minusPaybill.toString();
-            minusPaySalary.text = zakats.minusPaySalary.toString();
-            minusPayRent.text = zakats.minusPayRent.toString();
-            minusBuyGoodPay.text = zakats.minusBuyGoodPay.toString();
-            minusPreZakat.text = zakats.minusPreZakat.toString();
-            kalaout.text = zakats.kalaout.toString();
-            kywae.text = '0';
-            nwar.text = '0';
-            sate.text = zakats.sate.toString();
-            thoe.text = zakats.thoe.toString();
-            goldPrice.text = zakats.goldRate.toString();
-            silverPrice.text = zakats.silverRate.toString();
-
-            return Stepper(
-              type: StepperType.horizontal,
-              physics: ScrollPhysics(),
-              currentStep: _currentStep,
-              onStepTapped: (step) => tapped(step),
-              onStepContinue: continued,
-              onStepCancel: cancel,
-              controlsBuilder: (BuildContext context, ControlsDetails details) {
-                return Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: Container(
-                        margin: EdgeInsets.only(right: 4.0),
-                        width: 1000.0,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                AppColors.primaryText),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                          ),
-                          child: Text('PREVIOUS'),
-                          onPressed: details.onStepCancel,
-                        ),
-                      ),
-                      flex: 1,
-                    ),
-                    Flexible(
-                      child: Container(
-                        margin: EdgeInsets.only(left: 4.0),
-                        width: 1000.0,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                AppColors.primaryText),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                          ),
-                          child: Text('NEXT'),
-                          onPressed: details.onStepContinue,
-                        ),
-                      ),
-                      flex: 1,
-                    ),
-                  ],
-                );
+          automaticallyImplyLeading: true,
+          elevation: 0,
+          backgroundColor: AppColors.bgColor,
+          titleTextStyle: TextStyle(fontSize: 26),
+          title: BoldText(
+            data: "Zakat Calculator",
+            color: AppColors.primaryText,
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(
+                Icons.more_vert,
+                color: AppColors.primaryText,
+              ),
+              tooltip: 'More',
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ZakatListScreen()));
               },
-              steps: <Step>[
-                Step(
-                  title: RegularText(
-                    data: _currentStep == 0 ? '' : '',
-                    fontSize: 14.0,
-                    color: Colors.black87,
-                  ),
-                  content: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BoldText(
-                        data: "ရွှေ",
-                        color: AppColors.primaryText,
-                        fontSize: 22.0,
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryText,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            RegularText(
-                              fontSize: 14,
-                              color: AppColors.white,
-                              data:
-                                  "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အခေါက်",
-                                color: AppColors.primaryText,
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ကျပ်သား',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: goldAkhoutKyatthar,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ပဲ',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: goldAkhoutPae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ရွေး',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: goldAkhoutYwae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(height: 16.0),
-                      Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အထည်",
-                                color: AppColors.primaryText,
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ကျပ်သား',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: goldAhtaeKyatthar,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ပဲ',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: goldAhtaePae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ရွေး',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: goldAhtaeYwae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(height: 16.0),
-                      Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အသုံးဆောင်ပစ္စည်း",
-                                color: AppColors.primaryText,
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ကျပ်သား',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: goldPyitceeKyatthar,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ပဲ',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: goldPyitceePae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ရွေး',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: goldPyitceeYwae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(height: 24.0),
-                    ],
-                  ),
-                  isActive: _currentStep >= 0,
-                  state: _currentStep >= 0
-                      ? StepState.complete
-                      : StepState.indexed,
-                ),
-                Step(
-                  title: RegularText(
-                    data: _currentStep == 1 ? '' : '',
-                    fontSize: 14.0,
-                    color: Colors.black87,
-                  ),
-                  content: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BoldText(
-                        data: "ရွှေဖြူ",
-                        color: AppColors.primaryText,
-                        fontSize: 22.0,
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryText,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            RegularText(
-                              fontSize: 14,
-                              color: AppColors.white,
-                              data:
-                                  "ရွှေဖြူ (White Gold) ကိုရွှေဖြူဟုခေါ်တွင်သည်ဖြစ်စေ၊ပလက်တီနမ်ဟုခေါ်တွင်သည်ဖြစ်စေ၊ ရွှေဖြူသည်ရွှေသာဖြစ်သည်။ထို့ကြောင့်ရွှေဖြူတွင်ဇကားသ်ရှိသည်။ သို့သော်ပလက်တီနမ်(စစ်စစ်)သည်အခြားသတ္တုဖြစ်သဖြင့်၄င်းတွင်ဇကားသ်မရှိပါ။ ",
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အခေါက်",
-                                color: AppColors.primaryText,
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ကျပ်သား',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    whiteSilverAkhoutKyatthar,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ပဲ',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    whiteSilverAkhoutPae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ရွေး',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    whiteSilverAkhoutYwae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(height: 16.0),
-                      Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အထည်",
-                                color: AppColors.primaryText,
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ကျပ်သား',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    whiteSilverAhtaeKyatthar,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ပဲ',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: whiteSilverAhtaePae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ရွေး',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    whiteSilverAhtaeYwae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(height: 16.0),
-                      Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အသုံးဆောင်ပစ္စည်း",
-                                color: AppColors.primaryText,
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ကျပ်သား',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    whiteSilverPyitceeKyatthar,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ပဲ',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    whiteSilverPyitceePae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ရွေး',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    whiteSilverPyitceeYwae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                    ],
-                  ),
-                  isActive: _currentStep >= 1,
-                  state: _currentStep >= 1
-                      ? StepState.complete
-                      : StepState.indexed,
-                ),
-                Step(
-                  title: RegularText(
-                    data: _currentStep == 2 ? '' : '',
-                    fontSize: 14.0,
-                    color: Colors.black87,
-                  ),
-                  content: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BoldText(
-                        data: "ငွေ",
-                        color: AppColors.primaryText,
-                        fontSize: 22.0,
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryText,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            RegularText(
-                              fontSize: 14,
-                              color: AppColors.white,
-                              data:
-                                  "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အခေါက်",
-                                color: AppColors.primaryText,
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ကျပ်သား',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    silverAkhoutKyatthar,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ပဲ',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: silverAkhoutPae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ရွေး',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: silverAkhoutYwae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(height: 16.0),
-                      Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အထည်",
-                                color: AppColors.primaryText,
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ကျပ်သား',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: silverAhtaeKyatthar,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ပဲ',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: silverAhtaePae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ရွေး',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: silverAhtaeYwae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(height: 16.0),
-                      Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BoldText(
-                                data: "အသုံးဆောင်ပစ္စည်း",
-                                color: AppColors.primaryText,
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ကျပ်သား',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller:
-                                                    silverPyitceeKyatthar,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ပဲ',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: silverPyitceePae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                  new Flexible(
-                                    child: Container(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Row(
-                                        children: [
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.primaryText,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(8.0),
-                                                    topLeft:
-                                                        Radius.circular(8.0)),
-                                              ),
-                                              child: Center(
-                                                child: RegularText(
-                                                    data: 'ရွေး',
-                                                    fontSize: 10.0,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            flex: 1,
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.white,
-                                                border: Border.all(
-                                                    color: Colors.black12,
-                                                    width: 1),
-                                              ),
-                                              child: TextField(
-                                                controller: silverPyitceeYwae,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                      bottom: 30 /
-                                                          2, // HERE THE IMPORTANT PART
-                                                    )),
-                                                style: TextStyle(
-                                                  height: 0.5,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                    ],
-                  ),
-                  isActive: _currentStep >= 2,
-                  state: _currentStep >= 2
-                      ? StepState.complete
-                      : StepState.indexed,
-                ),
-                Step(
-                  title: RegularText(
-                    data: _currentStep == 3 ? '' : '',
-                    fontSize: 14.0,
-                    color: Colors.black87,
-                  ),
-                  content: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryText,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              fontSize: 14,
-                              color: AppColors.white,
-                              data:
-                                  "အိမ်ငှားရန်စပေါ်တင်ထားသောငွေနှင့်ပတ်သက်ပြီးစစ်မှန်သောမုဖ်သီတစ်ပါးအားကိုယ့်အခြေအနေအကြောင်းစုံတင်ပြကာမတ်စ်အလဟ်မေးမြန်းပြီးအကယ်၍ထည့်တွက်ရမည်ဆိုပါက'အခြား'ဆိုသောအကွက်တွင်ထည့်တွက်ပါ။ ပိုင်ဆိုင်ထားသောအွန်လိုင်းပိုက်ဆံများနှင့်အခြားအွန်လိုင်းပိုင်ဆိုင်မှုများကိုလည်းထည့်တွက်ရပါမည်။",
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              data: "လက်ထဲရှိ",
-                              color: AppColors.primaryText,
-                            ),
-                            TextFormField(
-                              controller: inHandSuHtarTaw,
-                              keyboardType: TextInputType.number,
-                              decoration:
-                                  InputDecoration(labelText: 'စုဆောင်းထားသော'),
-                            ),
-                            TextFormField(
-                              controller: inHandPyitceeSold,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'ပစ္စည်းရောင်း၍ရထားသော'),
-                            ),
-                            TextFormField(
-                                controller: inHandPyitceeBorrow,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'ပစ္စည်းငှားရမ်းခရထားသော')),
-                            TextFormField(
-                                controller: inHandForeignCurrency,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'နိုင်ငံခြားငွေ(ကျပ်ဖြင့်)')),
-                            TextFormField(
-                                controller: inHandContract,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'ငွေချေးစာချုပ်၊ချက်လက်မှတ်...')),
-                            TextFormField(
-                                controller: inHandOther,
-                                keyboardType: TextInputType.number,
-                                decoration:
-                                    InputDecoration(labelText: 'အခြား')),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              data: "ဘဏ်ထဲရှိ",
-                              color: AppColors.primaryText,
-                            ),
-                            TextFormField(
-                              controller: inBankInBank,
-                              keyboardType: TextInputType.number,
-                              decoration:
-                                  InputDecoration(labelText: 'ဘဏ်ထဲထည့်ထားသော'),
-                            ),
-                            TextFormField(
-                              controller: inBankThuMyarHlwae,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'အခြားသူများလွှဲပေးထားသော'),
-                            ),
-                            TextFormField(
-                                controller: inBankSalary,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'လစာ၊ပင်စင်တစ်ခုခုရထားသော')),
-                            TextFormField(
-                                controller: inBankOther,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'အခြား (Digital Money, etc)')),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              data: "အခြားသူမှ ရရန်ရှိသောအကြွေး",
-                              color: AppColors.primaryText,
-                            ),
-                            TextFormField(
-                              controller: thuMyarDebtPyitceeSold,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'ပစ္စည်းရောင်း၍ရရန်ရှိသော'),
-                            ),
-                            TextFormField(
-                              controller: thuMyarDebtChayPay,
-                              keyboardType: TextInputType.number,
-                              decoration:
-                                  InputDecoration(labelText: 'ချေးပေးထားသော'),
-                            ),
-                            TextFormField(
-                                controller: thuMyarDebtAttHtrTaw,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'တစ်ဦးတစ်ယောက်ထံအပ်နှံထားသော')),
-                            TextFormField(
-                                controller: thuMyarDebtOther,
-                                keyboardType: TextInputType.number,
-                                decoration:
-                                    InputDecoration(labelText: 'အခြား')),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                    ],
-                  ),
-                  isActive: _currentStep >= 3,
-                  state: _currentStep >= 3
-                      ? StepState.complete
-                      : StepState.indexed,
-                ),
-                Step(
-                  title: RegularText(
-                    data: _currentStep == 4 ? '' : '',
-                    fontSize: 14.0,
-                    color: Colors.black87,
-                  ),
-                  content: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryText,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              fontSize: 14,
-                              color: AppColors.white,
-                              data:
-                                  "ရောင်းရန်ရည်ရွယ်ထားသောပစ္စည်းဟူသမျှတွင်ဇကားသ်တာဝန်ရှိပါသည်။ လတ်တလောရောင်းရန်ရည်ရွယ်ထားသည်ဖြစ်စေ၊ ဈေးကောင်းရမည့်အချိန်ရောင်းရန်ရည်ရွယ်ပြီးယခုကိုယ်တိုင်အသုံးပြုနေသည်ဖြစ်စေ၊ အားလုံးကိုထည့်တွက်ရမည်။",
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              data: "အိမ်၊ခြံ၊မြေ",
-                              color: AppColors.primaryText,
-                            ),
-                            TextFormField(
-                              controller: realEstateSellHouse,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'ရောင်းရန်ရှိသောအိမ်'),
-                            ),
-                            TextFormField(
-                              controller: realEstateSellEscort,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'ရောင်းရန်ရှိသောခြံ/မြေ'),
-                            ),
-                            TextFormField(
-                                controller: realEstateSellCar,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'ရောင်းရန်ရှိသောကား')),
-                            TextFormField(
-                                controller: realEstateOther,
-                                keyboardType: TextInputType.number,
-                                decoration:
-                                    InputDecoration(labelText: 'အခြား')),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              data: "ကုန်ကြမ်းများ",
-                              color: AppColors.primaryText,
-                            ),
-                            TextFormField(
-                              controller: rawWearhouse,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
-                            ),
-                            TextFormField(
-                              controller: rawHome,
-                              keyboardType: TextInputType.number,
-                              decoration:
-                                  InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
-                            ),
-                            TextFormField(
-                                controller: rawShop,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'ဆိုင်တွင်ရှိသော')),
-                            TextFormField(
-                                controller: rawOther,
-                                keyboardType: TextInputType.number,
-                                decoration:
-                                    InputDecoration(labelText: 'အခြား')),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              data: "ကုန်ချောများ",
-                              color: AppColors.primaryText,
-                            ),
-                            TextFormField(
-                              controller: finishWearhouse,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
-                            ),
-                            TextFormField(
-                              controller: finishHome,
-                              keyboardType: TextInputType.number,
-                              decoration:
-                                  InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
-                            ),
-                            TextFormField(
-                                controller: finishShop,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'ဆိုင်တွင်ရှိသော')),
-                            TextFormField(
-                                controller: finishAnimal,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'ရောင်းရန်မွေးမြူထားသောသားကောင် ရေးရန်')),
-                            TextFormField(
-                                controller: finishOther,
-                                keyboardType: TextInputType.number,
-                                decoration:
-                                    InputDecoration(labelText: 'အခြား')),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                    ],
-                  ),
-                  isActive: _currentStep >= 4,
-                  state: _currentStep >= 4
-                      ? StepState.complete
-                      : StepState.indexed,
-                ),
-                Step(
-                  title: RegularText(
-                    data: _currentStep == 5 ? '' : '',
-                    fontSize: 14.0,
-                    color: Colors.black87,
-                  ),
-                  content: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryText,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              fontSize: 14,
-                              color: AppColors.white,
-                              data:
-                                  "သားကောင်၏ဇကားသ်နှင့်ပတ်သက်၍သိသင့်သိထိုက်သောအရာများ \n (၁) ရောင်းဝယ်ဖောက်ကားရန်မွေးမြူထားသော၊တစ်ချိန်ချိန်တွင်ပြန်ရောင်းရန်ဆန္ဒရှိသောသားကောင်များကိုဤစာရင်းတွင်မထည့်သွင်းရပါ။ ထိုသားကောင်များ၏တန်ဖိုးကို ရောင်းကုန်ပစ္စည်းများတွင် ထည့်၍တွက်ပါ။ \n (၂) နို့ရရှိရန် (သို့) မွေးမြူးထားပြီးရောင်းရန်ဆန္ဒမရှိသောသားကောင်များကိုသာဤနေရာတွင်ထည့်တွက်ပါ။ \n (၃) မွေးမြူထားသောသားကောင်သည်လွန်ခဲ့သည့်တစ်နှစ်တာကာလတွင် (၆)လကျော် စားကျက်တွင်ကျက်စားထားသောသားကောင်ဖြစ်ရမည်။ အကယ်၍ (၆)လကျော် အိမ်၌သာ ကျွေးမွေးခဲ့ပါကထိုသားကောင်ကိုထည့်မတွက်ရပါ။ \n (၄) ဇကားသ်ပေးရမည့်ကုလားအုပ်မအစား ကုလားအုပ်အထီးပေးလိုပါက ကုလားအုပ်မ၏တန်ဖိုးနှင့်ညီသော ကုလားအုပ်အထီးကိုသာပေးခွင့်ရှိ၏။ \n (၅) ကုလားအုတ် မှအပကျန်အိမ်မွေးတိရစ္ဆာန်များတွင် အထီးအမ မခွဲခြားထားပါ။ ကြိုက်နှစ်သက်ရာပေးခွင့်ရှိသည်။ \n (၆) ဇကားသ်အဖြစ်ပေးမည့်ဆိတ်သည် အနည်းဆုံ:အသက်တစ်နှစ်ပြည့်ပြီးဖြစ်ရမည်။ ",
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              data: "ကုလားအုတ်",
-                              color: AppColors.primaryText,
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: kalaout,
-                              decoration:
-                                  InputDecoration(labelText: 'ကုလားအုတ်'),
-                            ),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              data: "ကျွဲ၊နွား",
-                              color: AppColors.primaryText,
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: kywae,
-                              decoration: InputDecoration(labelText: 'ကျွဲ'),
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: nwar,
-                              decoration: InputDecoration(labelText: 'နွား'),
-                            ),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BoldText(
-                              data: "ဆိတ်၊သိုး",
-                              color: AppColors.primaryText,
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: sate,
-                              decoration: InputDecoration(labelText: 'ဆိတ်'),
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: thoe,
-                              decoration: InputDecoration(labelText: 'သိုး'),
-                            ),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                    ],
-                  ),
-                  isActive: _currentStep >= 5,
-                  state: _currentStep >= 5
-                      ? StepState.complete
-                      : StepState.indexed,
-                ),
-                Step(
-                  title: RegularText(
-                    data: _currentStep == 6 ? '' : '',
-                    fontSize: 14.0,
-                    color: Colors.black87,
-                  ),
-                  content: Column(
-                    children: [
-                      // Container(
-                      //   padding: EdgeInsets.all(16),
-                      //   decoration: BoxDecoration(
-                      //     color: AppColors.bgBtn,
-                      //     borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      //   ),
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     children: [
+            ),
+          ],
+        ),
+        // body: FutureBuilder(
+        //   future: null,
+        //   builder: (BuildContext context, AsyncSnapshot<Result> snapshot) {
+        //     if (snapshot.data is SuccessState) {
+        //       print("*******************again*******************");
+        //       // Zakat zakats = (snapshot.data as SuccessState).value;
 
-                      //       BoldText(
-                      //         fontSize: 14,
-                      //         color: AppColors.white,
-                      //         data:
-                      //             "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //       // goldAkhoutKyatthar.text = zakats.goldAkhoutKyatthar.toString();
+        //       // goldAkhoutPae.text = zakats.goldAkhoutPae.toString();
+        //       // goldAkhoutYwae.text = zakats.goldAkhoutYwae.toString();
+        //       // goldAhtaeKyatthar.text = zakats.goldAhtaeKyatthar.toString();
+        //       // goldAhtaePae.text = zakats.goldAhtaePae.toString();
+        //       // goldAhtaeYwae.text = zakats.goldAhtaeYwae.toString();
+        //       // goldPyitceeKyatthar.text = zakats.goldPyitceeKyatthar.toString();
+        //       // goldPyitceePae.text = zakats.goldPyitceePae.toString();
+        //       // goldPyitceeYwae.text = zakats.goldPyitceeYwae.toString();
+        //       // whiteSilverAkhoutKyatthar.text =
+        //       //     zakats.whiteSilverAkhoutKyatthar.toString();
+        //       // whiteSilverAkhoutPae.text = zakats.whiteSilverAkhoutPae.toString();
+        //       // whiteSilverAkhoutYwae.text =
+        //       //     zakats.whiteSilverAkhoutYwae.toString();
+        //       // whiteSilverAhtaeKyatthar.text =
+        //       //     zakats.whiteSilverAhtaeKyatthar.toString();
+        //       // whiteSilverAhtaePae.text = zakats.whiteSilverAhtaePae.toString();
+        //       // whiteSilverAhtaeYwae.text = zakats.whiteSilverAhtaeYwae.toString();
+        //       // whiteSilverPyitceeKyatthar.text =
+        //       //     zakats.whiteSilverPyitceeKyatthar.toString();
+        //       // whiteSilverPyitceePae.text =
+        //       //     zakats.whiteSilverPyitceePae.toString();
+        //       // whiteSilverPyitceeYwae.text =
+        //       //     zakats.whiteSilverPyitceeYwae.toString();
+        //       // silverAkhoutKyatthar.text = zakats.silverAkhoutKyatthar.toString();
+        //       // silverAkhoutPae.text = zakats.silverAkhoutPae.toString();
+        //       // silverAkhoutYwae.text = zakats.silverAkhoutYwae.toString();
+        //       // silverAhtaeKyatthar.text = zakats.silverAhtaeKyatthar.toString();
+        //       // silverAhtaePae.text = zakats.silverAhtaePae.toString();
+        //       // silverAhtaeYwae.text = zakats.silverAhtaeYwae.toString();
+        //       // silverPyitceeKyatthar.text =
+        //       //     zakats.silverPyitceeKyatthar.toString();
+        //       // silverPyitceePae.text = zakats.silverPyitceePae.toString();
+        //       // silverPyitceeYwae.text = zakats.silverPyitceeYwae.toString();
+        //       // inHandSuHtarTaw.text = zakats.inHandSuHtarTaw.toString();
+        //       // inHandPyitceeSold.text = zakats.inHandPyitceeSold.toString();
+        //       // inHandPyitceeBorrow.text = zakats.inHandPyitceeBorrow.toString();
+        //       // inHandForeignCurrency.text =
+        //       //     zakats.inHandForeignCurrency.toString();
+        //       // inHandContract.text = zakats.inHandContract.toString();
+        //       // inHandOther.text = zakats.inHandOther.toString();
+        //       // inBankInBank.text = zakats.inBankInBank.toString();
+        //       // inBankThuMyarHlwae.text = zakats.inBankThuMyarHlwae.toString();
+        //       // inBankSalary.text = zakats.inBankSalary.toString();
+        //       // inBankOther.text = zakats.inBankOther.toString();
+        //       // thuMyarDebtPyitceeSold.text =
+        //       //     zakats.thuMyarDebtPyitceeSold.toString();
+        //       // thuMyarDebtChayPay.text = zakats.thuMyarDebtChayPay.toString();
+        //       // thuMyarDebtAttHtrTaw.text = zakats.thuMyarDebtAttHtrTaw.toString();
+        //       // thuMyarDebtOther.text = zakats.thuMyarDebtOther.toString();
+        //       // realEstateSellHouse.text = zakats.realEstateSellHouse.toString();
+        //       // realEstateSellEscort.text = zakats.realEstateSellEscort.toString();
+        //       // realEstateSellCar.text = zakats.realEstateSellCar.toString();
+        //       // realEstateOther.text = zakats.realEstateOther.toString();
+        //       // rawWearhouse.text = zakats.rawWearhouse.toString();
+        //       // rawHome.text = zakats.rawHome.toString();
+        //       // rawShop.text = zakats.rawShop.toString();
+        //       // rawOther.text = zakats.rawOther.toString();
+        //       // finishWearhouse.text = zakats.finishWearhouse.toString();
+        //       // finishHome.text = zakats.finishHome.toString();
+        //       // finishShop.text = zakats.finishShop.toString();
+        //       // finishAnimal.text = zakats.finishAnimal.toString();
+        //       // finishOther.text = zakats.finishOther.toString();
+        //       // minusDebtMahur.text = zakats.minusDebtMahur.toString();
+        //       // minusDebt.text = zakats.minusDebt.toString();
+        //       // minusSukyae.text = zakats.minusSukyae.toString();
+        //       // minusMeterBill.text = zakats.minusMeterBill.toString();
+        //       // minusPaybill.text = zakats.minusPaybill.toString();
+        //       // minusPaySalary.text = zakats.minusPaySalary.toString();
+        //       // minusPayRent.text = zakats.minusPayRent.toString();
+        //       // minusBuyGoodPay.text = zakats.minusBuyGoodPay.toString();
+        //       // minusPreZakat.text = zakats.minusPreZakat.toString();
+        //       // kalaout.text = zakats.kalaout.toString();
+        //       // kywae.text = '0';
+        //       // nwar.text = '0';
+        //       // sate.text = zakats.sate.toString();
+        //       // thoe.text = zakats.thoe.toString();
+        //       // goldPrice.text = zakats.goldRate.toString();
+        //       // silverPrice.text = zakats.silverRate.toString();
+
+        //       return Stepper(
+        //         type: StepperType.horizontal,
+        //         physics: ScrollPhysics(),
+        //         currentStep: _currentStep,
+        //         onStepTapped: (step) => tapped(step),
+        //         onStepContinue: continued,
+        //         onStepCancel: cancel,
+        //         controlsBuilder: (BuildContext context, ControlsDetails details) {
+        //           return Row(
+        //             children: <Widget>[
+        //               Flexible(
+        //                 child: Container(
+        //                   margin: EdgeInsets.only(right: 4.0),
+        //                   width: 1000.0,
+        //                   child: ElevatedButton(
+        //                     style: ButtonStyle(
+        //                       backgroundColor: MaterialStateProperty.all(
+        //                           AppColors.primaryText),
+        //                       shape: MaterialStateProperty.all<
+        //                           RoundedRectangleBorder>(
+        //                         RoundedRectangleBorder(
+        //                           borderRadius: BorderRadius.circular(8.0),
+        //                         ),
+        //                       ),
+        //                     ),
+        //                     child: Text('PREVIOUS'),
+        //                     onPressed: details.onStepCancel,
+        //                   ),
+        //                 ),
+        //                 flex: 1,
+        //               ),
+        //               Flexible(
+        //                 child: Container(
+        //                   margin: EdgeInsets.only(left: 4.0),
+        //                   width: 1000.0,
+        //                   child: ElevatedButton(
+        //                     style: ButtonStyle(
+        //                       backgroundColor: MaterialStateProperty.all(
+        //                           AppColors.primaryText),
+        //                       shape: MaterialStateProperty.all<
+        //                           RoundedRectangleBorder>(
+        //                         RoundedRectangleBorder(
+        //                           borderRadius: BorderRadius.circular(8.0),
+        //                         ),
+        //                       ),
+        //                     ),
+        //                     child: Text('NEXT'),
+        //                     onPressed: details.onStepContinue,
+        //                   ),
+        //                 ),
+        //                 flex: 1,
+        //               ),
+        //             ],
+        //           );
+        //         },
+        //         steps: <Step>[
+        //           Step(
+        //             title: RegularText(
+        //               data: _currentStep == 0 ? '' : '',
+        //               fontSize: 14.0,
+        //               color: Colors.black87,
+        //             ),
+        //             content: Column(
+        //               crossAxisAlignment: CrossAxisAlignment.start,
+        //               children: [
+        //                 BoldText(
+        //                   data: "ရွှေ",
+        //                   color: AppColors.primaryText,
+        //                   fontSize: 22.0,
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.primaryText,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       RegularText(
+        //                         fontSize: 14,
+        //                         color: AppColors.white,
+        //                         data:
+        //                             "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
+        //                       )
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                     padding: EdgeInsets.all(16),
+        //                     decoration: BoxDecoration(
+        //                         color: AppColors.white,
+        //                         borderRadius:
+        //                             BorderRadius.all(Radius.circular(8.0))),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         BoldText(
+        //                           data: "အခေါက်",
+        //                           color: AppColors.primaryText,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 16.0,
+        //                         ),
+        //                         new Row(
+        //                           children: <Widget>[
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ကျပ်သား',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: goldAkhoutKyatthar,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ပဲ',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: goldAkhoutPae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ရွေး',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: goldAkhoutYwae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     )),
+        //                 SizedBox(height: 16.0),
+        //                 Container(
+        //                     padding: EdgeInsets.all(16),
+        //                     decoration: BoxDecoration(
+        //                         color: AppColors.white,
+        //                         borderRadius:
+        //                             BorderRadius.all(Radius.circular(8.0))),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         BoldText(
+        //                           data: "အထည်",
+        //                           color: AppColors.primaryText,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 16.0,
+        //                         ),
+        //                         new Row(
+        //                           children: <Widget>[
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ကျပ်သား',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: goldAhtaeKyatthar,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ပဲ',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: goldAhtaePae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ရွေး',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: goldAhtaeYwae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     )),
+        //                 SizedBox(height: 16.0),
+        //                 Container(
+        //                     padding: EdgeInsets.all(16),
+        //                     decoration: BoxDecoration(
+        //                         color: AppColors.white,
+        //                         borderRadius:
+        //                             BorderRadius.all(Radius.circular(8.0))),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         BoldText(
+        //                           data: "အသုံးဆောင်ပစ္စည်း",
+        //                           color: AppColors.primaryText,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 16.0,
+        //                         ),
+        //                         new Row(
+        //                           children: <Widget>[
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ကျပ်သား',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: goldPyitceeKyatthar,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ပဲ',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: goldPyitceePae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ရွေး',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: goldPyitceeYwae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     )),
+        //                 SizedBox(height: 24.0),
+        //               ],
+        //             ),
+        //             isActive: _currentStep >= 0,
+        //             state: _currentStep >= 0
+        //                 ? StepState.complete
+        //                 : StepState.indexed,
+        //           ),
+        //           Step(
+        //             title: RegularText(
+        //               data: _currentStep == 1 ? '' : '',
+        //               fontSize: 14.0,
+        //               color: Colors.black87,
+        //             ),
+        //             content: Column(
+        //               crossAxisAlignment: CrossAxisAlignment.start,
+        //               children: [
+        //                 BoldText(
+        //                   data: "ရွှေဖြူ",
+        //                   color: AppColors.primaryText,
+        //                   fontSize: 22.0,
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.primaryText,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       RegularText(
+        //                         fontSize: 14,
+        //                         color: AppColors.white,
+        //                         data:
+        //                             "ရွှေဖြူ (White Gold) ကိုရွှေဖြူဟုခေါ်တွင်သည်ဖြစ်စေ၊ပလက်တီနမ်ဟုခေါ်တွင်သည်ဖြစ်စေ၊ ရွှေဖြူသည်ရွှေသာဖြစ်သည်။ထို့ကြောင့်ရွှေဖြူတွင်ဇကားသ်ရှိသည်။ သို့သော်ပလက်တီနမ်(စစ်စစ်)သည်အခြားသတ္တုဖြစ်သဖြင့်၄င်းတွင်ဇကားသ်မရှိပါ။ ",
+        //                       )
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                     padding: EdgeInsets.all(16),
+        //                     decoration: BoxDecoration(
+        //                         color: AppColors.white,
+        //                         borderRadius:
+        //                             BorderRadius.all(Radius.circular(8.0))),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         BoldText(
+        //                           data: "အခေါက်",
+        //                           color: AppColors.primaryText,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 16.0,
+        //                         ),
+        //                         new Row(
+        //                           children: <Widget>[
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ကျပ်သား',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               whiteSilverAkhoutKyatthar,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ပဲ',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               whiteSilverAkhoutPae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ရွေး',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               whiteSilverAkhoutYwae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     )),
+        //                 SizedBox(height: 16.0),
+        //                 Container(
+        //                     padding: EdgeInsets.all(16),
+        //                     decoration: BoxDecoration(
+        //                         color: AppColors.white,
+        //                         borderRadius:
+        //                             BorderRadius.all(Radius.circular(8.0))),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         BoldText(
+        //                           data: "အထည်",
+        //                           color: AppColors.primaryText,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 16.0,
+        //                         ),
+        //                         new Row(
+        //                           children: <Widget>[
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ကျပ်သား',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               whiteSilverAhtaeKyatthar,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ပဲ',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: whiteSilverAhtaePae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ရွေး',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               whiteSilverAhtaeYwae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     )),
+        //                 SizedBox(height: 16.0),
+        //                 Container(
+        //                     padding: EdgeInsets.all(16),
+        //                     decoration: BoxDecoration(
+        //                         color: AppColors.white,
+        //                         borderRadius:
+        //                             BorderRadius.all(Radius.circular(8.0))),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         BoldText(
+        //                           data: "အသုံးဆောင်ပစ္စည်း",
+        //                           color: AppColors.primaryText,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 16.0,
+        //                         ),
+        //                         new Row(
+        //                           children: <Widget>[
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ကျပ်သား',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               whiteSilverPyitceeKyatthar,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ပဲ',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               whiteSilverPyitceePae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ရွေး',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               whiteSilverPyitceeYwae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     )),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //               ],
+        //             ),
+        //             isActive: _currentStep >= 1,
+        //             state: _currentStep >= 1
+        //                 ? StepState.complete
+        //                 : StepState.indexed,
+        //           ),
+        //           Step(
+        //             title: RegularText(
+        //               data: _currentStep == 2 ? '' : '',
+        //               fontSize: 14.0,
+        //               color: Colors.black87,
+        //             ),
+        //             content: Column(
+        //               crossAxisAlignment: CrossAxisAlignment.start,
+        //               children: [
+        //                 BoldText(
+        //                   data: "ငွေ",
+        //                   color: AppColors.primaryText,
+        //                   fontSize: 22.0,
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.primaryText,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       RegularText(
+        //                         fontSize: 14,
+        //                         color: AppColors.white,
+        //                         data:
+        //                             "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
+        //                       )
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                     padding: EdgeInsets.all(16),
+        //                     decoration: BoxDecoration(
+        //                         color: AppColors.white,
+        //                         borderRadius:
+        //                             BorderRadius.all(Radius.circular(8.0))),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         BoldText(
+        //                           data: "အခေါက်",
+        //                           color: AppColors.primaryText,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 16.0,
+        //                         ),
+        //                         new Row(
+        //                           children: <Widget>[
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ကျပ်သား',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               silverAkhoutKyatthar,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ပဲ',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: silverAkhoutPae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ရွေး',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: silverAkhoutYwae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     )),
+        //                 SizedBox(height: 16.0),
+        //                 Container(
+        //                     padding: EdgeInsets.all(16),
+        //                     decoration: BoxDecoration(
+        //                         color: AppColors.white,
+        //                         borderRadius:
+        //                             BorderRadius.all(Radius.circular(8.0))),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         BoldText(
+        //                           data: "အထည်",
+        //                           color: AppColors.primaryText,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 16.0,
+        //                         ),
+        //                         new Row(
+        //                           children: <Widget>[
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ကျပ်သား',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: silverAhtaeKyatthar,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ပဲ',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: silverAhtaePae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ရွေး',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: silverAhtaeYwae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     )),
+        //                 SizedBox(height: 16.0),
+        //                 Container(
+        //                     padding: EdgeInsets.all(16),
+        //                     decoration: BoxDecoration(
+        //                         color: AppColors.white,
+        //                         borderRadius:
+        //                             BorderRadius.all(Radius.circular(8.0))),
+        //                     child: Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         BoldText(
+        //                           data: "အသုံးဆောင်ပစ္စည်း",
+        //                           color: AppColors.primaryText,
+        //                         ),
+        //                         SizedBox(
+        //                           height: 16.0,
+        //                         ),
+        //                         new Row(
+        //                           children: <Widget>[
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ကျပ်သား',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller:
+        //                                               silverPyitceeKyatthar,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ပဲ',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: silverPyitceePae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                             new Flexible(
+        //                               child: Container(
+        //                                 padding: EdgeInsets.only(right: 8.0),
+        //                                 child: Row(
+        //                                   children: [
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.primaryText,
+        //                                           borderRadius: BorderRadius.only(
+        //                                               bottomLeft:
+        //                                                   Radius.circular(8.0),
+        //                                               topLeft:
+        //                                                   Radius.circular(8.0)),
+        //                                         ),
+        //                                         child: Center(
+        //                                           child: RegularText(
+        //                                               data: 'ရွေး',
+        //                                               fontSize: 10.0,
+        //                                               color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                     Flexible(
+        //                                       flex: 1,
+        //                                       child: Container(
+        //                                         padding:
+        //                                             EdgeInsets.only(bottom: 8.0),
+        //                                         height: 30,
+        //                                         decoration: BoxDecoration(
+        //                                           color: AppColors.white,
+        //                                           border: Border.all(
+        //                                               color: Colors.black12,
+        //                                               width: 1),
+        //                                         ),
+        //                                         child: TextField(
+        //                                           controller: silverPyitceeYwae,
+        //                                           keyboardType:
+        //                                               TextInputType.number,
+        //                                           textAlign: TextAlign.center,
+        //                                           decoration: InputDecoration(
+        //                                               border: InputBorder.none,
+        //                                               contentPadding:
+        //                                                   EdgeInsets.only(
+        //                                                 bottom: 30 /
+        //                                                     2, // HERE THE IMPORTANT PART
+        //                                               )),
+        //                                           style: TextStyle(
+        //                                             height: 0.5,
+        //                                           ),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ],
+        //                                 ),
+        //                               ),
+        //                               flex: 1,
+        //                             ),
+        //                           ],
+        //                         ),
+        //                       ],
+        //                     )),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //               ],
+        //             ),
+        //             isActive: _currentStep >= 2,
+        //             state: _currentStep >= 2
+        //                 ? StepState.complete
+        //                 : StepState.indexed,
+        //           ),
+        //           Step(
+        //             title: RegularText(
+        //               data: _currentStep == 3 ? '' : '',
+        //               fontSize: 14.0,
+        //               color: Colors.black87,
+        //             ),
+        //             content: Column(
+        //               children: [
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.primaryText,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         fontSize: 14,
+        //                         color: AppColors.white,
+        //                         data:
+        //                             "အိမ်ငှားရန်စပေါ်တင်ထားသောငွေနှင့်ပတ်သက်ပြီးစစ်မှန်သောမုဖ်သီတစ်ပါးအားကိုယ့်အခြေအနေအကြောင်းစုံတင်ပြကာမတ်စ်အလဟ်မေးမြန်းပြီးအကယ်၍ထည့်တွက်ရမည်ဆိုပါက'အခြား'ဆိုသောအကွက်တွင်ထည့်တွက်ပါ။ ပိုင်ဆိုင်ထားသောအွန်လိုင်းပိုက်ဆံများနှင့်အခြားအွန်လိုင်းပိုင်ဆိုင်မှုများကိုလည်းထည့်တွက်ရပါမည်။",
+        //                       )
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         data: "လက်ထဲရှိ",
+        //                         color: AppColors.primaryText,
+        //                       ),
+        //                       TextFormField(
+        //                         controller: inHandSuHtarTaw,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration:
+        //                             InputDecoration(labelText: 'စုဆောင်းထားသော'),
+        //                       ),
+        //                       TextFormField(
+        //                         controller: inHandPyitceeSold,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration: InputDecoration(
+        //                             labelText: 'ပစ္စည်းရောင်း၍ရထားသော'),
+        //                       ),
+        //                       TextFormField(
+        //                           controller: inHandPyitceeBorrow,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText: 'ပစ္စည်းငှားရမ်းခရထားသော')),
+        //                       TextFormField(
+        //                           controller: inHandForeignCurrency,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText: 'နိုင်ငံခြားငွေ(ကျပ်ဖြင့်)')),
+        //                       TextFormField(
+        //                           controller: inHandContract,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText:
+        //                                   'ငွေချေးစာချုပ်၊ချက်လက်မှတ်...')),
+        //                       TextFormField(
+        //                           controller: inHandOther,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration:
+        //                               InputDecoration(labelText: 'အခြား')),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         data: "ဘဏ်ထဲရှိ",
+        //                         color: AppColors.primaryText,
+        //                       ),
+        //                       TextFormField(
+        //                         controller: inBankInBank,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration:
+        //                             InputDecoration(labelText: 'ဘဏ်ထဲထည့်ထားသော'),
+        //                       ),
+        //                       TextFormField(
+        //                         controller: inBankThuMyarHlwae,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration: InputDecoration(
+        //                             labelText: 'အခြားသူများလွှဲပေးထားသော'),
+        //                       ),
+        //                       TextFormField(
+        //                           controller: inBankSalary,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText: 'လစာ၊ပင်စင်တစ်ခုခုရထားသော')),
+        //                       TextFormField(
+        //                           controller: inBankOther,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText: 'အခြား (Digital Money, etc)')),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         data: "အခြားသူမှ ရရန်ရှိသောအကြွေး",
+        //                         color: AppColors.primaryText,
+        //                       ),
+        //                       TextFormField(
+        //                         controller: thuMyarDebtPyitceeSold,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration: InputDecoration(
+        //                             labelText: 'ပစ္စည်းရောင်း၍ရရန်ရှိသော'),
+        //                       ),
+        //                       TextFormField(
+        //                         controller: thuMyarDebtChayPay,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration:
+        //                             InputDecoration(labelText: 'ချေးပေးထားသော'),
+        //                       ),
+        //                       TextFormField(
+        //                           controller: thuMyarDebtAttHtrTaw,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText: 'တစ်ဦးတစ်ယောက်ထံအပ်နှံထားသော')),
+        //                       TextFormField(
+        //                           controller: thuMyarDebtOther,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration:
+        //                               InputDecoration(labelText: 'အခြား')),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //               ],
+        //             ),
+        //             isActive: _currentStep >= 3,
+        //             state: _currentStep >= 3
+        //                 ? StepState.complete
+        //                 : StepState.indexed,
+        //           ),
+        //           Step(
+        //             title: RegularText(
+        //               data: _currentStep == 4 ? '' : '',
+        //               fontSize: 14.0,
+        //               color: Colors.black87,
+        //             ),
+        //             content: Column(
+        //               children: [
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.primaryText,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         fontSize: 14,
+        //                         color: AppColors.white,
+        //                         data:
+        //                             "ရောင်းရန်ရည်ရွယ်ထားသောပစ္စည်းဟူသမျှတွင်ဇကားသ်တာဝန်ရှိပါသည်။ လတ်တလောရောင်းရန်ရည်ရွယ်ထားသည်ဖြစ်စေ၊ ဈေးကောင်းရမည့်အချိန်ရောင်းရန်ရည်ရွယ်ပြီးယခုကိုယ်တိုင်အသုံးပြုနေသည်ဖြစ်စေ၊ အားလုံးကိုထည့်တွက်ရမည်။",
+        //                       )
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         data: "အိမ်၊ခြံ၊မြေ",
+        //                         color: AppColors.primaryText,
+        //                       ),
+        //                       TextFormField(
+        //                         controller: realEstateSellHouse,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration: InputDecoration(
+        //                             labelText: 'ရောင်းရန်ရှိသောအိမ်'),
+        //                       ),
+        //                       TextFormField(
+        //                         controller: realEstateSellEscort,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration: InputDecoration(
+        //                             labelText: 'ရောင်းရန်ရှိသောခြံ/မြေ'),
+        //                       ),
+        //                       TextFormField(
+        //                           controller: realEstateSellCar,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText: 'ရောင်းရန်ရှိသောကား')),
+        //                       TextFormField(
+        //                           controller: realEstateOther,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration:
+        //                               InputDecoration(labelText: 'အခြား')),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         data: "ကုန်ကြမ်းများ",
+        //                         color: AppColors.primaryText,
+        //                       ),
+        //                       TextFormField(
+        //                         controller: rawWearhouse,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration: InputDecoration(
+        //                             labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
+        //                       ),
+        //                       TextFormField(
+        //                         controller: rawHome,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration:
+        //                             InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
+        //                       ),
+        //                       TextFormField(
+        //                           controller: rawShop,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText: 'ဆိုင်တွင်ရှိသော')),
+        //                       TextFormField(
+        //                           controller: rawOther,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration:
+        //                               InputDecoration(labelText: 'အခြား')),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         data: "ကုန်ချောများ",
+        //                         color: AppColors.primaryText,
+        //                       ),
+        //                       TextFormField(
+        //                         controller: finishWearhouse,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration: InputDecoration(
+        //                             labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
+        //                       ),
+        //                       TextFormField(
+        //                         controller: finishHome,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration:
+        //                             InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
+        //                       ),
+        //                       TextFormField(
+        //                           controller: finishShop,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText: 'ဆိုင်တွင်ရှိသော')),
+        //                       TextFormField(
+        //                           controller: finishAnimal,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText:
+        //                                   'ရောင်းရန်မွေးမြူထားသောသားကောင် ရေးရန်')),
+        //                       TextFormField(
+        //                           controller: finishOther,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration:
+        //                               InputDecoration(labelText: 'အခြား')),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //               ],
+        //             ),
+        //             isActive: _currentStep >= 4,
+        //             state: _currentStep >= 4
+        //                 ? StepState.complete
+        //                 : StepState.indexed,
+        //           ),
+        //           Step(
+        //             title: RegularText(
+        //               data: _currentStep == 5 ? '' : '',
+        //               fontSize: 14.0,
+        //               color: Colors.black87,
+        //             ),
+        //             content: Column(
+        //               children: [
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.primaryText,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         fontSize: 14,
+        //                         color: AppColors.white,
+        //                         data:
+        //                             "သားကောင်၏ဇကားသ်နှင့်ပတ်သက်၍သိသင့်သိထိုက်သောအရာများ \n (၁) ရောင်းဝယ်ဖောက်ကားရန်မွေးမြူထားသော၊တစ်ချိန်ချိန်တွင်ပြန်ရောင်းရန်ဆန္ဒရှိသောသားကောင်များကိုဤစာရင်းတွင်မထည့်သွင်းရပါ။ ထိုသားကောင်များ၏တန်ဖိုးကို ရောင်းကုန်ပစ္စည်းများတွင် ထည့်၍တွက်ပါ။ \n (၂) နို့ရရှိရန် (သို့) မွေးမြူးထားပြီးရောင်းရန်ဆန္ဒမရှိသောသားကောင်များကိုသာဤနေရာတွင်ထည့်တွက်ပါ။ \n (၃) မွေးမြူထားသောသားကောင်သည်လွန်ခဲ့သည့်တစ်နှစ်တာကာလတွင် (၆)လကျော် စားကျက်တွင်ကျက်စားထားသောသားကောင်ဖြစ်ရမည်။ အကယ်၍ (၆)လကျော် အိမ်၌သာ ကျွေးမွေးခဲ့ပါကထိုသားကောင်ကိုထည့်မတွက်ရပါ။ \n (၄) ဇကားသ်ပေးရမည့်ကုလားအုပ်မအစား ကုလားအုပ်အထီးပေးလိုပါက ကုလားအုပ်မ၏တန်ဖိုးနှင့်ညီသော ကုလားအုပ်အထီးကိုသာပေးခွင့်ရှိ၏။ \n (၅) ကုလားအုတ် မှအပကျန်အိမ်မွေးတိရစ္ဆာန်များတွင် အထီးအမ မခွဲခြားထားပါ။ ကြိုက်နှစ်သက်ရာပေးခွင့်ရှိသည်။ \n (၆) ဇကားသ်အဖြစ်ပေးမည့်ဆိတ်သည် အနည်းဆုံ:အသက်တစ်နှစ်ပြည့်ပြီးဖြစ်ရမည်။ ",
+        //                       )
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         data: "ကုလားအုတ်",
+        //                         color: AppColors.primaryText,
+        //                       ),
+        //                       TextFormField(
+        //                         keyboardType: TextInputType.number,
+        //                         controller: kalaout,
+        //                         decoration:
+        //                             InputDecoration(labelText: 'ကုလားအုတ်'),
+        //                       ),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         data: "ကျွဲ၊နွား",
+        //                         color: AppColors.primaryText,
+        //                       ),
+        //                       TextFormField(
+        //                         keyboardType: TextInputType.number,
+        //                         controller: kywae,
+        //                         decoration: InputDecoration(labelText: 'ကျွဲ'),
+        //                       ),
+        //                       TextFormField(
+        //                         keyboardType: TextInputType.number,
+        //                         controller: nwar,
+        //                         decoration: InputDecoration(labelText: 'နွား'),
+        //                       ),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       BoldText(
+        //                         data: "ဆိတ်၊သိုး",
+        //                         color: AppColors.primaryText,
+        //                       ),
+        //                       TextFormField(
+        //                         keyboardType: TextInputType.number,
+        //                         controller: sate,
+        //                         decoration: InputDecoration(labelText: 'ဆိတ်'),
+        //                       ),
+        //                       TextFormField(
+        //                         keyboardType: TextInputType.number,
+        //                         controller: thoe,
+        //                         decoration: InputDecoration(labelText: 'သိုး'),
+        //                       ),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //               ],
+        //             ),
+        //             isActive: _currentStep >= 5,
+        //             state: _currentStep >= 5
+        //                 ? StepState.complete
+        //                 : StepState.indexed,
+        //           ),
+        //           Step(
+        //             title: RegularText(
+        //               data: _currentStep == 6 ? '' : '',
+        //               fontSize: 14.0,
+        //               color: Colors.black87,
+        //             ),
+        //             content: Column(
+        //               children: [
+        //                 // Container(
+        //                 //   padding: EdgeInsets.all(16),
+        //                 //   decoration: BoxDecoration(
+        //                 //     color: AppColors.bgBtn,
+        //                 //     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                 //   ),
+        //                 //   child: Column(
+        //                 //     crossAxisAlignment: CrossAxisAlignment.start,
+        //                 //     children: [
+
+        //                 //       BoldText(
+        //                 //         fontSize: 14,
+        //                 //         color: AppColors.white,
+        //                 //         data:
+        //                 //             "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+        //                 //       )
+        //                 //     ],
+        //                 //   ),
+        //                 // ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 Container(
+        //                   padding: EdgeInsets.all(16),
+        //                   decoration: BoxDecoration(
+        //                     color: AppColors.white,
+        //                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                   ),
+        //                   child: Column(
+        //                     crossAxisAlignment: CrossAxisAlignment.start,
+        //                     children: [
+        //                       TextFormField(
+        //                         controller: minusDebtMahur,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration: InputDecoration(
+        //                             labelText: 'ဇနီးကိုမပေးရသေးသောမဟ်ရ်'),
+        //                       ),
+        //                       TextFormField(
+        //                         controller: minusDebt,
+        //                         keyboardType: TextInputType.number,
+        //                         decoration: InputDecoration(
+        //                             labelText: 'သူများကိုပေးဆပ်ရမည့်အကြွေး'),
+        //                       ),
+        //                       TextFormField(
+        //                           controller: minusSukyae,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText:
+        //                                   'စုကြေးရရှိပြီးပေးသွင်းရန်ကျန်ငွေပေါင်း')),
+        //                       TextFormField(
+        //                           controller: minusMeterBill,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText: 'ပေးဆောင်ရန်ကျန်သောမီတာခ')),
+        //                       TextFormField(
+        //                           controller: minusPaybill,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText:
+        //                                   'ပေးဆောင်ရန်ကျန်သောအဖိုးအခများ')),
+        //                       TextFormField(
+        //                           controller: minusPaySalary,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText:
+        //                                   'ဝန်ထမ်းများကိုပေးရန်ကျန်သောလစာများ')),
+        //                       TextFormField(
+        //                           controller: minusPayRent,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText:
+        //                                   'ပေးဆောင်ရန်ကျန်သောငှားရမ်းခများ')),
+        //                       TextFormField(
+        //                           controller: minusBuyGoodPay,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText:
+        //                                   'ပစ္စည်းဝယ်ပြီးပေးချေရန်ကျန်သောအကြွေး')),
+        //                       TextFormField(
+        //                           controller: minusPreZakat,
+        //                           keyboardType: TextInputType.number,
+        //                           decoration: InputDecoration(
+        //                               labelText:
+        //                                   'ယခင်နှစ်များ၏မပေးရသေးသောဇကားသ်')),
+        //                       SizedBox(
+        //                         height: 8.0,
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //               ],
+        //             ),
+        //             isActive: _currentStep >= 6,
+        //             state: _currentStep >= 6
+        //                 ? StepState.complete
+        //                 : StepState.indexed,
+        //           ),
+        //           Step(
+        //             title: RegularText(
+        //               data: _currentStep == 7 ? '' : '',
+        //               fontSize: 14.0,
+        //               color: Colors.black87,
+        //             ),
+        //             content: Column(
+        //               crossAxisAlignment: CrossAxisAlignment.start,
+        //               children: [
+        //                 Row(
+        //                   children: [
+        //                     RegularText(
+        //                       data: 'Manual',
+        //                       color: AppColors.primaryText,
+        //                     ),
+        //                     SizedBox(
+        //                       width: 8,
+        //                     ),
+        //                     CupertinoSwitch(
+        //                       value: _optionAuto,
+        //                       onChanged: (value) {
+        //                         setState(() {
+        //                           _optionAuto = value;
+        //                         });
+        //                       },
+        //                     ),
+        //                     SizedBox(
+        //                       width: 8,
+        //                     ),
+        //                     RegularText(
+        //                       data: 'Auto',
+        //                       color: AppColors.primaryText,
+        //                     ),
+        //                   ],
+        //                 ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //                 !_optionAuto
+        //                     ? Column(
+        //                         children: [
+        //                           Container(
+        //                             padding: EdgeInsets.all(16),
+        //                             decoration: BoxDecoration(
+        //                               color: AppColors.white,
+        //                               borderRadius:
+        //                                   BorderRadius.all(Radius.circular(8.0)),
+        //                             ),
+        //                             child: Column(
+        //                               crossAxisAlignment:
+        //                                   CrossAxisAlignment.start,
+        //                               children: [
+        //                                 BoldText(
+        //                                   data: "ရွှေဈေးစုံစမ်း၍ထည့်ရန်",
+        //                                   color: AppColors.primaryText,
+        //                                 ),
+        //                                 TextFormField(
+        //                                   controller: goldPrice,
+        //                                   keyboardType: TextInputType.number,
+        //                                   decoration:
+        //                                       InputDecoration(labelText: ' '),
+        //                                 ),
+        //                                 SizedBox(
+        //                                   height: 8.0,
+        //                                 ),
+        //                               ],
+        //                             ),
+        //                           ),
+        //                           SizedBox(
+        //                             height: 24.0,
+        //                           ),
+        //                           Container(
+        //                             padding: EdgeInsets.all(16),
+        //                             decoration: BoxDecoration(
+        //                               color: AppColors.white,
+        //                               borderRadius:
+        //                                   BorderRadius.all(Radius.circular(8.0)),
+        //                             ),
+        //                             child: Column(
+        //                               crossAxisAlignment:
+        //                                   CrossAxisAlignment.start,
+        //                               children: [
+        //                                 BoldText(
+        //                                   data: "ငွေဈေးစုံစမ်း၍ထည့်ရန်",
+        //                                   color: AppColors.primaryText,
+        //                                 ),
+        //                                 TextFormField(
+        //                                   controller: silverPrice,
+        //                                   keyboardType: TextInputType.number,
+        //                                   decoration:
+        //                                       InputDecoration(labelText: ' '),
+        //                                 ),
+        //                                 SizedBox(
+        //                                   height: 8.0,
+        //                                 ),
+        //                               ],
+        //                             ),
+        //                           ),
+        //                           SizedBox(
+        //                             height: 24.0,
+        //                           ),
+        //                         ],
+        //                       )
+        //                     : Column(
+        //                         children: [
+        //                           Row(
+        //                             children: [
+        //                               RegularText(
+        //                                 data: "Gold Rate",
+        //                               ),
+        //                               SizedBox(
+        //                                 width: 16,
+        //                               ),
+        //                               BoldText(
+        //                                 data: ZakatCalculatorUtil()
+        //                                     .getRate(goldRate, usdRate)
+        //                                     .toString(),
+        //                               )
+        //                             ],
+        //                           ),
+        //                           SizedBox(
+        //                             height: 8,
+        //                           ),
+        //                           Row(
+        //                             children: [
+        //                               RegularText(
+        //                                 data: "Silver Rate",
+        //                               ),
+        //                               SizedBox(
+        //                                 width: 16,
+        //                               ),
+        //                               BoldText(
+        //                                 data: ZakatCalculatorUtil()
+        //                                     .getRate(silverRate, usdRate)
+        //                                     .toString(),
+        //                               )
+        //                             ],
+        //                           )
+        //                         ],
+        //                       ),
+        //                 SizedBox(
+        //                   height: 24.0,
+        //                 ),
+        //               ],
+        //             ),
+        //             isActive: _currentStep >= 7,
+        //             state: _currentStep >= 7
+        //                 ? StepState.complete
+        //                 : StepState.indexed,
+        //           ),
+        //           Step(
+        //             title: RegularText(
+        //               data: _currentStep == 8 ? '' : '',
+        //               fontSize: 14.0,
+        //               color: Colors.black87,
+        //             ),
+        //             content: RepaintBoundary(
+        //               key: _globalKey,
+        //               child: Container(
+        //                 margin: EdgeInsets.only(bottom: 28),
+        //                 padding: EdgeInsets.all(16),
+        //                 decoration: BoxDecoration(
+        //                   color: AppColors.white,
+        //                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                 ),
+        //                 child: Column(
+        //                   children: [
+        //                     RegularText(
+        //                       data: "ထိုက်သောဇကားသ်",
+        //                     ),
+        //                     SizedBox(
+        //                       width: 16,
+        //                     ),
+        //                     BoldText(
+        //                       data: _result['result']! +
+        //                           "\n" +
+        //                           _resultKalaout +
+        //                           "\n" +
+        //                           _resultKywaeNwar +
+        //                           "\n" +
+        //                           _resultSateThoe,
+        //                     )
+        //                   ],
+        //                 ),
+        //               ),
+        //             ),
+        //             isActive: _currentStep >= 8,
+        //             state: _currentStep >= 8
+        //                 ? StepState.complete
+        //                 : StepState.indexed,
+        //           ),
+        //         ],
+        //       );
+        //     } else if (snapshot.data is ErrorState) {
+        //       String errorMessage = (snapshot.data as ErrorState).msg;
+        //       return Text(errorMessage);
+        //     } else {
+        //       return Center(child: CircularProgressIndicator());
+        //     }
+        //   },
+        // ),
+        body: Stepper(
+          type: StepperType.horizontal,
+          physics: ScrollPhysics(),
+          currentStep: _currentStep,
+          onStepTapped: (step) => tapped(step),
+          onStepContinue: continued,
+          onStepCancel: cancel,
+          controlsBuilder: (BuildContext context, ControlsDetails details) {
+            return Row(
+              children: <Widget>[
+                Flexible(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 4.0),
+                    width: 1000.0,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(AppColors.primaryText),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextFormField(
-                              controller: minusDebtMahur,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'ဇနီးကိုမပေးရသေးသောမဟ်ရ်'),
-                            ),
-                            TextFormField(
-                              controller: minusDebt,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'သူများကိုပေးဆပ်ရမည့်အကြွေး'),
-                            ),
-                            TextFormField(
-                                controller: minusSukyae,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'စုကြေးရရှိပြီးပေးသွင်းရန်ကျန်ငွေပေါင်း')),
-                            TextFormField(
-                                controller: minusMeterBill,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'ပေးဆောင်ရန်ကျန်သောမီတာခ')),
-                            TextFormField(
-                                controller: minusPaybill,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'ပေးဆောင်ရန်ကျန်သောအဖိုးအခများ')),
-                            TextFormField(
-                                controller: minusPaySalary,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'ဝန်ထမ်းများကိုပေးရန်ကျန်သောလစာများ')),
-                            TextFormField(
-                                controller: minusPayRent,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'ပေးဆောင်ရန်ကျန်သောငှားရမ်းခများ')),
-                            TextFormField(
-                                controller: minusBuyGoodPay,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'ပစ္စည်းဝယ်ပြီးပေးချေရန်ကျန်သောအကြွေး')),
-                            TextFormField(
-                                controller: minusPreZakat,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'ယခင်နှစ်များ၏မပေးရသေးသောဇကားသ်')),
-                            SizedBox(
-                              height: 8.0,
-                            ),
-                          ],
-                        ),
                       ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                    ],
-                  ),
-                  isActive: _currentStep >= 6,
-                  state: _currentStep >= 6
-                      ? StepState.complete
-                      : StepState.indexed,
-                ),
-                Step(
-                  title: RegularText(
-                    data: _currentStep == 7 ? '' : '',
-                    fontSize: 14.0,
-                    color: Colors.black87,
-                  ),
-                  content: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          RegularText(
-                            data: 'Manual',
-                            color: AppColors.primaryText,
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          CupertinoSwitch(
-                            value: _optionAuto,
-                            onChanged: (value) {
-                              setState(() {
-                                _optionAuto = value;
-                              });
-                            },
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          RegularText(
-                            data: 'Auto',
-                            color: AppColors.primaryText,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      !_optionAuto
-                          ? Column(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(16),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8.0)),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      BoldText(
-                                        data: "ရွှေဈေးစုံစမ်း၍ထည့်ရန်",
-                                        color: AppColors.primaryText,
-                                      ),
-                                      TextFormField(
-                                        controller: goldPrice,
-                                        keyboardType: TextInputType.number,
-                                        decoration:
-                                            InputDecoration(labelText: ' '),
-                                      ),
-                                      SizedBox(
-                                        height: 8.0,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 24.0,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(16),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8.0)),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      BoldText(
-                                        data: "ငွေဈေးစုံစမ်း၍ထည့်ရန်",
-                                        color: AppColors.primaryText,
-                                      ),
-                                      TextFormField(
-                                        controller: silverPrice,
-                                        keyboardType: TextInputType.number,
-                                        decoration:
-                                            InputDecoration(labelText: ' '),
-                                      ),
-                                      SizedBox(
-                                        height: 8.0,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 24.0,
-                                ),
-                              ],
-                            )
-                          : Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    RegularText(
-                                      data: "Gold Rate",
-                                    ),
-                                    SizedBox(
-                                      width: 16,
-                                    ),
-                                    BoldText(
-                                      data: ZakatCalculatorUtil()
-                                          .getRate(goldRate, usdRate)
-                                          .toString(),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Row(
-                                  children: [
-                                    RegularText(
-                                      data: "Silver Rate",
-                                    ),
-                                    SizedBox(
-                                      width: 16,
-                                    ),
-                                    BoldText(
-                                      data: ZakatCalculatorUtil()
-                                          .getRate(silverRate, usdRate)
-                                          .toString(),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                    ],
-                  ),
-                  isActive: _currentStep >= 7,
-                  state: _currentStep >= 7
-                      ? StepState.complete
-                      : StepState.indexed,
-                ),
-                Step(
-                  title: RegularText(
-                    data: _currentStep == 8 ? '' : '',
-                    fontSize: 14.0,
-                    color: Colors.black87,
-                  ),
-                  content: RepaintBoundary(
-                    key: _globalKey,
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: 28),
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      ),
-                      child: Column(
-                        children: [
-                          RegularText(
-                            data: "ထိုက်သောဇကားသ်",
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          BoldText(
-                            data: _result['result']! +
-                                "\n" +
-                                _resultKalaout +
-                                "\n" +
-                                _resultKywaeNwar +
-                                "\n" +
-                                _resultSateThoe,
-                          )
-                        ],
-                      ),
+                      child: Text('PREVIOUS'),
+                      onPressed: details.onStepCancel,
                     ),
                   ),
-                  isActive: _currentStep >= 8,
-                  state: _currentStep >= 8
-                      ? StepState.complete
-                      : StepState.indexed,
+                  flex: 1,
+                ),
+                Flexible(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 4.0),
+                    width: 1000.0,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(AppColors.primaryText),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                      child: Text('NEXT'),
+                      onPressed: details.onStepContinue,
+                    ),
+                  ),
+                  flex: 1,
                 ),
               ],
             );
-          } else if (snapshot.data is ErrorState) {
-            String errorMessage = (snapshot.data as ErrorState).msg;
-            return Text(errorMessage);
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-    );
+          },
+          steps: <Step>[
+            Step(
+              title: RegularText(
+                data: _currentStep == 0 ? '' : '',
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BoldText(
+                    data: "ရွှေ",
+                    color: AppColors.primaryText,
+                    fontSize: 22.0,
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryText,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RegularText(
+                          fontSize: 14,
+                          color: AppColors.white,
+                          data:
+                              "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BoldText(
+                            data: "အခေါက်",
+                            color: AppColors.primaryText,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ကျပ်သား',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: goldAkhoutKyatthar,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ပဲ',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: goldAkhoutPae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ရွေး',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: goldAkhoutYwae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  SizedBox(height: 16.0),
+                  Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BoldText(
+                            data: "အထည်",
+                            color: AppColors.primaryText,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ကျပ်သား',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: goldAhtaeKyatthar,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ပဲ',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: goldAhtaePae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ရွေး',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: goldAhtaeYwae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  SizedBox(height: 16.0),
+                  Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BoldText(
+                            data: "အသုံးဆောင်ပစ္စည်း",
+                            color: AppColors.primaryText,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ကျပ်သား',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: goldPyitceeKyatthar,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ပဲ',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: goldPyitceePae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ရွေး',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: goldPyitceeYwae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  SizedBox(height: 24.0),
+                ],
+              ),
+              isActive: _currentStep >= 0,
+              state: _currentStep >= 0 ? StepState.complete : StepState.indexed,
+            ),
+            Step(
+              title: RegularText(
+                data: _currentStep == 1 ? '' : '',
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BoldText(
+                    data: "ရွှေဖြူ",
+                    color: AppColors.primaryText,
+                    fontSize: 22.0,
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryText,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RegularText(
+                          fontSize: 14,
+                          color: AppColors.white,
+                          data:
+                              "ရွှေဖြူ (White Gold) ကိုရွှေဖြူဟုခေါ်တွင်သည်ဖြစ်စေ၊ပလက်တီနမ်ဟုခေါ်တွင်သည်ဖြစ်စေ၊ ရွှေဖြူသည်ရွှေသာဖြစ်သည်။ထို့ကြောင့်ရွှေဖြူတွင်ဇကားသ်ရှိသည်။ သို့သော်ပလက်တီနမ်(စစ်စစ်)သည်အခြားသတ္တုဖြစ်သဖြင့်၄င်းတွင်ဇကားသ်မရှိပါ။ ",
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BoldText(
+                            data: "အခေါက်",
+                            color: AppColors.primaryText,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ကျပ်သား',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller:
+                                                whiteSilverAkhoutKyatthar,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ပဲ',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: whiteSilverAkhoutPae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ရွေး',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: whiteSilverAkhoutYwae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  SizedBox(height: 16.0),
+                  Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BoldText(
+                            data: "အထည်",
+                            color: AppColors.primaryText,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ကျပ်သား',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller:
+                                                whiteSilverAhtaeKyatthar,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ပဲ',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: whiteSilverAhtaePae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ရွေး',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: whiteSilverAhtaeYwae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  SizedBox(height: 16.0),
+                  Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BoldText(
+                            data: "အသုံးဆောင်ပစ္စည်း",
+                            color: AppColors.primaryText,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ကျပ်သား',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller:
+                                                whiteSilverPyitceeKyatthar,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ပဲ',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: whiteSilverPyitceePae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ရွေး',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: whiteSilverPyitceeYwae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                ],
+              ),
+              isActive: _currentStep >= 1,
+              state: _currentStep >= 1 ? StepState.complete : StepState.indexed,
+            ),
+            Step(
+              title: RegularText(
+                data: _currentStep == 2 ? '' : '',
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BoldText(
+                    data: "ငွေ",
+                    color: AppColors.primaryText,
+                    fontSize: 22.0,
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryText,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RegularText(
+                          fontSize: 14,
+                          color: AppColors.white,
+                          data:
+                              "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BoldText(
+                            data: "အခေါက်",
+                            color: AppColors.primaryText,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ကျပ်သား',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: silverAkhoutKyatthar,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ပဲ',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: silverAkhoutPae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ရွေး',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: silverAkhoutYwae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  SizedBox(height: 16.0),
+                  Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BoldText(
+                            data: "အထည်",
+                            color: AppColors.primaryText,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ကျပ်သား',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: silverAhtaeKyatthar,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ပဲ',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: silverAhtaePae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ရွေး',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: silverAhtaeYwae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  SizedBox(height: 16.0),
+                  Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BoldText(
+                            data: "အသုံးဆောင်ပစ္စည်း",
+                            color: AppColors.primaryText,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ကျပ်သား',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: silverPyitceeKyatthar,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ပဲ',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: silverPyitceePae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                              new Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryText,
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(8.0)),
+                                          ),
+                                          child: Center(
+                                            child: RegularText(
+                                                data: 'ရွေး',
+                                                fontSize: 10.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.white,
+                                            border: Border.all(
+                                                color: Colors.black12,
+                                                width: 1),
+                                          ),
+                                          child: TextField(
+                                            controller: silverPyitceeYwae,
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.only(
+                                                  bottom: 30 /
+                                                      2, // HERE THE IMPORTANT PART
+                                                )),
+                                            style: TextStyle(
+                                              height: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                flex: 1,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                ],
+              ),
+              isActive: _currentStep >= 2,
+              state: _currentStep >= 2 ? StepState.complete : StepState.indexed,
+            ),
+            Step(
+              title: RegularText(
+                data: _currentStep == 3 ? '' : '',
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              content: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryText,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          fontSize: 14,
+                          color: AppColors.white,
+                          data:
+                              "အိမ်ငှားရန်စပေါ်တင်ထားသောငွေနှင့်ပတ်သက်ပြီးစစ်မှန်သောမုဖ်သီတစ်ပါးအားကိုယ့်အခြေအနေအကြောင်းစုံတင်ပြကာမတ်စ်အလဟ်မေးမြန်းပြီးအကယ်၍ထည့်တွက်ရမည်ဆိုပါက'အခြား'ဆိုသောအကွက်တွင်ထည့်တွက်ပါ။ ပိုင်ဆိုင်ထားသောအွန်လိုင်းပိုက်ဆံများနှင့်အခြားအွန်လိုင်းပိုင်ဆိုင်မှုများကိုလည်းထည့်တွက်ရပါမည်။",
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          data: "လက်ထဲရှိ",
+                          color: AppColors.primaryText,
+                        ),
+                        TextFormField(
+                          controller: inHandSuHtarTaw,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'စုဆောင်းထားသော'),
+                        ),
+                        TextFormField(
+                          controller: inHandPyitceeSold,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ပစ္စည်းရောင်း၍ရထားသော'),
+                        ),
+                        TextFormField(
+                            controller: inHandPyitceeBorrow,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'ပစ္စည်းငှားရမ်းခရထားသော')),
+                        TextFormField(
+                            controller: inHandForeignCurrency,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'နိုင်ငံခြားငွေ(ကျပ်ဖြင့်)')),
+                        TextFormField(
+                            controller: inHandContract,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'ငွေချေးစာချုပ်၊ချက်လက်မှတ်...')),
+                        TextFormField(
+                            controller: inHandOther,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(labelText: 'အခြား')),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          data: "ဘဏ်ထဲရှိ",
+                          color: AppColors.primaryText,
+                        ),
+                        TextFormField(
+                          controller: inBankInBank,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'ဘဏ်ထဲထည့်ထားသော'),
+                        ),
+                        TextFormField(
+                          controller: inBankThuMyarHlwae,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'အခြားသူများလွှဲပေးထားသော'),
+                        ),
+                        TextFormField(
+                            controller: inBankSalary,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'လစာ၊ပင်စင်တစ်ခုခုရထားသော')),
+                        TextFormField(
+                            controller: inBankOther,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'အခြား (Digital Money, etc)')),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          data: "အခြားသူမှ ရရန်ရှိသောအကြွေး",
+                          color: AppColors.primaryText,
+                        ),
+                        TextFormField(
+                          controller: thuMyarDebtPyitceeSold,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ပစ္စည်းရောင်း၍ရရန်ရှိသော'),
+                        ),
+                        TextFormField(
+                          controller: thuMyarDebtChayPay,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'ချေးပေးထားသော'),
+                        ),
+                        TextFormField(
+                            controller: thuMyarDebtAttHtrTaw,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'တစ်ဦးတစ်ယောက်ထံအပ်နှံထားသော')),
+                        TextFormField(
+                            controller: thuMyarDebtOther,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(labelText: 'အခြား')),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                ],
+              ),
+              isActive: _currentStep >= 3,
+              state: _currentStep >= 3 ? StepState.complete : StepState.indexed,
+            ),
+            Step(
+              title: RegularText(
+                data: _currentStep == 4 ? '' : '',
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              content: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryText,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          fontSize: 14,
+                          color: AppColors.white,
+                          data:
+                              "ရောင်းရန်ရည်ရွယ်ထားသောပစ္စည်းဟူသမျှတွင်ဇကားသ်တာဝန်ရှိပါသည်။ လတ်တလောရောင်းရန်ရည်ရွယ်ထားသည်ဖြစ်စေ၊ ဈေးကောင်းရမည့်အချိန်ရောင်းရန်ရည်ရွယ်ပြီးယခုကိုယ်တိုင်အသုံးပြုနေသည်ဖြစ်စေ၊ အားလုံးကိုထည့်တွက်ရမည်။",
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          data: "အိမ်၊ခြံ၊မြေ",
+                          color: AppColors.primaryText,
+                        ),
+                        TextFormField(
+                          controller: realEstateSellHouse,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'ရောင်းရန်ရှိသောအိမ်'),
+                        ),
+                        TextFormField(
+                          controller: realEstateSellEscort,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ရောင်းရန်ရှိသောခြံ/မြေ'),
+                        ),
+                        TextFormField(
+                            controller: realEstateSellCar,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'ရောင်းရန်ရှိသောကား')),
+                        TextFormField(
+                            controller: realEstateOther,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(labelText: 'အခြား')),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          data: "ကုန်ကြမ်းများ",
+                          color: AppColors.primaryText,
+                        ),
+                        TextFormField(
+                          controller: rawWearhouse,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
+                        ),
+                        TextFormField(
+                          controller: rawHome,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
+                        ),
+                        TextFormField(
+                            controller: rawShop,
+                            keyboardType: TextInputType.number,
+                            decoration:
+                                InputDecoration(labelText: 'ဆိုင်တွင်ရှိသော')),
+                        TextFormField(
+                            controller: rawOther,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(labelText: 'အခြား')),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          data: "ကုန်ချောများ",
+                          color: AppColors.primaryText,
+                        ),
+                        TextFormField(
+                          controller: finishWearhouse,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
+                        ),
+                        TextFormField(
+                          controller: finishHome,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
+                        ),
+                        TextFormField(
+                            controller: finishShop,
+                            keyboardType: TextInputType.number,
+                            decoration:
+                                InputDecoration(labelText: 'ဆိုင်တွင်ရှိသော')),
+                        TextFormField(
+                            controller: finishAnimal,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText:
+                                    'ရောင်းရန်မွေးမြူထားသောသားကောင် ရေးရန်')),
+                        TextFormField(
+                            controller: finishOther,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(labelText: 'အခြား')),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                ],
+              ),
+              isActive: _currentStep >= 4,
+              state: _currentStep >= 4 ? StepState.complete : StepState.indexed,
+            ),
+            Step(
+              title: RegularText(
+                data: _currentStep == 5 ? '' : '',
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              content: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryText,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          fontSize: 14,
+                          color: AppColors.white,
+                          data:
+                              "သားကောင်၏ဇကားသ်နှင့်ပတ်သက်၍သိသင့်သိထိုက်သောအရာများ \n (၁) ရောင်းဝယ်ဖောက်ကားရန်မွေးမြူထားသော၊တစ်ချိန်ချိန်တွင်ပြန်ရောင်းရန်ဆန္ဒရှိသောသားကောင်များကိုဤစာရင်းတွင်မထည့်သွင်းရပါ။ ထိုသားကောင်များ၏တန်ဖိုးကို ရောင်းကုန်ပစ္စည်းများတွင် ထည့်၍တွက်ပါ။ \n (၂) နို့ရရှိရန် (သို့) မွေးမြူးထားပြီးရောင်းရန်ဆန္ဒမရှိသောသားကောင်များကိုသာဤနေရာတွင်ထည့်တွက်ပါ။ \n (၃) မွေးမြူထားသောသားကောင်သည်လွန်ခဲ့သည့်တစ်နှစ်တာကာလတွင် (၆)လကျော် စားကျက်တွင်ကျက်စားထားသောသားကောင်ဖြစ်ရမည်။ အကယ်၍ (၆)လကျော် အိမ်၌သာ ကျွေးမွေးခဲ့ပါကထိုသားကောင်ကိုထည့်မတွက်ရပါ။ \n (၄) ဇကားသ်ပေးရမည့်ကုလားအုပ်မအစား ကုလားအုပ်အထီးပေးလိုပါက ကုလားအုပ်မ၏တန်ဖိုးနှင့်ညီသော ကုလားအုပ်အထီးကိုသာပေးခွင့်ရှိ၏။ \n (၅) ကုလားအုတ် မှအပကျန်အိမ်မွေးတိရစ္ဆာန်များတွင် အထီးအမ မခွဲခြားထားပါ။ ကြိုက်နှစ်သက်ရာပေးခွင့်ရှိသည်။ \n (၆) ဇကားသ်အဖြစ်ပေးမည့်ဆိတ်သည် အနည်းဆုံ:အသက်တစ်နှစ်ပြည့်ပြီးဖြစ်ရမည်။ ",
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          data: "ကုလားအုတ်",
+                          color: AppColors.primaryText,
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: kalaout,
+                          decoration: InputDecoration(labelText: 'ကုလားအုတ်'),
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          data: "ကျွဲ၊နွား",
+                          color: AppColors.primaryText,
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: kywae,
+                          decoration: InputDecoration(labelText: 'ကျွဲ'),
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: nwar,
+                          decoration: InputDecoration(labelText: 'နွား'),
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BoldText(
+                          data: "ဆိတ်၊သိုး",
+                          color: AppColors.primaryText,
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: sate,
+                          decoration: InputDecoration(labelText: 'ဆိတ်'),
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: thoe,
+                          decoration: InputDecoration(labelText: 'သိုး'),
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                ],
+              ),
+              isActive: _currentStep >= 5,
+              state: _currentStep >= 5 ? StepState.complete : StepState.indexed,
+            ),
+            Step(
+              title: RegularText(
+                data: _currentStep == 6 ? '' : '',
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              content: Column(
+                children: [
+                  // Container(
+                  //   padding: EdgeInsets.all(16),
+                  //   decoration: BoxDecoration(
+                  //     color: AppColors.bgBtn,
+                  //     borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  //   ),
+                  //   child: Column(
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+
+                  //       BoldText(
+                  //         fontSize: 14,
+                  //         color: AppColors.white,
+                  //         data:
+                  //             "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextFormField(
+                          controller: minusDebtMahur,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'ဇနီးကိုမပေးရသေးသောမဟ်ရ်'),
+                        ),
+                        TextFormField(
+                          controller: minusDebt,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'သူများကိုပေးဆပ်ရမည့်အကြွေး'),
+                        ),
+                        TextFormField(
+                            controller: minusSukyae,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText:
+                                    'စုကြေးရရှိပြီးပေးသွင်းရန်ကျန်ငွေပေါင်း')),
+                        TextFormField(
+                            controller: minusMeterBill,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'ပေးဆောင်ရန်ကျန်သောမီတာခ')),
+                        TextFormField(
+                            controller: minusPaybill,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'ပေးဆောင်ရန်ကျန်သောအဖိုးအခများ')),
+                        TextFormField(
+                            controller: minusPaySalary,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText:
+                                    'ဝန်ထမ်းများကိုပေးရန်ကျန်သောလစာများ')),
+                        TextFormField(
+                            controller: minusPayRent,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'ပေးဆောင်ရန်ကျန်သောငှားရမ်းခများ')),
+                        TextFormField(
+                            controller: minusBuyGoodPay,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText:
+                                    'ပစ္စည်းဝယ်ပြီးပေးချေရန်ကျန်သောအကြွေး')),
+                        TextFormField(
+                            controller: minusPreZakat,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                labelText: 'ယခင်နှစ်များ၏မပေးရသေးသောဇကားသ်')),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                ],
+              ),
+              isActive: _currentStep >= 6,
+              state: _currentStep >= 6 ? StepState.complete : StepState.indexed,
+            ),
+            Step(
+              title: RegularText(
+                data: _currentStep == 7 ? '' : '',
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      RegularText(
+                        data: 'Manual',
+                        color: AppColors.primaryText,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      CupertinoSwitch(
+                        value: _optionAuto,
+                        onChanged: (value) {
+                          setState(() {
+                            _optionAuto = value;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      RegularText(
+                        data: 'Auto',
+                        color: AppColors.primaryText,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  !_optionAuto
+                      ? Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  BoldText(
+                                    data: "ရွှေဈေးစုံစမ်း၍ထည့်ရန်",
+                                    color: AppColors.primaryText,
+                                  ),
+                                  TextFormField(
+                                    controller: goldPrice,
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(labelText: ' '),
+                                  ),
+                                  SizedBox(
+                                    height: 8.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 24.0,
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  BoldText(
+                                    data: "ငွေဈေးစုံစမ်း၍ထည့်ရန်",
+                                    color: AppColors.primaryText,
+                                  ),
+                                  TextFormField(
+                                    controller: silverPrice,
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(labelText: ' '),
+                                  ),
+                                  SizedBox(
+                                    height: 8.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 24.0,
+                            ),
+                          ],
+                        )
+                      : Column(
+                          children: [
+                            Row(
+                              children: [
+                                RegularText(
+                                  data: "Gold Rate",
+                                ),
+                                SizedBox(
+                                  width: 16,
+                                ),
+                                BoldText(
+                                  data: ZakatCalculatorUtil()
+                                      .getRate(goldRate, usdRate)
+                                      .toString(),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              children: [
+                                RegularText(
+                                  data: "Silver Rate",
+                                ),
+                                SizedBox(
+                                  width: 16,
+                                ),
+                                BoldText(
+                                  data: ZakatCalculatorUtil()
+                                      .getRate(silverRate, usdRate)
+                                      .toString(),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                ],
+              ),
+              isActive: _currentStep >= 7,
+              state: _currentStep >= 7 ? StepState.complete : StepState.indexed,
+            ),
+            Step(
+              title: RegularText(
+                data: _currentStep == 8 ? '' : '',
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              content: RepaintBoundary(
+                key: _globalKey,
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 28),
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  ),
+                  child: Column(
+                    children: [
+                      RegularText(
+                        data: "ထိုက်သောဇကားသ်",
+                      ),
+                      SizedBox(
+                        width: 16,
+                      ),
+                      BoldText(
+                        data: _result['result']! +
+                            "\n" +
+                            _resultKalaout +
+                            "\n" +
+                            _resultKywaeNwar +
+                            "\n" +
+                            _resultSateThoe,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              isActive: _currentStep >= 8,
+              state: _currentStep >= 8 ? StepState.complete : StepState.indexed,
+            ),
+          ],
+        ));
   }
 
   switchStepsType() {
@@ -3214,6 +5951,8 @@ class _ZakatCalculatorEditState extends State<ZakatCalculatorEdit> {
             double.parse(silverPrice.text));
       });
     } else if (_currentStep == 8) {
+      print("gollddddd");
+      print(goldAkhoutPae.text);
       Map<String, dynamic> row = {
         DatabaseHelper.goldAkhoutKyatthar:
             goldAkhoutKyatthar.text != '' ? goldAkhoutKyatthar.text : 0.0,
@@ -3358,8 +6097,10 @@ class _ZakatCalculatorEditState extends State<ZakatCalculatorEdit> {
         DatabaseHelper.yourZakat: _result['result']!
       };
       print(dbHelper.updateZakat(row, widget.zakatId));
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => ZakatListScreen()));
+
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => ZakatListScreen()),
+          (Route<dynamic> route) => false);
     }
 
     _currentStep < 8 ? setState(() => _currentStep += 1) : null;

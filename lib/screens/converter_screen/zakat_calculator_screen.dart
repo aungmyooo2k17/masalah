@@ -2107,8 +2107,8 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       TextFormField(
                         controller: inBankThuMyarHlwae,
                         keyboardType: TextInputType.number,
-                        decoration:
-                            InputDecoration(labelText: 'အခြားသူများလွှဲပေးထားသော'),
+                        decoration: InputDecoration(
+                            labelText: 'အခြားသူများလွှဲပေးထားသော'),
                       ),
                       TextFormField(
                           controller: inBankSalary,
@@ -3054,9 +3054,14 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
         DatabaseHelper.yourWorth: _result['netWorth']!,
         DatabaseHelper.yourZakat: _result['result']!
       };
-      dbHelper.insertZakat(row);
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => ZakatListScreen()));
+      dbHelper
+          .insertZakat(row)
+          .then((value) => print(value))
+          .catchError((onError) => print(onError.toString()));
+
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => ZakatListScreen()),
+          (Route<dynamic> route) => false);
     }
 
     _currentStep < 8 ? setState(() => _currentStep += 1) : null;
