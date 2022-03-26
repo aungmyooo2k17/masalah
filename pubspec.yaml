@@ -40,6 +40,10 @@ dependencies:
   connectivity_plus: ^2.2.1
   flutter_qiblah:
   android_alarm_manager_plus: ^2.0.5
+  equatable: ^1.2.0
+  dartz: ^0.9.1
+  get_it: ^4.0.2
+  flutter_bloc: ^7.0.0
 
 dev_dependencies:
   flutter_test:
