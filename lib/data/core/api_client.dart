@@ -11,7 +11,7 @@ class ApiClient {
 
   dynamic get(String path) async {
     final response = await _client.get(
-      Uri(host: ApiConstants.BASE_URL, path: path),
+      Uri.parse("${ApiConstants.BASE_URL}$path"),
       headers: {
         'Content-Type': 'application/json',
       },

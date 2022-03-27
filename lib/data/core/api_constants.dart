@@ -3,7 +3,7 @@ class ApiConstants {
   ApiConstants._();
 
   //2
-  static const String BASE_URL = "https://aungmyooo2k17.github.io/assets/";
+  static const String BASE_URL = "https://aungmyooo2k17.github.io";
   //3
   static const String API_KEY = "2a7fa7668597c84cff72e66dbe07d47c";
   //4

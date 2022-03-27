@@ -14,10 +14,8 @@ class MasalahRepositoryImpl extends MasalahRepository {
   Future<Either<AppError, List<MasalahModel>>> getMasalah() async {
     try {
       final items = await remoteDataSource.getMasalah();
-      //2
       return Right(items);
     } on Exception {
-      //3
       return Left(AppError('Something went wrong'));
     }
   }

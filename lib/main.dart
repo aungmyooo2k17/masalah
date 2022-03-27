@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:masalah/presentation/masalah_app.dart';
-import 'package:pedantic/pedantic.dart';
 import 'di/get_it.dart' as getIt;
 
 void main() {

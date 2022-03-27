@@ -13,8 +13,7 @@ class MasalahRemoteDataSourceImpl extends MasalahRemoteDataSource {
 
   @override
   Future<List<MasalahModel>> getMasalah() async {
-    final response = await _client.get('masalah_data.json');
-    print(response);
+    final response = await _client.get('/assets/masalah_data.json');
     return Future.value(MasalahResultModel.fromJson(response).items);
   }
 }

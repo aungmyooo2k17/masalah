@@ -36,15 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               if (state is MasalahlistLoaded) {
                 return Text(state.masalahs[0].masalahTitle);
               }
-              if (state is MasalahlistError) {
-                print("8888");
-                return Center(
-                  child: Text(
-                    state.handleException,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                );
-              }
+
               return Center(
                 child: Text(
                   state.toString(),

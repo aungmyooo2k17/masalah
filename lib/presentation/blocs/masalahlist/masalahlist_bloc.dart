@@ -18,6 +18,8 @@ class MasalahlistBloc extends Bloc<MasalahlistEvent, MasalahlistState> {
   ) async* {
     if (event is MasalahListLoadEvent) {
       final itemsEither = await getMasalahList(NoParams());
+      print("**");
+      print(itemsEither);
       yield itemsEither.fold(
         (l) => MasalahlistError(),
         (items) {
