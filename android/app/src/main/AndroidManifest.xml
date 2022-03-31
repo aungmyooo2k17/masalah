@@ -14,11 +14,12 @@
 <!-- For apps with targetSDK=31 (Android 12) -->
 
    <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name="${applicationName}"
         android:allowBackup="false"
         android:label="masalah"
         android:icon="@mipmap/ic_launcher">
         <activity
+            android:exported="true"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

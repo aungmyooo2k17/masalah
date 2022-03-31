@@ -21,9 +21,9 @@ class NoInternet extends StatelessWidget {
         ),
         OutlinedButton(
             onPressed: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => MyApp()),
-                  (Route<dynamic> route) => false);
+              // Navigator.of(context).pushAndRemoveUntil(
+              //     MaterialPageRoute(builder: (context) => MyApp()),
+              //     (Route<dynamic> route) => false);
             },
             child: Text("Try again!"))
       ],

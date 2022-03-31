@@ -4,7 +4,30 @@ class AppColor {
   //2
   const AppColor._();
   //3
-  static const Color vulcan = Color(0xFF141221);
-  static const Color royalBlue = Color(0xFF604FEF);
-  static const Color violet = Color(0xFFA74DBC);
+  static const Color primary = Color(0xFF09246B);
+  static const Color primaryLight = Color(0xFF2EAAFC);
+  static const Color accent = Color(0xFF5DB9FD);
+  static const Color secondry = Color(0xFF5B78C2);
+
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color secondaryWhite = Color(0xFFF4F4F4);
+
+  static const Color primaryText = Color(0xFF09246B);
+  static const Color secondaryText = Color(0xFF707070);
+  static const Color bgColor = Color(0xFFF4F4F4);
+  static const Color bgBtn = Color(0xFF5DB9FD);
+  static const Color unSelectedIconColor = Color(0xFF5B78C2);
+  static const Color selectedIconColor = Color(0xFF2EAAFC);
+  static const Color linkColor = Color(0xFF000AFF);
+}
+
+class AppImages {
+  AppImages._();
+
+  static const String fajr = "assets/images/Fajr.png";
+  static const String surise = "assets/images/sunrise.png";
+  static const String duhr = "assets/images/Duhr.png";
+  static const String asir = "assets/images/Asir.png";
+  static const String magrib = "assets/images/magrib.png";
+  static const String isha = "assets/images/Isha.png";
 }

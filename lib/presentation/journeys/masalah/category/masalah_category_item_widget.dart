@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
-import 'package:masalah/model/category.dart';
+import 'package:masalah/domain/entities/masalah_category_entity.dart';
+import 'package:masalah/presentation/journeys/masalah/masalah_list_page.dart';
 import 'package:masalah/reusable_widget/app_text.dart';
-import 'package:masalah/screens/masalah_list_screen.dart';
 
-class CategoryItem extends StatelessWidget {
-  const CategoryItem({Key? key, required this.category}) : super(key: key);
-
-  final Category category;
+class MasalahCategoryItem extends StatelessWidget {
+  final MasalahCategoryEntity category;
+  const MasalahCategoryItem({Key? key, required this.category})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => MasalahListScreen(
-                  categoryName: category.categoryName,
-                  categoryId: category.categoryId,
+            builder: (context) => MasalahListPage(
+                  category: category,
                 )));
       },
       child: Container(
@@ -32,7 +31,7 @@ class CategoryItem extends StatelessWidget {
             BoldText(
               color: AppColors.primaryText,
               fontSize: 16.0,
-              data: category.categoryName!,
+              data: category.categoryName,
             ),
             Icon(
               Icons.arrow_forward_outlined,

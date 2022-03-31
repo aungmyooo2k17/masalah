@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:masalah/model/category.dart';
-import 'package:masalah/model/masalah.dart';
+import 'package:masalah/data/models/masalah_category_model.dart';
+import 'package:masalah/data/models/masalah_model.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/model/zakat.dart';
 import 'package:path/path.dart';
@@ -248,23 +248,45 @@ class DatabaseHelper {
 
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
-  Future<Result> queryAllCategoryRows(String query) async {
+  Future<List<MasalahCategoryModel>> queryAllCategoryRows(String query) async {
     Database db = await instance.database;
     final d = await db.query(masalahCategoryTable,
         where: '$categoryName like ?', whereArgs: ['%$query%']);
 
-    List<Category> data = d.map((i) => Category.fromJson(i)).toList();
-    return Result<List<Category>>.success(data);
+    List<MasalahCategoryModel> data =
+        d.map((i) => MasalahCategoryModel.fromJson(i)).toList();
+    return Future.value(data);
   }
 
-  Future<Result> queryAllMasalahRows(String query) async {
+  Future<List<MasalahCategoryModel>> getCategoryRows() async {
+    Database db = await instance.database;
+    final d = await db.query(masalahCategoryTable);
+
+    List<MasalahCategoryModel> data =
+        d.map((i) => MasalahCategoryModel.fromJson(i)).toList();
+    return Future.value(data);
+  }
+
+  Future<List<MasalahModel>> queryAllMasalahRowsByCategoryId(
+      String query, int categoryId) async {
     Database db = await instance.database;
 
     final d = await db.query(masalahDataTable,
-        where: '$masalahTitle like ?', whereArgs: ['%$query%']);
+        where: '$masalahTitle like ? and $masalahCategoryId = ?',
+        whereArgs: ['%$query%', '$categoryId']);
 
-    List<Masalah> data = d.map((i) => Masalah.fromJson(i)).toList();
-    return Result<List<Masalah>>.success(data);
+    List<MasalahModel> data = d.map((i) => MasalahModel.fromJson(i)).toList();
+    return Future.value(data);
+  }
+
+  Future<List<MasalahModel>> getMasalahRowsByCategoryId(int categoryId) async {
+    Database db = await instance.database;
+
+    final d = await db.query(masalahDataTable,
+        where: '$masalahCategoryId = ?', whereArgs: ['$categoryId']);
+
+    List<MasalahModel> data = d.map((i) => MasalahModel.fromJson(i)).toList();
+    return Future.value(data);
   }
 
   Future<Result> queryAllZakatRows() async {

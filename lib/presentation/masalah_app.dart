@@ -15,10 +15,10 @@ class MasalahApp extends StatelessWidget {
       title: 'Movie App',
       theme: ThemeData(
         //3
-        primaryColor: AppColor.vulcan,
-        scaffoldBackgroundColor: AppColor.vulcan,
+        primaryColor: AppColor.primary,
+        scaffoldBackgroundColor: AppColor.secondaryWhite,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        // textTheme: ThemeText.getTextTheme(),
+        textTheme: ThemeText.getTextTheme(),
         appBarTheme: const AppBarTheme(elevation: 0),
       ),
       //4

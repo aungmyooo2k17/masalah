@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:masalah/common/constants/color_constant.dart';
-import 'package:masalah/db/db_helper.dart';
+import 'package:masalah/data/data_sources/masalah_local_data_source.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/model/zakat.dart';
 import 'package:masalah/network/remote_data_source.dart';
