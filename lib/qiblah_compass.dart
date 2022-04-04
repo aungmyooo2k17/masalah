@@ -3,7 +3,6 @@ import 'dart:math' show pi;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'loading_indicator.dart';
@@ -91,14 +90,6 @@ class _QiblahCompassState extends State<QiblahCompass> {
 }
 
 class QiblahCompassWidget extends StatelessWidget {
-  final _compassSvg = SvgPicture.asset('assets/images/compass.svg');
-  final _needleSvg = SvgPicture.asset(
-    'assets/images/needle.svg',
-    fit: BoxFit.contain,
-    height: 300,
-    alignment: Alignment.center,
-  );
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -112,14 +103,14 @@ class QiblahCompassWidget extends StatelessWidget {
         return Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            Transform.rotate(
-              angle: (qiblahDirection.direction * (pi / 180) * -1),
-              child: _compassSvg,
-            ),
+            // Transform.rotate(
+            //   angle: (qiblahDirection.direction * (pi / 180) * -1),
+            //   child: Image.asset('assets/images/fcompass.png'),
+            // ),
             Transform.rotate(
               angle: (qiblahDirection.qiblah * (pi / 180) * -1),
               alignment: Alignment.center,
-              child: _needleSvg,
+              child: Image.asset('assets/images/fcompass.png'),
             ),
             Positioned(
               bottom: 8,

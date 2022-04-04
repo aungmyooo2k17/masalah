@@ -19,7 +19,6 @@ class MasalahApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColor.secondaryWhite,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: ThemeText.getTextTheme(),
-        appBarTheme: const AppBarTheme(elevation: 0),
       ),
       //4
       home: HomeScreen(),

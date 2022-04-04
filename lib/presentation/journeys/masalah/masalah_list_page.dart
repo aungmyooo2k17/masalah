@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/data/data_sources/masalah_local_data_source.dart';
 import 'package:masalah/domain/entities/masalah_category_entity.dart';
 import 'package:masalah/presentation/journeys/masalah/masalah_detail_page.dart';
 import 'package:masalah/presentation/journeys/masalah/masalah_item_widget.dart';
 
 import '../../../data/models/masalah_model.dart';
+import '../../../reusable_widget/app_bar.dart';
 
 class MasalahListPage extends StatefulWidget {
   late final MasalahCategoryEntity category;
@@ -22,8 +24,13 @@ class _MasalahListPageState extends State<MasalahListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppTopBar(
+        title: widget.category.categoryName,
+        bgColor: AppColors.bgColor,
+        textColor: AppColors.primaryText,
+      ),
+      body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [

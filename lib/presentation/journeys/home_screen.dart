@@ -13,6 +13,8 @@ import 'package:masalah/screens/converter_screen.dart';
 import 'package:masalah/screens/prayer_time/prayer_time_screen.dart';
 import 'package:masalah/screens/qibla_screen.dart';
 
+import '../../common/constants/color_constant.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -42,11 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocProvider(
       create: (_) => bottomNavigationBloc,
       child: Scaffold(
-        appBar: AppTopBar(
-            enableBackBtn: true,
-            title: "Converters",
-            bgColor: AppColor.primary,
-            textColor: AppColor.secondaryText),
         body: BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
             bloc: bottomNavigationBloc,
             builder: (context, state) {
