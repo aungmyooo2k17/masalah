@@ -1,7 +1,6 @@
 import 'package:adhan/adhan.dart';
-import 'package:flutter/material.dart';
+import 'package:masalah/common/extensions/extension.dart';
 import 'package:masalah/model/prayer_item/prayer_time_entity.dart';
-import 'package:masalah/common/extension.dart';
 import 'package:masalah/model/ui_prayer_time.dart';
 import 'package:masalah/prayer_time/mapper/prayer_time_domain_mapper.dart';
 import 'package:masalah/prayer_time/mapper/prayer_time_ui_mapper.dart';

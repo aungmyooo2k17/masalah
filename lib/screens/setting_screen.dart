@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/common/extensions/string_extensions.dart';
 import 'package:masalah/reusable_widget/app_bar.dart';
 import 'package:masalah/reusable_widget/app_text.dart';
+
+import '../common/constants/languages.dart';
+import '../common/constants/translation_constants.dart';
+import '../presentation/blocs/language/language_bloc.dart';
 
 class SettingScreen extends StatelessWidget {
   final List locale = [
@@ -45,7 +51,7 @@ class SettingScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('title'.tr),
+                      Text(TranslationConstants.gold.t(context)!),
                       BoldText(
                         color: AppColors.primaryText,
                         fontSize: 16.0,
@@ -79,9 +85,14 @@ class SettingScreen extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
-                        child: Text(locale[index]['name']),
+                        child: Text(Languages.languages[index].value),
                         onTap: () {
-                          updateLanguage(locale[index]['locale']);
+                          BlocProvider.of<LanguageBloc>(context).add(
+                            ToggleLanguageEvent(
+                              Languages.languages[index],
+                            ),
+                          );
+                          Get.back();
                         },
                       ),
                     );
@@ -91,7 +102,7 @@ class SettingScreen extends StatelessWidget {
                       color: Colors.blue,
                     );
                   },
-                  itemCount: locale.length),
+                  itemCount: Languages.languages.length),
             ),
           );
         });

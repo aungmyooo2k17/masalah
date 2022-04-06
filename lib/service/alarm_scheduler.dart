@@ -1,10 +1,10 @@
 import 'package:adhan/adhan.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:masalah/common/extensions/extension.dart';
 import 'package:masalah/model/prayer_item/prayer_time_entity.dart';
 import 'package:masalah/service/notification_service.dart';
 import 'package:masalah/util/share_preference_util.dart';
-import '../common/extension.dart';
 
 final myCoordinates = Coordinates(16.7827, 96.1771);
 final prayerNames = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
@@ -62,11 +62,19 @@ class AlarmScheduler {
   }
 
   void setAlarmOnTime(String prayerName, DateTime prayerTime) async {
+    print(
+        {prayerName, prayerTime, DateTime.now().add(new Duration(minutes: 1))});
+    prayerTime = DateTime.now().add(new Duration(minutes: 1));
     await SharedPreferenceUtil().addIntToSF(
         SharedPreferenceUtil.ALARM_PRAYER_TIME,
         prayerTime.millisecondsSinceEpoch);
     await SharedPreferenceUtil()
         .addStringToSF(SharedPreferenceUtil.ALARM_PRAYER_NAME, prayerName);
+
+    final dd = await SharedPreferenceUtil()
+        .getStringValuesSF(SharedPreferenceUtil.ALARM_PRAYER_NAME);
+    print("valueee");
+    print(dd);
     AndroidAlarmManager.oneShotAt(prayerTime, ALARM_ID, runOnAlarm,
         alarmClock: true,
         allowWhileIdle: true,
@@ -90,6 +98,8 @@ class AlarmScheduler {
 void runOnAlarm() async {
   final prayerName = await SharedPreferenceUtil()
       .getStringValuesSF(SharedPreferenceUtil.ALARM_PRAYER_NAME);
+  print("prayerName");
+  print(prayerName);
   NotificationService().showNotification(
       id: NOTIFICATION_ID, body: 'This is body', title: prayerName);
   AlarmScheduler()

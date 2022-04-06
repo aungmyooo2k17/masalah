@@ -4,7 +4,11 @@ import 'dart:isolate';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/common/extensions/string_extensions.dart';
+import 'package:masalah/presentation/app_localizations.dart';
+import 'package:masalah/presentation/blocs/language/language_bloc.dart';
 import 'package:masalah/screens/converter_screen.dart';
 import 'package:masalah/screens/masalah_category_screen.dart';
 import 'package:masalah/screens/prayer_time/prayer_time_screen.dart';
@@ -13,7 +17,12 @@ import 'package:get/get.dart';
 import 'package:masalah/service/alarm_scheduler.dart';
 import 'package:masalah/util/locale_string.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'common/constants/languages.dart';
+import 'common/constants/translation_constants.dart';
+import 'di/get_it.dart';
+import 'di/get_it.dart' as getIt;
 import 'service/notification_service.dart';
 
 void main() async {
@@ -22,6 +31,7 @@ void main() async {
   await NotificationService().init();
   AlarmScheduler().cancelAlarm();
   await AlarmScheduler().setAlarm();
+  unawaited(getIt.init());
   runApp(MyApp());
 }
 
@@ -51,6 +61,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     QiblaScreen(),
     ConverterScreen()
   ];
+  late LanguageBloc _languageBloc;
 
   String _connectionStatus = 'Unknown';
   final Connectivity _connectivity = Connectivity();
@@ -65,6 +76,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   void initState() {
     super.initState();
+    _languageBloc = getItInstance<LanguageBloc>();
     initConnectivity();
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
@@ -73,47 +85,110 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   void dispose() {
     _connectivitySubscription.cancel();
+    _languageBloc.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      translations: LocaleString(),
-      locale: Locale('hi', 'IN'),
-      home: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/images/masalah.png')),
-              label: 'Masalah',
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/images/adhan.png')),
-              label: 'Prayer Time',
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/images/qibla.png')),
-              label: 'Qibla',
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/images/converter.png')),
-              label: 'Calculator',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppColors.selectedIconColor,
-          backgroundColor: AppColors.primaryText,
-          unselectedItemColor: AppColors.unSelectedIconColor,
-          onTap: _onItemTapped,
-        ),
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-      ),
-    );
+    return BlocProvider<LanguageBloc>.value(
+        value: _languageBloc,
+        child: BlocBuilder<LanguageBloc, LanguageState>(
+          builder: (context, state) {
+            print("satetetete" + state.toString());
+            if (state is LanguageLoaded) {
+              print("**************" + state.locale.toString());
+              return GetMaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  supportedLocales:
+                      Languages.languages.map((e) => Locale(e.code)).toList(),
+                  locale: state.locale,
+                  localizationsDelegates: [
+                    AppLocalizations.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                  ],
+                  home: Scaffold(
+                    bottomNavigationBar: BottomNavigationBar(
+                      items: <BottomNavigationBarItem>[
+                        BottomNavigationBarItem(
+                          icon: ImageIcon(
+                              AssetImage('assets/images/masalah.png')),
+                          label: TranslationConstants.gold,
+                        ),
+                        BottomNavigationBarItem(
+                          icon:
+                              ImageIcon(AssetImage('assets/images/adhan.png')),
+                          label: 'Prayer Time',
+                        ),
+                        BottomNavigationBarItem(
+                          icon:
+                              ImageIcon(AssetImage('assets/images/qibla.png')),
+                          label: 'Qibla',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: ImageIcon(
+                              AssetImage('assets/images/converter.png')),
+                          label: 'Calculator',
+                        ),
+                      ],
+                      currentIndex: _selectedIndex,
+                      type: BottomNavigationBarType.fixed,
+                      selectedItemColor: AppColors.selectedIconColor,
+                      backgroundColor: AppColors.primaryText,
+                      unselectedItemColor: AppColors.unSelectedIconColor,
+                      onTap: _onItemTapped,
+                    ),
+                    body: Center(
+                      child: _widgetOptions.elementAt(_selectedIndex),
+                    ),
+                  ));
+            }
+            return const SizedBox.shrink();
+          },
+        ));
+    // child: GetMaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   supportedLocales:
+    //       Languages.languages.map((e) => Locale(e.code)).toList(),
+    //   locale: state.locale,
+    //   localizationsDelegates: [
+    //     AppLocalizations.delegate,
+    //     GlobalMaterialLocalizations.delegate,
+    //     GlobalWidgetsLocalizations.delegate,
+    //   ],
+    //   home: Scaffold(
+    //     bottomNavigationBar: BottomNavigationBar(
+    //       items: <BottomNavigationBarItem>[
+    //         BottomNavigationBarItem(
+    //           icon: ImageIcon(AssetImage('assets/images/masalah.png')),
+    //           label: 'Masalah',
+    //         ),
+    //         BottomNavigationBarItem(
+    //           icon: ImageIcon(AssetImage('assets/images/adhan.png')),
+    //           label: 'Prayer Time',
+    //         ),
+    //         BottomNavigationBarItem(
+    //           icon: ImageIcon(AssetImage('assets/images/qibla.png')),
+    //           label: 'Qibla',
+    //         ),
+    //         BottomNavigationBarItem(
+    //           icon: ImageIcon(AssetImage('assets/images/converter.png')),
+    //           label: 'Calculator',
+    //         ),
+    //       ],
+    //       currentIndex: _selectedIndex,
+    //       type: BottomNavigationBarType.fixed,
+    //       selectedItemColor: AppColors.selectedIconColor,
+    //       backgroundColor: AppColors.primaryText,
+    //       unselectedItemColor: AppColors.unSelectedIconColor,
+    //       onTap: _onItemTapped,
+    //     ),
+    //     body: Center(
+    //       child: _widgetOptions.elementAt(_selectedIndex),
+    //     ),
+    //   ),
+    // ),
   }
 
   Future<void> initConnectivity() async {
