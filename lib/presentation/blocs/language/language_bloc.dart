@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
@@ -16,14 +15,8 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
           LanguageLoaded(
             Locale(Languages.languages[0].code),
           ),
-        );
-
-  @override
-  Stream<LanguageState> mapEventToState(
-    LanguageEvent event,
-  ) async* {
-    if (event is ToggleLanguageEvent) {
-      yield LanguageLoaded(Locale(event.language.code));
-    }
+        ) {
+    on<ToggleLanguageEvent>(
+        (event, emit) => emit(LanguageLoaded(Locale(event.language.code))));
   }
 }

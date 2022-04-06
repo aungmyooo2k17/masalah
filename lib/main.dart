@@ -10,10 +10,10 @@ import 'package:masalah/common/extensions/string_extensions.dart';
 import 'package:masalah/presentation/app_localizations.dart';
 import 'package:masalah/presentation/blocs/language/language_bloc.dart';
 import 'package:masalah/screens/converter_screen.dart';
+import 'package:masalah/screens/main/main_screen.dart';
 import 'package:masalah/screens/masalah_category_screen.dart';
 import 'package:masalah/screens/prayer_time/prayer_time_screen.dart';
 import 'package:masalah/screens/qibla_screen.dart';
-import 'package:get/get.dart';
 import 'package:masalah/service/alarm_scheduler.dart';
 import 'package:masalah/util/locale_string.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
@@ -98,8 +98,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             print("satetetete" + state.toString());
             if (state is LanguageLoaded) {
               print("**************" + state.locale.toString());
-              return GetMaterialApp(
+              return MaterialApp(
                   debugShowCheckedModeBanner: false,
+                  title: 'Masalah',
                   supportedLocales:
                       Languages.languages.map((e) => Locale(e.code)).toList(),
                   locale: state.locale,
@@ -108,87 +109,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     GlobalMaterialLocalizations.delegate,
                     GlobalWidgetsLocalizations.delegate,
                   ],
-                  home: Scaffold(
-                    bottomNavigationBar: BottomNavigationBar(
-                      items: <BottomNavigationBarItem>[
-                        BottomNavigationBarItem(
-                          icon: ImageIcon(
-                              AssetImage('assets/images/masalah.png')),
-                          label: TranslationConstants.gold,
-                        ),
-                        BottomNavigationBarItem(
-                          icon:
-                              ImageIcon(AssetImage('assets/images/adhan.png')),
-                          label: 'Prayer Time',
-                        ),
-                        BottomNavigationBarItem(
-                          icon:
-                              ImageIcon(AssetImage('assets/images/qibla.png')),
-                          label: 'Qibla',
-                        ),
-                        BottomNavigationBarItem(
-                          icon: ImageIcon(
-                              AssetImage('assets/images/converter.png')),
-                          label: 'Calculator',
-                        ),
-                      ],
-                      currentIndex: _selectedIndex,
-                      type: BottomNavigationBarType.fixed,
-                      selectedItemColor: AppColors.selectedIconColor,
-                      backgroundColor: AppColors.primaryText,
-                      unselectedItemColor: AppColors.unSelectedIconColor,
-                      onTap: _onItemTapped,
-                    ),
-                    body: Center(
-                      child: _widgetOptions.elementAt(_selectedIndex),
-                    ),
-                  ));
+                  home: MainScreen());
             }
             return const SizedBox.shrink();
           },
         ));
-    // child: GetMaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   supportedLocales:
-    //       Languages.languages.map((e) => Locale(e.code)).toList(),
-    //   locale: state.locale,
-    //   localizationsDelegates: [
-    //     AppLocalizations.delegate,
-    //     GlobalMaterialLocalizations.delegate,
-    //     GlobalWidgetsLocalizations.delegate,
-    //   ],
-    //   home: Scaffold(
-    //     bottomNavigationBar: BottomNavigationBar(
-    //       items: <BottomNavigationBarItem>[
-    //         BottomNavigationBarItem(
-    //           icon: ImageIcon(AssetImage('assets/images/masalah.png')),
-    //           label: 'Masalah',
-    //         ),
-    //         BottomNavigationBarItem(
-    //           icon: ImageIcon(AssetImage('assets/images/adhan.png')),
-    //           label: 'Prayer Time',
-    //         ),
-    //         BottomNavigationBarItem(
-    //           icon: ImageIcon(AssetImage('assets/images/qibla.png')),
-    //           label: 'Qibla',
-    //         ),
-    //         BottomNavigationBarItem(
-    //           icon: ImageIcon(AssetImage('assets/images/converter.png')),
-    //           label: 'Calculator',
-    //         ),
-    //       ],
-    //       currentIndex: _selectedIndex,
-    //       type: BottomNavigationBarType.fixed,
-    //       selectedItemColor: AppColors.selectedIconColor,
-    //       backgroundColor: AppColors.primaryText,
-    //       unselectedItemColor: AppColors.unSelectedIconColor,
-    //       onTap: _onItemTapped,
-    //     ),
-    //     body: Center(
-    //       child: _widgetOptions.elementAt(_selectedIndex),
-    //     ),
-    //   ),
-    // ),
   }
 
   Future<void> initConnectivity() async {
