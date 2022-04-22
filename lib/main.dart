@@ -1,33 +1,25 @@
 import 'dart:async';
-import 'dart:isolate';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:masalah/common/constants/color_constant.dart';
-import 'package:masalah/common/extensions/string_extensions.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:masalah/presentation/app_localizations.dart';
 import 'package:masalah/presentation/blocs/language/language_bloc.dart';
-import 'package:masalah/screens/converter_screen.dart';
 import 'package:masalah/screens/main/main_screen.dart';
-import 'package:masalah/screens/masalah_category_screen.dart';
-import 'package:masalah/screens/prayer_time/prayer_time_screen.dart';
-import 'package:masalah/screens/qibla_screen.dart';
 import 'package:masalah/service/alarm_scheduler.dart';
-import 'package:masalah/util/locale_string.dart';
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'common/constants/languages.dart';
-import 'common/constants/translation_constants.dart';
 import 'di/get_it.dart';
 import 'di/get_it.dart' as getIt;
 import 'service/notification_service.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AndroidAlarmManager.initialize();
+  tz.initializeTimeZones();
   await NotificationService().init();
   AlarmScheduler().cancelAlarm();
   await AlarmScheduler().setAlarm();
@@ -53,25 +45,11 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    MasalahCategoryScreen(),
-    PrayerTimeScreen(),
-    QiblaScreen(),
-    ConverterScreen()
-  ];
   late LanguageBloc _languageBloc;
 
   String _connectionStatus = 'Unknown';
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   void initState() {
@@ -95,9 +73,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         value: _languageBloc,
         child: BlocBuilder<LanguageBloc, LanguageState>(
           builder: (context, state) {
-            print("satetetete" + state.toString());
             if (state is LanguageLoaded) {
-              print("**************" + state.locale.toString());
               return MaterialApp(
                   debugShowCheckedModeBanner: false,
                   title: 'Masalah',
