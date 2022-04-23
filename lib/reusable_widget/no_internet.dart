@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/main.dart';
+import 'package:masalah/masalah_app.dart';
 
 import 'app_text.dart';
 
@@ -22,7 +23,7 @@ class NoInternet extends StatelessWidget {
         OutlinedButton(
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => MyApp()),
+                  MaterialPageRoute(builder: (context) => MasalahApp()),
                   (Route<dynamic> route) => false);
             },
             child: Text("Try again!"))

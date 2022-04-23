@@ -1,5 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout
     android:id="@+id/widget_root"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
@@ -48,7 +51,7 @@
                 android:src="@android:drawable/stat_notify_call_mute"/>
 
             <TextView
-                android:id="@+id/tv_counter"
+                android:id="@+id/tvFajrTime"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -58,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="4:30 AM"/>
         </LinearLayout>
+
         <LinearLayout
             android:gravity="center"
             android:layout_marginTop="8dp"
@@ -82,7 +86,7 @@
                 android:src="@android:drawable/stat_notify_call_mute"/>
 
             <TextView
-                android:id="@+id/tvFajrTime"
+                android:id="@+id/tvSunriseTime"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -116,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/stat_notify_call_mute"/>
             <TextView
-                android:id="@+id/tvFajrTime"
+                android:id="@+id/tvDuhrTime"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -126,6 +130,7 @@
                 android:layout_height="wrap_content"
                 android:text="4:30 AM"/>
         </LinearLayout>
+
         <LinearLayout
             android:gravity="center"
             android:layout_marginTop="8dp"
@@ -149,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/stat_notify_call_mute"/>
             <TextView
-                android:id="@+id/tvFajrTime"
+                android:id="@+id/tvAsrTime"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -182,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/stat_notify_call_mute"/>
             <TextView
-                android:id="@+id/tvFajrTime"
+                android:id="@+id/tvMagribTime"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -215,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/stat_notify_call_mute"/>
             <TextView
-                android:id="@+id/tvFajrTime"
+                android:id="@+id/tvIshaTime"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"

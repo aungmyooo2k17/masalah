@@ -7,6 +7,7 @@ import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
 import 'package:masalah/reusable_widget/app_bar.dart';
 import 'package:masalah/reusable_widget/app_text.dart';
 import 'package:masalah/screens/prayer_time/prayer_card_item_widget.dart';
+import 'package:masalah/service/launcher_widget_service.dart';
 import 'package:masalah/util/date_time_util.dart';
 
 import 'prayer_item_widget.dart';
@@ -54,6 +55,11 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
     prayerTimePluginUtil.init(myCoordinates);
     prayerTimeItemCard =
         prayerTimePluginUtil.getUiPrayerItemCard(myCoordinates);
+    sendWidgetData();
+  }
+
+  Future<void> sendWidgetData() async {
+    await LauncherWidgetService().sendDataToAppWidget();
   }
 
   @override

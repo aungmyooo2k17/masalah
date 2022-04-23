@@ -12,10 +12,12 @@ import java.util.TimerTask
 import java.util.Timer
 
 
-
-
 class AppWidgetProvider : HomeWidgetProvider() {
-    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray, widgetData: SharedPreferences) {
+
+    override fun onUpdate(context: Context,
+                          appWidgetManager: AppWidgetManager,
+                          appWidgetIds: IntArray,
+                          widgetData: SharedPreferences) {
         appWidgetIds.forEach { widgetId ->
             val views = RemoteViews(context.packageName, R.layout.widget_layout).apply {
 
@@ -24,17 +26,17 @@ class AppWidgetProvider : HomeWidgetProvider() {
                         MainActivity::class.java)
                 setOnClickPendingIntent(R.id.widget_root, pendingIntent)
 
-                val counter = widgetData.getString("_counter", "0")
+                val prayerTimes = widgetData.getString("prayerTime", null) ?: ""
+                val data = prayerTimes.split(",") ?: listOf()
+                setTextViewText(R.id.tvFajrTime, data[0]  ?: "-")
+                setTextViewText(R.id.tvSunriseTime, data[1]  ?: "-")
+                setTextViewText(R.id.tvDuhrTime, data[2]  ?: "-")
+                setTextViewText(R.id.tvAsrTime, data[3]  ?: "-")
+                setTextViewText(R.id.tvMagribTime, data[4]  ?: "-")
+                setTextViewText(R.id.tvIshaTime, data[5]  ?: "-")
 
-                var counterText = "Your: $counter"
 
-                if (counter == "0") {
-                    counterText = "11:00 AM"
-                }
 
-                 //
-
-                setTextViewText(R.id.tv_counter, counterText)
 
                 // Pending intent to update counter on button click
                 val backgroundIntent = HomeWidgetBackgroundIntent.getBroadcast(context,

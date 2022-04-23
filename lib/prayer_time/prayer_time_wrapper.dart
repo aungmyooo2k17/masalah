@@ -24,6 +24,7 @@ class PrayerTimePluginUtil {
     final parameters = CalculationMethod.karachi.getParameters();
     parameters.madhab = Madhab.hanafi;
     _prayerTimesPlugin = PrayerTimes.today(coordinates, parameters);
+    
   }
 
   void initWithOffset(Coordinates coordinates, DateTime selectDateTime) {
