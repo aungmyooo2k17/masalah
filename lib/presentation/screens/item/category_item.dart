@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/model/category.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
-import 'package:masalah/screens/masalah_list_screen.dart';
+import 'package:masalah/presentation/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/screens/masalah_list_screen.dart';
+
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({Key? key, required this.category}) : super(key: key);

@@ -26,6 +26,12 @@
             android:gravity="center"
             />
 
+        <ImageView
+            android:id="@+id/imgRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/arrow_down_float"/>
+
         <LinearLayout
             android:gravity="center"
             android:layout_marginTop="8dp"

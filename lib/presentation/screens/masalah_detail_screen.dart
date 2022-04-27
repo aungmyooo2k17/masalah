@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/model/masalah.dart';
-import 'package:masalah/reusable_widget/app_bar.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/reusable_widget/app_bar.dart';
+import 'package:masalah/presentation/reusable_widget/app_text.dart';
+
 
 class MasalahDetailScreen extends StatelessWidget {
   const MasalahDetailScreen({Key? key, required this.masalah})

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/common/constants/languages.dart';
+import 'package:masalah/common/constants/translation_constants.dart';
 import 'package:masalah/common/extensions/string_extensions.dart';
-import 'package:masalah/reusable_widget/app_bar.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/blocs/language/language_bloc.dart';
+import 'package:masalah/presentation/reusable_widget/app_bar.dart';
+import 'package:masalah/presentation/reusable_widget/app_text.dart';
 
-import '../common/constants/languages.dart';
-import '../common/constants/translation_constants.dart';
-import '../presentation/blocs/language/language_bloc.dart';
 
 class SettingScreen extends StatelessWidget {
  

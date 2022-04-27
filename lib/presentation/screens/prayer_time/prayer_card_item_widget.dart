@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/model/ui_prayer_time.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/reusable_widget/app_text.dart';
 
 class PrayerCardItemWidget extends StatelessWidget {
   final UiPrayerTimeItemCard uiPrayerTimeItemCard;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
-import 'package:masalah/screens/setting_screen.dart';
+import 'package:masalah/presentation/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/screens/setting_screen.dart';
 
 class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
   @override

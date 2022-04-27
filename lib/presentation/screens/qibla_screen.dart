@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/loading_indicator.dart';
+import 'package:masalah/presentation/reusable_widget/app_bar.dart';
 import 'package:masalah/qiblah_compass.dart';
 import 'package:masalah/qiblah_maps.dart';
-import 'package:masalah/reusable_widget/app_bar.dart';
 
-import '../loading_indicator.dart';
 
 class QiblaScreen extends StatefulWidget {
   @override

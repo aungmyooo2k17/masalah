@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
-import 'package:masalah/reusable_widget/app_bar.dart';
-import 'package:masalah/screens/item/converter_item/zakat.dart';
+import 'package:masalah/presentation/reusable_widget/app_bar.dart';
+import 'package:masalah/presentation/screens/item/converter_item/zakat.dart';
+
 
 class ConverterScreen extends StatelessWidget {
   const ConverterScreen({Key? key}) : super(key: key);

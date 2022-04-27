@@ -1,12 +1,14 @@
 import 'dart:core';
 import 'package:adhan/adhan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/model/ui_prayer_time.dart';
 import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
-import 'package:masalah/reusable_widget/app_bar.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
-import 'package:masalah/screens/prayer_time/prayer_card_item_widget.dart';
+import 'package:masalah/presentation/blocs/prayertime/prayertime_cubit.dart';
+import 'package:masalah/presentation/reusable_widget/app_bar.dart';
+import 'package:masalah/presentation/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/screens/prayer_time/prayer_card_item_widget.dart';
 import 'package:masalah/service/launcher_widget_service.dart';
 import 'package:masalah/util/date_time_util.dart';
 
@@ -31,31 +33,21 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
-
-        // // PrayerTimes.utcOffset(coordinates, dateComponents, calculationParameters, utcOffset)
-        // prayerTimes = PrayerTimes.utcOffset(
-        //     myCoordinates!,
-        //     DateComponents(
-        //         selectedDate!.year, selectedDate!.month, selectedDate!.day),
-        //     params!,
-        //     Duration(hours: 6, minutes: 30));
-        // print("*#*#*#*#**#*#**#*#*");
-        // print(prayerTimes!.asr);
       });
-    prayerTimePluginUtil.initWithOffset(
-        Coordinates(16.7827, 96.1771), selectedDate!);
+    context.read<PrayertimeCubit>().initPrayerTimeWithOffset(selectedDate!);
   }
 
   @override
   void initState() {
     super.initState();
-    final myCoordinates = Coordinates(
-        16.7827, 96.1771); // Replace with your own location lat, lng.
 
-    prayerTimePluginUtil.init(myCoordinates);
+    loadPrayerTimes();
+    // sendWidgetData();
+  }
+
+  loadPrayerTimes() async {
     prayerTimeItemCard =
-        prayerTimePluginUtil.getUiPrayerItemCard(myCoordinates);
-    sendWidgetData();
+        await context.read<PrayertimeCubit>().loadPrayerTimes();
   }
 
   Future<void> sendWidgetData() async {
@@ -92,8 +84,12 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                         selectedDate =
                             selectedDate!.subtract(Duration(days: 1));
                       });
-                      prayerTimePluginUtil.initWithOffset(
-                          Coordinates(16.8409, 96.1735), selectedDate!);
+                      context
+                          .read<PrayertimeCubit>()
+                          .initPrayerTimeWithOffset(selectedDate!);
+
+                      // prayerTimePluginUtil.initWithOffset(
+                      //     Coordinates(16.8409, 96.1735), selectedDate!);
                     },
                     child: Container(
                       width: 28,
@@ -128,8 +124,12 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                         print(selectedDate.toString());
                         selectedDate = selectedDate!.add(Duration(days: 1));
                       });
-                      prayerTimePluginUtil.initWithOffset(
-                          Coordinates(16.8409, 96.1735), selectedDate!);
+                      context
+                          .read<PrayertimeCubit>()
+                          .initPrayerTimeWithOffset(selectedDate!);
+
+                      // prayerTimePluginUtil.initWithOffset(
+                      //     Coordinates(16.8409, 96.1735), selectedDate!);
                     },
                     child: Container(
                       width: 28,

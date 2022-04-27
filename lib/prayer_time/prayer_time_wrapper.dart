@@ -4,6 +4,7 @@ import 'package:masalah/model/prayer_item/prayer_time_entity.dart';
 import 'package:masalah/model/ui_prayer_time.dart';
 import 'package:masalah/prayer_time/mapper/prayer_time_domain_mapper.dart';
 import 'package:masalah/prayer_time/mapper/prayer_time_ui_mapper.dart';
+import 'package:masalah/service/location_service.dart';
 import 'package:masalah/util/date_time_util.dart';
 import 'package:masalah/util/share_preference_util.dart';
 
@@ -20,11 +21,11 @@ class PrayerTimePluginUtil {
   }
   PrayerTimePluginUtil._internal();
 
-  void init(Coordinates coordinates) {
+  void init(CurrentLatLng latLng) {
     final parameters = CalculationMethod.karachi.getParameters();
     parameters.madhab = Madhab.hanafi;
-    _prayerTimesPlugin = PrayerTimes.today(coordinates, parameters);
-    
+    _prayerTimesPlugin =
+        PrayerTimes.today(Coordinates(latLng.lat, latLng.lng), parameters);
   }
 
   void initWithOffset(Coordinates coordinates, DateTime selectDateTime) {

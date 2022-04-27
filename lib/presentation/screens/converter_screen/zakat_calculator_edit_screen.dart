@@ -6,9 +6,9 @@ import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/model/zakat.dart';
 import 'package:masalah/network/remote_data_source.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
 import 'package:masalah/util/zakat_calculator_util.dart';
 
+import '../../reusable_widget/app_text.dart';
 import 'zakat_list_screen.dart';
 
 class ZakatCalculatorEdit extends StatefulWidget {

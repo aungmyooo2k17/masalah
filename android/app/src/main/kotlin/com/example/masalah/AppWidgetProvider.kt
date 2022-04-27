@@ -21,6 +21,9 @@ class AppWidgetProvider : HomeWidgetProvider() {
         appWidgetIds.forEach { widgetId ->
             val views = RemoteViews(context.packageName, R.layout.widget_layout).apply {
 
+
+
+
                 // Open App on Widget Click
                 val pendingIntent = HomeWidgetLaunchIntent.getActivity(context,
                         MainActivity::class.java)
@@ -34,7 +37,7 @@ class AppWidgetProvider : HomeWidgetProvider() {
                 setTextViewText(R.id.tvAsrTime, data[3]  ?: "-")
                 setTextViewText(R.id.tvMagribTime, data[4]  ?: "-")
                 setTextViewText(R.id.tvIshaTime, data[5]  ?: "-")
-
+                
 
 
 

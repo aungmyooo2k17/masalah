@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
-import 'package:masalah/screens/converter_screen/zakat_calculator_screen.dart';
+import 'package:masalah/presentation/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/screens/converter_screen/zakat_calculator_screen.dart';
+
 
 class ZakatItem extends StatelessWidget {
   const ZakatItem({Key? key}) : super(key: key);

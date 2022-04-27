@@ -5,10 +5,10 @@ import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/common/extensions/string_extensions.dart';
 import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/network/remote_data_source.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/reusable_widget/app_text.dart';
 import 'package:masalah/util/zakat_calculator_util.dart';
 
-import '../../common/constants/translation_constants.dart';
+import '../../../common/constants/translation_constants.dart';
 import 'zakat_list_screen.dart';
 
 class ZakatCalculator extends StatefulWidget {

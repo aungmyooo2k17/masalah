@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/common/constants/translation_constants.dart';
 import 'package:masalah/common/extensions/string_extensions.dart';
 
-import '../../common/constants/color_constant.dart';
-import '../../common/constants/translation_constants.dart';
+
 import '../converter_screen.dart';
 import '../masalah_category_screen.dart';
 import '../prayer_time/prayer_time_screen.dart';

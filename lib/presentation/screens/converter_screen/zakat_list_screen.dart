@@ -3,11 +3,12 @@ import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/model/zakat.dart';
-import 'package:masalah/reusable_widget/404-page.dart';
-import 'package:masalah/reusable_widget/app_bar.dart';
-import 'package:masalah/reusable_widget/app_text.dart';
-import 'package:masalah/reusable_widget/no_internet.dart';
-import 'package:masalah/screens/converter_screen/zakat_calculator_edit_screen.dart';
+import 'package:masalah/presentation/reusable_widget/404-page.dart';
+import 'package:masalah/presentation/reusable_widget/app_bar.dart';
+import 'package:masalah/presentation/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/screens/converter_screen/zakat_calculator_edit_screen.dart';
+
+
 
 class ZakatListScreen extends StatefulWidget {
   const ZakatListScreen({Key? key}) : super(key: key);

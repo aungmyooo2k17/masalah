@@ -6,11 +6,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:masalah/presentation/app_localizations.dart';
+import 'package:masalah/presentation/blocs/location/location_cubit.dart';
+import 'package:masalah/presentation/blocs/prayertime/prayertime_cubit.dart';
+import 'package:masalah/presentation/screens/main/main_screen.dart';
 
 import 'common/constants/languages.dart';
 import 'di/get_it.dart';
 import 'presentation/blocs/language/language_bloc.dart';
-import 'screens/main/main_screen.dart';
 
 /// This is the main application widget.
 class MasalahApp extends StatelessWidget {
@@ -31,6 +33,8 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   late LanguageBloc _languageBloc;
+  late PrayertimeCubit _prayerTimeCubit;
+  late LocationCubit _locationCubit;
 
   String _connectionStatus = 'Unknown';
   final Connectivity _connectivity = Connectivity();
@@ -40,6 +44,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   void initState() {
     super.initState();
     _languageBloc = getItInstance<LanguageBloc>();
+    _locationCubit = getItInstance<LocationCubit>();
+    _prayerTimeCubit = getItInstance<PrayertimeCubit>();
     initConnectivity();
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
@@ -49,13 +55,25 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   void dispose() {
     _connectivitySubscription.cancel();
     _languageBloc.close();
+    _locationCubit.close();
+    _prayerTimeCubit.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LanguageBloc>.value(
-        value: _languageBloc,
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider.value(
+            value: _locationCubit,
+          ),
+          BlocProvider.value(
+            value: _prayerTimeCubit,
+          ),
+          BlocProvider.value(
+            value: _languageBloc,
+          ),
+        ],
         child: BlocBuilder<LanguageBloc, LanguageState>(
           builder: (context, state) {
             if (state is LanguageLoaded) {
