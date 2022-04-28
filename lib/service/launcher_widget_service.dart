@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
 
+import 'location_service.dart';
+
 class LauncherWidgetService {
   static final LauncherWidgetService _launcherWidget =
       LauncherWidgetService._internal();
@@ -43,6 +45,20 @@ class LauncherWidgetService {
           name: 'AppWidgetProvider', iOSName: 'HomeWidgetExample');
     } on PlatformException catch (e) {
       debugPrint('Error Updating Widget. $e');
+    }
+  }
+
+
+  /// Called when Doing Background Work initiated from Widget
+  static void backgroundCallback(Uri? data) async {
+
+    debugPrint('Clicked $data');
+
+    if (data?.host == 'refreshclicked') {
+
+    //  PrayerTimePluginUtil().init(CurrentLatLng(16.7827, 96.1771));
+      await LauncherWidgetService().sendDataToAppWidget();
+
     }
   }
 }

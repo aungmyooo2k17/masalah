@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:adhan/adhan.dart';
 import 'package:flutter/material.dart';
+import 'package:home_widget/home_widget.dart';
 
 import 'package:masalah/masalah_app.dart';
 import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
@@ -21,9 +22,26 @@ void main() async {
   AlarmScheduler().cancelAlarm();
   await AlarmScheduler().setAlarm();
   await getIt.init();
-  //final myCoordinates = Coordinates(16.7827, 96.1771); // Replace with your own location lat, lng.
+  await initPrayerTimes();
 
-  PrayerTimePluginUtil().init(CurrentLatLng(16.7827, 96.1771));
-  await LauncherWidgetService().sendDataToAppWidget();
   runApp(MasalahApp());
+}
+
+
+
+initPrayerTimes() async{
+
+  try{
+    final currentLocation = await getIt.getItInstance<LocationService>().getCurrentLocation();
+    if(currentLocation!=null){
+      PrayerTimePluginUtil().init(currentLocation);
+      await LauncherWidgetService().sendDataToAppWidget();
+
+
+    }
+  } catch(e){
+    debugPrint(e.toString());
+  }
+
+
 }

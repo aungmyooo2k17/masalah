@@ -29,31 +29,25 @@ class AppWidgetProvider : HomeWidgetProvider() {
                         MainActivity::class.java)
                 setOnClickPendingIntent(R.id.widget_root, pendingIntent)
 
-                val prayerTimes = widgetData.getString("prayerTime", null) ?: ""
-                val data = prayerTimes.split(",") ?: listOf()
-                setTextViewText(R.id.tvFajrTime, data[0]  ?: "-")
-                setTextViewText(R.id.tvSunriseTime, data[1]  ?: "-")
-                setTextViewText(R.id.tvDuhrTime, data[2]  ?: "-")
-                setTextViewText(R.id.tvAsrTime, data[3]  ?: "-")
-                setTextViewText(R.id.tvMagribTime, data[4]  ?: "-")
-                setTextViewText(R.id.tvIshaTime, data[5]  ?: "-")
+                val prayerTimes = widgetData.getString("prayerTime", null) 
+                val data = prayerTimes?.split(",")
+                setTextViewText(R.id.tvFajrTime, data?.getOrNull(0)  ?: "-")
+                setTextViewText(R.id.tvSunriseTime, data?.getOrNull(1)  ?: "-")
+                setTextViewText(R.id.tvDuhrTime, data?.getOrNull(2)  ?: "-")
+                setTextViewText(R.id.tvAsrTime, data?.getOrNull(3)  ?: "-")
+                setTextViewText(R.id.tvMagribTime, data?.getOrNull(4)  ?: "-")
+                setTextViewText(R.id.tvIshaTime, data?.getOrNull(5)  ?: "-")
                 
 
 
 
                 // Pending intent to update counter on button click
-                val backgroundIntent = HomeWidgetBackgroundIntent.getBroadcast(context,
-                        Uri.parse("myAppWidget://updatecounter"))
+//                val backgroundIntent = HomeWidgetBackgroundIntent.getBroadcast(context,
+//                        Uri.parse("myAppWidget://refreshClicked"))
+//
+//                setOnClickPendingIntent(R.id.imgRefresh, backgroundIntent)
 
-                setOnClickPendingIntent(R.id.llRefresh, backgroundIntent)
 
-                val timer = Timer()
-                timer.schedule(object : TimerTask() {
-                    override fun run() {
-                        //what you want to do
-
-                    }
-                }, 0, 15000)
             }
             appWidgetManager.updateAppWidget(widgetId, views)
         }

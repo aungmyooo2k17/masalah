@@ -7,4 +7,5 @@
     android:minHeight="320dp"
     android:minResizeWidth="280dp"
     android:minResizeHeight="320dp"
-    android:widgetCategory="home_screen" />
+    android:widgetCategory="home_screen"
+    android:previewImage="@drawable/masalah_widget" />
