@@ -16,8 +16,12 @@ class PrayertimeCubit extends Cubit<PrayertimeState> {
       {required this.prayerTimePluginUtil, required this.locationService})
       : super(PrayertimeInitial());
 
-  void initPrayerTime(CurrentLatLng latLng) {
-    prayerTimePluginUtil.init(latLng);
+  void initPrayerTime() async {
+    final currentLatLng = await locationService.getCurrentLocation();
+    if (currentLatLng != null) {
+      prayerTimePluginUtil.init(currentLatLng);
+      emit(PrayertimeInitCompleted());
+    }
   }
 
   Future<UiPrayerTimeItemCard?> loadPrayerTimes() async {

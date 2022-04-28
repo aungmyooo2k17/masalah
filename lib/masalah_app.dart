@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
 import 'package:masalah/presentation/app_localizations.dart';
 import 'package:masalah/presentation/blocs/location/location_cubit.dart';
 import 'package:masalah/presentation/blocs/prayertime/prayertime_cubit.dart';
 import 'package:masalah/presentation/screens/main/main_screen.dart';
+import 'package:masalah/presentation/screens/splash/splash_screen.dart';
+import 'package:masalah/service/location_service.dart';
 
 import 'common/constants/languages.dart';
 import 'di/get_it.dart';
@@ -67,8 +70,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           BlocProvider.value(
             value: _locationCubit,
           ),
-          BlocProvider.value(
-            value: _prayerTimeCubit,
+          BlocProvider(
+            //value: _prayerTimeCubit,
+            create: (context) => PrayertimeCubit(
+                prayerTimePluginUtil: PrayerTimePluginUtil(),
+                locationService: LocationServiceImpl()),
           ),
           BlocProvider.value(
             value: _languageBloc,
@@ -88,7 +94,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     GlobalMaterialLocalizations.delegate,
                     GlobalWidgetsLocalizations.delegate,
                   ],
-                  home: MainScreen());
+                  home: SplashScreen());
             }
             return const SizedBox.shrink();
           },

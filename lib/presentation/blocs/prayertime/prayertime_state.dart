@@ -8,3 +8,16 @@ abstract class PrayertimeState extends Equatable {
 }
 
 class PrayertimeInitial extends PrayertimeState {}
+
+
+class PrayertimeInitCompleted extends PrayertimeState {}
+
+class PrayerTimeInitError extends PrayertimeState{
+  final String error;
+
+  PrayerTimeInitError({required this.error});
+
+
+  @override
+  List<Object> get props => [error];
+}

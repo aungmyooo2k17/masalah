@@ -18,10 +18,10 @@ class LocationCubit extends Cubit<LocationState> {
     }
   }
 
-  void loadPrayerTimeForLocation() async {
-    final currentLatLng = await locationService.getCurrentLocation();
-    if (currentLatLng != null) {
-      prayertimeCubit.initPrayerTime(currentLatLng);
-    }
-  }
+  // void loadPrayerTimeForLocation() async {
+  //   final currentLatLng = await locationService.getCurrentLocation();
+  //   if (currentLatLng != null) {
+  //     prayertimeCubit.initPrayerTime(currentLatLng);
+  //   }
+  // }
 }

@@ -25,7 +25,7 @@ class LocationServiceImpl implements LocationService {
       try {
         Position currentLocation = await isGoogleServiceAvailable()
             ? await Geolocator.getCurrentPosition(
-                desiredAccuracy: LocationAccuracy.high)
+                desiredAccuracy: LocationAccuracy.medium)
             : await Geolocator.getCurrentPosition(
                 desiredAccuracy: LocationAccuracy.medium,
                 forceAndroidLocationManager: true);
@@ -37,6 +37,7 @@ class LocationServiceImpl implements LocationService {
       }
       return null;
     }
+    return null;
   }
 
   Future<bool> isGoogleServiceAvailable() async {
