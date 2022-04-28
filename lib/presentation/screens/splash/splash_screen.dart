@@ -24,13 +24,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<PrayertimeCubit, PrayertimeState>(
+      listenWhen: (previous, current) =>
+          current is PrayerTimeInitError || current is PrayertimeInitCompleted,
       listener: (context, state) {
         if (state is PrayertimeInitCompleted) {
           unawaited(LauncherWidgetService().sendDataToAppWidget());
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) {
-            return MainScreen();
-          }), (route) => false);
         }
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) {
+          return MainScreen();
+        }), (route) => false);
       },
       child: Scaffold(
         body: Center(

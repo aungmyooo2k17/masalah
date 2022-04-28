@@ -21,6 +21,8 @@ class PrayertimeCubit extends Cubit<PrayertimeState> {
     if (currentLatLng != null) {
       prayerTimePluginUtil.init(currentLatLng);
       emit(PrayertimeInitCompleted());
+    } else {
+      emit(PrayerTimeInitError(error: 'Error retrieve location'));
     }
   }
 
