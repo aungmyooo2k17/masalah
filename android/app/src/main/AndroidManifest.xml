@@ -20,6 +20,7 @@
         android:label="masalah"
         android:icon="@mipmap/ic_launcher">
         <activity
+            android:exported="true"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
@@ -55,7 +56,8 @@
         </activity>
 
          <!-- Your Background receiver and service goes here -->
-       <receiver android:name="AppWidgetProvider" >
+       <receiver android:name="AppWidgetProvider"
+           android:exported="false">
            <intent-filter>
                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
            </intent-filter>
@@ -63,7 +65,8 @@
                android:resource="@xml/widget_info" />
        </receiver>
 
-       <receiver android:name="es.antonborri.home_widget.HomeWidgetBackgroundReceiver">
+       <receiver android:name="es.antonborri.home_widget.HomeWidgetBackgroundReceiver"
+           android:exported="false">
            <intent-filter>
                <action android:name="es.antonborri.home_widget.action.BACKGROUND" />
            </intent-filter>
@@ -81,7 +84,8 @@
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD1KxDWPpKGGFZXy3OBQ2QfebjZM_PwTUA"/>
 
-            <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+                android:exported="false">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 				<action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
@@ -99,7 +103,8 @@
     android:exported="false"/>
 <receiver
     android:name="dev.fluttercommunity.plus.androidalarmmanager.RebootBroadcastReceiver"
-    android:enabled="false">
+    android:enabled="false"
+    android:exported="false">
     <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED"></action>
     </intent-filter>

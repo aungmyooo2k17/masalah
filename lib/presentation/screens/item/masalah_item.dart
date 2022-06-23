@@ -29,10 +29,12 @@ class MasalahItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BoldText(
-                  color: AppColors.primaryText,
-                  fontSize: 16.0,
-                  data: masalah.masalahTitle!,
+                Expanded(
+                  child: BoldText(
+                    color: AppColors.primaryText,
+                    fontSize: 16.0,
+                    data: masalah.masalahTitle!,
+                  ),
                 ),
                 Icon(
                   Icons.arrow_forward_outlined,
