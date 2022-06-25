@@ -39,8 +39,14 @@ class PrayertimeCubit extends Cubit<PrayertimeState> {
     final currentLatLng = await locationService.getCurrentLocation();
 
     if (currentLatLng != null) {
-      prayerTimePluginUtil.initWithOffset(
+      final data = await prayerTimePluginUtil.initWithOffset(
           Coordinates(currentLatLng.lat, currentLatLng.lng), date);
+      emit(PrayerTimeListLoaded(data: data));
     }
+  }
+
+
+  void toggleMuteStatus(String prayerName) {
+    prayerTimePluginUtil.toogleMuteStatus(prayerName);
   }
 }

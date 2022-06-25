@@ -1,4 +1,5 @@
 import 'package:adhan/adhan.dart';
+import 'package:flutter/material.dart';
 import 'package:masalah/common/extensions/extension.dart';
 import 'package:masalah/model/prayer_item/prayer_time_entity.dart';
 import 'package:masalah/model/ui_prayer_time.dart';
@@ -24,18 +25,19 @@ class PrayerTimePluginUtil {
   void init(CurrentLatLng latLng) {
     final parameters = CalculationMethod.karachi.getParameters();
     parameters.madhab = Madhab.hanafi;
+
     _prayerTimesPlugin =
         PrayerTimes.today(Coordinates(latLng.lat, latLng.lng), parameters);
   }
 
-  void initWithOffset(Coordinates coordinates, DateTime selectDateTime) {
+  Future<List<UiPrayerTimeItem>> initWithOffset(Coordinates coordinates, DateTime selectDateTime) {
     final parameters = CalculationMethod.karachi.getParameters();
     parameters.madhab = Madhab.hanafi;
     final DateComponents dateComponents = DateComponents(
         selectDateTime.year, selectDateTime.month, selectDateTime.day);
     _prayerTimesPlugin = PrayerTimes.utcOffset(coordinates, dateComponents,
         parameters, Duration(hours: 6, minutes: 30));
-    getCurrentDatePrayers();
+    return getCurrentDatePrayers();
   }
 
   PrayerTimeEntity getNextPrayerItem(Coordinates coordinates) {
@@ -47,6 +49,7 @@ class PrayerTimePluginUtil {
       // final myCoordinates = Coordinates(16.7827, 96.1771);
       final parameters = CalculationMethod.karachi.getParameters();
       parameters.madhab = Madhab.hanafi;
+       
       final _pTimes = PrayerTimes(
           coordinates,
           DateComponents(
@@ -73,6 +76,7 @@ class PrayerTimePluginUtil {
       // final myCoordinates = Coordinates(16.7827, 96.1771);
       final parameters = CalculationMethod.karachi.getParameters();
       parameters.madhab = Madhab.hanafi;
+       
       final _pTimes = PrayerTimes(
           coordinates,
           DateComponents(
@@ -103,6 +107,7 @@ class PrayerTimePluginUtil {
         domainMapper.getPrayerTimesEntity(_prayerTimesPlugin);
     final mutedPrayers = await SharedPreferenceUtil()
         .loadList(SharedPreferenceUtil.PRAYER_MUTE_LIST);
+        debugPrint("prayer"+_prayerTimesPlugin.currentPrayer().displayTitle);
 
     return new Future.value(uiMapper.mapUiPrayerItems(
         prayerTimeList: currentPrayersList,

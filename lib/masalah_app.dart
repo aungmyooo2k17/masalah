@@ -8,7 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
 import 'package:masalah/presentation/app_localizations.dart';
 import 'package:masalah/presentation/blocs/location/location_cubit.dart';
-import 'package:masalah/presentation/blocs/prayertime/cubit/prayer_time_date_selector_cubit.dart';
+import 'package:masalah/presentation/blocs/prayertime/prayer_time_date_selector_cubit.dart';
 import 'package:masalah/presentation/blocs/prayertime/prayertime_cubit.dart';
 import 'package:masalah/presentation/screens/main/main_screen.dart';
 import 'package:masalah/presentation/screens/splash/splash_screen.dart';
@@ -73,7 +73,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           
           BlocProvider(
-            //value: _prayerTimeCubit,
             create: (context) => PrayertimeCubit(
                 prayerTimePluginUtil: PrayerTimePluginUtil(),
                 locationService: LocationServiceImpl()),

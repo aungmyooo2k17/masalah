@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 
 import '../../../util/date_time_util.dart';
-import '../../blocs/prayertime/cubit/prayer_time_date_selector_cubit.dart';
+import '../../blocs/prayertime/prayer_time_date_selector_cubit.dart';
 import '../../blocs/prayertime/prayertime_cubit.dart';
 import '../../reusable_widget/app_text.dart';
 

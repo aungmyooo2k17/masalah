@@ -9,6 +9,7 @@ import 'package:masalah/model/masalah.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/network/remote_data_source.dart';
 import 'package:masalah/presentation/reusable_widget/app_bar.dart';
+import 'package:masalah/presentation/reusable_widget/masalah_search_field.dart';
 import 'package:masalah/presentation/reusable_widget/no_internet.dart';
 import 'package:masalah/presentation/screens/item/masalah_item.dart';
 
@@ -73,19 +74,9 @@ class _MasalahListScreenState extends State<MasalahListScreen> {
           children: [
             Container(
               margin: EdgeInsets.all(16),
-              child: TextField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.search),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.grey, width: 0.0),
-                        borderRadius: BorderRadius.circular(120.0)),
-                    filled: true,
-                    hintStyle: TextStyle(color: Colors.grey[800]),
-                    hintText: "Search masalah here",
-                    fillColor: Colors.white70),
-              ),
+              child: MasalahSearchField(controller: _searchController,
+              onValueChange: (value){},)
+             
             ),
             FutureBuilder(
                 future: _searchController.text != "" ||

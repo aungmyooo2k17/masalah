@@ -12,6 +12,8 @@ import 'package:masalah/presentation/reusable_widget/app_bar.dart';
 import 'package:masalah/presentation/reusable_widget/no_internet.dart';
 import 'package:masalah/presentation/screens/item/category_item.dart';
 
+import '../reusable_widget/masalah_search_field.dart';
+
 
 class MasalahCategoryScreen extends StatefulWidget {
   @override
@@ -26,22 +28,24 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
   final RemoteDataSource _apiResponse = RemoteDataSource();
   final dbHelper = DatabaseHelper.instance;
 
-  final _searchController = TextEditingController();
+  late TextEditingController _searchController;
   int catCount = 0;
+
 
   @override
   void initState() {
     dbHelper.queryCategoryRowCount().then((value) => () {
           catCount = value!;
         });
-    _searchController.addListener(() {
-      //here you have the changes of your textfield
+    // _searchController.addListener(() {
+    //   //here you have the changes of your textfield
 
-      //use setState to rebuild the widget
-      setState(() {});
-    });
+    //   //use setState to rebuild the widget
+    //   setState(() {});
+    // });
 
     super.initState();
+    _searchController = TextEditingController();
     initConnectivity();
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
@@ -69,19 +73,8 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
           children: [
             Container(
               margin: EdgeInsets.all(16),
-              child: TextField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.search),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.grey, width: 0.0),
-                        borderRadius: BorderRadius.circular(120.0)),
-                    filled: true,
-                    hintStyle: TextStyle(color: Colors.grey[800]),
-                    hintText: "Search category here",
-                    fillColor: Colors.white70),
-              ),
+              child: MasalahSearchField(controller: _searchController,
+              onValueChange: (value){},),
             ),
             FutureBuilder(
                 future: _searchController.text != "" ||

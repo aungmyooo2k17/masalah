@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/presentation/reusable_widget/app_text.dart';
-import 'package:masalah/presentation/screens/setting_screen.dart';
 
 class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -34,19 +33,7 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
         data: title,
         color: textColor,
       ),
-      actions: <Widget>[
-        IconButton(
-          icon: const Icon(
-            Icons.settings,
-            color: AppColors.primaryText,
-          ),
-          tooltip: 'Setting',
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => SettingScreen()));
-          },
-        ),
-      ],
+     
     );
   }
 }

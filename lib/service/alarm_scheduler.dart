@@ -27,6 +27,7 @@ class AlarmScheduler {
 
     final parameters = CalculationMethod.karachi.getParameters();
     parameters.madhab = Madhab.hanafi;
+     
     prayerTimesInstance = PrayerTimes.today(myCoordinates, parameters);
     for (var prayerName in prayerNames) {
       final isAlarmEnable = await _isAlarmEnabledForPrayers(prayerName);
