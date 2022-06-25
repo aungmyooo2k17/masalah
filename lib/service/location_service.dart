@@ -32,7 +32,7 @@ class LocationServiceImpl implements LocationService {
                 forceAndroidLocationManager: true);
         print('currentLocation : $currentLocation');
         return CurrentLatLng(
-            currentLocation.latitude, currentLocation.longitude);
+            16.7750381972987, 96.1552488395536);
       } catch (e) {
         debugPrint(e.toString());
         return null;

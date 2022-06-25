@@ -9,6 +9,17 @@ abstract class PrayertimeState extends Equatable {
 
 class PrayertimeInitial extends PrayertimeState {}
 
+class PrayerTimeListLoaded extends PrayertimeState {
+  final List<UiPrayerTimeItem> data;
+
+  PrayerTimeListLoaded({required this.data}):super();
+
+  @override
+  List<Object> get props => [data];
+}
+
+
+
 
 class PrayertimeInitCompleted extends PrayertimeState {}
 
