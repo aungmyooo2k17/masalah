@@ -76,7 +76,7 @@ class PrayerTimeDateSelector extends StatelessWidget {
                         },
                         child: 
                              BoldText(
-                              data: DateTimeUtil()
+                              data: DateTimeUtil
                                   .prayerTimeHumanReadable(state),
                               fontSize: 16,
                               color: AppColors.primaryText,

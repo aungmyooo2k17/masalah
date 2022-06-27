@@ -20,7 +20,7 @@ class PrayerTimeUiMapper {
         name: prayerTimeEntity.prayerName,
         isCurrentPrayerTime: prayerTimeEntity.prayerTime == currentPrayerTime,
         currentPrayerTime:
-            DateTimeUtil().prayerTimeFormat(prayerTimeEntity.prayerTime),
+            DateTimeUtil.prayerTimeFormat(prayerTimeEntity.prayerTime),
         isMuteForCurrentPrayer:
             mutedPrayerList?.contains(prayerTimeEntity.prayerName) ?? false);
   }
@@ -31,7 +31,7 @@ class PrayerTimeUiMapper {
         currentPrayerTimeItem: mapUiPrayerItem(currentPrayer),
         nextPrayerName: nextPrayerTime.prayerName,
         nextPrayerTime:
-            DateTimeUtil().prayerTimeFormat(nextPrayerTime.prayerTime),
+            DateTimeUtil.prayerTimeFormat(nextPrayerTime.prayerTime),
         currentPrayerImage: _getPrayerImage(currentPrayer),
         location: "Yangon");
   }

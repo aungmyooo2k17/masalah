@@ -6,8 +6,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
+    android:layout_marginBottom="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/llRefresh"
@@ -48,10 +49,6 @@
                 android:layout_height="wrap_content"
                 android:text="Fajr"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/stat_notify_call_mute"/>
 
             <TextView
                 android:id="@+id/tvFajrTime"
@@ -83,11 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Sunrise"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/stat_notify_call_mute"/>
-
+           
             <TextView
                 android:id="@+id/tvSunriseTime"
                 android:gravity="center"
@@ -118,10 +111,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Duhr"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/stat_notify_call_mute"/>
+           
             <TextView
                 android:id="@+id/tvDuhrTime"
                 android:gravity="center"
@@ -152,10 +142,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Asr"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/stat_notify_call_mute"/>
+           
             <TextView
                 android:id="@+id/tvAsrTime"
                 android:gravity="center"
@@ -185,10 +172,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Magrib"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/stat_notify_call_mute"/>
+          
             <TextView
                 android:id="@+id/tvMagribTime"
                 android:gravity="center"
@@ -218,10 +202,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Isha"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/stat_notify_call_mute"/>
+           
             <TextView
                 android:id="@+id/tvIshaTime"
                 android:gravity="center"

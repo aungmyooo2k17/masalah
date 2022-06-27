@@ -12,7 +12,7 @@ import 'package:masalah/util/share_preference_util.dart';
 abstract class PrayerTimeWrapper {}
 
 class PrayerTimePluginUtil {
-  late PrayerTimes _prayerTimesPlugin;
+   PrayerTimes? _prayerTimesPlugin;
 
   static final PrayerTimePluginUtil _prayerTimeService =
       PrayerTimePluginUtil._internal();
@@ -30,18 +30,29 @@ class PrayerTimePluginUtil {
         PrayerTimes.today(Coordinates(latLng.lat, latLng.lng), parameters);
   }
 
+  DateTime? _currentSelectedOffset;
+
   Future<List<UiPrayerTimeItem>> initWithOffset(Coordinates coordinates, DateTime selectDateTime) {
+    if(_prayerTimesPlugin !=null && _prayerTimesPlugin?.dateComponents == DateTimeUtil.currentDayComponent()
+       && selectDateTime == DateTimeUtil.currentDay()){
+          return getCurrentDatePrayers();
+
+    }
+
+    // if(_prayerTimesPlugin?.dateComponents == DateTimeUtil.currentDayComponent()){
+
+    // }
     final parameters = CalculationMethod.karachi.getParameters();
     parameters.madhab = Madhab.hanafi;
     final DateComponents dateComponents = DateComponents(
         selectDateTime.year, selectDateTime.month, selectDateTime.day);
-    _prayerTimesPlugin = PrayerTimes.utcOffset(coordinates, dateComponents,
-        parameters, Duration(hours: 6, minutes: 30));
+    _prayerTimesPlugin = PrayerTimes(coordinates, dateComponents,
+        parameters);
     return getCurrentDatePrayers();
   }
 
-  PrayerTimeEntity getNextPrayerItem(Coordinates coordinates) {
-    var nextPrayer = _prayerTimesPlugin.nextPrayer();
+  PrayerTimeEntity _getNextPrayerItem(Coordinates coordinates) {
+    var nextPrayer = _prayerTimesPlugin?.nextPrayer();
     DateTime? nextPrayerTime;
     if (nextPrayer == Prayer.none) {
       final currentDate = DateTime.now();
@@ -60,15 +71,15 @@ class PrayerTimePluginUtil {
 
       // _prayerTimesPlugin
     } else {
-      nextPrayerTime = _prayerTimesPlugin.timeForPrayer(nextPrayer);
+      nextPrayerTime = _prayerTimesPlugin?.timeForPrayer(nextPrayer!);
     }
 
     return PrayerTimeEntity(
-        prayerName: nextPrayer.displayTitle, prayerTime: nextPrayerTime!);
+        prayerName: nextPrayer?.displayTitle ?? "", prayerTime: nextPrayerTime!);
   }
 
-  PrayerTimeEntity getCurrentPrayerItem(Coordinates coordinates) {
-    var currentPrayer = _prayerTimesPlugin.currentPrayer();
+  PrayerTimeEntity _getCurrentPrayerItem(Coordinates coordinates) {
+    var currentPrayer = _prayerTimesPlugin?.currentPrayer();
     DateTime? currentPrayerTime;
     if (currentPrayer == Prayer.none) {
       final currentDate = DateTime.now();
@@ -85,18 +96,18 @@ class PrayerTimePluginUtil {
 
       currentPrayerTime = _pTimes.timeForPrayer(currentPrayer);
     } else {
-      currentPrayerTime = _prayerTimesPlugin.timeForPrayer(currentPrayer);
+      currentPrayerTime = _prayerTimesPlugin?.timeForPrayer(currentPrayer!);
     }
 
     return PrayerTimeEntity(
-        prayerName: currentPrayer.displayTitle, prayerTime: currentPrayerTime!);
+        prayerName: currentPrayer?.displayTitle ?? "", prayerTime: currentPrayerTime!);
   }
 
   UiPrayerTimeItemCard getUiPrayerItemCard(Coordinates coordinates) {
     final uiMapper = PrayerTimeUiMapper();
-    final currentPrayerEntity = getCurrentPrayerItem(coordinates);
+    final currentPrayerEntity = _getCurrentPrayerItem(coordinates);
 
-    final nextPrayerEntity = getNextPrayerItem(coordinates);
+    final nextPrayerEntity = _getNextPrayerItem(coordinates);
     return uiMapper.mapUiPrayerCardItem(currentPrayerEntity, nextPrayerEntity);
   }
 
@@ -104,40 +115,41 @@ class PrayerTimePluginUtil {
     final uiMapper = PrayerTimeUiMapper();
     final domainMapper = PrayerTimeDomainMapper();
     final currentPrayersList =
-        domainMapper.getPrayerTimesEntity(_prayerTimesPlugin);
+        domainMapper.getPrayerTimesEntity(_prayerTimesPlugin!);
     final mutedPrayers = await SharedPreferenceUtil()
         .loadList(SharedPreferenceUtil.PRAYER_MUTE_LIST);
-        debugPrint("prayer"+_prayerTimesPlugin.currentPrayer().displayTitle);
-
+    final currentPrayer = _prayerTimesPlugin
+            ?.timeForPrayer(_prayerTimesPlugin!.currentPrayer());
+    
     return new Future.value(uiMapper.mapUiPrayerItems(
         prayerTimeList: currentPrayersList,
         mutePrayerList: mutedPrayers,
-        currentPrayerTime: _prayerTimesPlugin
-            .timeForPrayer(_prayerTimesPlugin.currentPrayer())));
+        currentPrayerTime: currentPrayer ));
   }
 
   Prayer getPrayerIfLibNone(bool isCurrent) {
     final currentDateTime = DateTime.now();
+    if(_prayerTimesPlugin == null) return Prayer.none;
 
     ///PrayerTime plugin must be initialized with today
 
-    if (DateTimeUtil().isCurrentDateTimeBetween(
-        _prayerTimesPlugin.fajr, _prayerTimesPlugin.sunrise)) {
+    if (DateTimeUtil.isCurrentDateTimeBetween(
+        _prayerTimesPlugin!.fajr, _prayerTimesPlugin!.sunrise)) {
       return isCurrent ? Prayer.fajr : Prayer.sunrise;
-    } else if (DateTimeUtil().isCurrentDateTimeBetween(
-        _prayerTimesPlugin.sunrise, _prayerTimesPlugin.dhuhr)) {
+    } else if (DateTimeUtil.isCurrentDateTimeBetween(
+        _prayerTimesPlugin!.sunrise, _prayerTimesPlugin!.dhuhr)) {
       return isCurrent ? Prayer.sunrise : Prayer.dhuhr;
-    } else if (DateTimeUtil().isCurrentDateTimeBetween(
-        _prayerTimesPlugin.dhuhr, _prayerTimesPlugin.asr)) {
+    } else if (DateTimeUtil.isCurrentDateTimeBetween(
+        _prayerTimesPlugin!.dhuhr, _prayerTimesPlugin!.asr)) {
       return isCurrent ? Prayer.dhuhr : Prayer.asr;
-    } else if (DateTimeUtil().isCurrentDateTimeBetween(
-        _prayerTimesPlugin.asr, _prayerTimesPlugin.maghrib)) {
+    } else if (DateTimeUtil.isCurrentDateTimeBetween(
+        _prayerTimesPlugin!.asr, _prayerTimesPlugin!.maghrib)) {
       return isCurrent ? Prayer.asr : Prayer.maghrib;
-    } else if (DateTimeUtil().isCurrentDateTimeBetween(
-        _prayerTimesPlugin.maghrib, _prayerTimesPlugin.isha)) {
+    } else if (DateTimeUtil.isCurrentDateTimeBetween(
+        _prayerTimesPlugin!.maghrib, _prayerTimesPlugin!.isha)) {
       return isCurrent ? Prayer.maghrib : Prayer.isha;
-    } else if (currentDateTime.isAfter(_prayerTimesPlugin.isha) ||
-        currentDateTime.isBefore(_prayerTimesPlugin.fajr)) {
+    } else if (currentDateTime.isAfter(_prayerTimesPlugin!.isha) ||
+        currentDateTime.isBefore(_prayerTimesPlugin!.fajr)) {
       return isCurrent ? Prayer.isha : Prayer.fajr;
     }
     return Prayer.none;

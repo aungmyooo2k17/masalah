@@ -40,13 +40,13 @@ class _MasalahListScreenState extends State<MasalahListScreen> {
     dbHelper.queryMasalahRowCount().then((value) => () {
           masCount = value!;
         });
-    _searchController.addListener(() {
-      //here you have the changes of your textfield
-
-      //use setState to rebuild the widget
-      setState(() {});
-    });
+   
     super.initState();
+     _searchController.addListener(() {
+      WidgetsBinding.instance.addPostFrameCallback((_){
+      setState(() {});
+      });
+    });
     initConnectivity();
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
@@ -55,6 +55,7 @@ class _MasalahListScreenState extends State<MasalahListScreen> {
   @override
   void dispose() {
     _connectivitySubscription.cancel();
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -74,8 +75,19 @@ class _MasalahListScreenState extends State<MasalahListScreen> {
           children: [
             Container(
               margin: EdgeInsets.all(16),
-              child: MasalahSearchField(controller: _searchController,
-              onValueChange: (value){},)
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.grey, width: 0.0),
+                        borderRadius: BorderRadius.circular(120.0)),
+                    filled: true,
+                    hintStyle: TextStyle(color: Colors.grey[800]),
+                    hintText: 'Search masalah here',
+                    fillColor: Colors.white70),
+              ),
              
             ),
             FutureBuilder(

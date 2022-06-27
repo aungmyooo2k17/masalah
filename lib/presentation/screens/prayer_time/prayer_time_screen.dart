@@ -10,6 +10,7 @@ import 'package:masalah/presentation/screens/prayer_time/prayer_card_item_widget
 import 'package:masalah/presentation/screens/prayer_time/prayer_time_date_selector.dart';
 import 'package:masalah/presentation/screens/prayer_time/prayer_time_table.dart';
 import 'package:masalah/service/launcher_widget_service.dart';
+import 'package:masalah/util/date_time_util.dart';
 
 
 class PrayerTimeScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_){
-      context.read<PrayertimeCubit>().initPrayerTimeWithOffset(DateTime.now());
+      context.read<PrayertimeCubit>().initPrayerTimeWithOffset(DateTimeUtil.currentDay());
     });
   }
 

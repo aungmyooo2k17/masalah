@@ -1,5 +1,6 @@
 import 'package:adhan/adhan.dart';
 import 'package:flutter/foundation.dart';
+import 'package:masalah/util/date_time_util.dart';
 
 extension PrayerTimeExtension on Prayer {
   String get name => describeEnum(this);
@@ -39,7 +40,7 @@ extension StringExtension on String {
       case "Isha":
         return prayerTimes.isha;
       default:
-        return DateTime.now();
+        return DateTimeUtil.currentDay();
     }
   }
 }

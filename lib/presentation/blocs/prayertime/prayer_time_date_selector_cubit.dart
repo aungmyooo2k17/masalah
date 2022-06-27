@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:masalah/presentation/blocs/prayertime/prayertime_cubit.dart';
+import 'package:masalah/util/date_time_util.dart';
 
 
 class PrayerTimeDateSelectorCubit extends Cubit<DateTime> {
-  PrayerTimeDateSelectorCubit() : super(DateTime.now());
+  PrayerTimeDateSelectorCubit() : super(DateTimeUtil.currentDay());
   
 
   void incrementDate() =>  emit(state.add(Duration(days: 1)));
@@ -20,6 +21,6 @@ class PrayerTimeDateSelectorCubit extends Cubit<DateTime> {
   
 
   void resetDate() {
-    emit(DateTime.now()); 
+    emit(DateTimeUtil.currentDay()); 
   }
 }

@@ -130,6 +130,23 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
     super.initState();
   }
 
+
+
+  @override
+  void dispose() {
+    goldAkhoutKyatthar.dispose();
+    goldAkhoutPae.dispose();
+    goldAkhoutYwae.dispose();
+    goldAhtaeKyatthar.dispose();
+    goldAhtaePae.dispose();
+    goldAhtaeYwae.dispose();
+    goldPyitceeKyatthar.dispose();
+    goldPyitceePae.dispose();
+    goldPyitceeYwae.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
 import 'package:masalah/presentation/blocs/location/location_cubit.dart';
@@ -19,4 +20,5 @@ Future init() async {
 
   getItInstance.registerSingleton<LocationCubit>(LocationCubit(
       locationService: getItInstance(), prayertimeCubit: getItInstance()));
+
 }
