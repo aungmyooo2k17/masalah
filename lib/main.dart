@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:masalah/masalah_app.dart';
@@ -13,6 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
   await NotificationService().init();
+ 
   AlarmScheduler().cancelAlarm();
   await AlarmScheduler().setAlarm();
   await getIt.init();

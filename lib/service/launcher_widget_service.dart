@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:home_widget/home_widget.dart';
@@ -16,6 +18,7 @@ class LauncherWidgetService {
   LauncherWidgetService._internal();
 
   Future<void> sendDataToAppWidget() async {
+    if(Platform.isIOS)return;
     final prayerTimes = await PrayerTimePluginUtil().getCurrentDatePrayers();
 
     final prayerTimesString =

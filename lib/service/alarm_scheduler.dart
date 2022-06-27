@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:adhan/adhan.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
@@ -16,10 +17,12 @@ class AlarmScheduler {
   void scheduleAlarm(PrayerTimeEntity prayerTimeEntity) {}
 
   void cancelAlarm() {
+     if(Platform.isIOS) return;
     AndroidAlarmManager.cancel(ALARM_ID);
   }
 
   Future<void> setAlarm() async {
+
     bool nextAlarmFound = false;
     String? nameOfPrayerFound;
     DateTime? nextPrayerTime;
@@ -77,7 +80,7 @@ class AlarmScheduler {
         id: NOTIFICATION_ID,
         body: 'Time for $prayerName',
         title: prayerName,
-        scheduleDate: prayerTime);
+        scheduleDate: DateTime.now().add(Duration(minutes: 1)));
   }
 
   Future<bool> _isAlarmEnabledForPrayers(String prayerName) async {

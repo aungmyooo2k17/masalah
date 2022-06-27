@@ -17,10 +17,19 @@ class NotificationService {
   Future<void> init({bool initSchedule = false}) async {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('app_icon');
+ IOSInitializationSettings initializationSettingsIOS =
+    IOSInitializationSettings(
+       requestSoundPermission: true,
+    requestBadgePermission: true,
+    requestAlertPermission: true,
+        onDidReceiveLocalNotification:((id, title, body, payload) {
+          
+        }));
 
-    const InitializationSettings initializationSettings =
+
+     InitializationSettings initializationSettings =
         InitializationSettings(
-            android: initializationSettingsAndroid, iOS: null, macOS: null);
+            android: initializationSettingsAndroid, iOS: initializationSettingsIOS, macOS: null);
     await _notifications.initialize(initializationSettings,
         onSelectNotification: null);
 
@@ -41,11 +50,18 @@ class NotificationService {
             'adhan_alarm_channel', 'Adhan Alarm',
             importance: Importance.max,
             priority: Priority.high,
+          autoCancel: false,
+          ongoing: true,
             playSound: true,
             sound:
                 const RawResourceAndroidNotificationSound('slow_spring_board'),
             additionalFlags: Int32List.fromList(<int>[4])),
-        iOS: IOSNotificationDetails());
+        iOS: IOSNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+          
+        ));
   }
 
   //Show one-time instant notification
