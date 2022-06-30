@@ -15,9 +15,14 @@ class PrayerCardItemWidget extends StatelessWidget {
     return FutureBuilder<UiPrayerTimeItemCard?>(
       future: context.read<PrayertimeCubit>().loadPrayerTimes(),
       builder: (context,snapshot) {
-        if(snapshot.data == null) 
-        return SizedBox.shrink();
-        return Container(
+        return snapshot.data == null ? 
+         Container(
+            margin: EdgeInsets.all(16),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height / 4.6,
+          child: Center(child: CircularProgressIndicator(),),
+         ):
+         Container(
           margin: EdgeInsets.all(16),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height / 4.6,
