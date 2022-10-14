@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/common/constants/translation_constants.dart';
 import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/model/category.dart';
 import 'package:masalah/model/result.dart';
@@ -11,7 +12,7 @@ import 'package:masalah/network/remote_data_source.dart';
 import 'package:masalah/presentation/reusable_widget/app_bar.dart';
 import 'package:masalah/presentation/reusable_widget/no_internet.dart';
 import 'package:masalah/presentation/screens/item/category_item.dart';
-
+import 'package:masalah/common/extensions/string_extensions.dart';
 
 class MasalahCategoryScreen extends StatefulWidget {
   @override
@@ -59,7 +60,7 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppTopBar(
-        title: "CATEGORY",
+        title: TranslationConstants.masalahCategory.t(context) ?? "",
         bgColor: AppColors.bgColor,
         textColor: AppColors.primaryText,
       ),
@@ -79,7 +80,9 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
                         borderRadius: BorderRadius.circular(120.0)),
                     filled: true,
                     hintStyle: TextStyle(color: Colors.grey[800]),
-                    hintText: "Search category here",
+                    hintText:
+                        TranslationConstants.enterMasalahCategory.t(context) ??
+                            "",
                     fillColor: Colors.white70),
               ),
             ),

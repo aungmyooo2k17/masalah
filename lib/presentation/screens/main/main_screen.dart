@@ -3,7 +3,6 @@ import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/common/constants/translation_constants.dart';
 import 'package:masalah/common/extensions/string_extensions.dart';
 
-
 import '../converter_screen.dart';
 import '../masalah_category_screen.dart';
 import '../prayer_time/prayer_time_screen.dart';
@@ -39,19 +38,19 @@ class _MainScreenState extends State<MainScreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage('assets/images/masalah.png')),
-            label: TranslationConstants.gold.t(context) ?? "",
+            label: TranslationConstants.masalah.t(context) ?? "",
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage('assets/images/adhan.png')),
-            label: 'Prayer Time',
+            label: TranslationConstants.prayerTime.t(context) ?? "",
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage('assets/images/qibla.png')),
-            label: 'Qibla',
+            label: TranslationConstants.qibla.t(context) ?? "",
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage('assets/images/converter.png')),
-            label: 'Calculator',
+            label: TranslationConstants.tools.t(context) ?? "",
           ),
         ],
         currentIndex: _selectedIndex,

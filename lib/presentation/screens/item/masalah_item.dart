@@ -4,7 +4,6 @@ import 'package:masalah/model/masalah.dart';
 import 'package:masalah/presentation/reusable_widget/app_text.dart';
 import 'package:masalah/presentation/screens/masalah_detail_screen.dart';
 
-
 class MasalahItem extends StatelessWidget {
   const MasalahItem({Key? key, required this.masalah}) : super(key: key);
 
@@ -29,10 +28,13 @@ class MasalahItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BoldText(
-                  color: AppColors.primaryText,
-                  fontSize: 16.0,
-                  data: masalah.masalahTitle!,
+                Expanded(
+                  child: BoldText(
+                    color: AppColors.primaryText,
+                    fontSize: 16.0,
+                    data: masalah.masalahTitle!,
+                    maxLine: 1,
+                  ),
                 ),
                 Icon(
                   Icons.arrow_forward_outlined,

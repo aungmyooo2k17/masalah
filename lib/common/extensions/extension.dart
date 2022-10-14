@@ -1,5 +1,6 @@
 import 'package:adhan/adhan.dart';
 import 'package:flutter/foundation.dart';
+import 'package:masalah/common/extensions/string_extensions.dart';
 
 extension PrayerTimeExtension on Prayer {
   String get name => describeEnum(this);

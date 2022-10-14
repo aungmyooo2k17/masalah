@@ -143,7 +143,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
         backgroundColor: AppColors.bgColor,
         titleTextStyle: TextStyle(fontSize: 26),
         title: BoldText(
-          data: "Zakat Calculator",
+          data: TranslationConstants.zakatCalculator.t(context) ?? "",
           color: AppColors.primaryText,
         ),
         actions: <Widget>[
@@ -184,7 +184,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         ),
                       ),
                     ),
-                    child: Text('PREVIOUS'),
+                    child: Text(TranslationConstants.previous.t(context) ?? ""),
                     onPressed: details.onStepCancel,
                   ),
                 ),
@@ -204,7 +204,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         ),
                       ),
                     ),
-                    child: Text('NEXT'),
+                    child: Text(TranslationConstants.next.t(context) ?? ""),
                     onPressed: details.onStepContinue,
                   ),
                 ),
@@ -224,7 +224,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BoldText(
-                  data: TranslationConstants.gold.t(context)!,
+                  data: TranslationConstants.gold.t(context) ?? "",
                   color: AppColors.primaryText,
                   fontSize: 22.0,
                 ),
@@ -243,8 +243,8 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       RegularText(
                         fontSize: 14,
                         color: AppColors.white,
-                        data:
-                            "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
+                        data: TranslationConstants.goldDescription.t(context) ??
+                            "",
                       )
                     ],
                   ),
@@ -261,7 +261,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BoldText(
-                          data: "အခေါက်",
+                          data: TranslationConstants.akhout.t(context) ?? "",
                           color: AppColors.primaryText,
                         ),
                         SizedBox(
@@ -445,7 +445,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BoldText(
-                          data: "အထည်",
+                          data: TranslationConstants.ahtae.t(context) ?? "",
                           color: AppColors.primaryText,
                         ),
                         SizedBox(
@@ -629,7 +629,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BoldText(
-                          data: "အသုံးဆောင်ပစ္စည်း",
+                          data: TranslationConstants.atoneAsungPyitcee
+                                  .t(context) ??
+                              "",
                           color: AppColors.primaryText,
                         ),
                         SizedBox(
@@ -819,7 +821,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BoldText(
-                  data: "ရွှေဖြူ",
+                  data: TranslationConstants.platinum.t(context) ?? "",
                   color: AppColors.primaryText,
                   fontSize: 22.0,
                 ),
@@ -838,8 +840,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       RegularText(
                         fontSize: 14,
                         color: AppColors.white,
-                        data:
-                            "ရွှေဖြူ (White Gold) ကိုရွှေဖြူဟုခေါ်တွင်သည်ဖြစ်စေ၊ပလက်တီနမ်ဟုခေါ်တွင်သည်ဖြစ်စေ၊ ရွှေဖြူသည်ရွှေသာဖြစ်သည်။ထို့ကြောင့်ရွှေဖြူတွင်ဇကားသ်ရှိသည်။ သို့သော်ပလက်တီနမ်(စစ်စစ်)သည်အခြားသတ္တုဖြစ်သဖြင့်၄င်းတွင်ဇကားသ်မရှိပါ။ ",
+                        data: TranslationConstants.platinumDescription
+                                .t(context) ??
+                            "",
                       )
                     ],
                   ),
@@ -856,7 +859,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BoldText(
-                          data: "အခေါက်",
+                          data: TranslationConstants.akhout.t(context) ?? "",
                           color: AppColors.primaryText,
                         ),
                         SizedBox(
@@ -1040,7 +1043,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BoldText(
-                          data: "အထည်",
+                          data: TranslationConstants.ahtae.t(context) ?? "",
                           color: AppColors.primaryText,
                         ),
                         SizedBox(
@@ -1224,7 +1227,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BoldText(
-                          data: "အသုံးဆောင်ပစ္စည်း",
+                          data: TranslationConstants.atoneAsungPyitcee
+                                  .t(context) ??
+                              "",
                           color: AppColors.primaryText,
                         ),
                         SizedBox(
@@ -1417,7 +1422,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BoldText(
-                  data: "ငွေ",
+                  data: TranslationConstants.silver.t(context) ?? "",
                   color: AppColors.primaryText,
                   fontSize: 22.0,
                 ),
@@ -1437,7 +1442,8 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         fontSize: 14,
                         color: AppColors.white,
                         data:
-                            "ရွှေအထည်တိုင်းကိုထည့်တွက်ရမည်။ ဝတ်ထားသည်ဖြစ်စေ၊သိမ်းဆည်းထားသည်ဖြစ်စေ၊ မိမိပိုင်ဆိုင်သမျှရွှေထည်များ၏အလေးချိန်ထည့်ပေးပါ။သွားတု၊နာရီ၊ဘောပင်၊ကြယ်သီး၊ဘီး၊ဘီးကုတ်အစရှိသောအရာများတွင်ပါဝင်သောရွှေပမာဏကိုထည့်ရေးပါ။",
+                            TranslationConstants.silverDescription.t(context) ??
+                                "",
                       )
                     ],
                   ),
@@ -1454,7 +1460,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BoldText(
-                          data: "အခေါက်",
+                          data: TranslationConstants.akhout.t(context) ?? "",
                           color: AppColors.primaryText,
                         ),
                         SizedBox(
@@ -1638,7 +1644,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BoldText(
-                          data: "အထည်",
+                          data: TranslationConstants.ahtae.t(context) ?? "",
                           color: AppColors.primaryText,
                         ),
                         SizedBox(
@@ -1822,7 +1828,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BoldText(
-                          data: "အသုံးဆောင်ပစ္စည်း",
+                          data: TranslationConstants.atoneAsungPyitcee
+                                  .t(context) ??
+                              "",
                           color: AppColors.primaryText,
                         ),
                         SizedBox(
@@ -2025,7 +2033,8 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         fontSize: 14,
                         color: AppColors.white,
                         data:
-                            "အိမ်ငှားရန်စပေါ်တင်ထားသောငွေနှင့်ပတ်သက်ပြီးစစ်မှန်သောမုဖ်သီတစ်ပါးအားကိုယ့်အခြေအနေအကြောင်းစုံတင်ပြကာမတ်စ်အလဟ်မေးမြန်းပြီးအကယ်၍ထည့်တွက်ရမည်ဆိုပါက'အခြား'ဆိုသောအကွက်တွင်ထည့်တွက်ပါ။ ပိုင်ဆိုင်ထားသောအွန်လိုင်းပိုက်ဆံများနှင့်အခြားအွန်လိုင်းပိုင်ဆိုင်မှုများကိုလည်းထည့်တွက်ရပါမည်။",
+                            TranslationConstants.moneyDescription.t(context) ??
+                                "",
                       )
                     ],
                   ),
@@ -2043,41 +2052,56 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "လက်ထဲရှိ",
+                        data: TranslationConstants.inHand.t(context) ?? "",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         controller: inHandSuHtarTaw,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          labelText: 'စုဆောင်းထားသော',
+                          labelText:
+                              TranslationConstants.inHandSuHtarTaw.t(context) ??
+                                  "",
                         ),
                       ),
                       TextFormField(
                         controller: inHandPyitceeSold,
                         keyboardType: TextInputType.number,
-                        decoration:
-                            InputDecoration(labelText: 'ပစ္စည်းရောင်း၍ရထားသော'),
+                        decoration: InputDecoration(
+                            labelText: TranslationConstants.inHandPyitceeSold
+                                    .t(context) ??
+                                ""),
                       ),
                       TextFormField(
                           controller: inHandPyitceeBorrow,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'ပစ္စည်းငှားရမ်းခရထားသော')),
+                              labelText: TranslationConstants
+                                      .inHandPyitceeBorrow
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: inHandForeignCurrency,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'နိုင်ငံခြားငွေ(ကျပ်ဖြင့်)')),
+                              labelText: TranslationConstants
+                                      .inHandForeignCurrency
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: inHandContract,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'ငွေချေးစာချုပ်၊ချက်လက်မှတ်...')),
+                              labelText: TranslationConstants.inHandContract
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: inHandOther,
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(labelText: 'အခြား')),
+                          decoration: InputDecoration(
+                              labelText:
+                                  TranslationConstants.others.t(context) ??
+                                      "")),
                       SizedBox(
                         height: 8.0,
                       ),
@@ -2097,31 +2121,39 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "ဘဏ်ထဲရှိ",
+                        data: TranslationConstants.inBank.t(context) ?? "",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         controller: inBankInBank,
                         keyboardType: TextInputType.number,
-                        decoration:
-                            InputDecoration(labelText: 'ဘဏ်ထဲထည့်ထားသော'),
+                        decoration: InputDecoration(
+                            labelText:
+                                TranslationConstants.inBankInBank.t(context) ??
+                                    ""),
                       ),
                       TextFormField(
                         controller: inBankThuMyarHlwae,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            labelText: 'အခြားသူများလွှဲပေးထားသော'),
+                            labelText: TranslationConstants.inBankThuMyarHlwae
+                                    .t(context) ??
+                                ""),
                       ),
                       TextFormField(
                           controller: inBankSalary,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'လစာ၊ပင်စင်တစ်ခုခုရထားသော')),
+                              labelText: TranslationConstants.inBankSalary
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: inBankOther,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'အခြား (Digital Money, etc)')),
+                              labelText:
+                                  TranslationConstants.inBankOther.t(context) ??
+                                      "")),
                       SizedBox(
                         height: 8.0,
                       ),
@@ -2141,29 +2173,41 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "အခြားသူမှ ရရန်ရှိသောအကြွေး",
+                        data: TranslationConstants.thuMyarDebt.t(context) ?? "",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         controller: thuMyarDebtPyitceeSold,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            labelText: 'ပစ္စည်းရောင်း၍ရရန်ရှိသော'),
+                            labelText: TranslationConstants
+                                    .thuMyarDebtPyitceeSold
+                                    .t(context) ??
+                                ""),
                       ),
                       TextFormField(
                         controller: thuMyarDebtChayPay,
                         keyboardType: TextInputType.number,
-                        decoration: InputDecoration(labelText: 'ချေးပေးထားသော'),
+                        decoration: InputDecoration(
+                            labelText: TranslationConstants.thuMyarDebtChayPay
+                                    .t(context) ??
+                                ""),
                       ),
                       TextFormField(
                           controller: thuMyarDebtAttHtrTaw,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'တစ်ဦးတစ်ယောက်ထံအပ်နှံထားသော')),
+                              labelText: TranslationConstants
+                                      .thuMyarDebtAttHtrTaw
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: thuMyarDebtOther,
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(labelText: 'အခြား')),
+                          decoration: InputDecoration(
+                              labelText:
+                                  TranslationConstants.others.t(context) ??
+                                      "")),
                       SizedBox(
                         height: 8.0,
                       ),
@@ -2199,7 +2243,8 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         fontSize: 14,
                         color: AppColors.white,
                         data:
-                            "ရောင်းရန်ရည်ရွယ်ထားသောပစ္စည်းဟူသမျှတွင်ဇကားသ်တာဝန်ရှိပါသည်။ လတ်တလောရောင်းရန်ရည်ရွယ်ထားသည်ဖြစ်စေ၊ ဈေးကောင်းရမည့်အချိန်ရောင်းရန်ရည်ရွယ်ပြီးယခုကိုယ်တိုင်အသုံးပြုနေသည်ဖြစ်စေ၊ အားလုံးကိုထည့်တွက်ရမည်။",
+                            TranslationConstants.goodsDescription.t(context) ??
+                                "",
                       )
                     ],
                   ),
@@ -2217,30 +2262,39 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "အိမ်၊ခြံ၊မြေ",
+                        data: TranslationConstants.realEstate.t(context) ?? "",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         controller: realEstateSellHouse,
                         keyboardType: TextInputType.number,
-                        decoration:
-                            InputDecoration(labelText: 'ရောင်းရန်ရှိသောအိမ်'),
+                        decoration: InputDecoration(
+                            labelText: TranslationConstants.realEstateSellHouse
+                                    .t(context) ??
+                                ""),
                       ),
                       TextFormField(
                         controller: realEstateSellEscort,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            labelText: 'ရောင်းရန်ရှိသောခြံ/မြေ'),
+                            labelText: TranslationConstants.realEstateSellEscort
+                                    .t(context) ??
+                                ""),
                       ),
                       TextFormField(
                           controller: realEstateSellCar,
                           keyboardType: TextInputType.number,
-                          decoration:
-                              InputDecoration(labelText: 'ရောင်းရန်ရှိသောကား')),
+                          decoration: InputDecoration(
+                              labelText: TranslationConstants.realEstateSellCar
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: realEstateOther,
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(labelText: 'အခြား')),
+                          decoration: InputDecoration(
+                              labelText:
+                                  TranslationConstants.others.t(context) ??
+                                      "")),
                       SizedBox(
                         height: 8.0,
                       ),
@@ -2260,30 +2314,38 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "ကုန်ကြမ်းများ",
+                        data: TranslationConstants.raw.t(context) ?? "",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         controller: rawWearhouse,
                         keyboardType: TextInputType.number,
-                        decoration:
-                            InputDecoration(labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
+                        decoration: InputDecoration(
+                            labelText:
+                                TranslationConstants.rawWearhouse.t(context) ??
+                                    ""),
                       ),
                       TextFormField(
                         controller: rawHome,
                         keyboardType: TextInputType.number,
-                        decoration:
-                            InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
+                        decoration: InputDecoration(
+                            labelText:
+                                TranslationConstants.rawHome.t(context) ?? ""),
                       ),
                       TextFormField(
                           controller: rawShop,
                           keyboardType: TextInputType.number,
-                          decoration:
-                              InputDecoration(labelText: 'ဆိုင်တွင်ရှိသော')),
+                          decoration: InputDecoration(
+                              labelText:
+                                  TranslationConstants.rawShop.t(context) ??
+                                      "")),
                       TextFormField(
                           controller: rawOther,
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(labelText: 'အခြား')),
+                          decoration: InputDecoration(
+                              labelText:
+                                  TranslationConstants.others.t(context) ??
+                                      "")),
                       SizedBox(
                         height: 8.0,
                       ),
@@ -2303,36 +2365,46 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "ကုန်ချောများ",
+                        data: TranslationConstants.goods.t(context) ?? "",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         controller: finishWearhouse,
                         keyboardType: TextInputType.number,
-                        decoration:
-                            InputDecoration(labelText: 'ဂိုဒေါင်တွင်ရှိသော'),
+                        decoration: InputDecoration(
+                            labelText: TranslationConstants.finishWearhouse
+                                    .t(context) ??
+                                ""),
                       ),
                       TextFormField(
                         controller: finishHome,
                         keyboardType: TextInputType.number,
-                        decoration:
-                            InputDecoration(labelText: 'အိမ်တွင်ရှိသော'),
+                        decoration: InputDecoration(
+                            labelText:
+                                TranslationConstants.finishHome.t(context) ??
+                                    ""),
                       ),
                       TextFormField(
                           controller: finishShop,
                           keyboardType: TextInputType.number,
-                          decoration:
-                              InputDecoration(labelText: 'ဆိုင်တွင်ရှိသော')),
+                          decoration: InputDecoration(
+                              labelText:
+                                  TranslationConstants.finishShop.t(context) ??
+                                      "")),
                       TextFormField(
                           controller: finishAnimal,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText:
-                                  'ရောင်းရန်မွေးမြူထားသောသားကောင် ရေးရန်')),
+                              labelText: TranslationConstants.finishAnimal
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: finishOther,
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(labelText: 'အခြား')),
+                          decoration: InputDecoration(
+                              labelText:
+                                  TranslationConstants.others.t(context) ??
+                                      "")),
                       SizedBox(
                         height: 8.0,
                       ),
@@ -2368,7 +2440,8 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         fontSize: 14,
                         color: AppColors.white,
                         data:
-                            "သားကောင်၏ဇကားသ်နှင့်ပတ်သက်၍သိသင့်သိထိုက်သောအရာများ \n (၁) ရောင်းဝယ်ဖောက်ကားရန်မွေးမြူထားသော၊တစ်ချိန်ချိန်တွင်ပြန်ရောင်းရန်ဆန္ဒရှိသောသားကောင်များကိုဤစာရင်းတွင်မထည့်သွင်းရပါ။ ထိုသားကောင်များ၏တန်ဖိုးကို ရောင်းကုန်ပစ္စည်းများတွင် ထည့်၍တွက်ပါ။ \n (၂) နို့ရရှိရန် (သို့) မွေးမြူးထားပြီးရောင်းရန်ဆန္ဒမရှိသောသားကောင်များကိုသာဤနေရာတွင်ထည့်တွက်ပါ။ \n (၃) မွေးမြူထားသောသားကောင်သည်လွန်ခဲ့သည့်တစ်နှစ်တာကာလတွင် (၆)လကျော် စားကျက်တွင်ကျက်စားထားသောသားကောင်ဖြစ်ရမည်။ အကယ်၍ (၆)လကျော် အိမ်၌သာ ကျွေးမွေးခဲ့ပါကထိုသားကောင်ကိုထည့်မတွက်ရပါ။ \n (၄) ဇကားသ်ပေးရမည့်ကုလားအုပ်မအစား ကုလားအုပ်အထီးပေးလိုပါက ကုလားအုပ်မ၏တန်ဖိုးနှင့်ညီသော ကုလားအုပ်အထီးကိုသာပေးခွင့်ရှိ၏။ \n (၅) ကုလားအုတ် မှအပကျန်အိမ်မွေးတိရစ္ဆာန်များတွင် အထီးအမ မခွဲခြားထားပါ။ ကြိုက်နှစ်သက်ရာပေးခွင့်ရှိသည်။ \n (၆) ဇကားသ်အဖြစ်ပေးမည့်ဆိတ်သည် အနည်းဆုံ:အသက်တစ်နှစ်ပြည့်ပြီးဖြစ်ရမည်။ ",
+                            TranslationConstants.animalDescription.t(context) ??
+                                "",
                       )
                     ],
                   ),
@@ -2386,13 +2459,15 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "ကုလားအုတ်",
+                        data: TranslationConstants.kalaout.t(context) ?? "",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         keyboardType: TextInputType.number,
                         controller: kalaout,
-                        decoration: InputDecoration(labelText: 'ကုလားအုတ်'),
+                        decoration: InputDecoration(
+                            labelText:
+                                TranslationConstants.kalaout.t(context) ?? ""),
                       ),
                       SizedBox(
                         height: 8.0,
@@ -2413,18 +2488,22 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "ကျွဲ၊နွား",
+                        data: TranslationConstants.kywaenwar.t(context) ?? "",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         keyboardType: TextInputType.number,
                         controller: kywae,
-                        decoration: InputDecoration(labelText: 'ကျွဲ'),
+                        decoration: InputDecoration(
+                            labelText:
+                                TranslationConstants.kywae.t(context) ?? ""),
                       ),
                       TextFormField(
                         keyboardType: TextInputType.number,
                         controller: nwar,
-                        decoration: InputDecoration(labelText: 'နွား'),
+                        decoration: InputDecoration(
+                            labelText:
+                                TranslationConstants.nwar.t(context) ?? ""),
                       ),
                       SizedBox(
                         height: 8.0,
@@ -2445,18 +2524,22 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BoldText(
-                        data: "ဆိတ်၊သိုး",
+                        data: TranslationConstants.satethoe.t(context) ?? "",
                         color: AppColors.primaryText,
                       ),
                       TextFormField(
                         keyboardType: TextInputType.number,
                         controller: sate,
-                        decoration: InputDecoration(labelText: 'ဆိတ်'),
+                        decoration: InputDecoration(
+                            labelText:
+                                TranslationConstants.sate.t(context) ?? ""),
                       ),
                       TextFormField(
                         keyboardType: TextInputType.number,
                         controller: thoe,
-                        decoration: InputDecoration(labelText: 'သိုး'),
+                        decoration: InputDecoration(
+                            labelText:
+                                TranslationConstants.thoe.t(context) ?? ""),
                       ),
                       SizedBox(
                         height: 8.0,
@@ -2515,51 +2598,67 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                         controller: minusDebtMahur,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            labelText: 'ဇနီးကိုမပေးရသေးသောမဟ်ရ်'),
+                            labelText: TranslationConstants.minusDebtMahur
+                                    .t(context) ??
+                                ""),
                       ),
                       TextFormField(
                         controller: minusDebt,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            labelText: 'သူများကိုပေးဆပ်ရမည့်အကြွေး'),
+                            labelText:
+                                TranslationConstants.minusDebt.t(context) ??
+                                    ""),
                       ),
                       TextFormField(
                           controller: minusSukyae,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               labelText:
-                                  'စုကြေးရရှိပြီးပေးသွင်းရန်ကျန်ငွေပေါင်း')),
+                                  TranslationConstants.minusSukyae.t(context) ??
+                                      "")),
                       TextFormField(
                           controller: minusMeterBill,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'ပေးဆောင်ရန်ကျန်သောမီတာခ')),
+                              labelText: TranslationConstants.minusMeterBill
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: minusPaybill,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'ပေးဆောင်ရန်ကျန်သောအဖိုးအခများ')),
+                              labelText: TranslationConstants.minusPaybill
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: minusPaySalary,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'ဝန်ထမ်းများကိုပေးရန်ကျန်သောလစာများ')),
+                              labelText: TranslationConstants.minusPaySalary
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: minusPayRent,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'ပေးဆောင်ရန်ကျန်သောငှားရမ်းခများ')),
+                              labelText: TranslationConstants.minusPayRent
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: minusBuyGoodPay,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText:
-                                  'ပစ္စည်းဝယ်ပြီးပေးချေရန်ကျန်သောအကြွေး')),
+                              labelText: TranslationConstants.minusBuyGoodPay
+                                      .t(context) ??
+                                  "")),
                       TextFormField(
                           controller: minusPreZakat,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              labelText: 'ယခင်နှစ်များ၏မပေးရသေးသောဇကားသ်')),
+                              labelText: TranslationConstants.minusPreZakat
+                                      .t(context) ??
+                                  "")),
                       SizedBox(
                         height: 8.0,
                       ),
@@ -2586,7 +2685,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                 Row(
                   children: [
                     RegularText(
-                      data: 'Manual',
+                      data: TranslationConstants.manual.t(context) ?? "",
                       color: AppColors.primaryText,
                     ),
                     SizedBox(
@@ -2604,7 +2703,7 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                       width: 8,
                     ),
                     RegularText(
-                      data: 'Auto',
+                      data: TranslationConstants.auto.t(context) ?? "",
                       color: AppColors.primaryText,
                     ),
                   ],
@@ -2678,7 +2777,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                           Row(
                             children: [
                               RegularText(
-                                data: "Gold Rate",
+                                data:
+                                    TranslationConstants.goldRate.t(context) ??
+                                        "",
                               ),
                               SizedBox(
                                 width: 16,
@@ -2696,7 +2797,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                           Row(
                             children: [
                               RegularText(
-                                data: "Silver Rate",
+                                data: TranslationConstants.silverRate
+                                        .t(context) ??
+                                    "",
                               ),
                               SizedBox(
                                 width: 16,

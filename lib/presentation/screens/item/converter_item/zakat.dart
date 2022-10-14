@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/common/constants/translation_constants.dart';
 import 'package:masalah/presentation/reusable_widget/app_text.dart';
 import 'package:masalah/presentation/screens/converter_screen/zakat_calculator_screen.dart';
-
+import 'package:masalah/common/extensions/string_extensions.dart';
 
 class ZakatItem extends StatelessWidget {
   const ZakatItem({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class ZakatItem extends StatelessWidget {
             BoldText(
               color: AppColors.primaryText,
               fontSize: 16.0,
-              data: "Zakat Calculator",
+              data: TranslationConstants.zakatCalculator.t(context) ?? "",
             ),
             Icon(
               Icons.arrow_forward_outlined,

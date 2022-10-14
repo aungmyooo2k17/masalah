@@ -30,6 +30,7 @@ class TranslationConstants {
   static const String guestSignIn = 'guestSignIn';
 
   //Zakat calculator en constants
+  static const String zakatCalculator = 'zakatCalculator';
   static const String gold = 'gold';
   static const String goldDescription = 'goldDescription';
   static const String akhout = 'akhout';
@@ -108,4 +109,17 @@ class TranslationConstants {
   static const String yourNetworth = 'yourNetworth';
   static const String needToPayZakat = 'needToPayZakat';
   static const String noNeedToPayZakat = 'noNeedToPayZakat';
+
+  // general
+  static const String masalah = 'masalah';
+  static const String masalahCategory = 'masalahCategory';
+  static const String enterMasalahCategory = 'enterMasalahCategory';
+  static const String enterMasalah = 'enterMasalah';
+  static const String prayerTime = 'prayerTime';
+  static const String qibla = 'qibla';
+  static const String tools = 'tools';
+  static const String setting = 'setting';
+  static const String languagePref = 'languagePref';
+  static const String chooseLanguage = 'chooseLanguage';
+  static const String others = 'others';
 }

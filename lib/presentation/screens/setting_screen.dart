@@ -8,11 +8,7 @@ import 'package:masalah/presentation/blocs/language/language_bloc.dart';
 import 'package:masalah/presentation/reusable_widget/app_bar.dart';
 import 'package:masalah/presentation/reusable_widget/app_text.dart';
 
-
 class SettingScreen extends StatelessWidget {
- 
-  
-
   SettingScreen({Key? key}) : super(key: key);
 
   @override
@@ -21,7 +17,7 @@ class SettingScreen extends StatelessWidget {
         backgroundColor: AppColors.bgColor,
         appBar: AppTopBar(
           enableBackBtn: true,
-          title: "Setting",
+          title: TranslationConstants.setting.t(context) ?? "",
           bgColor: AppColors.bgColor,
           textColor: AppColors.primaryText,
         ),
@@ -43,11 +39,11 @@ class SettingScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(TranslationConstants.gold.t(context)!),
+                      Text(TranslationConstants.languagePref.t(context) ?? ""),
                       BoldText(
                         color: AppColors.primaryText,
                         fontSize: 16.0,
-                        data: "Zakat Calculator",
+                        data: TranslationConstants.language.t(context) ?? "",
                       ),
                       Icon(
                         Icons.arrow_forward_outlined,
@@ -68,7 +64,7 @@ class SettingScreen extends StatelessWidget {
         context: context,
         builder: (builder) {
           return AlertDialog(
-            title: Text('Choose Your Language'),
+            title: Text(TranslationConstants.chooseLanguage.t(context) ?? ""),
             content: Container(
               width: double.maxFinite,
               child: ListView.separated(
