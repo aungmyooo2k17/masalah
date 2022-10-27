@@ -286,7 +286,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ကျပ်သား',
+                                              data: TranslationConstants
+                                                      .kyatthar
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -340,7 +343,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ပဲ',
+                                              data: TranslationConstants.pae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -394,7 +399,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွေး',
+                                              data: TranslationConstants.ywae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -470,7 +477,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ကျပ်သား',
+                                              data: TranslationConstants
+                                                      .kyatthar
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -524,7 +534,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ပဲ',
+                                              data: TranslationConstants.pae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -578,7 +590,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွေး',
+                                              data: TranslationConstants.ywae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -656,7 +670,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ကျပ်သား',
+                                              data: TranslationConstants
+                                                      .kyatthar
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -710,7 +727,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ပဲ',
+                                              data: TranslationConstants.pae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -764,7 +783,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွေး',
+                                              data: TranslationConstants.ywae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -884,7 +905,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ကျပ်သား',
+                                              data: TranslationConstants
+                                                      .kyatthar
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -938,7 +962,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ပဲ',
+                                              data: TranslationConstants.pae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -992,7 +1018,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွေး',
+                                              data: TranslationConstants.ywae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1068,7 +1096,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ကျပ်သား',
+                                              data: TranslationConstants
+                                                      .kyatthar
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1122,7 +1153,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ပဲ',
+                                              data: TranslationConstants.pae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1176,7 +1209,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွေး',
+                                              data: TranslationConstants.ywae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1254,7 +1289,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ကျပ်သား',
+                                              data: TranslationConstants
+                                                      .kyatthar
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1309,7 +1347,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ပဲ',
+                                              data: TranslationConstants.pae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1363,7 +1403,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွေး',
+                                              data: TranslationConstants.ywae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1485,7 +1527,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ကျပ်သား',
+                                              data: TranslationConstants
+                                                      .kyatthar
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1539,7 +1584,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ပဲ',
+                                              data: TranslationConstants.pae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1593,7 +1640,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွေး',
+                                              data: TranslationConstants.ywae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1669,7 +1718,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ကျပ်သား',
+                                              data: TranslationConstants
+                                                      .kyatthar
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1723,7 +1775,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ပဲ',
+                                              data: TranslationConstants.pae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1777,7 +1831,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွေး',
+                                              data: TranslationConstants.ywae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1855,7 +1911,10 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ကျပ်သား',
+                                              data: TranslationConstants
+                                                      .kyatthar
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1909,7 +1968,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ပဲ',
+                                              data: TranslationConstants.pae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
@@ -1963,7 +2024,9 @@ class _ZakatCalculatorState extends State<ZakatCalculator> {
                                         ),
                                         child: Center(
                                           child: RegularText(
-                                              data: 'ရွေး',
+                                              data: TranslationConstants.ywae
+                                                      .t(context) ??
+                                                  "",
                                               fontSize: 10.0,
                                               color: Colors.white),
                                         ),
