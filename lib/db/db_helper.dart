@@ -101,6 +101,7 @@ class DatabaseHelper {
   static final silverRate = 'silverRate';
   static final yourWorth = 'yourWorth';
   static final yourZakat = 'yourZakat';
+  static final yourZakatAnimal = 'yourZakatAnimal';
 
   // make this a singleton class
   DatabaseHelper._privateConstructor();
@@ -218,7 +219,8 @@ class DatabaseHelper {
             $goldRate Double NOT NULL,
             $silverRate Double NOT NULL,
             $yourWorth Double NOT NULL,
-            $yourZakat Double NOT NULL
+            $yourZakat Double NOT NULL,
+            $yourZakatAnimal String NOT NULL
           )
           ''');
   }
@@ -272,9 +274,6 @@ class DatabaseHelper {
     final d = await db.query(zakatTable);
 
     List<Zakat> data = d.map((i) => Zakat.fromJson(i)).toList();
-
-    print("*****");
-    print(data);
     return Result<List<Zakat>>.success(data);
   }
 
@@ -324,8 +323,6 @@ class DatabaseHelper {
   }
 
   Future<int> updateZakat(Map<String, dynamic> row, String id) async {
-    print('*****row******');
-    print(row);
     Database db = await instance.database;
     return await db
         .update(zakatTable, row, where: '$zakatId = ?', whereArgs: [id]);

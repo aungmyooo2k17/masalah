@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/model/result.dart';
@@ -6,9 +7,8 @@ import 'package:masalah/model/zakat.dart';
 import 'package:masalah/presentation/reusable_widget/404-page.dart';
 import 'package:masalah/presentation/reusable_widget/app_bar.dart';
 import 'package:masalah/presentation/reusable_widget/app_text.dart';
-import 'package:masalah/presentation/screens/converter_screen/zakat_calculator_edit_screen.dart';
-
-
+import 'package:masalah/presentation/screens/zakat_calculator/zc_screen.dart';
+import 'package:masalah/util/share_preference_util.dart';
 
 class ZakatListScreen extends StatefulWidget {
   const ZakatListScreen({Key? key}) : super(key: key);
@@ -44,20 +44,26 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
       body: FutureBuilder(
           future: dbHelper.queryAllZakatRows(),
           builder: (BuildContext context, AsyncSnapshot<Result> snapshot) {
-            print(snapshot.data);
             if (snapshot.data is SuccessState) {
               List<Zakat> zakats = (snapshot.data as SuccessState).value;
 
               return zakats.length != 0
-                  ? Column(
-                      children: [
-                        ...List.generate(
-                          zakats.length,
-                          (index) {
-                            return zakatItem(zakats[index]);
-                          },
-                        ),
-                      ],
+                  ?
+                  // Column(
+                  //     children: [
+                  //       ...List.generate(
+                  //         zakats.length,
+                  //         (index) {
+                  //           return zakatItem(zakats[index]);
+                  //         },
+                  //       ),
+                  //     ],
+                  //   )
+                  ListView.builder(
+                      itemCount: zakats.length,
+                      itemBuilder: (context, index) {
+                        return zakatItem(zakats[index]);
+                      },
                     )
                   : NotFound();
             } else if (snapshot.data is ErrorState) {
@@ -114,7 +120,7 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
                   ],
                 ),
                 BoldText(
-                  data: zakat.yourWorth.toString(),
+                  data: "${zakat.yourWorth.toString()}",
                   fontSize: 14,
                   color: AppColors.primaryText,
                 ),
@@ -140,7 +146,7 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
                   data: "ထိုက်သောဇကားသ်",
                 ),
                 BoldText(
-                  data: zakat.yourZakat.toString(),
+                  data: "${zakat.yourZakat.toString()}",
                   fontSize: 14,
                   color: AppColors.primaryText,
                 ),
@@ -160,14 +166,15 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 RegularText(
-                  data: zakat.updatedAt.toString(),
+                  data:
+                      "${Jiffy(zakat.updatedAt).format('MMM do yyyy h:mm a')}",
                   color: AppColors.white,
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            ZakatCalculatorEdit(zakatId: zakat.zakatId!)));
+                    SharedPreferenceUtil().saveSharePrefZakatData(zakat);
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ZCScreen()));
                   },
                   child: Container(
                     width: 38,

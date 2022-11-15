@@ -27,7 +27,6 @@ class AppLocalizations {
   }
 
   String? translate(String key) {
-    print(_localizedStrings[key]);
     return _localizedStrings[key];
   }
 

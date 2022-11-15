@@ -42,10 +42,8 @@ class ApiClient {
       @required String? baseUrl,
       @required dynamic headers,
       dynamic parameter = Nothing}) async {
-    print(baseUrl);
     switch (requestType) {
       case RequestType.GET:
-        print("here");
         return _client.get(Uri.https(baseUrl!, "/$path"), headers: headers);
 
       case RequestType.POST:

@@ -89,5 +89,7 @@
   "language": "ဘာသာစကား",
   "languagePref": "မြန်မာ",
   "chooseLanguage": "ဘာသာစကား ရွေးချယ်ရန်",
-  "others": "အခြား"
+  "others": "အခြား",
+  "investigateGold": "ရွှေဈေးစုံစမ်း၍ထည့်ရန်",
+  "investigateSilver": "ငွေဈေးစုံစမ်း၍ထည့်ရန်"
 }

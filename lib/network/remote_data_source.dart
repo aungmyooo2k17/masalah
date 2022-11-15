@@ -58,9 +58,6 @@ class RemoteDataSource {
 
       var rs = jsonDecode(response.body);
       var usd = rs['rates']['USD'];
-
-      print('getusddd');
-      print(usd);
       return usd;
     } catch (error) {
       return "Error";

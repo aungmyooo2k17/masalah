@@ -1,3 +1,5 @@
+import 'package:masalah/db/db_helper.dart';
+
 class ZakatCalculatorUtil {
   // gold 1kyatthar, 2pae, 5 ywae => total ywae => 149 ywae
   // silver 1kyatthar, 2pae, 5 ywae => total ywae => 149 ywae
@@ -33,32 +35,42 @@ class ZakatCalculatorUtil {
     return calcOneYwaePrice(silver) * 4715.5;
   }
 
-  Map<String, String> calcFinalZakatAmount(
-      totalGoldPlatinum, totalSilverOther, totalMinus, goldPrice, silverPrice) {
+  Map<String, String> calcFinalZakatAmount(totalGoldPlatinum, totalSilverOther,
+      totalMinus, goldPrice, silverPrice, cow, sheep, camel) {
     double totalAmount = (totalGoldPlatinum + totalSilverOther) - totalMinus;
-    Map<String, String> resultMap = {"result": "", "netWorth": ""};
+    Map<String, String> resultMap = {
+      DatabaseHelper.yourZakat: "",
+      DatabaseHelper.yourWorth: "",
+      DatabaseHelper.yourZakatAnimal: ""
+    };
+    resultMap[DatabaseHelper.yourZakatAnimal] =
+        "${calcZakatForKywaeNwar(cow)}\n " +
+            "${calcZakatForGoatSheep(sheep)}\n " +
+            "${calcZakatForKalaout(camel)}" +
+            "";
 
     if (totalSilverOther == 0) {
       if (totalGoldPlatinum >= goldZakatAmount(goldPrice)) {
-        resultMap['result'] = (totalGoldPlatinum / 40).toString();
-        resultMap['netWorth'] = totalAmount.toString();
+        resultMap[DatabaseHelper.yourZakat] =
+            (totalGoldPlatinum / 40).toString();
+        resultMap[DatabaseHelper.yourWorth] = totalAmount.toString();
 
         return resultMap;
       } else {
-        resultMap['result'] = "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
-        resultMap['netWorth'] = totalAmount.toString();
+        resultMap[DatabaseHelper.yourZakat] = "ဇကားသ်ဝါဂျိဗ်မ ထိုက်သေးပါ";
+        resultMap[DatabaseHelper.yourWorth] = totalAmount.toString();
 
         return resultMap;
       }
     } else {
       if (totalAmount >= silverZakatAmount(silverPrice)) {
-        resultMap['result'] = (totalAmount / 40).toString();
-        resultMap['netWorth'] = totalAmount.toString();
+        resultMap[DatabaseHelper.yourZakat] = (totalAmount / 40).toString();
+        resultMap[DatabaseHelper.yourWorth] = totalAmount.toString();
 
         return resultMap;
       } else {
-        resultMap['result'] = "ဇကားသ်ဝါဂျိဗ်မထိုက်သေးပါ";
-        resultMap['netWorth'] = totalAmount.toString();
+        resultMap[DatabaseHelper.yourZakat] = "ဇကားသ်ဝါဂျိဗ်မ ထိုက်သေးပါ";
+        resultMap[DatabaseHelper.yourWorth] = totalAmount.toString();
 
         return resultMap;
       }
@@ -231,83 +243,82 @@ class ZakatCalculatorUtil {
     if (totalGoatSheep >= 400) {
       String gs = (totalGoatSheep / 100).toString();
       var arr = gs.split('.');
-      return int.parse(arr[0]);
+      return "${int.parse(arr[0])} ဆိတ်၊သိုး ကောင်";
     } else if (totalGoatSheep >= 201) {
-      return 3;
+      return "3 ဆိတ်၊သိုး ကောင်";
     } else if (totalGoatSheep >= 121) {
-      return 2;
+      return "2 ဆိတ်၊သိုး ကောင်";
     } else if (totalGoatSheep >= 40) {
-      return 1;
+      return "1 ဆိတ်၊သိုး ကောင်";
     } else {
       return '';
     }
   }
 
   calcZakatForKalaout(totalKalaout) {
-    print("___________${totalKalaout}___________");
     if (totalKalaout > 150) {
       int x = int.parse((totalKalaout / 150).toStringAsFixed(0));
       int y = x * 150;
       int z = totalKalaout - y;
 
-      String firstRes = 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	${x * 3} ကောင်';
+      String firstRes = 'သုံးနှစ်ပြည့်ကုလားအုတ်မ ${x * 3} ကောင်';
 
       int xx = int.parse((z / 46).toStringAsFixed(0));
       int yy = xx * 46;
       int zz = z - yy;
 
-      String secRes = 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	$xx ကောင်';
+      String secRes = 'သုံးနှစ်ပြည့်ကုလားအုတ်မ $xx ကောင်';
       String sec2Res = '';
 
       if (zz <= 46 && zz > 36) {
-        sec2Res = 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	1 ကောင်';
+        sec2Res = 'သုံးနှစ်ပြည့်ကုလားအုတ်မ 1 ကောင်';
       } else if (zz >= 36) {
-        sec2Res = 'နှစ်နှစ်ပြည့်	ကုလားအုတ်မ	1 ကောင်';
+        sec2Res = 'နှစ်နှစ်ပြည့်ကုလားအုတ်မ 1 ကောင်';
       } else if (zz >= 25) {
-        sec2Res = 'တစ်နှစ်ပြည့်	ကုလားအုတ်မ	1 ကောင်';
+        sec2Res = 'တစ်နှစ်ပြည့်ကုလားအုတ်မ 1 ကောင်';
       } else if (zz >= 20) {
-        sec2Res = 'တစ်နှစ်ပြည့်	ဆိတ်	4 ကောင်';
+        sec2Res = 'တစ်နှစ်ပြည့်ဆိတ် 4 ကောင်';
       } else if (zz >= 15) {
-        sec2Res = 'တစ်နှစ်ပြည့်	ဆိတ်	3 ကောင်';
+        sec2Res = 'တစ်နှစ်ပြည့်ဆိတ် 3 ကောင်';
       } else if (zz >= 10) {
-        sec2Res = 'တစ်နှစ်ပြည့်	ဆိတ်	2 ကောင်';
+        sec2Res = 'တစ်နှစ်ပြည့်ဆိတ် 2 ကောင်';
       } else if (zz >= 5) {
-        sec2Res = 'တစ်နှစ်ပြည့်	ဆိတ်	1 ကောင်';
+        sec2Res = 'တစ်နှစ်ပြည့်ဆိတ် 1 ကောင်';
       }
 
       return firstRes + '\n' + secRes + '\n' + sec2Res;
     } else if (totalKalaout <= 150 && totalKalaout > 145) {
-      return 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	3 ကောင်';
+      return 'သုံးနှစ်ပြည့်ကုလားအုတ်မ 3 ကောင်';
     } else if (totalKalaout >= 145) {
-      return 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	2 ကောင်	တစ်နှစ်ပြည့်	ကုလားအုတ်မ	1 ကောင်';
+      return 'သုံးနှစ်ပြည့်ကုလားအုတ်မ 2 ကောင်တစ်နှစ်ပြည့်ကုလားအုတ်မ 1 ကောင်';
     } else if (totalKalaout >= 140) {
-      return 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	2 ကောင်	တစ်နှစ်ပြည့်	ဆိတ်	4 ကောင်';
+      return 'သုံးနှစ်ပြည့်ကုလားအုတ်မ 2 ကောင်တစ်နှစ်ပြည့်ဆိတ် 4 ကောင်';
     } else if (totalKalaout >= 135) {
-      return 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	2 ကောင်	တစ်နှစ်ပြည့်	ဆိတ်	3 ကောင်';
+      return 'သုံးနှစ်ပြည့်ကုလားအုတ်မ 2 ကောင်တစ်နှစ်ပြည့်ဆိတ် 3 ကောင်';
     } else if (totalKalaout >= 130) {
-      return 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	2 ကောင်	တစ်နှစ်ပြည့်	ဆိတ်	2 ကောင်';
+      return 'သုံးနှစ်ပြည့်ကုလားအုတ်မ 2 ကောင်တစ်နှစ်ပြည့်ဆိတ် 2 ကောင်';
     } else if (totalKalaout >= 125) {
-      return 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	2 ကောင်	တစ်နှစ်ပြည့်	ဆိတ်	1 ကောင်';
+      return 'သုံးနှစ်ပြည့်ကုလားအုတ်မ 2 ကောင်တစ်နှစ်ပြည့်ဆိတ် 1 ကောင်';
     } else if (totalKalaout >= 91) {
-      return 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	2 ကောင်';
+      return 'သုံးနှစ်ပြည့်ကုလားအုတ်မ 2 ကောင်';
     } else if (totalKalaout >= 76) {
-      return 'နှစ်နှစ်ပြည့်	ကုလားအုတ်မ	2 ကောင်';
+      return 'နှစ်နှစ်ပြည့်ကုလားအုတ်မ 2 ကောင်';
     } else if (totalKalaout >= 61) {
-      return 'လေးနှစ်ပြည့်	ကုလားအုတ်မ	1 ကောင်';
+      return 'လေးနှစ်ပြည့်ကုလားအုတ်မ 1 ကောင်';
     } else if (totalKalaout >= 46) {
-      return 'သုံးနှစ်ပြည့်	ကုလားအုတ်မ	1 ကောင်';
+      return 'သုံးနှစ်ပြည့်ကုလားအုတ်မ 1 ကောင်';
     } else if (totalKalaout >= 36) {
-      return 'နှစ်နှစ်ပြည့်	ကုလားအုတ်မ	1 ကောင်';
+      return 'နှစ်နှစ်ပြည့်ကုလားအုတ်မ 1 ကောင်';
     } else if (totalKalaout >= 25) {
-      return 'တစ်နှစ်ပြည့်	ကုလားအုတ်မ	1 ကောင်';
+      return 'တစ်နှစ်ပြည့်ကုလားအုတ်မ 1 ကောင်';
     } else if (totalKalaout >= 20) {
-      return 'တစ်နှစ်ပြည့်	ဆိတ်	4 ကောင်';
+      return 'တစ်နှစ်ပြည့်ဆိတ် 4 ကောင်';
     } else if (totalKalaout >= 15) {
-      return 'တစ်နှစ်ပြည့်	ဆိတ်	3 ကောင်';
+      return 'တစ်နှစ်ပြည့်ဆိတ် 3 ကောင်';
     } else if (totalKalaout >= 10) {
-      return 'တစ်နှစ်ပြည့်	ဆိတ်	2 ကောင်';
+      return 'တစ်နှစ်ပြည့်ဆိတ် 2 ကောင်';
     } else if (totalKalaout >= 5) {
-      return 'တစ်နှစ်ပြည့်	ဆိတ်	1 ကောင်';
+      return 'တစ်နှစ်ပြည့်ဆိတ် 1 ကောင်';
     } else if (totalKalaout < 5) {
       return '';
     }
@@ -333,47 +344,45 @@ class ZakatCalculatorUtil {
         }
       }
 
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     }
 
     if (totalKywaeNwar <= 120 && totalKywaeNwar > 110) {
       twoYear = twoYear + 3;
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     } else if (totalKywaeNwar >= 110) {
       oneYear = oneYear + 1;
       twoYear = twoYear + 2;
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     } else if (totalKywaeNwar >= 100) {
       oneYear = oneYear + 2;
       twoYear = twoYear + 1;
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     } else if (totalKywaeNwar >= 90) {
       oneYear = oneYear + 3;
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     } else if (totalKywaeNwar >= 80) {
       twoYear = twoYear + 2;
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     } else if (totalKywaeNwar >= 70) {
       oneYear = oneYear + 1;
       twoYear = twoYear + 1;
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     } else if (totalKywaeNwar >= 60) {
       oneYear = oneYear + 2;
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     } else if (totalKywaeNwar >= 40) {
       twoYear = twoYear + 1;
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     } else if (totalKywaeNwar >= 30) {
       oneYear = oneYear + 1;
-      return 'တစ်နှစ်ပြည့်	နွား	$oneYear ကောင်, နှစ်နှစ်ပြည့်	နွား	$twoYear ကောင်';
+      return 'တစ်နှစ်ပြည့်နွား $oneYear ကောင်, နှစ်နှစ်ပြည့်နွား $twoYear ကောင်';
     } else if (totalKywaeNwar < 30) {
       return '';
     }
   }
 
   getRate(rate, usdRate) {
-    print('************************');
-    print({rate, usdRate});
     return (rate / 1.875) * usdRate;
   }
 }
