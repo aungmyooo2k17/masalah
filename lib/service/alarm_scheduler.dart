@@ -63,8 +63,6 @@ class AlarmScheduler {
   }
 
   void setAlarmOnTime(String prayerName, DateTime prayerTime) async {
-    print(
-        {prayerName, prayerTime, DateTime.now().add(new Duration(minutes: 1))});
     // prayerTime = DateTime.now().add(new Duration(minutes: 1));
     await SharedPreferenceUtil().addIntToSF(
         SharedPreferenceUtil.ALARM_PRAYER_TIME,

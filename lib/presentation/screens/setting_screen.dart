@@ -59,6 +59,36 @@ class SettingScreen extends StatelessWidget {
         ));
   }
 
+  GestureDetector zcListItem(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        margin: EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Zakat List"),
+            BoldText(
+              color: AppColors.primaryText,
+              fontSize: 16.0,
+              data: TranslationConstants.language.t(context) ?? "",
+            ),
+            Icon(
+              Icons.arrow_forward_outlined,
+              size: 18.0,
+              color: AppColors.secondaryText,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   buildLanguageDialog(BuildContext context) {
     showDialog(
         context: context,

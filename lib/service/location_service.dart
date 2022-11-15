@@ -15,7 +15,6 @@ abstract class LocationService {
 class LocationServiceImpl implements LocationService {
   @override
   Future<CurrentLatLng?> getCurrentLocation() async {
-   
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -30,14 +29,12 @@ class LocationServiceImpl implements LocationService {
             : await Geolocator.getCurrentPosition(
                 desiredAccuracy: LocationAccuracy.medium,
                 forceAndroidLocationManager: true);
-        print('currentLocation : $currentLocation');
         return CurrentLatLng(
             currentLocation.latitude, currentLocation.longitude);
       } catch (e) {
         debugPrint(e.toString());
         return null;
       }
-      
     }
     return null;
   }

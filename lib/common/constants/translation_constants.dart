@@ -109,6 +109,8 @@ class TranslationConstants {
   static const String yourNetworth = 'yourNetworth';
   static const String needToPayZakat = 'needToPayZakat';
   static const String noNeedToPayZakat = 'noNeedToPayZakat';
+  static const String investigateGold = 'investigateGold';
+  static const String investigateSilver = 'investigateSilver';
 
   // general
   static const String masalah = 'masalah';

@@ -9,6 +9,9 @@ import 'package:masalah/prayer_time/prayer_time_wrapper.dart';
 import 'package:masalah/presentation/blocs/prayertime/prayertime_cubit.dart';
 import 'package:masalah/presentation/reusable_widget/app_bar.dart';
 import 'package:masalah/presentation/reusable_widget/app_text.dart';
+import 'package:masalah/presentation/reusable_widget/shimmer.dart';
+import 'package:masalah/presentation/reusable_widget/shimmer_loading.dart';
+import 'package:masalah/presentation/screens/prayer_time/prayer_card_item_holder_widget.dart';
 import 'package:masalah/presentation/screens/prayer_time/prayer_card_item_widget.dart';
 import 'package:masalah/service/launcher_widget_service.dart';
 import 'package:masalah/util/date_time_util.dart';
@@ -42,18 +45,33 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   void initState() {
     super.initState();
 
-    loadPrayerTimes();
+    // loadPrayerTimes();
     // sendWidgetData();
   }
 
-  loadPrayerTimes() async {
-    prayerTimeItemCard =
-        await context.read<PrayertimeCubit>().loadPrayerTimes();
+  Future<UiPrayerTimeItemCard?> loadPrayerTimes() async {
+    return await context.read<PrayertimeCubit>().loadPrayerTimes();
   }
 
   Future<void> sendWidgetData() async {
     await LauncherWidgetService().sendDataToAppWidget();
   }
+
+  final _shimmerGradient = LinearGradient(
+    colors: [
+      Color(0xFFEBEBF4),
+      Color(0xFFF4F4F4),
+      Color(0xFFEBEBF4),
+    ],
+    stops: [
+      0.1,
+      0.3,
+      0.4,
+    ],
+    begin: Alignment(-1.0, -0.3),
+    end: Alignment(1.0, 0.3),
+    tileMode: TileMode.clamp,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +84,33 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            if (prayerTimeItemCard != null)
-              PrayerCardItemWidget(uiPrayerTimeItemCard: prayerTimeItemCard!),
+            // if (prayerTimeItemCard != null)
+            //   PrayerCardItemWidget(uiPrayerTimeItemCard: prayerTimeItemCard!),
+            FutureBuilder(
+                future: loadPrayerTimes(),
+                builder: (cntx, item) {
+                  if (item.connectionState == ConnectionState.waiting) {
+                    return Shimmer(
+                      linearGradient: _shimmerGradient,
+                      child: ShimmerLoading(
+                          isLoading: true,
+                          child: PrayerCardItemWidget(
+                              uiPrayerTimeItemCard: UiPrayerTimeItemCard(
+                                  currentPrayerTimeItem: UiPrayerTimeItem(
+                                      name: "Isha",
+                                      currentPrayerTime: "6:45 PM",
+                                      isMuteForCurrentPrayer: true),
+                                  nextPrayerName: "Fajr",
+                                  nextPrayerTime: "4:55 AM",
+                                  currentPrayerImage: "assets/images/Asir.png",
+                                  location: "Yangon"))),
+                    );
+                  } else {
+                    return PrayerCardItemWidget(
+                        uiPrayerTimeItemCard:
+                            item.data as UiPrayerTimeItemCard);
+                  }
+                }),
 
             Container(
               padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
@@ -122,7 +165,6 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        print(selectedDate.toString());
                         selectedDate = selectedDate!.add(Duration(days: 1));
                       });
                       context
@@ -222,7 +264,5 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         ));
   }
 
-  void nowPrayingTime() {
-    print("Heyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
-  }
+  void nowPrayingTime() {}
 }

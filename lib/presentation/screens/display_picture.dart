@@ -21,7 +21,6 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
     final directory = await getApplicationDocumentsDirectory();
     fileImg = File('${directory.path}/testImage.png');
 
-    print(fileImg.path);
     fileImg.writeAsBytesSync(List.from(decodedBytes));
 
     setState(() {

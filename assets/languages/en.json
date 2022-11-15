@@ -89,5 +89,7 @@
   "language": "Language",
   "languagePref": "English",
   "chooseLanguage": "Choose your language",
-  "others": "Others"
+  "others": "Others",
+  "investigateGold": "Investigate the gold price",
+  "investigateSilver": "Investigate the silver price"
 }
