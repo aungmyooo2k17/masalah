@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:masalah/presentation/screens/main/main_screen.dart';
 import '../../../common/constants/color_constant.dart';
 import '../../../common/constants/translation_constants.dart';
+import '../../../network/remote_data_source.dart';
 import '../../reusable_widget/app_bar.dart';
 import './gold_form.dart';
 import './header_widget.dart';
@@ -23,6 +24,14 @@ class ZCScreen extends StatefulWidget {
 }
 
 class _ZCScreenState extends State<ZCScreen> {
+  final RemoteDataSource _apiResponse = RemoteDataSource();
+
+  @override
+  void initState() {
+    _apiResponse.getRates();
+    super.initState();
+  }
+
   final ScrollController _controller = ScrollController();
 
   int currentIndex = 0;
@@ -57,6 +66,12 @@ class _ZCScreenState extends State<ZCScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   Widget currentForm(idx) {

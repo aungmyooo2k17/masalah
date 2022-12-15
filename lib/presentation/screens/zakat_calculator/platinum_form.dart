@@ -34,6 +34,15 @@ class PlatinumFormState extends State<PlatinumForm> {
   @override
   void dispose() {
     save();
+    whiteSilverAkhoutKyatthar.dispose();
+    whiteSilverAkhoutPae.dispose();
+    whiteSilverAkhoutYwae.dispose();
+    whiteSilverAhtaeKyatthar.dispose();
+    whiteSilverAhtaePae.dispose();
+    whiteSilverAhtaeYwae.dispose();
+    whiteSilverPyitceeKyatthar.dispose();
+    whiteSilverPyitceePae.dispose();
+    whiteSilverPyitceeYwae.dispose();
     super.dispose();
   }
 

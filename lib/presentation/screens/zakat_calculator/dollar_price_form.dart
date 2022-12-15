@@ -36,8 +36,8 @@ class _DollarPriceFormState extends State<DollarPriceForm> {
     // });
     // _apiResponse.getGoldRate().then((value) => {goldRate = value});
     // _apiResponse.getSilverRate().then((value) => {silverRate = value});
-    super.initState();
     get();
+    super.initState();
   }
 
   @override
@@ -66,7 +66,7 @@ class _DollarPriceFormState extends State<DollarPriceForm> {
               width: 16,
             ),
             BoldText(
-              data: ZakatCalculatorUtil().getRate(goldRate, usdRate).toString(),
+              data: goldRate.toString(),
             )
           ],
         ),
@@ -82,8 +82,7 @@ class _DollarPriceFormState extends State<DollarPriceForm> {
               width: 16,
             ),
             BoldText(
-              data:
-                  ZakatCalculatorUtil().getRate(silverRate, usdRate).toString(),
+              data: silverRate.toString(),
             )
           ],
         )
@@ -184,10 +183,17 @@ class _DollarPriceFormState extends State<DollarPriceForm> {
   get() async {
     String goldPriceTxt =
         await SharedPreferenceUtil().getStringValuesSF(DatabaseHelper.goldRate);
-    goldPrice.text = goldPriceTxt == '0.0' ? "" : goldPriceTxt;
+    goldPrice.text = goldPriceTxt == '0.0' ? "0.0" : goldPriceTxt;
     String silverPriceTxt = await SharedPreferenceUtil()
         .getStringValuesSF(DatabaseHelper.silverRate);
-    silverPrice.text = silverPriceTxt == '0.0' ? "" : silverPriceTxt;
+    silverPrice.text = silverPriceTxt == '0.0' ? "0.0" : silverPriceTxt;
+    usdRate =
+        double.parse(await SharedPreferenceUtil().getStringValuesSF("USD"));
+    setState(() {
+      silverRate = double.parse(silverPrice.text);
+      usdRate = usdRate;
+      goldRate = double.parse(goldPrice.text);
+    });
   }
 
   save() {
@@ -200,6 +206,8 @@ class _DollarPriceFormState extends State<DollarPriceForm> {
   @override
   void dispose() {
     save();
+    goldPrice.dispose();
+    silverPrice.dispose();
     super.dispose();
   }
 }

@@ -30,6 +30,11 @@ class _AnimalFormState extends State<AnimalForm> {
   @override
   void dispose() {
     save();
+    kalaout.dispose();
+    kywae.dispose();
+    nwar.dispose();
+    sate.dispose();
+    thoe.dispose();
     super.dispose();
   }
 

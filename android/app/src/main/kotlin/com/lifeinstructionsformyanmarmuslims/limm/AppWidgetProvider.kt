@@ -1,4 +1,4 @@
-package com.example.masalah
+package com.lifeinstructionsformyanmarmuslims.limm
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.SharedPreferences

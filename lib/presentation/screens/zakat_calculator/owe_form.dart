@@ -33,6 +33,15 @@ class _OweFormState extends State<OweForm> {
   @override
   void dispose() {
     save();
+    minusDebtMahur.dispose();
+    minusDebt.dispose();
+    minusSukyae.dispose();
+    minusMeterBill.dispose();
+    minusPaybill.dispose();
+    minusPaySalary.dispose();
+    minusPayRent.dispose();
+    minusBuyGoodPay.dispose();
+    minusPreZakat.dispose();
     super.dispose();
   }
 

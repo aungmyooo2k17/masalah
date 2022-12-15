@@ -34,6 +34,15 @@ class SilverFormState extends State<SilverForm> {
   @override
   void dispose() {
     save();
+    silverAkhoutKyatthar.dispose();
+    silverAkhoutPae.dispose();
+    silverAkhoutYwae.dispose();
+    silverAhtaeKyatthar.dispose();
+    silverAhtaePae.dispose();
+    silverAhtaeYwae.dispose();
+    silverPyitceeKyatthar.dispose();
+    silverPyitceePae.dispose();
+    silverPyitceeYwae.dispose();
     super.dispose();
   }
 

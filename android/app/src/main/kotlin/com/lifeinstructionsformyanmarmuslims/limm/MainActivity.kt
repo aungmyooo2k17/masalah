@@ -1,4 +1,4 @@
-package com.example.masalah
+package com.lifeinstructionsformyanmarmuslims.limm
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine

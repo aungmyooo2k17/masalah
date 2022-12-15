@@ -38,6 +38,19 @@ class _PropertyFormState extends State<PropertyForm> {
   @override
   void dispose() {
     save();
+    realEstateSellHouse.dispose();
+    realEstateSellEscort.dispose();
+    realEstateSellCar.dispose();
+    realEstateOther.dispose();
+    rawWearhouse.dispose();
+    rawHome.dispose();
+    rawShop.dispose();
+    rawOther.dispose();
+    finishWearhouse.dispose();
+    finishHome.dispose();
+    finishShop.dispose();
+    finishAnimal.dispose();
+    finishOther.dispose();
     super.dispose();
   }
 

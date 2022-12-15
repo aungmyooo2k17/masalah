@@ -21,12 +21,10 @@ class _MoneyFormState extends State<MoneyForm> {
   final inHandForeignCurrency = TextEditingController();
   final inHandContract = TextEditingController();
   final inHandOther = TextEditingController();
-
   final inBankInBank = TextEditingController();
   final inBankThuMyarHlwae = TextEditingController();
   final inBankSalary = TextEditingController();
   final inBankOther = TextEditingController();
-
   final thuMyarDebtPyitceeSold = TextEditingController();
   final thuMyarDebtChayPay = TextEditingController();
   final thuMyarDebtAttHtrTaw = TextEditingController();
@@ -41,6 +39,20 @@ class _MoneyFormState extends State<MoneyForm> {
   @override
   void dispose() {
     save();
+    inHandSuHtarTaw.dispose();
+    inHandPyitceeSold.dispose();
+    inHandPyitceeBorrow.dispose();
+    inHandForeignCurrency.dispose();
+    inHandContract.dispose();
+    inHandOther.dispose();
+    inBankInBank.dispose();
+    inBankThuMyarHlwae.dispose();
+    inBankSalary.dispose();
+    inBankOther.dispose();
+    thuMyarDebtPyitceeSold.dispose();
+    thuMyarDebtChayPay.dispose();
+    thuMyarDebtAttHtrTaw.dispose();
+    thuMyarDebtOther.dispose();
     super.dispose();
   }
 

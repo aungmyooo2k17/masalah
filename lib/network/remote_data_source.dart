@@ -8,6 +8,9 @@ import 'package:masalah/model/masalah.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/network/api_client.dart';
 
+import '../db/db_helper.dart';
+import '../util/share_preference_util.dart';
+
 class RemoteDataSource {
   RemoteDataSource._privateConstructor();
   static final RemoteDataSource _apiResponse =
@@ -79,6 +82,26 @@ class RemoteDataSource {
       return usd;
     } catch (error) {
       return 0.0;
+    }
+  }
+
+  void getRates() async {
+    try {
+      final response = await http.get(Uri.parse(
+          'https://script.googleusercontent.com/macros/echo?user_content_key=jDZbRNyGguv4pLLzmUR2-5sHeSH8B8x7c41l6DH8LNwQBLSkdNJuhJFO-3MCBuOAo_JqpNAyY7KiOlprdhD8_7r2z88NFWijm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnMLtjt94Zt-uhzPDZO_Peg6S0_ZHIEIWi7Ip_GVD1GLUCDW74fToEds3mZLU6qPriLx2Nc8G7kqG8o1IlsnmvVPU69YuRbM8Vw&lib=M2hFmaBrKihoZq18d9OjdrFVeyfhHcqFG'));
+
+      print(response);
+      var rs = jsonDecode(response.body)[0];
+      var goldPrice = rs['gold_price'];
+      var silverPrice = rs['silver_price'];
+      var usdPrice = rs['usd_price'];
+      SharedPreferenceUtil()
+          .addStringToSF(DatabaseHelper.goldRate, goldPrice.toString());
+      SharedPreferenceUtil()
+          .addStringToSF(DatabaseHelper.silverRate, silverPrice.toString());
+      SharedPreferenceUtil().addStringToSF("USD", usdPrice.toString());
+    } catch (error) {
+      Exception(error);
     }
   }
 

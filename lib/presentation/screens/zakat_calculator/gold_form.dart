@@ -33,6 +33,15 @@ class _GoldFormState extends State<GoldForm> {
   @override
   void dispose() {
     save();
+    goldAkhoutKyatthar.dispose();
+    goldAkhoutPae.dispose();
+    goldAkhoutYwae.dispose();
+    goldAhtaeKyatthar.dispose();
+    goldAhtaePae.dispose();
+    goldAhtaeYwae.dispose();
+    goldPyitceeKyatthar.dispose();
+    goldPyitceePae.dispose();
+    goldPyitceeYwae.dispose();
     super.dispose();
   }
 
