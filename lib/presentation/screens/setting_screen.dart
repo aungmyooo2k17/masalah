@@ -16,6 +16,7 @@ class SettingScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColors.bgColor,
         appBar: AppTopBar(
+          showSetting: false,
           enableBackBtn: true,
           title: TranslationConstants.setting.t(context) ?? "",
           bgColor: AppColors.bgColor,
@@ -110,6 +111,7 @@ class SettingScreen extends StatelessWidget {
                               Languages.languages[index],
                             ),
                           );
+                          Navigator.of(context).pop();
                         },
                       ),
                     );

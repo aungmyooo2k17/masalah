@@ -91,5 +91,7 @@
   "chooseLanguage": "Choose your language",
   "others": "Others",
   "investigateGold": "Investigate the gold price",
-  "investigateSilver": "Investigate the silver price"
+  "investigateSilver": "Investigate the silver price",
+  "listOfZakats": "List of your zakats",
+  "zakatToPay": "Amount of zakat to pay"
 }

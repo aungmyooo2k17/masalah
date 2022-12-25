@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/common/extensions/string_extensions.dart';
 import 'package:masalah/db/db_helper.dart';
 import 'package:masalah/model/result.dart';
 import 'package:masalah/model/zakat.dart';
@@ -9,6 +10,8 @@ import 'package:masalah/presentation/reusable_widget/app_bar.dart';
 import 'package:masalah/presentation/reusable_widget/app_text.dart';
 import 'package:masalah/presentation/screens/zakat_calculator/zc_screen.dart';
 import 'package:masalah/util/share_preference_util.dart';
+
+import '../../../common/constants/translation_constants.dart';
 
 class ZakatListScreen extends StatefulWidget {
   const ZakatListScreen({Key? key}) : super(key: key);
@@ -103,7 +106,7 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     RegularText(
-                      data: "အသင်၏ပိုင်ဆိုင်မှု",
+                      data: TranslationConstants.yourNetworth.t(context) ?? "",
                       fontSize: 12.0,
                       color: AppColors.secondaryText,
                     ),
@@ -130,7 +133,8 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
                 RegularText(
                   fontSize: 12.0,
                   color: AppColors.secondaryText,
-                  data: "ရွှေဈေး / ငွေဈေး",
+                  data:
+                      "${TranslationConstants.goldRate.t(context) ?? ""} / ${TranslationConstants.silverRate.t(context) ?? ""}",
                 ),
                 BoldText(
                   data: "${zakat.goldRate} / ${zakat.silverRate}",
@@ -143,7 +147,7 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
                 RegularText(
                   fontSize: 12.0,
                   color: AppColors.secondaryText,
-                  data: "ထိုက်သောဇကားသ်",
+                  data: TranslationConstants.zakatToPay.t(context) ?? "",
                 ),
                 BoldText(
                   data: "${zakat.yourZakat.toString()}",

@@ -12,6 +12,7 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
       this.title = "",
       this.bgColor = Colors.white,
       this.textColor = Colors.black,
+      this.showSetting = true,
       this.enableBackBtn = false})
       : super(key: key);
 
@@ -19,6 +20,7 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
   final Color bgColor;
   final Color textColor;
   final bool enableBackBtn;
+  final bool showSetting;
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +37,19 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
         color: textColor,
       ),
       actions: <Widget>[
-        IconButton(
-          icon: const Icon(
-            Icons.settings,
-            color: AppColors.primaryText,
-          ),
-          tooltip: 'Setting',
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => SettingScreen()));
-          },
-        ),
+        showSetting
+            ? IconButton(
+                icon: const Icon(
+                  Icons.settings,
+                  color: AppColors.primaryText,
+                ),
+                tooltip: 'Setting',
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SettingScreen()));
+                },
+              )
+            : Container(),
       ],
     );
   }

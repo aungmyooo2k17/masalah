@@ -17,7 +17,7 @@
    <application
         android:name="${applicationName}"
         android:allowBackup="false"
-        android:label="masalah"
+        android:label="LIMM"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

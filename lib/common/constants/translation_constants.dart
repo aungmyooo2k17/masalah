@@ -111,6 +111,8 @@ class TranslationConstants {
   static const String noNeedToPayZakat = 'noNeedToPayZakat';
   static const String investigateGold = 'investigateGold';
   static const String investigateSilver = 'investigateSilver';
+  static const String listOfZakats = 'listOfZakats';
+  static const String zakatToPay = 'zakatToPay';
 
   // general
   static const String masalah = 'masalah';

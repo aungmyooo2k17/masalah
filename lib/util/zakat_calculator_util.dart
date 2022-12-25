@@ -57,7 +57,7 @@ class ZakatCalculatorUtil {
 
         return resultMap;
       } else {
-        resultMap[DatabaseHelper.yourZakat] = "ဇကားသ်ဝါဂျိဗ်မ ထိုက်သေးပါ";
+        resultMap[DatabaseHelper.yourZakat] = "0.0";
         resultMap[DatabaseHelper.yourWorth] = totalAmount.toString();
 
         return resultMap;
@@ -69,7 +69,7 @@ class ZakatCalculatorUtil {
 
         return resultMap;
       } else {
-        resultMap[DatabaseHelper.yourZakat] = "ဇကားသ်ဝါဂျိဗ်မ ထိုက်သေးပါ";
+        resultMap[DatabaseHelper.yourZakat] = "0.0";
         resultMap[DatabaseHelper.yourWorth] = totalAmount.toString();
 
         return resultMap;

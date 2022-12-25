@@ -172,9 +172,12 @@ class _DollarPriceFormState extends State<DollarPriceForm> {
         SizedBox(
           width: 8,
         ),
-        RegularText(
-          data: TranslationConstants.auto.t(context) ?? "",
-          color: AppColors.primaryText,
+        Flexible(
+          child: RegularText(
+            maxLine: 1,
+            data: TranslationConstants.auto.t(context) ?? "",
+            color: AppColors.primaryText,
+          ),
         ),
       ],
     );

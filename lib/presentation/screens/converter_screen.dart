@@ -33,7 +33,7 @@ class ConverterScreen extends StatelessWidget {
                 },
               ),
               SettingItem(
-                title: "Zakat List",
+                title: TranslationConstants.listOfZakats.t(context) ?? "",
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ZakatListScreen()));
