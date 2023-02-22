@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
-import 'package:masalah/common/constants/translation_constants.dart';
 import 'package:masalah/presentation/reusable_widget/app_text.dart';
-import 'package:masalah/presentation/screens/converter_screen/zakat_calculator_screen.dart';
-import 'package:masalah/common/extensions/string_extensions.dart';
-import 'package:masalah/presentation/screens/zakat_calculator/zc_screen.dart';
 
 class SettingItem extends StatelessWidget {
   final String title;

@@ -11,6 +11,12 @@ class AppColors {
   static const Color unSelectedIconColor = Color(0xFF5B78C2);
   static const Color selectedIconColor = Color(0xFF2EAAFC);
   static const Color linkColor = Color(0xFF000AFF);
+
+  static const Color quranIconBg = Color(0xff2F5532);
+  static const Color manzilIconBg = Color(0xffEE1E23);
+  static const Color muguIconBg = Color(0xffffffff);
+  static const Color masalahIconBg = Color(0xff17173D);
+  static const Color zakatIconBg = Color(0xffffffff);
 }
 
 class AppImages {

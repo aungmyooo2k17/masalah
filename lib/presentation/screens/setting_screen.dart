@@ -17,10 +17,10 @@ class SettingScreen extends StatelessWidget {
         backgroundColor: AppColors.bgColor,
         appBar: AppTopBar(
           showSetting: false,
-          enableBackBtn: true,
           title: TranslationConstants.setting.t(context) ?? "",
           bgColor: AppColors.bgColor,
           textColor: AppColors.primaryText,
+          enableBackBtn: true,
         ),
         body: SingleChildScrollView(
           child: Column(

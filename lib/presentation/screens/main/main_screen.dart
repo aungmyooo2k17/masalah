@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/common/constants/translation_constants.dart';
 import 'package:masalah/common/extensions/string_extensions.dart';
+import 'package:masalah/presentation/screens/setting_screen.dart';
+import 'package:masalah/presentation/screens/tool_list/tool_list_screen.dart';
 
 import '../converter_screen.dart';
 import '../masalah_category_screen.dart';
@@ -25,10 +27,10 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   static List<Widget> _widgetOptions = <Widget>[
-    MasalahCategoryScreen(),
+    ToolListPage(),
     PrayerTimeScreen(),
     QiblaScreen(),
-    ConverterScreen()
+    SettingScreen(),
   ];
 
   @override
@@ -50,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage('assets/images/converter.png')),
-            label: TranslationConstants.tools.t(context) ?? "",
+            label: TranslationConstants.setting.t(context) ?? "",
           ),
         ],
         currentIndex: _selectedIndex,
