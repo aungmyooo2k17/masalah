@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:download_assets/download_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:masalah/util/share_preference_util.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -18,6 +21,10 @@ class AlQuranPdf extends StatefulWidget {
 }
 
 class _AlQuranPdfState extends State<AlQuranPdf> {
+  DownloadAssetsController downloadAssetsController =
+      DownloadAssetsController();
+  String message = 'Press the download button to start the download';
+  bool downloaded = false;
   PdfViewerController _pdfViewerController = PdfViewerController();
 
   final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
@@ -29,6 +36,13 @@ class _AlQuranPdfState extends State<AlQuranPdf> {
   void initState() {
     _pdfViewerController = PdfViewerController();
     super.initState();
+    _init();
+  }
+
+  Future _init() async {
+    await downloadAssetsController.init();
+    downloaded = await downloadAssetsController.assetsDirAlreadyExists();
+    _downloadAssets();
   }
 
   @override
@@ -76,22 +90,26 @@ class _AlQuranPdfState extends State<AlQuranPdf> {
           ),
         ],
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        child: SfPdfViewer.asset(
-          'assets/pdf/quran.pdf',
-          pageLayoutMode: PdfPageLayoutMode.single,
-          scrollDirection: PdfScrollDirection.horizontal,
-          key: _pdfViewerKey,
-          controller: _pdfViewerController,
-          onPageChanged: (details) {
-            currentPage.value = _pdfViewerController.pageNumber;
-          },
-          onDocumentLoaded: (details) {
-            _pdfViewerController.jumpToPage(widget.toPage);
-          },
-        ),
-      ),
+      body: downloaded
+          ? Container(
+              height: MediaQuery.of(context).size.height,
+              child: SfPdfViewer.file(
+                File('${downloadAssetsController.assetsDir}/quran.pdf'),
+                pageLayoutMode: PdfPageLayoutMode.single,
+                scrollDirection: PdfScrollDirection.horizontal,
+                key: _pdfViewerKey,
+                controller: _pdfViewerController,
+                onPageChanged: (details) {
+                  currentPage.value = _pdfViewerController.pageNumber;
+                },
+                onDocumentLoaded: (details) {
+                  _pdfViewerController.jumpToPage(widget.toPage);
+                },
+              ),
+            )
+          : Center(
+              child: Text(message),
+            ),
     );
   }
 
@@ -100,5 +118,49 @@ class _AlQuranPdfState extends State<AlQuranPdf> {
     currentPage.dispose();
     _pdfViewerController.dispose();
     super.dispose();
+  }
+
+  Future _refresh() async {
+    await downloadAssetsController.clearAssets();
+    await _downloadAssets();
+  }
+
+  Future _downloadAssets() async {
+    final assetsDownloaded =
+        await downloadAssetsController.assetsFileExists("quran.pdf");
+
+    if (assetsDownloaded) {
+      setState(() {
+        message = 'Click in refresh button to force download';
+        print(message);
+      });
+      return;
+    }
+
+    try {
+      await downloadAssetsController.startDownload(
+        assetsUrl: 'https://aungmyooo2k17.github.io/assets/quran.pdf.zip',
+        onProgress: (progressValue) {
+          downloaded = false;
+          setState(() {
+            if (progressValue < 100) {
+              message = 'Downloading - ${progressValue.toStringAsFixed(2)}';
+              // print(message);
+            } else {
+              message =
+                  'Download completed\nClick in refresh button to force download';
+              // print(message);
+              downloaded = true;
+            }
+          });
+        },
+      );
+    } on DownloadAssetsException catch (e) {
+      print(e.toString());
+      setState(() {
+        downloaded = false;
+        message = 'Error: ${e.toString()}';
+      });
+    }
   }
 }

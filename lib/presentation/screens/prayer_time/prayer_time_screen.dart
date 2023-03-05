@@ -103,7 +103,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                                   nextPrayerName: "Fajr",
                                   nextPrayerTime: "4:55 AM",
                                   currentPrayerImage: "assets/images/Asir.png",
-                                  location: "Yangon"))),
+                                  location: ""))),
                     );
                   } else {
                     return PrayerCardItemWidget(

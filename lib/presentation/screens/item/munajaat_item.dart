@@ -11,7 +11,15 @@ class MunajaatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List days = ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri'];
+    List days = [
+      'Saturaday',
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Firday'
+    ];
     List pages = [3, 16, 30, 42, 55, 66, 77];
     return GestureDetector(
       onTap: () {

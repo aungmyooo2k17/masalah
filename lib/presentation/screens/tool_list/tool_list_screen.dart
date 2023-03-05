@@ -51,7 +51,7 @@ class ToolListPage extends StatelessWidget {
             ),
             ToolItem(
               image: 'assets/images/manzil_icon.png',
-              title: 'Mugu',
+              title: 'Munajaat',
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => MunaJaatScreen()));

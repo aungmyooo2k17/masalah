@@ -33,7 +33,7 @@ class SharedPreferenceUtil {
 
   Future getQuranPage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getInt(QURAN_FAV_PAGE) ?? 0 as Future;
+    return prefs.getInt(QURAN_FAV_PAGE) ?? 0 as Future<Int>;
   }
 
   Future<void> saveList(String key, List<String> value) async {

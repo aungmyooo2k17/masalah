@@ -94,6 +94,8 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
                     : _apiResponse.getCategories(),
                 builder:
                     (BuildContext context, AsyncSnapshot<Result> snapshot) {
+                  print("snapshot.data");
+                  print(snapshot.data);
                   if (snapshot.data is SuccessState) {
                     List<Category> categories =
                         (snapshot.data as SuccessState).value;
