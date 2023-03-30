@@ -33,7 +33,7 @@ class PrayerTimeUiMapper {
         nextPrayerTime:
             DateTimeUtil().prayerTimeFormat(nextPrayerTime.prayerTime),
         currentPrayerImage: _getPrayerImage(currentPrayer),
-        location: "Yangon");
+        location: "");
   }
 
   String _getPrayerImage(PrayerTimeEntity currentPrayer) {

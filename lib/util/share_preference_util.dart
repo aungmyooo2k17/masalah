@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:masalah/model/zakat.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,6 +9,7 @@ class SharedPreferenceUtil {
   static const String PRAYER_MUTE_LIST = "prayer_mute_list";
   static const String ALARM_PRAYER_NAME = "alarm_prayer_name";
   static const String ALARM_PRAYER_TIME = "alarm_prayer_time";
+  static const String QURAN_FAV_PAGE = "quran_fav_page";
 
   static final SharedPreferenceUtil _sharedPreferenceUtil =
       SharedPreferenceUtil._();
@@ -20,6 +23,17 @@ class SharedPreferenceUtil {
   Future<List<String>?> loadList(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getStringList(key);
+  }
+
+  setQuranPage(int page) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(QURAN_FAV_PAGE, page);
+    return page;
+  }
+
+  Future getQuranPage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(QURAN_FAV_PAGE) ?? Future<int>.value(0);
   }
 
   Future<void> saveList(String key, List<String> value) async {

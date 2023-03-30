@@ -2,16 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
 import 'package:masalah/presentation/reusable_widget/app_text.dart';
 
-class SettingItem extends StatelessWidget {
-  final String title;
-  final VoidCallback onTap;
-  const SettingItem({Key? key, required this.title, required this.onTap})
-      : super(key: key);
+import '../munajaat/munajaat_detail_screen.dart';
+
+class MunajaatItem extends StatelessWidget {
+  const MunajaatItem({Key? key, required this.no}) : super(key: key);
+
+  final int no;
 
   @override
   Widget build(BuildContext context) {
+    List days = [
+      'Saturaday',
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Firday'
+    ];
+    List pages = [3, 16, 30, 42, 55, 66, 77];
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => MunajaatDetailPdf(toPage: pages[no])),
+        );
+      },
       child: Container(
         margin: EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
         padding: EdgeInsets.all(16),
@@ -25,7 +41,7 @@ class SettingItem extends StatelessWidget {
             BoldText(
               color: AppColors.primaryText,
               fontSize: 16.0,
-              data: title,
+              data: "Day: ${days[no]}",
             ),
             Icon(
               Icons.arrow_forward_outlined,

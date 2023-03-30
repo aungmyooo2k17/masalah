@@ -1,6 +1,7 @@
 class TranslationConstants {
   TranslationConstants._();
 
+  static const String home = 'home';
   static const String language = 'language';
   static const String feedback = 'feedback';
   static const String retry = 'retry';

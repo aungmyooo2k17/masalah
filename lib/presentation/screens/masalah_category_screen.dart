@@ -60,6 +60,7 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppTopBar(
+        enableBackBtn: true,
         title: TranslationConstants.masalahCategory.t(context) ?? "",
         bgColor: AppColors.bgColor,
         textColor: AppColors.primaryText,
@@ -93,6 +94,8 @@ class _MasalahCategoryScreenState extends State<MasalahCategoryScreen> {
                     : _apiResponse.getCategories(),
                 builder:
                     (BuildContext context, AsyncSnapshot<Result> snapshot) {
+                  print("snapshot.data");
+                  print(snapshot.data);
                   if (snapshot.data is SuccessState) {
                     List<Category> categories =
                         (snapshot.data as SuccessState).value;
