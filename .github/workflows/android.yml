@@ -91,3 +91,46 @@ jobs:
         releaseFile: app-release.aab
         track: internal
         whatsNewDirectory: distribution/whatsnew
+=======
+name: Deploy to Google Play Store
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  APPLICATION_ID: com.lifeinstructionsformyanmarmuslims.limm
+  KEY_FILE: ${{ secrets.KEY_FILE }}
+  KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+  SERVICE_ACCOUNT_EMAIL: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+  SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+
+      - name: Build APK
+        run: flutter build apk --split-per-abi
+
+      - name: Upload APK to Google Play
+        uses: r0adkll/upload-google-play@v1.0.1
+        with:
+          serviceAccountEmail: ${{ env.SERVICE_ACCOUNT_EMAIL }}
+          serviceAccountKey: ${{ env.SERVICE_ACCOUNT_KEY }}
+          packageName: ${{ env.APPLICATION_ID }}
+          apkFiles: ./build/app/outputs/flutter-apk/app-*.apk
+          track: 'internal'
+          releaseName: 'Version 1.0.0'
+          releaseNotes: 'Initial release'
+          shouldAttachMetadata: true
+          skipUploadAPK: false
