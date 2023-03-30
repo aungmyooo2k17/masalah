@@ -88,5 +88,5 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
           packageName: com.lifeinstructionsformyanmarmuslims.limm
           releaseFiles: app-release.aab
-          track: alpha
+          track: production
           status: completed
