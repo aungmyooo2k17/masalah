@@ -86,7 +86,7 @@ class _MunajaatDetailPdfState extends State<MunajaatDetailPdf> {
     final assetsDownloaded =
         await downloadAssetsController.assetsFileExists("munajaat.pdf");
 
-    if (assetsDownloaded) {
+    if (await File('${downloadAssetsController.assetsDir}/munajaat.pdf').exists()) {
       setState(() {
         message = 'Click in refresh button to force download';
         print(message);

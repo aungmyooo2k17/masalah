@@ -82,7 +82,7 @@ class _ManzilPdfState extends State<ManzilPdf> {
     final assetsDownloaded =
         await downloadAssetsController.assetsDirAlreadyExists();
 
-    if (assetsDownloaded) {
+    if (await File('${downloadAssetsController.assetsDir}/manzil.pdf').exists()) {
       setState(() {
         message = 'Click in refresh button to force download';
         print(message);

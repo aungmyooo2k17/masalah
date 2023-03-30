@@ -52,7 +52,7 @@ class SilverFormState extends State<SilverForm> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BoldText(
-          data: "Silver",
+          data: TranslationConstants.silver.t(context) ?? "",
           color: AppColors.primaryText,
           fontSize: 22.0,
         ),

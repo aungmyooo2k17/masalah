@@ -40,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage('assets/images/masalah.png')),
-            label: TranslationConstants.masalah.t(context) ?? "",
+            label: TranslationConstants.home.t(context) ?? "",
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage('assets/images/adhan.png')),

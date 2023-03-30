@@ -129,7 +129,7 @@ class _AlQuranPdfState extends State<AlQuranPdf> {
     final assetsDownloaded =
         await downloadAssetsController.assetsFileExists("quran.pdf");
 
-    if (assetsDownloaded) {
+    if (await File('${downloadAssetsController.assetsDir}/quran.pdf').exists()) {
       setState(() {
         message = 'Click in refresh button to force download';
         print(message);

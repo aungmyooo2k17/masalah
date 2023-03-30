@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:masalah/common/constants/color_constant.dart';
+import 'package:masalah/common/extensions/string_extensions.dart';
 import 'package:masalah/presentation/screens/al_quran/al_quran_home.dart';
 import 'package:masalah/presentation/screens/converter_screen.dart';
 import 'package:masalah/presentation/screens/manzil_pdf.dart';
 import 'package:masalah/presentation/screens/masalah_category_screen.dart';
+import '../../../common/constants/translation_constants.dart';
 import '../../reusable_widget/app_bar.dart';
 import '../munajaat/munajaat_screen.dart';
 import './tool_item.dart';
@@ -15,7 +17,7 @@ class ToolListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppTopBar(
-        title: "Home",
+        title: TranslationConstants.home.t(context) ?? "",
         bgColor: AppColors.bgColor,
         textColor: AppColors.primaryText,
       ),
