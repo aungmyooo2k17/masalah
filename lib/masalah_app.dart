@@ -10,7 +10,6 @@ import 'package:masalah/presentation/app_localizations.dart';
 import 'package:masalah/presentation/blocs/location/location_cubit.dart';
 import 'package:masalah/presentation/blocs/prayertime/prayertime_cubit.dart';
 import 'package:masalah/presentation/screens/main/main_screen.dart';
-import 'package:masalah/presentation/screens/splash/splash_screen.dart';
 import 'package:masalah/service/location_service.dart';
 
 import 'common/constants/languages.dart';
@@ -94,7 +93,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     GlobalMaterialLocalizations.delegate,
                     GlobalWidgetsLocalizations.delegate,
                   ],
-                  home: SplashScreen());
+                  home: MainScreen());
             }
             return const SizedBox.shrink();
           },

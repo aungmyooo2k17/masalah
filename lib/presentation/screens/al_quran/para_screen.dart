@@ -19,7 +19,7 @@ class ParaScreen extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                     builder: (context) => AlQuranPdf(
-                          toPage: AlQuranConstant.juzs[index].page + 1,
+                          // toPage: AlQuranConstant.juzs[index].page + 1,
                         )),
               );
             },

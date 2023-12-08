@@ -171,7 +171,7 @@ class _ZakatListScreenState extends State<ZakatListScreen> {
               children: [
                 RegularText(
                   data:
-                      "${Jiffy(zakat.updatedAt).format('MMM do yyyy h:mm a')}",
+                  zakat.updatedAt.toString(),
                   color: AppColors.white,
                 ),
                 GestureDetector(

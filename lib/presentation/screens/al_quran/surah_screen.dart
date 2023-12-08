@@ -19,7 +19,7 @@ class SurahList extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                     builder: (context) => AlQuranPdf(
-                          toPage: AlQuranConstant.surahs[index].toPage + 1,
+                          // toPage: AlQuranConstant.surahs[index].toPage + 1,
                         )),
               );
             },
